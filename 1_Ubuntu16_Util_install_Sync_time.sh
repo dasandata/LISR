@@ -8,8 +8,10 @@ apt install -y \
 vim nfs-common mailutils rdate xauth firefox gcc make locate htop tmux git wget
 echo " "
 echo "##### time sync"
+echo " "
 rdate  -s  time.bora.net 
 hwclock --systohc  
 date
 hwclock
-echo ""##### end" 
+echo " "
+echo "##### end" 
