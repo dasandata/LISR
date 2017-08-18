@@ -12,4 +12,4 @@ rdate  -s  time.bora.net
 clock --systohc  
 date
 hwclock
-echo "end" 
+echo "##### end" 
