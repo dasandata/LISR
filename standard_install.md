@@ -1,7 +1,11 @@
 # 다산데이타 리눅스 설치 표준안 (2017.12.28)
-다산데이터에서 출고되는 장비에 설치되는 리눅스
+다산데이터에서 출고되는 장비에 설치되는 리눅스의 설치 표준안 입니다.  
+별도의 요청사항이 없는 경우 기본적으로 아래 절차에 따라 설치한 후 출고 하고 있습니다.  
+보완이 필요한 점이나 새로운 아이디어를 제보해 주시면 적극 반영하겠습니다 :)  
 
-<p align="left"><img src="http://www.dasandata.co.kr/dasanlogo.jpg" alt="dasandata logo" ></p>
+감사합니다.
+
+![Dasandata Logo](http://www.dasandata.co.kr/dasanlogo.jpg)
 
 ***
 
