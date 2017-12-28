@@ -75,7 +75,7 @@ tail /etc/apt/sources.list  |  grep -v "#"
 
 # 변경된 저장소 (repository) 의 정보를 업데이트 합니다.
 # 화면에 로그가 뿌려지지 않도록 하기 위해 파이프라인(>) 처리를 합니다.
-apt-get update    >> dasan_log_ubuntu_repo_update.txt
+apt-get update  >  dasan_log_ubuntu_repo_update.txt
 
 # 업데이트 결과를 확인할 수 있습니다.
 tail -5 dasan_log_ubuntu_repo_update.txt
