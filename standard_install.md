@@ -1,4 +1,4 @@
-# 다산데이타 리눅스 설치 표준안 (2017.12)
+# 다산데이타 리눅스 설치 표준안 (2017.12.28)
 
 <p align="left"><img src="http://www.dasandata.co.kr/dasanlogo.jpg" alt="dasandata logo" ></p>
 
@@ -8,6 +8,7 @@
 - ${USERNAME} : 설치시 생성한 기본 사용자 명 입니다.
 - ${DEFAULT_NIC} : 인터넷에 연결되는 기본 네트워크 인터페이스 명칭 입니다.
 - ${IP_ADDRESS} : 인터넷 연결시 사용하는 IP 주소 입니다.
+- #centos7 #ubuntu14 ... : 각 운영체제 별 명령어를 분리하여 표시 하였습니다.
 
 
 ## 리눅스 설치시 IP 와 HOSTNAME 은 수동으로 미리 설정 한다.
@@ -31,24 +32,41 @@ ssh ${USERNAME}@${IP_ADDRESS}
 
 ### 1. 기본 유틸 설치 / 시간 동기화  
 서버 기본 설정에 필요한 유틸리티들을 설치 한 후, 인터넷 시간에 맞추어 서버의 시간을 조정 합니다.
-
 #### #centos7  
 
 ```
+# 기본 유틸 설치.
+# 화면에 뿌려지는 로그를 최소화 하기 위해 파이프라인 (>)처리를 합니다.
 yum install -y  \
 vim pciutils perl openssh mlocate nfs-utils rdate xauth firefox nautilus wget tcsh \
 tree lshw tmux git kernel-headers kernel-devel ipmitool gcc make gcc-c++ cmake \
-python-devel ntfs-3g   >> dasan_log_install_centos_default_util.txt
+python-devel ntfs-3g   >  dasan_log_install_centos_default_util.txt
 
+
+# 설치된 결과를 확인할 수 있습니다.  
 tail dasan_log_install_centos_default_util.txt
 
+# 시간 동기화.
 rdate  -s  time.bora.net
 clock --systohc  
 date
 hwclock
 
 ```
+#### #ubunutu 14 & 16
+ubuntu 의 경우 빠른 설치를 위해 기본 저장소(repository) 주소를 kr.archive.ubuntu.com 에서 ftp.daumkakao.com 으로 변경합니다.  
 
+```
+# 기존 저장소 주소 확인.
+tail /etc/apt/sources.list  |  grep -v "#"
+
+# 저장소 주소 일괄 변경.
+perl -pi -e 's/kr.archive.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
+perl -pi -e 's/security.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
+
+# 변경된 저장소 주소 확인.
+tail /etc/apt/sources.list  |  grep -v "#"
+```
 
 
 
