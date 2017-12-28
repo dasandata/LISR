@@ -80,7 +80,7 @@ git push origin master
 > Counting objects: 5, done.  
 > Delta compression using up to 4 threads.  
 > Compressing objects: 100% (3/3), done.  
-> Writing objects: 100% (3/3), 322 bytes | 0 bytes/s, done. 
+> Writing objects: 100% (3/3), 322 bytes | 0 bytes/s, done.
 > Total 3 (delta 2), reused 0 (delta 0)  
 > remote: Resolving deltas: 100% (2/2), completed with 2 local objects.  
 > To https://github.com/dasandata/dasandata-LinuxInstall  
@@ -88,7 +88,9 @@ git push origin master
 > [kite@centos7:dasandata-LinuxInstall]$   
 
 
-
+### 참조링크
+- [생활코딩 지옥에서 온 Git](https://opentutorials.org/course/2708)
+- [ihoneymon 님의 GIT을 기반으로 한 프로젝트 개발프로세스](https://gist.github.com/ihoneymon/a28138ee5309c73e94f9)
 ***
 
 end.
