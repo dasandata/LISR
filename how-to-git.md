@@ -69,7 +69,7 @@ commit -a
 ```
 git push origin ${branche_name}
 ```
-> 실행결과 예))   
+> 실행결과 예)  
  [dasan@dasandata.co.kr:dasandata-LinuxInstall]$  
  [dasan@dasandata.co.kr:dasandata-LinuxInstall]$ git push origin ***${branche_name}***   
  Username for 'https://github.com': ***사용자명 입력***   
