@@ -32,12 +32,14 @@ ssh ${USERNAME}@${IP_ADDRESS}
 ### 1. 기본 유틸 설치 / 시간 동기화  
 #### centos7  
 
-<code>
+```
 yum install -y  \
 vim pciutils perl openssh mlocate nfs-utils rdate xauth firefox nautilus wget tcsh tree lshw tmux git kernel-headers kernel-devel ipmitool gcc make gcc-c++ cmake python-devel ntfs-3g   >> dasan_log_install_centos_default_util.txt
 
 tail dasan_log_install_centos_default_util.txt
-</code>
+```
+
+
 
 
 
