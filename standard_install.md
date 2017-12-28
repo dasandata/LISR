@@ -29,7 +29,8 @@ ssh ${USERNAME}@${IP_ADDRESS}
 2. [profile 설정 - Console Color , alias](#2-profile-%EC%84%A4%EC%A0%95---console-color--alias)
 3. [하드웨어 사양 / 기본 환경 확인 (os 버젼 등)](#3-하드웨어-사양)
 4. [ip 및 hostname 정보 / 인터넷 연결 확인](#4-ip-및)
-5.
+5. 
+6.
 
 ***
 
