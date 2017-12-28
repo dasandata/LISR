@@ -27,7 +27,7 @@ git config --global user.name "이름"
 ```
 
 ## 다산데이타 원격저장소 복제 (clone)
-git clone 명령을 실행한 위치에서 저장소 명과 동일한 이름으로 폴더가 생성 됩니다. (다른게 지정할 수도 있습니다.)  
+git clone 명령을 실행한 위치에서 저장소 명과 동일한 이름으로 폴더가 생성 됩니다. (다르게 지정할 수도 있습니다.)  
 예를 들어 아래 명령을 user 계정의 home 디렉토리에서 실행 한 경우,  
 생성되는 저장소 위치는 아래와 같습니다.  
 /home/user/dasandata-LinuxInstall
@@ -52,7 +52,8 @@ git pull
 필요에 의해서 스크립트나 문서의 내용이 수정된 경우  
 변경사항을 원격 저장소에 적용하기 위해 아래 두 단계를 거쳐야 합니다.
 1. commit (커밋)
-2. push ( )
+2. push  
+
 커밋이 무엇인지 설명하려면 글이 길어지니 생략 하고,  
 간단히 방법만 이야기 합니다. ^^;;
 
@@ -73,18 +74,18 @@ commit -a
 git push origin master
 ```
 
-> [kite@centos7:dasandata-LinuxInstall]$ git push origin master 
-> Username for 'https://github.com': 사용자명
-> Password for 'https://사용자명@github.com': 비밀번호 입력. 
-> Counting objects: 5, done.
-> Delta compression using up to 4 threads.
-> Compressing objects: 100% (3/3), done.
-> Writing objects: 100% (3/3), 322 bytes | 0 bytes/s, done.
-> Total 3 (delta 2), reused 0 (delta 0)
-> remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
-> To https://github.com/dasandata/dasandata-LinuxInstall
->    948f5c9..71a31b6  master -> master
-> [kite@centos7:dasandata-LinuxInstall]$ 
+> [kite@centos7:dasandata-LinuxInstall]$ git push origin master  
+> Username for 'https://github.com': 사용자명  
+> Password for 'https://사용자명@github.com': 비밀번호 입력.   
+> Counting objects: 5, done.  
+> Delta compression using up to 4 threads.  
+> Compressing objects: 100% (3/3), done.  
+> Writing objects: 100% (3/3), 322 bytes | 0 bytes/s, done. 
+> Total 3 (delta 2), reused 0 (delta 0)  
+> remote: Resolving deltas: 100% (2/2), completed with 2 local objects.  
+> To https://github.com/dasandata/dasandata-LinuxInstall  
+>    948f5c9..71a31b6  master -> master  
+> [kite@centos7:dasandata-LinuxInstall]$   
 
 
 
