@@ -34,7 +34,7 @@ ssh ${USERNAME}@${IP_ADDRESS}
 [기본 유틸 설치 / 시간 동기화](### 1. 기본 유틸 설치 / 시간 동기화)
 
 
-[기본 유틸 설치 / 시간 동기화](#기본 유틸 설치)
+[기본 유틸 설치 / 시간 동기화](#1-%EA%B8%B0%EB%B3%B8-%EC%9C%A0%ED%8B%B8-%EC%84%A4%EC%B9%98--%EC%8B%9C%EA%B0%84-%EB%8F%99%EA%B8%B0%ED%99%94)
 
 
 2. profile 설정 - Console Color , alias
