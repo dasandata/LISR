@@ -25,4 +25,10 @@
   - 자동형 - 사전 정의형 자동 스크립트
 
 ***
+
+## 기타
+### - [마크다운에 대하여][markdown]
+[markdown]:https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/makrdown.md
+
+***
 end.
