@@ -25,21 +25,10 @@ ssh ${USERNAME}@${IP_ADDRESS}
 ```
 
 ## 목차
-1. [기본 유틸 설치 / 시간 동기화](### 1. 기본 유틸 설치 / 시간 동기화)
-
-
-- [기본 유틸 설치 / 시간 동기화](### 1. 기본 유틸 설치 / 시간 동기화)
-
-
-[기본 유틸 설치 / 시간 동기화](### 1. 기본 유틸 설치 / 시간 동기화)
-
-
-[기본 유틸 설치 / 시간 동기화](#1-%EA%B8%B0%EB%B3%B8-%EC%9C%A0%ED%8B%B8-%EC%84%A4%EC%B9%98--%EC%8B%9C%EA%B0%84-%EB%8F%99%EA%B8%B0%ED%99%94)
-
-
-2. profile 설정 - Console Color , alias
-3. 하드웨어 사양 / 기본 환경 확인 (os 버젼 등)
-4. ip 및 hostname 정보 / 인터넷 연결 확인
+1. [기본 유틸 설치 / 시간 동기화](#1-%EA%B8%B0%EB%B3%B8-%EC%9C%A0%ED%8B%B8-%EC%84%A4%EC%B9%98--%EC%8B%9C%EA%B0%84-%EB%8F%99%EA%B8%B0%ED%99%94)
+2. [profile 설정 - Console Color , alias]
+3. [하드웨어 사양 / 기본 환경 확인 (os 버젼 등)]
+4. [ip 및 hostname 정보 / 인터넷 연결 확인]
 5.
 
 ***
@@ -105,6 +94,13 @@ tail -5 dasan_log_install_ubuntu_default_util.txt
 aptitude -y install  python-dev  > dasan_log_ubuntu_python-dev_install.txt
 ```
 
+### 2. profile 설정 - Console Color , alias
+
+
+### 3. 하드웨어 사양 / 기본 환경 확인 (os 버젼 등)
+
+
+### 4. ip 및 hostname 정보 / 인터넷 연결 확인
 
 
 
