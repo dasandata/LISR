@@ -4,26 +4,22 @@
 
 - Cent OS 계열  
 
-```bash
+```
 yum install git
 ```
 
 - Ubuntu 계열  
 
-```bash
+```
 apt-get install git
 ```
 
 ## git 사용자명 설정 (global config)
 git 을 사용하면서 commit 을 할때 comment 에 기록될 사용자 정보를 미리 정의 합니다.  
 필요한 정보는 email 주소와 이름 입니다.  
-
 ```
-git config --global user.email "이메일@주소"
-```
-
-```
-git config --global user.name "이름"
+git config --global user.email "${이메일주소}"
+git config --global user.name "${사용자이름}"
 ```
 
 ## 다산데이타 원격저장소 복제 (clone)
@@ -71,20 +67,20 @@ commit -a
 원격 저장소에 접근 가능한 계정을 입력해야 합니다.
 
 ```
-git push origin master
+git push origin ${branche_name}
 ```
-
-> [${USERNAME}@${HOSTNAME}:${GIT프로젝트 디렉토리}]$ git push origin ***master***
-> Username for 'https://github.com': **사용자명 입력**
-> Password for 'https://사용자명@github.com': **비밀번호 입력.**
+> 실행예)  
+> [${USERNAME}@${HOSTNAME}:${GIT프로젝트 디렉토리}]$ git push origin ***${branche_name}***  
+> Username for 'https://github.com': **사용자명 입력**  
+> Password for 'https://사용자명@github.com': **비밀번호 입력.**  
 > Counting objects: 5, done.  
 > Delta compression using up to 4 threads.  
 > Compressing objects: 100% (3/3), done.  
 > Writing objects: 100% (3/3), 322 bytes | 0 bytes/s, done.
 > Total 3 (delta 2), reused 0 (delta 0)  
 > remote: Resolving deltas: 100% (2/2), completed with 2 local objects.  
-> To https://github.com/dasandata/dasandata-LinuxInstall  
->    94%^&$%@#$@!$1b6  master -> master  
+> To https://github.com/dasandata/dasandata-LinuxInstall  ***#vmfh
+>    94%^&$%@#$@!$1b6  ***${branche_name}*** -> ***${branche_name}***    
 > [${USERNAME}@${HOSTNAME}:${GIT프로젝트 디렉토리}]$
 
 
