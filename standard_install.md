@@ -36,7 +36,7 @@ ssh ${USERNAME}@${IP_ADDRESS}
 
 ```
 # 기본 유틸 설치.
-# 화면에 뿌려지는 로그를 최소화 하기 위해 파이프라인 (>)처리를 합니다.
+# 화면에 로그가 뿌려지지 않도록 하기 위해 파이프라인(>) 처리를 합니다.
 yum install -y  \
 vim pciutils perl openssh mlocate nfs-utils rdate xauth firefox nautilus wget tcsh \
 tree lshw tmux git kernel-headers kernel-devel ipmitool gcc make gcc-c++ cmake \
@@ -54,7 +54,8 @@ hwclock
 
 ```
 #### #ubunutu 14 & 16
-ubuntu 의 경우 빠른 설치를 위해 기본 저장소(repository) 주소를 kr.archive.ubuntu.com 에서 ftp.daumkakao.com 으로 변경합니다.  
+ubuntu 의 경우 빠른 설치를 위해 기본 저장소(repository) 주소를  
+kr.archive.ubuntu.com 에서 ftp.daumkakao.com 으로 변경합니다.  
 
 ```
 # 기존 저장소 주소 확인.
@@ -66,6 +67,36 @@ perl -pi -e 's/security.ubuntu.com/ftp.daumkakao.com/g' /etc/apt/sources.list
 
 # 변경된 저장소 주소 확인.
 tail /etc/apt/sources.list  |  grep -v "#"
+
+# 변경된 저장소 (repository) 의 정보를 업데이트 합니다.
+# 화면에 로그가 뿌려지지 않도록 하기 위해 파이프라인(>) 처리를 합니다.
+apt-get update    >> dasan_log_ubuntu_repo_update.txt
+
+# 업데이트 결과를 확인할 수 있습니다.
+tail -5 dasan_log_ubuntu_repo_update.txt
+
+```
+
+
+
+```
+
+# 기본 유틸 설치.
+apt-get -y install  \
+vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget ipmitool \
+xfsprogs ntfs-3g aptitude lvm2  >  dasan_log_install_ubuntu_default_util.txt
+
+
+```
+
+```
+# 마찬가지로 설치된 결과를 따로 확인할 수 있습니다.
+tail -5 dasan_log_install_ubuntu_default_util.txt
+
+# aptitude 를 이용하여 python-dev 를 따로 설치 합니다.
+aptitude -y install  python-dev  > dasan_log_ubuntu_python-dev_install.txt
+
+
 ```
 
 
@@ -74,4 +105,6 @@ tail /etc/apt/sources.list  |  grep -v "#"
 
 
 
+
+***
 ## end.
