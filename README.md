@@ -9,6 +9,7 @@
 
 ## 목차
 - [리눅스 표준설치 메뉴얼 (2017-12)][standard_install.md]  
+
 [standard_install.md]:  https://github.com/dasandata/dasandata-LinuxInstall/blob/master/standard_install.md#%EB%8B%A4%EC%82%B0%EB%8D%B0%EC%9D%B4%ED%83%80-%EB%A6%AC%EB%88%85%EC%8A%A4-%EC%84%A4%EC%B9%98-%ED%91%9C%EC%A4%80%EC%95%88-201712
 
 - 리눅스 자동설치 스크립트 사용 방법.
