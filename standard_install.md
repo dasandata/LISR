@@ -10,8 +10,10 @@
 - ${IP_ADDRESS} : 인터넷 연결시 사용하는 IP 주소 입니다.
 - #centos7 #ubuntu14 ... : 각 운영체제 별 명령어를 분리하여 표시 하였습니다.
 
+## 팁
 - 명령을 실행시킬때, 명령어 박스 단위로 복사하여 터미널에 붙여넣으면 됩니다.  
 - 같은 운영체제 단위라도 박스가 분리되어 있는 경우 분리된 단위로 복사하여 붙여넣습니다.
+- 각 항목별 제목을 클릭하면 목차로 되돌아 올 수 있습니다.
 
 
 ## 리눅스 설치시 IP 와 HOSTNAME 은 수동으로 미리 설정 한다.
@@ -95,13 +97,13 @@ tail -5 dasan_log_install_ubuntu_default_util.txt
 aptitude -y install  python-dev  > dasan_log_ubuntu_python-dev_install.txt
 ```
 
-### 2. profile 설정 - Console Color , alias
+### [2. profile 설정 - Console Color , alias](#목차)
 
 
-### 3. 하드웨어 사양 / 기본 환경 확인 (os 버젼 등)
+### [3. 하드웨어 사양 / 기본 환경 확인 (os 버젼 등)](#목차)
 
 
-### 4. ip 및 hostname 정보 / 인터넷 연결 확인
+### [4. ip 및 hostname 정보 / 인터넷 연결 확인](#목차)
 
 
 
