@@ -69,19 +69,19 @@ commit -a
 ```
 git push origin ${branche_name}
 ```
-> 실행예)  
-> [${USERNAME}@${HOSTNAME}:${GIT프로젝트 디렉토리}]$ git push origin ***${branche_name}***  
-> Username for 'https://github.com': **사용자명 입력**  
-> Password for 'https://사용자명@github.com': **비밀번호 입력.**  
-> Counting objects: 5, done.  
-> Delta compression using up to 4 threads.  
-> Compressing objects: 100% (3/3), done.  
-> Writing objects: 100% (3/3), 322 bytes | 0 bytes/s, done.
+> 실행결과 예))  
+> [${USERNAME}@${HOSTNAME}:${GIT프로젝트 디렉토리}]$ git push origin ***${branche_name}***   
+> Username for 'https://github.com': ***사용자명 입력***   
+> Password for 'https://사용자명@github.com': ***비밀번호 입력.***   
+> Counting objects: 5, done.   
+> Delta compression using up to 4 threads.   
+> Compressing objects: 100% (3/3), done.   
+> Writing objects: 100% (3/3), 322 bytes | 0 bytes/s, done.  
 > Total 3 (delta 2), reused 0 (delta 0)  
-> remote: Resolving deltas: 100% (2/2), completed with 2 local objects.  
-> To https://github.com/dasandata/dasandata-LinuxInstall  ***#vmfh
+> remote: Resolving deltas: 100% (2/2), completed with 2 local objects.   
+> To ***https://github.com/dasandata/dasandata-LinuxInstall***   
 >    94%^&$%@#$@!$1b6  ***${branche_name}*** -> ***${branche_name}***    
-> [${USERNAME}@${HOSTNAME}:${GIT프로젝트 디렉토리}]$
+> [${USERNAME}@${HOSTNAME}:${GIT프로젝트 디렉토리}]$   
 
 
 ### 참조링크
