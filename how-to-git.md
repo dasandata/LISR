@@ -87,7 +87,8 @@ git push origin ${branche_name}
 
 
 ### 참조링크
-- [생활코딩 지옥에서 온 Git](https://opentutorials.org/course/2708)
+- [생활코딩 지옥에서 온 Git - opentutorials](https://opentutorials.org/course/2708)
+- [누구나 쉽게 이해할 수 있는 Git 입문 - backlog](https://backlog.com/git-tutorial/kr/intro/intro1_1.html)
 - [ihoneymon 님의 GIT을 기반으로 한 프로젝트 개발프로세스](https://gist.github.com/ihoneymon/a28138ee5309c73e94f9)
 ***
 
