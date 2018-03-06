@@ -9,6 +9,11 @@
 
 ## #목차
 
+
+
+
+
+
 ***
 
 ## # 범례(변수).
@@ -17,7 +22,7 @@
 
 ## # 팁.
 - 명령을 실행시킬때, 명령어 박스 단위로 복사하여 터미널에 붙여 넣으면 됩니다.  
-- 박스가 분리되어 있는 경우 분리된 단위로 복사하여 붙여 넣어야 합니다.
+- 박스가 분리되어 있는 경우 분리된 단위로 복사하여 붙여 넣어야 합니다.  
 
 ## # 리눅스 설치시 IP 와 HOSTNAME 은 수동으로 미리 설정 한다.
 \# 처음 설치 할때부터 고정 IP를 설정하고 HOSTNAME을 정의 하는 것을 권장 합니다.  
@@ -25,16 +30,16 @@
 ### # 터미널을 통해 리눅스가 새로 설치된 장비에 로그인 합니다.
 
 #### # Windows 에서 리눅스 접속 (putty) / X11 Forwading / 파일 송수신 (winscp)
-\#
-\# putty (SSH Terminal - X11 Forwarding Enable)
-\# https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
-\#
-\# Xming (X11 Forward - Windows Application)
-\# https://sourceforge.net/projects/xming/
-\#
-\# 파일 전송 winscp
-\# https://winscp.net/eng/download.php
-\#
+\#  
+\# putty (SSH Terminal - X11 Forwarding Enable)  
+\# https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html  
+\#  
+\# Xming (X11 Forward - Windows Application)  
+\# https://sourceforge.net/projects/xming/  
+\#  
+\# 파일 전송 winscp  
+\# https://winscp.net/eng/download.php  
+\#  
 #### # 리눅스 터미널 에서.
 ```bash
 ssh <사용자 계정>@<IP 주소>
@@ -47,11 +52,11 @@ ssh <사용자 계정>@<IP 주소>
 # su -
 ```
 ### # sudo -i 와 su - 의 차이점
-\# 1. sudo -i 는 sudo 권한이 있는 사용자가, 사용자의 암호를 사용해서 root 권한으로 명령을 실행 하는 것 입니다.
-\#    즉, root 의 패스워드를 몰라도 root 권한의 명령을 수행할 수 있습니다.
-\# 2. su -    는 sudo 권한과 관계 없이 root 의 암호를 사용해서 root 계정으로 전환 하는 것 입니다.  
-\#  
-\# 'su - ' 의 경우 재접속 없이 다른 사용자 계정으로 전환 할 수 있는 명령 이며 아래와 같이 실행 합니다.  
+\# 1. sudo -i 는 sudo 권한이 있는 사용자가, 사용자의 암호를 사용해서 root 권한으로 명령을 실행 하는 것 입니다.  
+\#    즉, root 의 패스워드를 몰라도 root 권한의 명령을 수행할 수 있습니다.  
+\# 2. su -    는 sudo 권한과 관계 없이 root 의 암호를 사용해서 root 계정으로 전환 하는 것 입니다.    
+\#    
+\# 'su - ' 의 경우 재접속 없이 다른 사용자 계정으로 전환 할 수 있는 명령 이며 아래와 같이 실행 합니다.    
 \# ex) su  -  <다른사용자 계정명>   
 
 ***
