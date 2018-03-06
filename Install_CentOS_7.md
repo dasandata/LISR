@@ -8,19 +8,19 @@
 ![Dasandata Logo](http://www.dasandata.co.kr/dasanlogo.jpg)
 
 ## #목차
-[1. 기본 유틸 설치 / 시간 동기화](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#%EB%AA%A9%EC%B0%A8)  
-[2. profile 설정 - Console Color , alias]  
-[3. 하드웨어 사양 / 기본 환경 확인 (os 버젼 등)]  
-[4. ip 및 hostname 정보 / 인터넷 연결 확인]  
-[5. SELINUX disable / grub 수정 (ipv6 disable 등)]  
-[6. Desktop (X window) Install, not default]  
-[7. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading]  
-[8. 새로운 사용자 추가 / sudo 권한 부여]
-[9. 스토리지, 파티션 마운트 / lvm, UUID, LABEL]
-[10. Banner // login wellcome message ]
-[11. VNC Server 설정]
-[12. TeamViewer 설치]
-[13. 부팅 되는 기본 커널 버젼 변경방법]
+[1. 기본 유틸 설치 / 시간 동기화](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-1-%EA%B8%B0%EB%B3%B8-%EC%9C%A0%ED%8B%B8-%EC%84%A4%EC%B9%98--%EC%8B%9C%EA%B0%84-%EB%8F%99%EA%B8%B0%ED%99%94)  
+[2. profile 설정 - Console Color , alias](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-2-profile-%EC%84%A4%EC%A0%95---console-color--alias)  
+[3. 하드웨어 사양 / 기본 환경 확인 (os 버젼 등)](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-3-%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4-%EC%82%AC%EC%96%91--%EA%B8%B0%EB%B3%B8-%ED%99%98%EA%B2%BD-%ED%99%95%EC%9D%B8-os-%EB%B2%84%EC%A0%BC-%EB%93%B1)  
+[4. ip 및 hostname 정보 / 인터넷 연결 확인](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-4-ip-%EB%B0%8F-hostname-%EC%A0%95%EB%B3%B4--%EC%9D%B8%ED%84%B0%EB%84%B7-%EC%97%B0%EA%B2%B0-%ED%99%95%EC%9D%B8)  
+[5. SELINUX disable / grub 수정 (ipv6 disable 등)](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-5-selinux-disable--grub-%EC%88%98%EC%A0%95-ipv6-disable-%EB%93%B1)  
+[6. Desktop (X window) Install, not default](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-6-desktop-x-window-install-not-default)  
+[7. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-7-ssh-%EB%B0%8F-%EB%B0%A9%ED%99%94%EB%B2%BD-firewall%EC%84%A4%EC%A0%95--%EB%B3%B4%EC%95%88%EA%B0%95%ED%99%94--x11-forwading)  
+[8. 새로운 사용자 추가 / sudo 권한 부여](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-8-%EC%83%88%EB%A1%9C%EC%9A%B4-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%B6%94%EA%B0%80--sudo-%EA%B6%8C%ED%95%9C-%EB%B6%80%EC%97%AC)  
+[9. 스토리지, 파티션 마운트 / lvm, UUID, LABEL](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-9-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%ED%8C%8C%ED%8B%B0%EC%85%98-%EB%A7%88%EC%9A%B4%ED%8A%B8--lvm-uuid-label)  
+[10. Banner // login wellcome message ](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-10-banner--login-wellcome-message-)  
+[11. VNC Server 설정](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-11-vnc-server-%EC%84%A4%EC%A0%95)  
+[12. TeamViewer 설치]  
+[13. 부팅 되는 기본 커널 버젼 변경방법](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-13-%EB%B6%80%ED%8C%85-%EB%90%98%EB%8A%94-%EA%B8%B0%EB%B3%B8-%EC%BB%A4%EB%84%90-%EB%B2%84%EC%A0%BC-%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95)  
 
 
 ***
@@ -568,7 +568,7 @@ vncserver # vnc 서비스 실행
 vncviewer localhost:1 &  # vnc viewer 로 접속 테스트  (X11Forwading 이 구성 되어 있어야 합니다.)
 ```
 
-### # (#목차)
+### # [12. TeamViewer 설치](#목차)
 \# https://www.teamviewer.com/ko/download/linux/
 ```bash
 yum install  epel-release   # epel 저장소가 설치 되어 있는지 확인.
