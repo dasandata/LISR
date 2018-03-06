@@ -267,7 +267,7 @@ pwd
 
 git clone https://github.com/dasandata/dasandata-LinuxInstall
 
-bash ~/dasandata-LinuxInstall/dasan_check_to_hardware_spec.sh
+bash /root/dasandata-LinuxInstall/dasan_check_to_hardware_spec.sh
 ```
 
 ### # [4. ip 및 hostname 정보 / 인터넷 연결 확인](#목차)
@@ -327,14 +327,14 @@ systemctl list-unit-files  -t service  | grep enable
 
 \# Daemon Disable 스크립트 실행.
 ```bash
-cat ~/dasandata-LinuxInstall/dasan_daemon_disable.sh
+cat /root/dasandata-LinuxInstall/dasan_daemon_disable.sh
 
-bash ~/dasandata-LinuxInstall/dasan_daemon_disable.sh
+bash /root/dasandata-LinuxInstall/dasan_daemon_disable.sh
 ```
 *output example>*
 ```
 [root@hostname:~]#
-[root@hostname:~]# cat ~/dasandata-LinuxInstall/dasan_daemon_disable.sh
+[root@hostname:~]# cat /root/dasandata-LinuxInstall/dasan_daemon_disable.sh
 #!/bin/bash
 # disable Daemon list
 systemctl disable bluetooth.service
@@ -353,7 +353,7 @@ systemctl disable ModemManager.service
 
 # End of file.
 [root@hostname:~]#
-[root@hostname:~]# bash ~/dasandata-LinuxInstall/dasan_daemon_disable.sh
+[root@hostname:~]# bash /root/dasandata-LinuxInstall/dasan_daemon_disable.sh
 Removed symlink /etc/systemd/system/dbus-org.bluez.service.
 Removed symlink /etc/systemd/system/bluetooth.target.wants/bluetooth.service.
 Removed symlink /etc/systemd/system/sysinit.target.wants/iscsi.service.
@@ -776,7 +776,7 @@ grub2-editenv list
 #### # 메일 알림을 받아볼 관리자 이메일 주소 및 로그 타이틀 정보를 생성하는 파일 작성.
 
 ```bash
-cp ~/dasandata-LinuxInstall/template_dasan_export_global_variable.sh /root/dasan_export_global_variable.sh
+cp /root/dasandata-LinuxInstall/template_dasan_export_global_variable.sh /root/dasan_export_global_variable.sh
 
 CUSTOMER=<고객사 정보>
 perl -pi -e 's/ABCDEFG/${CUSTOMER}/' /root/dasan_export_global_variable.sh
@@ -822,8 +822,8 @@ systemctl  restart postfix
 \# 오류 메세지를 메일로 발송 하는 기능을 구현 할 수 있습니다.   
 
 ```bash
-cat ~/dasandata-LinuxInstall/Install_Dell_OMSA_CentOS7.sh
-bash ~/dasandata-LinuxInstall/Install_Dell_OMSA_CentOS7.sh
+cat /root/dasandata-LinuxInstall/Install_Dell_OMSA_CentOS7.sh
+bash /root/dasandata-LinuxInstall/Install_Dell_OMSA_CentOS7.sh
 ```
 
 ### # E-Mail Alert by Dell OMSA
@@ -833,7 +833,7 @@ cat   /root/dasan_export_global_variable.sh
 ```
 
 ```bash
-cp ~/dasandata-LinuxInstall/dasan_alert_omsa.sh /root/
+cp /root/dasandata-LinuxInstall/dasan_alert_omsa.sh /root/
 chmod 744 /root/dasan_alert_omsa.sh
 
 tail -20  /root/dasan_alert_omsa.sh
@@ -843,8 +843,8 @@ vi /root/dasan_alert_omsa.sh
 ```
 
 ```bash
-cat   ~/dasandata-LinuxInstall/dasan_omconfig_set.sh
-bash  ~/dasandata-LinuxInstall/dasan_omconfig_set.sh
+cat   /root/dasandata-LinuxInstall/dasan_omconfig_set.sh
+bash  /root/dasandata-LinuxInstall/dasan_omconfig_set.sh
 ```
 
 
@@ -866,8 +866,8 @@ bash  ~/dasandata-LinuxInstall/dasan_omconfig_set.sh
 \# https://en.wikipedia.org/wiki/Broadcom_Limited
 
 ```bash
-cat ~/dasandata-LinuxInstall/Install_Dell_MSM_CentOS7.sh
-bash ~/dasandata-LinuxInstall/Install_Dell_MSM_CentOS7.sh
+cat /root/dasandata-LinuxInstall/Install_Dell_MSM_CentOS7.sh
+bash /root/dasandata-LinuxInstall/Install_Dell_MSM_CentOS7.sh
 ```
 
 ***
