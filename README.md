@@ -10,7 +10,7 @@
 
 
 ## 목차
-- [리눅스 설치 표준안 - Centos 7.4 (2018.03)][Standard_Install_CentOS_7.md]  
+- [리눅스 설치 표준안 - Centos 7.4 (2018.03)](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md)
 - (예정))리눅스 자동설치 스크립트.
   - 운영체제별 스크립트
       - centos 7.4
@@ -18,9 +18,7 @@
       - ubunutu 16.04
 
 ## 기타
-#### - [마크다운에 대하여][markdown]
+#### - [마크다운에 대하여](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/makrdown.md)
 
 ***
 end.
-[Standard_Install_CentOS_7.md]:https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md
-[markdown]:https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/makrdown.md
