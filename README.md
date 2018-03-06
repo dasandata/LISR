@@ -12,7 +12,7 @@
 ## 목차
 - [리눅스 표준설치 메뉴얼 - Centos 7.4 (2018-03)][Standard_Install_CentOS_7.md]  
 
-[standard_install.md]:https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md
+[Standard_Install_CentOS_7.md]:https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md
 
 - (예정))리눅스 자동설치 스크립트.
   - 운영체제별 스크립트 (사전 정의 필요)
