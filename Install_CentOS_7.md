@@ -724,7 +724,7 @@ tail  dasan_log_install_teamviewer.txt
 #### # 실행.
 ```bash
 teamviewer daemon enable
-teamviewer passwd 123456qwer!
+teamviewer passwd # <비밀번호 입력>
 sleep 5
 teamviewer --daemon restart
 sleep 10
