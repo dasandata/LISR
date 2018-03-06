@@ -817,6 +817,24 @@ grep 'inet_interfaces =' /etc/postfix/main.cf
 systemctl  restart postfix
 ```
 
+*output example>*
+```
+Executing /sbin/chkconfig dsm_om_connsvc on
+System Model            = PowerEdge R710
+Service Tag             = AAAAAAA
+Alert Log
+
+Alert Log contains...
+
+Severity      : Ok
+ID            : 1000
+Date and Time : Tue Mar  6 14:41:32 2018
+Category      : Instrumentation Service
+Description   : Server Administrator starting
+
+[root@hostname:~]#
+```
+
 ### # Dell OpenManage Server Administrator Install (OMSA)
 \# 서버 자체에서 구동되며, 장애가 발생한 경우 상태를 확인하거나   
 \# 오류 메세지를 메일로 발송 하는 기능을 구현 할 수 있습니다.   
