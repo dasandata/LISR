@@ -20,12 +20,12 @@
 [10. VNC Server 설정](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-10-vnc-server-%EC%84%A4%EC%A0%95)  
 [11. TeamViewer 설치](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-11-teamviewer-%EC%84%A4%EC%B9%98)
 [12. 부팅 되는 기본 커널 버젼 변경방법](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-12-%EB%B6%80%ED%8C%85-%EB%90%98%EB%8A%94-%EA%B8%B0%EB%B3%B8-%EC%BB%A4%EB%84%90-%EB%B2%84%EC%A0%BC-%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95)  
-[20. SMTP for Email Alert (mailutils or mailx)](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-20-smtp-for-email-alert-mailutils-or-mailx)
-[21. SMTP for Email Alert (postfix for Dell RAID Manager)](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-21-smtp-for-email-alert-postfix-for-dell-raid-manager)
-[22. Dell OpenManage Server Administrator Install (OMSA)](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-22-dell-openmanage-server-administrator-install-omsa)
-[23. Dell OMSA - E-Mail Alert](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-23-dell-omsa---e-mail-alert)
-[24. Dell RAID Controller Management (MSM) + Alert by Email](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-24-dell-raid-controller-management-msm--alert-by-email)
-[25. 온도(temperature) 모니터 링. (ipmitool)](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-25-%EC%98%A8%EB%8F%84temperature-%EB%AA%A8%EB%8B%88%ED%84%B0-%EB%A7%81-ipmitool)
+[20. SMTP for Email Alert (mailutils or mailx)](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-20-smtp-for-email-alert-mailutils-or-mailx)  
+[21. SMTP for Email Alert (postfix for Dell RAID Manager)](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-21-smtp-for-email-alert-postfix-for-dell-raid-manager)  
+[22. Dell OpenManage Server Administrator Install (OMSA)](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-22-dell-openmanage-server-administrator-install-omsa)  
+[23. Dell OMSA - E-Mail Alert](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-23-dell-omsa---e-mail-alert)  
+[24. Dell RAID Controller Management (MSM) + Alert by Email](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-24-dell-raid-controller-management-msm--alert-by-email)  
+[25. 온도(temperature) 모니터 링. (ipmitool)](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-25-%EC%98%A8%EB%8F%84temperature-%EB%AA%A8%EB%8B%88%ED%84%B0-%EB%A7%81-ipmitool)  
 
 
 ***
