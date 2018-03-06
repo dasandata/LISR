@@ -8,7 +8,7 @@
 ![Dasandata Logo](http://www.dasandata.co.kr/dasanlogo.jpg)
 
 ## #목차
-[1. 기본 유틸 설치 / 시간 동기화]  
+[1. 기본 유틸 설치 / 시간 동기화](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#%EB%AA%A9%EC%B0%A8)  
 [2. profile 설정 - Console Color , alias]  
 [3. 하드웨어 사양 / 기본 환경 확인 (os 버젼 등)]  
 [4. ip 및 hostname 정보 / 인터넷 연결 확인]  
