@@ -1,5 +1,5 @@
-# 다산데이타 CentOS 7 설치 표준안 (2018.03)
-다산데이터 출고 장비에 설치되는 리눅스 (CenOS7) 의 설치 표준안 입니다.  
+# 다산데이타 CentOS 7.4 설치 표준안 (2018.03)
+다산데이터 출고 장비에 설치되는 리눅스 (CenOS 7.4) 의 설치 표준안 입니다.  
 별도의 요청사항이 없는 경우 기본적으로 아래 절차에 따라 설치한 후 출고 하고 있습니다.  
 보완이 필요한 점이나 새로운 아이디어를 제보해 주시면 적극 반영하겠습니다 :)  
 
@@ -22,7 +22,6 @@
 [12. 부팅 되는 기본 커널 버젼 변경방법](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-12-%EB%B6%80%ED%8C%85-%EB%90%98%EB%8A%94-%EA%B8%B0%EB%B3%B8-%EC%BB%A4%EB%84%90-%EB%B2%84%EC%A0%BC-%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95)  
 
 [===== 장애 모니터링 =====](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#--%EC%9E%A5%EC%95%A0-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-)  
-
 [20. SMTP for Email Alert (mailutils or mailx)](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-20-smtp-for-email-alert-mailutils-or-mailx)  
 [21. SMTP for Email Alert (postfix for Dell RAID Manager)](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-21-smtp-for-email-alert-postfix-for-dell-raid-manager)  
 [22. Dell OpenManage Server Administrator Install (OMSA)](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md#-22-dell-openmanage-server-administrator-install-omsa)  
@@ -70,11 +69,11 @@ ssh <사용자 계정>@<IP 주소>
 ```
 ### # sudo -i 와 su - 의 차이점
 \# 1. sudo -i 는 sudo 권한이 있는 사용자가, 사용자의 암호를 사용해서 root 권한으로 명령을 실행 하는 것 입니다.  
-\#    즉, root 의 패스워드를 몰라도 root 권한의 명령을 수행할 수 있습니다.  
+\# root 의 패스워드를 몰라도 root 권한의 명령을 수행할 수 있습니다.  
+\#  
 \# 2. su -    는 sudo 권한과 관계 없이 root 의 암호를 사용해서 root 계정으로 전환 하는 것 입니다.    
-\#    
 \# 'su - ' 의 경우 재접속 없이 다른 사용자 계정으로 전환 할 수 있는 명령 이며 아래와 같이 실행 합니다.    
-\# ex) su  -  <다른사용자 계정명>   
+\# ex) su  -  <다른 사용자 계정이름>   
 
 ***
 
@@ -103,7 +102,6 @@ grep 'SELINUX=' /etc/sysconfig/selinux
 \# 불필요한 ipv6를 비활성화 하여 ip 정보 가독성을 높입니다.
 ```bash
 ip a | grep inet6
-# ipv6 값이 표시되고 있습니다.
 ```
 *output example>*
 ```
@@ -113,6 +111,7 @@ ip a | grep inet6
     inet6 fe80::4393:77e0:7563:ff25/64 scope link
     inet6 fe80::c39b:9d5:b27d:a8a4/64 scope link
 [root@hostname:~]#
+# ipv6 값이 표시되고 있습니다.
 ```
 \# 설정 변경.
 ```bash
@@ -120,7 +119,7 @@ cat /etc/default/grub  # 기존 설정 내용 확인.
 perl -pi -e  's/rhgb//'   /etc/default/grub   # 부팅시 화면에 부팅로그가 표시 되도록 rhgb 항목 지움
 perl -pi -e  's/quiet//'  /etc/default/grub   # 부팅시 화면에 부팅로그가 표시 되도록 quiet 항목 지움
 
- # ipv6 비활성
+# ipv6 비활성
 perl -pi -e  's/GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="ipv6.disable=1 /' /etc/default/grub
 
 cat /etc/default/grub  # 변경사항 확인.
@@ -150,11 +149,11 @@ Disabled
 [root@hostname:~]#
 ```
 
-#### # 서버 기본 설정에 필요한 유틸리티들 설치, 인터넷 시간에 맞추어 서버의 시간 조정.
+#### # 서버 기본 설정에 필요한 유틸리티들 설치
 
 ```bash
 # 기본 유틸 설치.
-# 화면에 로그가 뿌려지지 않도록 하기 위해 파이프라인(>) 처리를 합니다.
+# 화면에 로그가 뿌려지지 않도록 하기 위해 파이프라인(>>) 처리를 합니다.
 yum -y install \
 vim pciutils perl openssh mlocate nfs-utils rdate xauth firefox nautilus wget \
 tcsh tree lshw tmux git kernel-headers kernel-devel ipmitool gcc make gcc-c++ \
@@ -166,7 +165,9 @@ tail dasan_log_install_centos_default_util.txt # 설치 결과 확인.
 yum -y groups install "Development Tools" >> dasan_log_install_centos_developtoosl.txt
 
 tail dasan_log_install_centos_developtoosl.txt
-
+```
+#### # 인터넷 시간에 맞추어 서버의 시간 조정
+```bash
 # 서버 시간 동기화.
 rdate  -s  time.bora.net
 clock --systohc  
