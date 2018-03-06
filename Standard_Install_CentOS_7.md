@@ -291,6 +291,9 @@ echo ${EXT_NIC}  # 추출된 인터페이스 명이 맞는지 확인 필요.
 ```bash
 ifconfig  ${EXT_NIC}
 
+# 가독성 향상을 위해, 불 필요한 IPV6 항목 삭제.
+sed -i '/IPV6/d' /etc/sysconfig/network-scripts/ifcfg-${EXT_NIC}
+
 cat /etc/sysconfig/network-scripts/ifcfg-${EXT_NIC}
 
 cat /etc/hostname
