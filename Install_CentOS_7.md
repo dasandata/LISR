@@ -8,10 +8,19 @@
 ![Dasandata Logo](http://www.dasandata.co.kr/dasanlogo.jpg)
 
 ## #목차
-
-
-
-
+[1. 기본 유틸 설치 / 시간 동기화]  
+[2. profile 설정 - Console Color , alias]  
+[3. 하드웨어 사양 / 기본 환경 확인 (os 버젼 등)]  
+[4. ip 및 hostname 정보 / 인터넷 연결 확인]  
+[5. SELINUX disable / grub 수정 (ipv6 disable 등)]  
+[6. Desktop (X window) Install, not default]  
+[7. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading]  
+[8. 새로운 사용자 추가 / sudo 권한 부여]
+[9. 스토리지, 파티션 마운트 / lvm, UUID, LABEL]
+[10. Banner // login wellcome message ]
+[11. VNC Server 설정]
+[12. TeamViewer 설치]
+[13. 부팅 되는 기본 커널 버젼 변경방법]
 
 
 ***
@@ -62,7 +71,7 @@ ssh <사용자 계정>@<IP 주소>
 ***
 
 ### # [1. 기본 유틸 설치 / 시간 동기화](#목차)
-#### # (Centos7) 우선 kernel 을 업데이트 하고 재부팅 한 후 진행 합니다.
+#### # 우선 kernel 을 업데이트 하고 재부팅 한 후 진행 합니다.
 ```bash
 yum -y update  >>  dasan_log_yum_update.txt
 
@@ -501,7 +510,7 @@ ls -l /home
 \#
 
 
-### # [10. Banner // login wellcome message  ](#목차)
+### # [10. Banner // login wellcome message ](#목차)
 \# /etc/ssh/sshd_config 파일의 Banner 옵션을 조정하면
 \# 서버에 ssh 접속시 원하는 텍스트 이미지 를 표시할 수 있습니다.
 \# 텍스트 이미지 는 아래 사이트에서 쉽게 만들 수 있습니다.
@@ -559,7 +568,7 @@ vncserver # vnc 서비스 실행
 vncviewer localhost:1 &  # vnc viewer 로 접속 테스트  (X11Forwading 이 구성 되어 있어야 합니다.)
 ```
 
-### # [12. TeamViewer 설치](#목차)
+### # (#목차)
 \# https://www.teamviewer.com/ko/download/linux/
 ```bash
 yum install  epel-release   # epel 저장소가 설치 되어 있는지 확인.
