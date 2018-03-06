@@ -891,6 +891,7 @@ bash  /root/dasandata-LinuxInstall/dasan_omconfig_set.sh
 
 ```bash
 cat /root/dasandata-LinuxInstall/Install_Dell_MSM_CentOS7.sh
+
 bash /root/dasandata-LinuxInstall/Install_Dell_MSM_CentOS7.sh
 ```
 
