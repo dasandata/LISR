@@ -703,7 +703,7 @@ vncserver # vnc 서비스 실행
 
 vncviewer localhost:1 &  # vnc viewer 로 접속 테스트  (X11Forwading 이 구성 되어 있어야 합니다.)
 ```
-
+***
 ### # [11. TeamViewer 설치](#목차)
 \# https://www.teamviewer.com/ko/download/linux/
 
@@ -738,7 +738,7 @@ teamviewer info
 \# 라이선스에 동의 한 후 확인 합니다.  
 \# TeamViewer ID 를 확인 한 후 로그인 합니다.  
 
-
+***
 ### # [12. 부팅 되는 기본 커널 버젼 변경방법](#목차)
 \# 업데이트를 통해 커널이 많이 설치 되었을 경우   
 \# 이 방법으로 기본 부팅 커널 버젼을 변경할 수 있습니다.  
@@ -768,10 +768,11 @@ grub2-set-default 0 # 다시 원래대로 변경.
 grub2-editenv list
 
 ```
+***
 
-## # ===== 장애 모니터링 =====
+## # [===== 장애 모니터링 =====](#목차)
 
-### # SMTP for Email Alert (mailutils or mailx)
+### # [20. SMTP for Email Alert (mailutils or mailx)](#목차)
 
 #### # 이메일 경고에 사용될 메일관리자 이메일 주소 및 로그 타이틀 정보를 생성 파일 작성.
 
@@ -801,7 +802,7 @@ echo "Test of SMTP... OK." | mail -s $TITLE_TAIL $ADMIN_LOG_EMAIL
 
 ***
 
-### # SMTP for Email Alert (postfix for Dell RAID Manager)
+### # [21. SMTP for Email Alert (postfix for Dell RAID Manager)](#목차)
 #### # Dell Server RAID Controller Management (MSM) 의 알림 메일 발송을 위해 postifx를 구성 합니다 .
 
 ```bash
@@ -819,7 +820,7 @@ grep 'inet_interfaces =' /etc/postfix/main.cf
 systemctl  restart postfix
 ```
 ***
-### # Dell OpenManage Server Administrator Install (OMSA)
+### # [22. Dell OpenManage Server Administrator Install (OMSA)](#목차)
 \# 서버 자체에서 구동되며, 장애가 발생한 경우 상태를 확인하거나   
 \# 오류 메세지를 메일로 발송 하는 기능을 구현 할 수 있습니다.   
 
@@ -845,7 +846,7 @@ Description   : Server Administrator starting
 [root@hostname:~]#
 ```
 ***
-### # Dell OMSA - E-Mail Alert
+### # [23. Dell OMSA - E-Mail Alert](#목차)
 
 #### # 기존 변수 생성파일 확인.
 ```bash
@@ -880,7 +881,7 @@ bash  /root/dasandata-LinuxInstall/dasan_omconfig_set.sh
 \# http://topics-cdn.dell.com/pdf/dell-openmanage-server-administrator-v8.3_user%27s%20guide_en-us.pdf  
 
 ***
-### # Dell RAID Controller Management (MSM) + Alert by Email
+### # [24. Dell RAID Controller Management (MSM) + Alert by Email](#목차)
 \# RAID 컨트롤러 관리 프로그램을 통해 서버의 전원을 끄지 않고 디스크 장애를 처리하거나  
 \# RAID 구성을 변경할 수 있습니다. Megaraid Storage Manager 의 약자로 통상 MSM 이라고 합니다.  
 \# LSI 사에서 최초 제작한 컨트롤러 였으나 현재는 Boradcom 제품 입니다.  
@@ -894,8 +895,8 @@ cat /root/dasandata-LinuxInstall/Install_Dell_MSM_CentOS7.sh
 
 bash /root/dasandata-LinuxInstall/Install_Dell_MSM_CentOS7.sh
 ```
-
-### # 온도(temperature) 모니터 링. (ipmitool)
+***
+### # [25. 온도(temperature) 모니터 링. (ipmitool)](#목차)
 \# 서버에 내장된 관리기능 (ipmi) 를 이용하여 온도를 모니터링 하고 이메일로 받아봅니다.
 
 #### # 파일 복사.
