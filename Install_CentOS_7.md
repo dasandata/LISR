@@ -11,16 +11,15 @@
 [1. 기본 유틸 설치 / 시간 동기화](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-1-%EA%B8%B0%EB%B3%B8-%EC%9C%A0%ED%8B%B8-%EC%84%A4%EC%B9%98--%EC%8B%9C%EA%B0%84-%EB%8F%99%EA%B8%B0%ED%99%94)  
 [2. profile 설정 - Console Color , alias](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-2-profile-%EC%84%A4%EC%A0%95---console-color--alias)  
 [3. 하드웨어 사양 / 기본 환경 확인 (os 버젼 등)](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-3-%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4-%EC%82%AC%EC%96%91--%EA%B8%B0%EB%B3%B8-%ED%99%98%EA%B2%BD-%ED%99%95%EC%9D%B8-os-%EB%B2%84%EC%A0%BC-%EB%93%B1)  
-[4. ip 및 hostname 정보 / 인터넷 연결 확인](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-4-ip-%EB%B0%8F-hostname-%EC%A0%95%EB%B3%B4--%EC%9D%B8%ED%84%B0%EB%84%B7-%EC%97%B0%EA%B2%B0-%ED%99%95%EC%9D%B8)  
-[5. SELINUX disable / grub 수정 (ipv6 disable 등)](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-5-selinux-disable--grub-%EC%88%98%EC%A0%95-ipv6-disable-%EB%93%B1)  
-[6. Desktop (X window) Install, not default](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-6-desktop-x-window-install-not-default)  
-[7. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-7-ssh-%EB%B0%8F-%EB%B0%A9%ED%99%94%EB%B2%BD-firewall%EC%84%A4%EC%A0%95--%EB%B3%B4%EC%95%88%EA%B0%95%ED%99%94--x11-forwading)  
-[8. 새로운 사용자 추가 / sudo 권한 부여](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-8-%EC%83%88%EB%A1%9C%EC%9A%B4-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%B6%94%EA%B0%80--sudo-%EA%B6%8C%ED%95%9C-%EB%B6%80%EC%97%AC)  
-[9. 스토리지, 파티션 마운트 / lvm, UUID, LABEL](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-9-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%ED%8C%8C%ED%8B%B0%EC%85%98-%EB%A7%88%EC%9A%B4%ED%8A%B8--lvm-uuid-label)  
-[10. Banner // login wellcome message ](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-10-banner--login-wellcome-message-)  
-[11. VNC Server 설정](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-11-vnc-server-%EC%84%A4%EC%A0%95)  
-[12. TeamViewer 설치]  
-[13. 부팅 되는 기본 커널 버젼 변경방법](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-13-%EB%B6%80%ED%8C%85-%EB%90%98%EB%8A%94-%EA%B8%B0%EB%B3%B8-%EC%BB%A4%EB%84%90-%EB%B2%84%EC%A0%BC-%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95)  
+[4. ip 및 hostname 정보 / 인터넷 연결 확인](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-4-ip-%EB%B0%8F-hostname-%EC%A0%95%EB%B3%B4--%EC%9D%B8%ED%84%B0%EB%84%B7-%EC%97%B0%EA%B2%B0-%ED%99%95%EC%9D%B8)   
+[5. Desktop (X window) Install, not default](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-6-desktop-x-window-install-not-default)  
+[6. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-7-ssh-%EB%B0%8F-%EB%B0%A9%ED%99%94%EB%B2%BD-firewall%EC%84%A4%EC%A0%95--%EB%B3%B4%EC%95%88%EA%B0%95%ED%99%94--x11-forwading)  
+[7. 새로운 사용자 추가 / sudo 권한 부여](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-8-%EC%83%88%EB%A1%9C%EC%9A%B4-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%B6%94%EA%B0%80--sudo-%EA%B6%8C%ED%95%9C-%EB%B6%80%EC%97%AC)  
+[8. 스토리지, 파티션 마운트 / lvm, UUID, LABEL](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-9-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%ED%8C%8C%ED%8B%B0%EC%85%98-%EB%A7%88%EC%9A%B4%ED%8A%B8--lvm-uuid-label)  
+[9. Banner // login wellcome message ](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-10-banner--login-wellcome-message-)  
+[10. VNC Server 설정](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-11-vnc-server-%EC%84%A4%EC%A0%95)  
+[11. TeamViewer 설치]  
+[12. 부팅 되는 기본 커널 버젼 변경방법](https://github.com/dasandata/dasandata-LinuxInstall/blob/develop/Install_CentOS_7.md#-13-%EB%B6%80%ED%8C%85-%EB%90%98%EB%8A%94-%EA%B8%B0%EB%B3%B8-%EC%BB%A4%EB%84%90-%EB%B2%84%EC%A0%BC-%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95)  
 
 
 ***
@@ -71,13 +70,75 @@ ssh <사용자 계정>@<IP 주소>
 ***
 
 ### # [1. 기본 유틸 설치 / 시간 동기화](#목차)
-#### # 우선 kernel 을 업데이트 하고 재부팅 한 후 진행 합니다.
+
+#### # 우선 kernel 을 업데이트 와 grub 를 수정하고, 재부팅 한 후 진행 합니다.
+
+##### # kernel Update (yum update)
 ```bash
 yum -y update  >>  dasan_log_yum_update.txt
 
 tail dasan_log_yum_update.txt
+```
 
-reboot  
+##### # 설정이 까다로운 SELINUX 를 disable 합니다.
+```bash
+setenforce 0
+getenforce
+
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+grep 'SELINUX=' /etc/sysconfig/selinux  
+```
+
+##### # grub 수정.
+\# 부팅시 화면에 부팅로그가 표시되도록 grub 를 수정하고,
+\# 불필요한 ipv6를 비활성화 하여 ip 정보 가독성을 높입니다.
+```bash
+ip a | grep inet6
+# ipv6 값이 표시되고 있습니다.
+```
+*output example>*
+```bash
+[root@hostname:~]\#
+[root@hostname:~]\# ip a | grep inet6
+    inet6 ::1/128 scope host
+    inet6 fe80::4393:77e0:7563:ff25/64 scope link
+    inet6 fe80::c39b:9d5:b27d:a8a4/64 scope link
+[root@hostname:~]\#
+```
+\# 설정 변경.
+```bash
+cat /etc/default/grub  # 기존 설정 내용 확인.
+perl -pi -e  's/rhgb//'   /etc/default/grub   # 부팅시 화면에 부팅로그가 표시 되도록 rhgb 항목 지움
+perl -pi -e  's/quiet//'  /etc/default/grub   # 부팅시 화면에 부팅로그가 표시 되도록 quiet 항목 지움
+
+ # ipv6 비활성
+perl -pi -e  's/GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="ipv6.disable=1 /' /etc/default/grub
+
+cat /etc/default/grub  # 변경사항 확인.
+
+grub2-mkconfig -o /boot/grub2/grub.cfg  # boot kernel 에 설정 적용
+
+reboot  # 재부팅
+```
+
+***
+
+\# 재부팅 후 확인.
+```bash
+getenforce  # SELINUX 상태 확인.
+
+ip a | grep inet6
+# 아무 결과가 없는 것이  ipv6 disable 이 잘 적용 된것 입니다.
+```
+*output example>*
+```bash
+[root@hostname:~]\#
+[root@hostname:~]\# getenforce  # SELINUX 상태 확인.
+Disabled
+[root@hostname:~]\#
+[root@hostname:~]\# ip a | grep inet6
+[root@hostname:~]\# # 아무 결과가 없는 것이  ipv6 disable 이 잘 적용 된것 입니다.
+[root@hostname:~]\#
 ```
 
 #### # 서버 기본 설정에 필요한 유틸리티들 설치, 인터넷 시간에 맞추어 서버의 시간 조정.
@@ -104,7 +165,7 @@ date
 hwclock
 ```
 
-#### # Centos EPEL 저장소 (Repository) 설치. (Extra Packages for Enterprise Linux)
+#### # Centos EPEL(Extra Packages for Enterprise Linux) 저장소(Repository) 설치.
 
 ```bash
 yum repolist # 현재 repolist 확인.
@@ -136,14 +197,22 @@ rpm -qa | grep $(uname -r) | grep 'headers\|devel'
 ```
 *output example>*
 ```bash
-
+[root@hostname ~]\# # kernel / kernel-header / kernel-devel 버젼 일치 확인
+[root@hostname ~]\# uname -r # 현재 실행중인 커널 버젼 확인
+3.10.0-693.17.1.el7.x86_64
+[root@hostname ~]\#
+[root@hostname ~]\# # 실행중인 커널과 동일한 버젼의 커널 패키지 (headers,devel) 가 설치 되어 있는지 확인.
+[root@hostname ~]\# rpm -qa | grep $(uname -r) | grep 'headers\|devel'
+kernel-devel-3.10.0-693.17.1.el7.x86_64
+kernel-headers-3.10.0-693.17.1.el7.x86_64
+[root@hostname ~]#
 ```
 
 
 
 ### # [2. profile 설정 - Console Color , alias](#목차)
 \# 사용 편의를 위한 alias를 설정, History Size 및 format 변경.  
-\# Console 의 가독성을 높이기 위하여 Prompt 색상변경.
+\# Console 의 가독성을 높이기 위하여 Prompt 색상변경.  
 \# Console Color Codes : http://bitmote.com/public/ansi_4bit_color_table.png  
 ![Console Color Codes](http://bitmote.com/public/ansi_4bit_color_table.png)  
 
@@ -221,62 +290,15 @@ cat /etc/resolv.conf
 ping -c 4 google.com
 ```
 
-### # [5. SELINUX disable / grub 수정 (ipv6 disable 등](#목차)
-#### # 설정이 까다로운 SELINUX 를 disable 합니다.
-```bash
-setenforce 0
-getenforce
-
-sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
-cat /etc/sysconfig/selinux  
-```
-
-#### # grub 수정.
-\# 부팅시 화면에 부팅로그가 표시되도록 grub 를 수정하고,
-\# 불필요한 ipv6를 비활성화 하여 ip 정보 가독성을 높입니다.
-```bash
-ip a | grep inet6
-# ipv6 값이 표시되고 있습니다.
-```
-*output example>*
-```bash
-
-```
-\# 설정 변경.
-```bash
-cat /etc/default/grub
-perl -pi -e  's/rhgb//'   /etc/default/grub   # 부팅시 화면에 부팅로그가 표시 되도록 rhgb 항목 지움
-perl -pi -e  's/quiet//'  /etc/default/grub   # 부팅시 화면에 부팅로그가 표시 되도록 quiet 항목 지움
-perl -pi -e  's/GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="ipv6.disable=1 /' /etc/default/grub  # ipv6 비활성
-
-cat /etc/default/grub  # 변경사항 확인.
-
-grub2-mkconfig -o /boot/grub2/grub.cfg  # boot kernel 에 설정 적용
-
-reboot  # 재부팅
-```
-***
-\# 재부팅 후 확인.
-```bash
-getenforce  # SELINUX 상태 확인.
-
-ip a | grep inet6
-# 아무 결과가 없는 것이  ipv6 disable 이 잘 적용 된것 입니다.
-```
-*output example>*
-```bash
-
-```
-
-### # [6. Desktop (X window) Install, not default](#목차)
-\# Desktop 환경을 설치 하지만, 기본 부팅은 텍스트 모드로 설정해 놓습니다.
-\# 필요한 경우에만 xwindow 를 실행하여 사용 합니다. (서버의 리소스 절약)
-\# Desktop 을 설치하면 불필요한 데몬이 함께 깔립니다. 설치 후 정리가 필요 합니다.
+### # [5. Desktop (X window) Install, not default](#목차)
+\# Desktop 환경을 설치 하지만, 기본 부팅은 텍스트 모드로 설정해 놓습니다.  
+\# 필요한 경우에만 xwindow 를 실행하여 사용 합니다. (서버의 리소스 절약)  
+\# Desktop 을 설치하면 불필요한 데몬이 함께 깔립니다. 설치 후 정리가 필요 합니다.  
 
 #### # 기본 부팅 모드 확인.
-\# multi-user.target -> 텍스트환경
-\# graphical.target -> GUI 환경
-\# 기본 모드 변경시 -> systemctl set-default multi-user.target
+\# multi-user.target -> 텍스트환경  
+\# graphical.target -> GUI 환경  
+\# 기본 모드 변경시 -> systemctl set-default multi-user.target  
 ```bash
 systemctl get-default
 ```
@@ -287,14 +309,14 @@ yum -y  groups install "GNOME Desktop"  >> dasan_log_install_gnome-desktop.txt
 
 tail dasan_log_install_gnome-desktop.txt
 ```
-\# 콘솔에서 실행하여 윈도우가 잘 뜨는지 확인
-\#[user@hostname:~]# startx
-\#
-\# 기본 부팅모드 (그래픽 모드 vs 텍스트 모드) 변경 방법 입니다. (런레벨 / runlevel)
-\# - CentOS 6.x 계열
-\# http://egloos.zum.com/conniezzang/v/3313282
-\# - CentOS 7.x 계열
-\# https://www.server-world.info/en/note?os=CentOS_7&p=runlevel
+\# 콘솔에서 실행하여 윈도우가 잘 뜨는지 확인  
+\#[user@hostname:~]# startx  
+\#  
+\# 기본 부팅모드 (그래픽 모드 vs 텍스트 모드) 변경 방법 입니다. (런레벨 / runlevel)  
+\# - CentOS 6.x 계열  
+\# http://egloos.zum.com/conniezzang/v/3313282  
+\# - CentOS 7.x 계열  
+\# https://www.server-world.info/en/note?os=CentOS_7&p=runlevel  
 
 #### # 불필요한 Daemon Disable 예.
 
@@ -311,13 +333,52 @@ bash ~/dasandata-LinuxInstall/dasan_daemon_disable.sh
 ```
 *output example>*
 ```bash
+[root@hostname:~]\#
+[root@hostname:~]\# cat ~/dasandata-LinuxInstall/dasan_daemon_disable.sh
+\#!/bin/bash
+\# disable Daemon list
+systemctl disable bluetooth.service
+systemctl disable iscsi.service
+systemctl disable ksm.service
+systemctl disable ksmtuned.service
+systemctl disable libstoragemgmt.service
+systemctl disable libvirtd.service
+systemctl disable NetworkManager.service
+systemctl stop      NetworkManager.service
+systemctl disable NetworkManager-dispatcher.service
+systemctl disable NetworkManager-wait-online.service
+systemctl disable spice-vdagentd.service
+systemctl disable vmtoolsd.service
+systemctl disable ModemManager.service
 
+\# End of file.
+[root@hostname:~]\#
+[root@hostname:~]\# bash ~/dasandata-LinuxInstall/dasan_daemon_disable.sh
+Removed symlink /etc/systemd/system/dbus-org.bluez.service.
+Removed symlink /etc/systemd/system/bluetooth.target.wants/bluetooth.service.
+Removed symlink /etc/systemd/system/sysinit.target.wants/iscsi.service.
+Removed symlink /etc/systemd/system/multi-user.target.wants/ksm.service.
+Removed symlink /etc/systemd/system/multi-user.target.wants/ksmtuned.service.
+Removed symlink /etc/systemd/system/multi-user.target.wants/libstoragemgmt.service.
+Removed symlink /etc/systemd/system/multi-user.target.wants/libvirtd.service.
+Removed symlink /etc/systemd/system/sockets.target.wants/virtlogd.socket.
+Removed symlink /etc/systemd/system/sockets.target.wants/virtlockd.socket.
+Removed symlink /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service.
+Removed symlink /etc/systemd/system/dbus-org.freedesktop.NetworkManager.service.
+Removed symlink /etc/systemd/system/multi-user.target.wants/NetworkManager.service.
+Removed symlink /etc/systemd/system/spice-vdagentd.target.wants/spice-vdagentd.service.
+Removed symlink /etc/systemd/system/vmtoolsd.service.requires/vgauthd.service.
+Removed symlink /etc/systemd/system/multi-user.target.wants/vmtoolsd.service.
+Removed symlink /etc/systemd/system/dbus-org.freedesktop.ModemManager1.service.
+Removed symlink /etc/systemd/system/multi-user.target.wants/ModemManager.service.
+[root@hostname:~]\#
+[root@hostname:~]\#
 ```
 
-### # [7. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading](#목차)
-\# ssh port 를 7777로 변경하고, ssh를 통한 Root Login을 거부 한 후
-\# 변경된 포트에 맞게 방화벽을 설정한 합니다.
-\# X11 Forwading 에 필요한 설정을 추가 합니다.
+### # [6. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading](#목차)
+\# ssh port 를 7777로 변경하고, ssh를 통한 Root Login을 거부 한 후  
+\# 변경된 포트에 맞게 방화벽을 설정한 합니다.  
+\# X11 Forwading 에 필요한 설정을 추가 합니다.  
 
 #### # 방화벽 (Firewall) 설정.
 ```bash
@@ -335,7 +396,9 @@ firewall-cmd --get-zones         # 설정가능 한 zone 목록 확인.
 firewall-cmd --list-all          # 현재 설정 확인.
 firewall-cmd --get-default-zone  # 현재 설정 확인.
 
-firewall-cmd --change-interface=${EXT_NIC} --zone=external --permanent  # 외부 인터페이스를 external 존 으로 변경.
+# 외부 인터페이스를 external 존 으로 변경.
+firewall-cmd --change-interface=${EXT_NIC} --zone=external --permanent  
+
 firewall-cmd --set-default-zone=external # 기본 zone 을 external 로 변경.
 firewall-cmd --reload   # 변경사항 적용
 
@@ -350,7 +413,9 @@ firewall-cmd --list-all  # 변경된 설정내용 확인.
 grep 'Root\|Port' /etc/ssh/sshd_config  # 변경 전 설정 확인.
 
 perl -pi -e "s/#Port 22/Port 7777/g" /etc/ssh/sshd_config  # 포트 변경
-perl -pi -e "s/#PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config # root 로그인 거부 설정.
+
+# root 로그인 거부 설정.
+perl -pi -e "s/#PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config
 
 grep 'Root\|Port' /etc/ssh/sshd_config  # 변경 후 설정 확인.
 
@@ -376,14 +441,35 @@ ssh -XYC -p 7777 user@192.168.0.?
 
 firefox & nautilus &
 
-
 ```
 *output example>*
 ```bash
+[root@hostname:~]\#
+[root@hostname:~]\# logout
+Connection to 192.168.0.xxx closed.
+[user@dasandata:~]$
+[user@dasandata:~]$ ssh root@192.168.0.173
+ssh: connect to host 192.168.0.xxx port 22: No route to host
+[user@dasandata:~]$
+[user@dasandata:~]$ ssh -p7777 root@192.168.0.xxx
+root@192.168.0.xxx\'s password:
+Permission denied, please try again.
+root@192.168.0.xxx\'s password:
 
+[user@dasandata:~]$ ssh -p7777 dasan@192.168.0.xxx
+dasan@192.168.0.xxx\'s password:
+Last login: Tue Mar  6 09:16:15 2018 from 192.168.0.xx
+[dasan@hostname:~]$
+[dasan@hostname:~]$ logout
+Connection to 192.168.0.xxx closed.
+[user@dasandata:~]$
+[user@dasandata:~]$ ssh -p7777 -XCY dasan@192.168.0.xxx
+dasan@192.168.0.xxx\'s password:
+Last login: Tue Mar  6 13:13:31 2018 from 192.168.0.xx
+[dasan@hostname:~]$
 ```
 
-### # [8. 새로운 사용자 추가 / sudo 권한 부여](#목차)
+### # [7. 새로운 사용자 추가 / sudo 권한 부여](#목차)
 \# 새로운 사용자를 추가하고, sudo 권한을 부여 합니다.
 
 ```bash
@@ -430,10 +516,56 @@ pwd
 
 *output example>*
 ```bash
-
+[root@coffee:~]\#
+[root@coffee:~]\# NEW_USER=user
+[root@coffee:~]\# echo ${NEW_USER}  # 할당된 변수 확인.
+user
+[root@coffee:~]\#
+[root@coffee:~]\# adduser ${NEW_USER}
+[root@coffee:~]\# passwd ${NEW_USER}
+Changing password for user user.
+New password:
+Retype new password:
+passwd: all authentication tokens updated successfully.
+[root@coffee:~]\#
+[root@coffee:~]\#
+[root@coffee:~]\# su - ${NEW_USER}
+[user@coffee ~]$
+[user@coffee ~]$ whoami
+user
+[user@coffee ~]$ pwd
+/home/user
+[user@coffee ~]$
+[user@coffee ~]$ sudo -i
+[sudo] password for user:
+user is not in the sudoers file.  This incident will be reported.
+[user@coffee ~]$
+[user@coffee ~]$ logout
+[root@coffee:~]\#
+[root@coffee:~]\# grep ${NEW_USER} /etc/group
+users:x:100:
+rpcuser:x:29:
+user:x:1001:
+[root@coffee:~]\#
+[root@coffee:~]\# usermod -G wheel ${NEW_USER}  
+[root@coffee:~]\# grep ${NEW_USER} /etc/group
+wheel:x:10:user
+users:x:100:
+rpcuser:x:29:
+user:x:1001:
+[root@coffee:~]\# su - ${NEW_USER}
+Last login: Tue Mar  6 13:19:14 KST 2018 on pts/0
+[user@coffee ~]$ whoami
+user
+[user@coffee ~]$ pwd
+/home/user
+[user@coffee ~]$
+[user@coffee ~]$ sudo -i
+[sudo] password for user:
+[root@coffee:~]\#
 ```
 
-### # [9. 스토리지, 파티션 마운트 / lvm, UUID, LABEL](#목차)
+### # [8. 스토리지, 파티션 마운트 / lvm, UUID, LABEL](#목차)
 \# /home 디렉토리를 용량이 큰 디스크 or 스토리지 로 변경
 \# 또는 용량이 큰 디스크를 /data 로 마운트 합니다.
 
@@ -510,7 +642,7 @@ ls -l /home
 \#
 
 
-### # [10. Banner // login wellcome message ](#목차)
+### # [9. Banner // login wellcome message ](#목차)
 \# /etc/ssh/sshd_config 파일의 Banner 옵션을 조정하면
 \# 서버에 ssh 접속시 원하는 텍스트 이미지 를 표시할 수 있습니다.
 \# 텍스트 이미지 는 아래 사이트에서 쉽게 만들 수 있습니다.
@@ -528,7 +660,7 @@ systemctl restart sshd
 
 \# 재접속 확인
 
-### # [11. VNC Server 설정](#목차)
+### # [10. VNC Server 설정](#목차)
 \# 원격 접속을 위한 VNC Server를 구성 합니다.
 
 ```bash
@@ -568,7 +700,7 @@ vncserver # vnc 서비스 실행
 vncviewer localhost:1 &  # vnc viewer 로 접속 테스트  (X11Forwading 이 구성 되어 있어야 합니다.)
 ```
 
-### # [12. TeamViewer 설치](#목차)
+### # [11. TeamViewer 설치](#목차)
 \# https://www.teamviewer.com/ko/download/linux/
 ```bash
 yum install  epel-release   # epel 저장소가 설치 되어 있는지 확인.
@@ -595,7 +727,7 @@ teamviewer info
 \# 라이선스에 동의 한 후 확인 합니다.
 \# TeamViewer ID 를 확인 한 후 로그인 합니다.
 
-### # [13. 부팅 되는 기본 커널 버젼 변경방법](#목차)
+### # [12. 부팅 되는 기본 커널 버젼 변경방법](#목차)
 \# 업데이트를 통해 커널이 많이 설치 되었을 경우
 \# 이 방법으로 기본 부팅 커널 버젼을 변경할 수 있습니다.
 
