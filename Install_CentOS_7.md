@@ -629,7 +629,7 @@ lsblk
 ls -l /home
 ```
 
-\ sticky bit 설정에 대한 설명. chmod +t / chmod 1777  
+\# sticky bit 설정에 대한 설명. chmod +t / chmod 1777  
 \# http://park1020.tistory.com/57  
 \#  
 \# ====== disk label 변경  
@@ -648,6 +648,7 @@ ls -l /home
 \# 텍스트 이미지 는 아래 사이트에서 쉽게 만들 수 있습니다.  
 \# http://www.network-science.de/ascii/  
 
+```bash
 vi /etc/ssh/banner.sample
 
 cat /etc/ssh/banner.sample
@@ -657,8 +658,9 @@ echo "Banner /etc/ssh/banner.sample" >> /etc/ssh/sshd_config
 grep Banner /etc/ssh/sshd_config
 
 systemctl restart sshd
-
+```
 \# 재접속 확인
+
 
 ### # [10. VNC Server 설정](#목차)
 \# 원격 접속을 위한 VNC Server를 구성 합니다.
@@ -682,18 +684,20 @@ firewall-cmd --reload
 firewall-cmd --list-all | grep services
 ```
 
+\# VNC 암호 설정
 ```bash
-logout # 일반 사용자 계정으로 테스트 합니다.
-
 vncpasswd # vnc접속용 암호를 지정합니다. (8자)
+```
 
+\# VNC 실행 및 연결
+```bash
 vncserver # vnc 서버를 실행 합니다.
 
 vncserver -list # 현재 실행중인 vnc 서버 목록을 확인합니다.
 
-vncserver -kill :1 # 실행중인 vnc 서비스 끝내기
-
 ps aux | grep -i vnc # 실행중인 vnc 프로세스 확인
+
+vncserver -kill :1 # 실행중인 vnc 서비스 끝내기
 
 vncserver # vnc 서비스 실행
 
@@ -702,6 +706,8 @@ vncviewer localhost:1 &  # vnc viewer 로 접속 테스트  (X11Forwading 이 �
 
 ### # [11. TeamViewer 설치](#목차)
 \# https://www.teamviewer.com/ko/download/linux/
+
+#### # 설치.
 ```bash
 yum install  epel-release   # epel 저장소가 설치 되어 있는지 확인.
 
@@ -710,10 +716,12 @@ yum -y install qt5-*  >> dasan_log_install_qt5_teamviewer_.txt # teamviewer 설�
 tail  dasan_log_install_qt5_teamviewer_.txt
 
 # teamvierew 설치
-yum -y install https://download.teamviewer.com/download/teamviewer.i686.rpm >> dasan_log_install_teamviewer.txt
+yum -y install https://download.teamviewer.com/download/teamviewer.i686.rpm \
+>> dasan_log_install_teamviewer.txt
 tail  dasan_log_install_teamviewer.txt
 ```
 
+#### # 실행.
 ```bash
 teamviewer daemon enable
 teamviewer passwd 123456qwer!
@@ -722,10 +730,11 @@ teamviewer --daemon restart
 sleep 10
 teamviewer info
 ```
-\# 여기서 ID 가 확인 되지  않으면
-\# X-Windows 로 들어가서 teamviewer 를 실행,
+\# 여기서 ID 가 확인 되지 않으면, X-Windows 로 들어가서 teamviewer 를 실행,
 \# 라이선스에 동의 한 후 확인 합니다.
 \# TeamViewer ID 를 확인 한 후 로그인 합니다.
+
+
 
 ### # [12. 부팅 되는 기본 커널 버젼 변경방법](#목차)
 \# 업데이트를 통해 커널이 많이 설치 되었을 경우
