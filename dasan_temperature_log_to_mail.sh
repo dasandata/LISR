@@ -20,7 +20,7 @@ echo  "
 # This Message from ${TITLE_TAIL}
 # Using crontab (/etc/crontab)
 # The location of the configuration file is below.
-# /root/dasan_export_global_variable.sh
-# /root/dasan_temperature_check_to_log.sh ,
+# /root/dasan_export_global_variable.sh,
+# /root/dasan_temperature_check_to_log.sh,
 # /root/dasan_temperature_log_to_mail.sh.sh
 ################################################## \n" >> ${LOG}

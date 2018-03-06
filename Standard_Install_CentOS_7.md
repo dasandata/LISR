@@ -877,9 +877,9 @@ bash  /root/dasandata-LinuxInstall/dasan_omconfig_set.sh
 <이미지 추가 예정.>  
 
 \# 참조 omconfig  Manual   
-\# http://topics-cdn.dell.com/pdf/dell-openmanage-server-administrator-v8.3_user%27s%20guide_en-us.pdf
+\# http://topics-cdn.dell.com/pdf/dell-openmanage-server-administrator-v8.3_user%27s%20guide_en-us.pdf  
 
-
+***
 ### # Dell RAID Controller Management (MSM) + Alert by Email
 \# RAID 컨트롤러 관리 프로그램을 통해 서버의 전원을 끄지 않고 디스크 장애를 처리하거나  
 \# RAID 구성을 변경할 수 있습니다. Megaraid Storage Manager 의 약자로 통상 MSM 이라고 합니다.  
@@ -894,6 +894,61 @@ cat /root/dasandata-LinuxInstall/Install_Dell_MSM_CentOS7.sh
 
 bash /root/dasandata-LinuxInstall/Install_Dell_MSM_CentOS7.sh
 ```
+
+### # 온도(temperature) 모니터 링. (ipmitool)
+\# 서버에 내장된 관리기능 (ipmi) 를 이용하여 온도를 모니터링 하고 이메일로 받아봅니다.
+
+#### # 파일 복사.
+```bash
+cp /root/dasandata-LinuxInstall/dasan_temperature_check_to_log.sh /root/
+cp /root/dasandata-LinuxInstall/dasan_temperature_log_to_mail.sh /root/
+```
+
+#### # 파일 권한 변경 (실행)
+```bash
+chmod 744 /root/dasan_temperature_check_to_log.sh
+chmod 744 /root/dasan_temperature_log_to_mail.sh
+```
+
+#### # 테스트
+```bash
+source /root/dasan_export_global_variable.sh
+TITLE='IPMI_Temperature_log_by_'${TITLE_TAIL}
+LOG='/var/log/Dasandata_Temperature.log'
+
+echo  "
+##################################################
+# This Message from ${TITLE_TAIL}
+# Using crontab (/etc/crontab)
+# The location of the configuration file is below.
+# /root/dasan_export_global_variable.sh,
+# /root/dasan_temperature_check_to_log.sh,
+# /root/dasan_temperature_log_to_mail.sh.sh
+################################################## \n" >> ${LOG}
+
+/root/dasan_temperature_check_to_log.sh
+sleep 10
+/root/dasan_temperature_check_to_log.sh
+slepp 10
+/root/dasan_temperature_log_to_mail.sh
+```
+
+#### # crontap 에 등록
+```bash
+cat /etc/crontab
+
+echo ""  >> cat /etc/crontab
+echo "# add by dasandata"  >> cat /etc/crontab
+echo "# 매시 30분에 온도체크 로그생성 " >> cat /etc/crontab
+echo "30 * * * * root /root/dasan_temperature_check_to_log.sh "  >> cat /etc/crontab
+echo ""  >> cat /etc/crontab
+echo "# 매일 오전 7시에 온도체크 로그 발송 "  >> cat /etc/crontab
+echo "30  7 * * * root /root/dasan_temperature_log_to_mail.sh "  >> cat /etc/crontab
+echo ""  >> cat /etc/crontab
+
+```
+
+
 
 ***
 ## end.
