@@ -773,7 +773,7 @@ grub2-editenv list
 
 ### # SMTP for Email Alert (mailutils or mailx)
 
-#### # 메일 알림을 받아볼 관리자 이메일 주소 및 로그 타이틀 정보를 생성하는 파일 작성.
+#### # 이메일 경고에 사용될 메일관리자 이메일 주소 및 로그 타이틀 정보를 생성 파일 작성.
 
 ```bash
 cp /root/dasandata-LinuxInstall/template_dasan_export_global_variable.sh /root/dasan_export_global_variable.sh
@@ -799,6 +799,8 @@ systemctl restart postfix
 echo "Test of SMTP... OK." | mail -s $TITLE_TAIL $ADMIN_LOG_EMAIL
 ```
 
+***
+
 ### # SMTP for Email Alert (postfix for Dell RAID Manager)
 #### # Dell Server RAID Controller Management (MSM) 의 알림 메일 발송을 위해 postifx를 구성 합니다 .
 
@@ -816,7 +818,7 @@ grep 'inet_interfaces =' /etc/postfix/main.cf
 
 systemctl  restart postfix
 ```
-
+***
 ### # Dell OpenManage Server Administrator Install (OMSA)
 \# 서버 자체에서 구동되며, 장애가 발생한 경우 상태를 확인하거나   
 \# 오류 메세지를 메일로 발송 하는 기능을 구현 할 수 있습니다.   
@@ -842,13 +844,15 @@ Description   : Server Administrator starting
 
 [root@hostname:~]#
 ```
+***
+### # Dell OMSA - E-Mail Alert
 
-### # E-Mail Alert by Dell OMSA
-
+#### # 기존 변수 생성파일 확인.
 ```bash
 cat   /root/dasan_export_global_variable.sh
 ```
 
+#### # 경고 메일 내용 생성파일 복사. (dasan_alert_omsa.sh)
 ```bash
 cp /root/dasandata-LinuxInstall/dasan_alert_omsa.sh /root/
 chmod 744 /root/dasan_alert_omsa.sh
@@ -859,11 +863,12 @@ tail -20  /root/dasan_alert_omsa.sh
 vi /root/dasan_alert_omsa.sh
 ```
 
+#### # 경고 발생시 dasan_alert_omsa.sh 파일이 실행 되도록 설정
 ```bash
 cat   /root/dasandata-LinuxInstall/dasan_omconfig_set.sh
+
 bash  /root/dasandata-LinuxInstall/dasan_omconfig_set.sh
 ```
-
 
 \# 테스트 - 파워케이블 빼기  or  케이스 오픈 후 이메일이 도착 되는지 확인.  
 \#    
