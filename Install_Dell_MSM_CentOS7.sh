@@ -17,7 +17,8 @@ tar xvzf 17.05.00.02_Linux-64_MSM.gz
 
 # 설치 시작
 echo "# 설치 시작..."
-/root/raid_manager/disk/install.csh  -a
+cd /root/raid_manager/disk/
+./install.csh  -a
 
 # 기본적으로 변경해야 할 값.
 echo "# 기본적으로 변경해야 할 값."
