@@ -748,14 +748,17 @@ teamviewer info
 awk -F\' '$1=="menuentry " {print i++ " : " $2}' /etc/grub2.cfg
 ```
 *output example>*
-```bash
-0 : CentOS Linux (3.10.0-693.2.2.el7.x86_64) 7 (Core)
-1 : CentOS Linux (3.10.0-327.el7.x86_64) 7 (Core)
-2 : CentOS Linux (0-rescue-d74d3b32d1334341be074f22d2279937) 7 (Core)
+```
+[root@coffee:~]# awk -F\' '$1=="menuentry " {print i++ " : " $2}' /etc/grub2.cfg
+0 : CentOS Linux (3.10.0-693.17.1.el7.x86_64) 7 (Core)
+1 : CentOS Linux (3.10.0-693.el7.x86_64) 7 (Core)
+2 : CentOS Linux (0-rescue-17e63eb3bb5b4727a508fc4c31a5ab5b) 7 (Core)
+[root@coffee:~]#
 ```
 
 ```bash
-grub2-editenv list # 현재 저장되어 있는 entry 값 확인 (숫자로 지정되어 있지 않음).
+grub2-editenv list
+# 현재 저장되어 있는 entry 값 확인 (숫자로 지정되어 있지 않음).
 
 grub2-set-default 1 # 기본값을 위에서 확인된 번호로 변경.
 
@@ -766,9 +769,106 @@ grub2-editenv list
 
 ```
 
+## # ===== 장애 모니터링 =====
+
+### # SMTP for Email Alert (mailutils or mailx)
+
+#### # 메일 알림을 받아볼 관리자 이메일 주소 및 로그 타이틀 정보를 생성하는 파일 작성.
+
+```bash
+cp ~/dasandata-LinuxInstall/template_dasan_export_global_variable.sh /root/dasan_export_global_variable.sh
+
+CUSTOMER=<고객사 정보>
+perl -pi -e 's/ABCDEFG/${CUSTOMER}/' /root/dasan_export_global_variable.sh
+
+cat /root/dasan_export_global_variable.sh
+source /root/dasan_export_global_variable.sh
+echo $TITLE_TAIL
+```
+
+#### # 메일 발송 테스트
+```bash
+yum -y install mailx
+
+grep inet_protocols   /etc/postfix/main.cf
+perl -pi -e 's/inet_protocols = all/inet_protocols = ipv4/' /etc/postfix/main.cf
+grep inet_protocols   /etc/postfix/main.cf
+
+systemctl restart postfix
+
+echo "Test of SMTP... OK." | mail -s $TITLE_TAIL $ADMIN_LOG_EMAIL
+```
+
+### # SMTP for Email Alert (postfix for Dell RAID Manager)
+#### # Dell Server RAID Controller Management (MSM) 의 알림 메일 발송을 위해 postifx를 구성 합니다 .
+
+```bash
+yum -y install postfix
+
+systemctl status postfix | grep Active:
+
+grep 'inet_interfaces =' /etc/postfix/main.cf
 
 
+perl -pi -e "s/inet_interfaces = localhost/#inet_interfaces = localhost/" /etc/postfix/main.cf
+perl -pi -e "s/#inet_interfaces = all/inet_interfaces = all/" /etc/postfix/main.cf
+grep 'inet_interfaces =' /etc/postfix/main.cf
 
+systemctl  restart postfix
+```
+
+### # Dell OpenManage Server Administrator Install (OMSA)
+\# 서버 자체에서 구동되며, 장애가 발생한 경우 상태를 확인하거나   
+\# 오류 메세지를 메일로 발송 하는 기능을 구현 할 수 있습니다.   
+
+```bash
+cat ~/dasandata-LinuxInstall/Install_Dell_OMSA_CentOS7.sh
+bash ~/dasandata-LinuxInstall/Install_Dell_OMSA_CentOS7.sh
+```
+
+### # E-Mail Alert by Dell OMSA
+
+```bash
+cat   /root/dasan_export_global_variable.sh
+```
+
+```bash
+cp ~/dasandata-LinuxInstall/dasan_alert_omsa.sh /root/
+chmod 744 /root/dasan_alert_omsa.sh
+
+tail -20  /root/dasan_alert_omsa.sh
+
+# os 종류에 맞추어 주석을 해제 합니다.
+vi /root/dasan_alert_omsa.sh
+```
+
+```bash
+cat   ~/dasandata-LinuxInstall/dasan_omconfig_set.sh
+bash  ~/dasandata-LinuxInstall/dasan_omconfig_set.sh
+```
+
+
+\# 테스트 - 파워케이블 빼기  or  케이스 오픈 후 이메일이 도착 되는지 확인.
+\#
+\# 수신된 이메일 예시 <이미지>
+
+\# 참조 omconfig  Manual   
+\# http://topics-cdn.dell.com/pdf/dell-openmanage-server-administrator-v8.3_user%27s%20guide_en-us.pdf
+
+
+### # Dell RAID Controller Management (MSM) + Alert by Email
+\# RAID 컨트롤러 관리 프로그램을 통해 서버의 전원을 끄지 않고 디스크 장애를 처리하거나
+\# RAID 구성을 변경할 수 있습니다. Megaraid Storage Manager 의 약자로 통상 MSM 이라고 합니다.
+\# LSI 사에서 최초 제작한 컨트롤러 였으나 현재는 Boradcom 제품 입니다.
+\# ** LSI MegaRAID
+\# LSI -> Avago Technologies 에 인수  (2013년 12월 16일)
+\# Avago Technologies 와 Broadcom 합병 (2015년 5월 28일)
+\# https://en.wikipedia.org/wiki/Broadcom_Limited
+
+```bash
+cat ~/dasandata-LinuxInstall/Install_Dell_MSM_CentOS7.sh
+bash ~/dasandata-LinuxInstall/Install_Dell_MSM_CentOS7.sh
+```
 
 ***
 ## end.
