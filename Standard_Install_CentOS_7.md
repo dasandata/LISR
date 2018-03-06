@@ -530,10 +530,10 @@ passwd: all authentication tokens updated successfully.
 [root@hostname:~]#
 [root@hostname:~]#
 [root@hostname:~]# su - ${NEW_USER}
-[user@coffee ~]$
-[user@coffee ~]$ whoami
+[user@hostname ~]$
+[user@hostname ~]$ whoami
 user
-[user@coffee ~]$ pwd
+[user@hostname ~]$ pwd
 /home/user
 [user@hostname ~]$
 [user@hostname ~]$ sudo -i
@@ -555,7 +555,7 @@ rpcuser:x:29:
 user:x:1001:
 [root@hostname:~]# su - ${NEW_USER}
 Last login: Tue Mar  6 13:19:14 KST 2018 on pts/0
-[user@coffee ~]$ whoami
+[user@hostname ~]$ whoami
 user
 [user@hostname ~]$ pwd
 /home/user
@@ -749,11 +749,11 @@ awk -F\' '$1=="menuentry " {print i++ " : " $2}' /etc/grub2.cfg
 ```
 *output example>*
 ```
-[root@coffee:~]# awk -F\' '$1=="menuentry " {print i++ " : " $2}' /etc/grub2.cfg
+[root@hostname:~]# awk -F\' '$1=="menuentry " {print i++ " : " $2}' /etc/grub2.cfg
 0 : CentOS Linux (3.10.0-693.17.1.el7.x86_64) 7 (Core)
 1 : CentOS Linux (3.10.0-693.el7.x86_64) 7 (Core)
 2 : CentOS Linux (0-rescue-17e63eb3bb5b4727a508fc4c31a5ab5b) 7 (Core)
-[root@coffee:~]#
+[root@hostname:~]#
 ```
 
 ```bash
@@ -924,8 +924,9 @@ echo  "
 # The location of the configuration file is below.
 # /root/dasan_export_global_variable.sh,
 # /root/dasan_temperature_check_to_log.sh,
-# /root/dasan_temperature_log_to_mail.sh.sh
-################################################## \n" >> ${LOG}
+# /root/dasan_temperature_log_to_mail.sh
+##################################################
+" >> ${LOG}
 
 /root/dasan_temperature_check_to_log.sh
 sleep 10
@@ -934,20 +935,22 @@ slepp 10
 /root/dasan_temperature_log_to_mail.sh
 ```
 
-#### # crontap 에 등록
+#### # crontab 에 등록
 ```bash
 cat /etc/crontab
 
-echo ""  >> cat /etc/crontab
-echo "# add by dasandata"  >> cat /etc/crontab
-echo "# 매시 30분에 온도체크 로그생성 " >> cat /etc/crontab
-echo "30 * * * * root /root/dasan_temperature_check_to_log.sh "  >> cat /etc/crontab
-echo ""  >> cat /etc/crontab
-echo "# 매일 오전 7시에 온도체크 로그 발송 "  >> cat /etc/crontab
-echo "30  7 * * * root /root/dasan_temperature_log_to_mail.sh "  >> cat /etc/crontab
-echo ""  >> cat /etc/crontab
+echo "
+# add by dasandata
+# 매시 30분에 온도체크 로그생성
+30 * * * * root /root/dasan_temperature_check_to_log.sh
+# 매일 오전 7시에 온도체크 로그 발송
+0  7 * * * root /root/dasan_temperature_log_to_mail.sh
+" >>  /etc/crontab
 
+cat /etc/crontab
 ```
+***
+
 
 
 
