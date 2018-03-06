@@ -97,13 +97,13 @@ ip a | grep inet6
 # ipv6 값이 표시되고 있습니다.
 ```
 *output example>*
-```bash
-[root@hostname:~]\#
-[root@hostname:~]\# ip a | grep inet6
+```
+[root@hostname:~]#
+[root@hostname:~]# ip a | grep inet6
     inet6 ::1/128 scope host
     inet6 fe80::4393:77e0:7563:ff25/64 scope link
     inet6 fe80::c39b:9d5:b27d:a8a4/64 scope link
-[root@hostname:~]\#
+[root@hostname:~]#
 ```
 \# 설정 변경.
 ```bash
@@ -131,14 +131,14 @@ ip a | grep inet6
 # 아무 결과가 없는 것이  ipv6 disable 이 잘 적용 된것 입니다.
 ```
 *output example>*
-```bash
-[root@hostname:~]\#
-[root@hostname:~]\# getenforce  # SELINUX 상태 확인.
+```
+[root@hostname:~]#
+[root@hostname:~]# getenforce  # SELINUX 상태 확인.
 Disabled
-[root@hostname:~]\#
-[root@hostname:~]\# ip a | grep inet6
-[root@hostname:~]\# # 아무 결과가 없는 것이  ipv6 disable 이 잘 적용 된것 입니다.
-[root@hostname:~]\#
+[root@hostname:~]#
+[root@hostname:~]# ip a | grep inet6
+[root@hostname:~]# # 아무 결과가 없는 것이  ipv6 disable 이 잘 적용 된것 입니다.
+[root@hostname:~]#
 ```
 
 #### # 서버 기본 설정에 필요한 유틸리티들 설치, 인터넷 시간에 맞추어 서버의 시간 조정.
@@ -196,13 +196,13 @@ uname -r # 현재 실행중인 커널 버젼 확인
 rpm -qa | grep $(uname -r) | grep 'headers\|devel'
 ```
 *output example>*
-```bash
-[root@hostname ~]\# # kernel / kernel-header / kernel-devel 버젼 일치 확인
-[root@hostname ~]\# uname -r # 현재 실행중인 커널 버젼 확인
+```
+[root@hostname ~]# # kernel / kernel-header / kernel-devel 버젼 일치 확인
+[root@hostname ~]# uname -r # 현재 실행중인 커널 버젼 확인
 3.10.0-693.17.1.el7.x86_64
-[root@hostname ~]\#
-[root@hostname ~]\# # 실행중인 커널과 동일한 버젼의 커널 패키지 (headers,devel) 가 설치 되어 있는지 확인.
-[root@hostname ~]\# rpm -qa | grep $(uname -r) | grep 'headers\|devel'
+[root@hostname ~]#
+[root@hostname ~]# # 실행중인 커널과 동일한 버젼의 커널 패키지 (headers,devel) 가 설치 되어 있는지 확인.
+[root@hostname ~]# rpm -qa | grep $(uname -r) | grep 'headers\|devel'
 kernel-devel-3.10.0-693.17.1.el7.x86_64
 kernel-headers-3.10.0-693.17.1.el7.x86_64
 [root@hostname ~]#
@@ -332,11 +332,11 @@ cat ~/dasandata-LinuxInstall/dasan_daemon_disable.sh
 bash ~/dasandata-LinuxInstall/dasan_daemon_disable.sh
 ```
 *output example>*
-```bash
-[root@hostname:~]\#
-[root@hostname:~]\# cat ~/dasandata-LinuxInstall/dasan_daemon_disable.sh
-\#!/bin/bash
-\# disable Daemon list
+```
+[root@hostname:~]#
+[root@hostname:~]# cat ~/dasandata-LinuxInstall/dasan_daemon_disable.sh
+#!/bin/bash
+# disable Daemon list
 systemctl disable bluetooth.service
 systemctl disable iscsi.service
 systemctl disable ksm.service
@@ -351,9 +351,9 @@ systemctl disable spice-vdagentd.service
 systemctl disable vmtoolsd.service
 systemctl disable ModemManager.service
 
-\# End of file.
-[root@hostname:~]\#
-[root@hostname:~]\# bash ~/dasandata-LinuxInstall/dasan_daemon_disable.sh
+# End of file.
+[root@hostname:~]#
+[root@hostname:~]# bash ~/dasandata-LinuxInstall/dasan_daemon_disable.sh
 Removed symlink /etc/systemd/system/dbus-org.bluez.service.
 Removed symlink /etc/systemd/system/bluetooth.target.wants/bluetooth.service.
 Removed symlink /etc/systemd/system/sysinit.target.wants/iscsi.service.
@@ -371,8 +371,8 @@ Removed symlink /etc/systemd/system/vmtoolsd.service.requires/vgauthd.service.
 Removed symlink /etc/systemd/system/multi-user.target.wants/vmtoolsd.service.
 Removed symlink /etc/systemd/system/dbus-org.freedesktop.ModemManager1.service.
 Removed symlink /etc/systemd/system/multi-user.target.wants/ModemManager.service.
-[root@hostname:~]\#
-[root@hostname:~]\#
+[root@hostname:~]#
+[root@hostname:~]#
 ```
 
 ### # [6. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading](#목차)
@@ -443,28 +443,28 @@ firefox & nautilus &
 
 ```
 *output example>*
-```bash
-[root@hostname:~]\#
-[root@hostname:~]\# logout
+```
+[root@hostname:~]#
+[root@hostname:~]# logout
 Connection to 192.168.0.xxx closed.
 [user@dasandata:~]$
 [user@dasandata:~]$ ssh root@192.168.0.173
 ssh: connect to host 192.168.0.xxx port 22: No route to host
 [user@dasandata:~]$
 [user@dasandata:~]$ ssh -p7777 root@192.168.0.xxx
-root@192.168.0.xxx\'s password:
+root@192.168.0.xxx's password:
 Permission denied, please try again.
-root@192.168.0.xxx\'s password:
+root@192.168.0.xxx's password:
 
 [user@dasandata:~]$ ssh -p7777 dasan@192.168.0.xxx
-dasan@192.168.0.xxx\'s password:
+dasan@192.168.0.xxx's password:
 Last login: Tue Mar  6 09:16:15 2018 from 192.168.0.xx
 [dasan@hostname:~]$
 [dasan@hostname:~]$ logout
 Connection to 192.168.0.xxx closed.
 [user@dasandata:~]$
 [user@dasandata:~]$ ssh -p7777 -XCY dasan@192.168.0.xxx
-dasan@192.168.0.xxx\'s password:
+dasan@192.168.0.xxx's password:
 Last login: Tue Mar  6 13:13:31 2018 from 192.168.0.xx
 [dasan@hostname:~]$
 ```
@@ -515,21 +515,21 @@ pwd
 ```
 
 *output example>*
-```bash
-[root@coffee:~]\#
-[root@coffee:~]\# NEW_USER=user
-[root@coffee:~]\# echo ${NEW_USER}  # 할당된 변수 확인.
+```
+[root@hostname:~]#
+[root@hostname:~]# NEW_USER=user
+[root@hostname:~]# echo ${NEW_USER}  # 할당된 변수 확인.
 user
-[root@coffee:~]\#
-[root@coffee:~]\# adduser ${NEW_USER}
-[root@coffee:~]\# passwd ${NEW_USER}
+[root@hostname:~]#
+[root@hostname:~]# adduser ${NEW_USER}
+[root@hostname:~]# passwd ${NEW_USER}
 Changing password for user user.
 New password:
 Retype new password:
 passwd: all authentication tokens updated successfully.
-[root@coffee:~]\#
-[root@coffee:~]\#
-[root@coffee:~]\# su - ${NEW_USER}
+[root@hostname:~]#
+[root@hostname:~]#
+[root@hostname:~]# su - ${NEW_USER}
 [user@coffee ~]$
 [user@coffee ~]$ whoami
 user
@@ -541,19 +541,19 @@ user
 user is not in the sudoers file.  This incident will be reported.
 [user@coffee ~]$
 [user@coffee ~]$ logout
-[root@coffee:~]\#
-[root@coffee:~]\# grep ${NEW_USER} /etc/group
+[root@hostname:~]#
+[root@hostname:~]# grep ${NEW_USER} /etc/group
 users:x:100:
 rpcuser:x:29:
 user:x:1001:
-[root@coffee:~]\#
-[root@coffee:~]\# usermod -G wheel ${NEW_USER}  
-[root@coffee:~]\# grep ${NEW_USER} /etc/group
+[root@hostname:~]#
+[root@hostname:~]# usermod -G wheel ${NEW_USER}  
+[root@hostname:~]# grep ${NEW_USER} /etc/group
 wheel:x:10:user
 users:x:100:
 rpcuser:x:29:
 user:x:1001:
-[root@coffee:~]\# su - ${NEW_USER}
+[root@hostname:~]# su - ${NEW_USER}
 Last login: Tue Mar  6 13:19:14 KST 2018 on pts/0
 [user@coffee ~]$ whoami
 user
@@ -562,7 +562,7 @@ user
 [user@coffee ~]$
 [user@coffee ~]$ sudo -i
 [sudo] password for user:
-[root@coffee:~]\#
+[root@hostname:~]#
 ```
 
 ### # [8. 스토리지, 파티션 마운트 / lvm, UUID, LABEL](#목차)
