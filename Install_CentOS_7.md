@@ -721,26 +721,29 @@ yum -y install https://download.teamviewer.com/download/teamviewer.i686.rpm \
 tail  dasan_log_install_teamviewer.txt
 ```
 
+#### # 패스워드 설정.
+```bash
+teamviewer passwd # <비밀번호 입력>
+```
+
 #### # 실행.
 ```bash
 teamviewer daemon enable
-teamviewer passwd # <비밀번호 입력>
 sleep 5
 teamviewer --daemon restart
 sleep 10
 teamviewer info
 ```
-\# 여기서 ID 가 확인 되지 않으면, X-Windows 로 들어가서 teamviewer 를 실행,
-\# 라이선스에 동의 한 후 확인 합니다.
-\# TeamViewer ID 를 확인 한 후 로그인 합니다.
-
+\# 여기서 ID 가 확인 되지 않으면, X-Windows 로 들어가서 teamviewer 를 실행,  
+\# 라이선스에 동의 한 후 확인 합니다.  
+\# TeamViewer ID 를 확인 한 후 로그인 합니다.  
 
 
 ### # [12. 부팅 되는 기본 커널 버젼 변경방법](#목차)
-\# 업데이트를 통해 커널이 많이 설치 되었을 경우
-\# 이 방법으로 기본 부팅 커널 버젼을 변경할 수 있습니다.
+\# 업데이트를 통해 커널이 많이 설치 되었을 경우   
+\# 이 방법으로 기본 부팅 커널 버젼을 변경할 수 있습니다.  
 
-\# 설치된 커널 버젼 리스트 와 entry 값 확인.
+\# 설치된 커널 버젼 리스트 와 entry 값 확인.  
 ```bash
 awk -F\' '$1=="menuentry " {print i++ " : " $2}' /etc/grub2.cfg
 ```
