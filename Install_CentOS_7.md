@@ -535,12 +535,12 @@ passwd: all authentication tokens updated successfully.
 user
 [user@coffee ~]$ pwd
 /home/user
-[user@coffee ~]$
-[user@coffee ~]$ sudo -i
+[user@hostname ~]$
+[user@hostname ~]$ sudo -i
 [sudo] password for user:
 user is not in the sudoers file.  This incident will be reported.
-[user@coffee ~]$
-[user@coffee ~]$ logout
+[user@hostname ~]$
+[user@hostname ~]$ logout
 [root@hostname:~]#
 [root@hostname:~]# grep ${NEW_USER} /etc/group
 users:x:100:
@@ -557,10 +557,10 @@ user:x:1001:
 Last login: Tue Mar  6 13:19:14 KST 2018 on pts/0
 [user@coffee ~]$ whoami
 user
-[user@coffee ~]$ pwd
+[user@hostname ~]$ pwd
 /home/user
-[user@coffee ~]$
-[user@coffee ~]$ sudo -i
+[user@hostname ~]$
+[user@hostname ~]$ sudo -i
 [sudo] password for user:
 [root@hostname:~]#
 ```
@@ -596,7 +596,7 @@ vgs
 lvs
 ```
 
-#### # 생성된 볼륨을 home 으로 마운트 (기존 home 내용 복제)
+#### # 생성된 볼륨을 포맷 한 후 기존 home 내용 복제
 ```bash
 mkfs.xfs -L HOME  /dev/mapper/vg_home-lv_home
 
