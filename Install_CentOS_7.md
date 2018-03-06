@@ -817,6 +817,14 @@ grep 'inet_interfaces =' /etc/postfix/main.cf
 systemctl  restart postfix
 ```
 
+### # Dell OpenManage Server Administrator Install (OMSA)
+\# 서버 자체에서 구동되며, 장애가 발생한 경우 상태를 확인하거나   
+\# 오류 메세지를 메일로 발송 하는 기능을 구현 할 수 있습니다.   
+
+```bash
+cat /root/dasandata-LinuxInstall/Install_Dell_OMSA_CentOS7.sh
+bash /root/dasandata-LinuxInstall/Install_Dell_OMSA_CentOS7.sh
+```
 *output example>*
 ```
 Executing /sbin/chkconfig dsm_om_connsvc on
@@ -833,15 +841,6 @@ Category      : Instrumentation Service
 Description   : Server Administrator starting
 
 [root@hostname:~]#
-```
-
-### # Dell OpenManage Server Administrator Install (OMSA)
-\# 서버 자체에서 구동되며, 장애가 발생한 경우 상태를 확인하거나   
-\# 오류 메세지를 메일로 발송 하는 기능을 구현 할 수 있습니다.   
-
-```bash
-cat /root/dasandata-LinuxInstall/Install_Dell_OMSA_CentOS7.sh
-bash /root/dasandata-LinuxInstall/Install_Dell_OMSA_CentOS7.sh
 ```
 
 ### # E-Mail Alert by Dell OMSA
@@ -866,22 +865,24 @@ bash  /root/dasandata-LinuxInstall/dasan_omconfig_set.sh
 ```
 
 
-\# 테스트 - 파워케이블 빼기  or  케이스 오픈 후 이메일이 도착 되는지 확인.
-\#
-\# 수신된 이메일 예시 <이미지>
+\# 테스트 - 파워케이블 빼기  or  케이스 오픈 후 이메일이 도착 되는지 확인.  
+\#    
+\# 수신된 이메일 예시  
+
+<이미지 추가 예정.>  
 
 \# 참조 omconfig  Manual   
 \# http://topics-cdn.dell.com/pdf/dell-openmanage-server-administrator-v8.3_user%27s%20guide_en-us.pdf
 
 
 ### # Dell RAID Controller Management (MSM) + Alert by Email
-\# RAID 컨트롤러 관리 프로그램을 통해 서버의 전원을 끄지 않고 디스크 장애를 처리하거나
-\# RAID 구성을 변경할 수 있습니다. Megaraid Storage Manager 의 약자로 통상 MSM 이라고 합니다.
-\# LSI 사에서 최초 제작한 컨트롤러 였으나 현재는 Boradcom 제품 입니다.
-\# ** LSI MegaRAID
-\# LSI -> Avago Technologies 에 인수  (2013년 12월 16일)
-\# Avago Technologies 와 Broadcom 합병 (2015년 5월 28일)
-\# https://en.wikipedia.org/wiki/Broadcom_Limited
+\# RAID 컨트롤러 관리 프로그램을 통해 서버의 전원을 끄지 않고 디스크 장애를 처리하거나  
+\# RAID 구성을 변경할 수 있습니다. Megaraid Storage Manager 의 약자로 통상 MSM 이라고 합니다.  
+\# LSI 사에서 최초 제작한 컨트롤러 였으나 현재는 Boradcom 제품 입니다.  
+\# ** LSI MegaRAID  
+\# LSI -> Avago Technologies 에 인수  (2013년 12월 16일)  
+\# Avago Technologies 와 Broadcom 합병 (2015년 5월 28일)  
+\# https://en.wikipedia.org/wiki/Broadcom_Limited  
 
 ```bash
 cat /root/dasandata-LinuxInstall/Install_Dell_MSM_CentOS7.sh
