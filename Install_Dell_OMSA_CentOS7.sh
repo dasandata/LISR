@@ -9,8 +9,10 @@ bash ./dellomsainstall.sh
 rm -f ./dellomsainstall.sh
 
 # 설치
-yum -y   erase  tog-pegasus-libs
-yum -y   install --enablerepo=dell-system-update_dependent -y  srvadmin-all  \
+yum -y erase  tog-pegasus-libs  >>  dasan_log_install_dell_OMSA.txt
+tail -5  dasan_log_install_dell_OMSA.txt
+
+yum -y install --enablerepo=dell-system-update_dependent -y  srvadmin-all  \
  >>   dasan_log_install_dell_OMSA.txt
 tail -5  dasan_log_install_dell_OMSA.txt
 

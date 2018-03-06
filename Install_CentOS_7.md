@@ -779,7 +779,7 @@ grub2-editenv list
 cp /root/dasandata-LinuxInstall/template_dasan_export_global_variable.sh /root/dasan_export_global_variable.sh
 
 CUSTOMER=<고객사 정보>
-perl -pi -e 's/ABCDEFG/${CUSTOMER}/' /root/dasan_export_global_variable.sh
+perl -pi -e "s/ABCDEFG/${CUSTOMER}/" /root/dasan_export_global_variable.sh
 
 cat /root/dasan_export_global_variable.sh
 source /root/dasan_export_global_variable.sh
