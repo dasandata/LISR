@@ -629,24 +629,24 @@ lsblk
 ls -l /home
 ```
 
-\ sticky bit 설정에 대한 설명. chmod +t / chmod 1777
-\# http://park1020.tistory.com/57
-\#
-\# ====== disk label 변경
-\#
-\# mount는 UUID 또는 LABEL 로 하는 것 을 권장 합니다.
-\# /etc/fstab 수정.
-\# 아래 링크 참조
-\# http://greenfishblog.tistory.com/170
-\# http://tigerbum.tistory.com/31
-\#
+\ sticky bit 설정에 대한 설명. chmod +t / chmod 1777  
+\# http://park1020.tistory.com/57  
+\#  
+\# ====== disk label 변경  
+\#  
+\# mount는 UUID 또는 LABEL 로 하는 것 을 권장 합니다.  
+\# /etc/fstab 수정.  
+\# 아래 링크 참조  
+\# http://greenfishblog.tistory.com/170  
+\# http://tigerbum.tistory.com/31  
+\#  
 
 
 ### # [9. Banner // login wellcome message ](#목차)
-\# /etc/ssh/sshd_config 파일의 Banner 옵션을 조정하면
-\# 서버에 ssh 접속시 원하는 텍스트 이미지 를 표시할 수 있습니다.
-\# 텍스트 이미지 는 아래 사이트에서 쉽게 만들 수 있습니다.
-\# http://www.network-science.de/ascii/
+\# /etc/ssh/sshd_config 파일의 Banner 옵션을 조정하면  
+\# 서버에 ssh 접속시 원하는 텍스트 이미지 를 표시할 수 있습니다.  
+\# 텍스트 이미지 는 아래 사이트에서 쉽게 만들 수 있습니다.  
+\# http://www.network-science.de/ascii/  
 
 vi /etc/ssh/banner.sample
 
