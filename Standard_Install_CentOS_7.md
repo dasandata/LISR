@@ -115,6 +115,9 @@ ip a | grep inet6
 ```
 \# 설정 변경.
 ```bash
+yum -y install perl  >>  dasan_log_install_perl.txt
+tail dasan_log_install_perl.txt
+
 cat /etc/default/grub  # 기존 설정 내용 확인.
 perl -pi -e  's/rhgb//'   /etc/default/grub   # 부팅시 화면에 부팅로그가 표시 되도록 rhgb 항목 지움
 perl -pi -e  's/quiet//'  /etc/default/grub   # 부팅시 화면에 부팅로그가 표시 되도록 quiet 항목 지움
@@ -155,7 +158,7 @@ Disabled
 # 기본 유틸 설치.
 # 화면에 로그가 뿌려지지 않도록 하기 위해 파이프라인(>>) 처리를 합니다.
 yum -y install \
-vim pciutils perl openssh mlocate nfs-utils rdate xauth firefox nautilus wget \
+vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget \
 tcsh tree lshw tmux git kernel-headers kernel-devel ipmitool gcc make gcc-c++ \
 cmake python-devel ntfs-3g   >>  dasan_log_install_centos_default_util.txt
 
