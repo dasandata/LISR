@@ -165,9 +165,13 @@ cmake python-devel ntfs-3g   >>  dasan_log_install_centos_default_util.txt
 tail dasan_log_install_centos_default_util.txt # 설치 결과 확인.
 
 # Development Tools 설치
+yum grouplist
+
 yum -y groups install "Development Tools" >> dasan_log_install_centos_developtoosl.txt
 
 tail dasan_log_install_centos_developtoosl.txt
+
+yum grouplist
 ```
 #### # 인터넷 시간에 맞추어 서버의 시간 조정
 ```bash
@@ -947,7 +951,7 @@ echo  "
 /root/dasan_temperature_check_to_log.sh
 sleep 10
 /root/dasan_temperature_check_to_log.sh
-slepp 10
+sleep 10
 /root/dasan_temperature_log_to_mail.sh
 ```
 
