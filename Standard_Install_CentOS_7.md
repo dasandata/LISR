@@ -168,6 +168,8 @@ tail dasan_log_install_centos_default_util.txt # 설치 결과 확인.
 yum grouplist
 
 yum -y groups install "Development Tools" >> dasan_log_install_centos_developtoosl.txt
+yum -y install  glibc-static glibc-devel glibc-static libstdc++ libstdc++-devel \
+ >> dasan_log_install_centos_developtoosl.txt
 
 tail dasan_log_install_centos_developtoosl.txt
 
