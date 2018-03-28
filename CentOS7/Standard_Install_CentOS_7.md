@@ -82,7 +82,7 @@ ssh <사용자 계정>@<IP 주소>
 
 ##### # kernel Update (yum update)
 ```bash
-yum -y update  >>  dasan_log_yum_update.txt
+yum -y update  >>  dasan_log_yum_update.txt 2>&1
 
 tail dasan_log_yum_update.txt
 ```
@@ -242,13 +242,15 @@ echo "alias ll='ls -lh' "                        >>   /etc/profile
 echo "alias grep='grep --color=auto' "   >>   /etc/profile
 ```
 
-#### # 히스토리 사이즈 변경 (1000개 -> 100,000개), Format 변경
+#### # 히스토리 사이즈 변경 (1000개 -> 100,000개)
 ```bash
 echo $HISTSIZE
 grep HISTSIZE= /etc/profile
 sed -i  's/HISTSIZE=1000/HISTSIZE=100000/'  /etc/profile
 grep HISTSIZE= /etc/profile
-
+```
+#### # 히스토리 출력시 날짜가 표시 되도록 변경
+```bash
 echo " "  >> /etc/profile
 echo "# Add timestamp to .bash_history "  >> /etc/profile
 echo 'export HISTTIMEFORMAT="20%y/%m/%d %T "' >> /etc/profile
