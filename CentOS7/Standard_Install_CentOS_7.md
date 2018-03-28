@@ -114,15 +114,13 @@ ip a | grep inet6
 ```
 \# 설정 변경.
 ```bash
-yum -y install perl  >>  dasan_log_install_perl.txt
-tail dasan_log_install_perl.txt
 
 cat /etc/default/grub  # 기존 설정 내용 확인.
-perl -pi -e  's/rhgb//'   /etc/default/grub   # 부팅시 화면에 부팅로그가 표시 되도록 rhgb 항목 지움
-perl -pi -e  's/quiet//'  /etc/default/grub   # 부팅시 화면에 부팅로그가 표시 되도록 quiet 항목 지움
+sed -i  's/rhgb//'   /etc/default/grub   # 부팅시 화면에 부팅로그가 표시 되도록 rhgb 항목 지움
+sed -i  's/quiet//'  /etc/default/grub   # 부팅시 화면에 부팅로그가 표시 되도록 quiet 항목 지움
 
 # ipv6 비활성
-perl -pi -e  's/GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="ipv6.disable=1 /' /etc/default/grub
+sed -i  's/GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="ipv6.disable=1 /' /etc/default/grub
 
 cat /etc/default/grub  # 변경사항 확인.
 
@@ -159,7 +157,7 @@ Disabled
 yum -y install \
 vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget \
 tcsh tree lshw tmux git kernel-headers kernel-devel ipmitool gcc make gcc-c++ \
-cmake python-devel ntfs-3g   >>  dasan_log_install_centos_default_util.txt
+cmake python-devel ntfs-3g perl >>  dasan_log_install_centos_default_util.txt
 
 tail dasan_log_install_centos_default_util.txt # 설치 결과 확인.
 
@@ -248,7 +246,7 @@ echo "alias grep='grep --color=auto' "   >>   /etc/profile
 ```bash
 echo $HISTSIZE
 grep HISTSIZE= /etc/profile
-perl -pi -e 's/HISTSIZE=1000/HISTSIZE=100000/'  /etc/profile
+sed -i  's/HISTSIZE=1000/HISTSIZE=100000/'  /etc/profile
 grep HISTSIZE= /etc/profile
 
 echo " "  >> /etc/profile
@@ -433,10 +431,10 @@ firewall-cmd --list-all  # 변경된 설정내용 확인.
 ```bash
 grep 'Root\|Port' /etc/ssh/sshd_config  # 변경 전 설정 확인.
 
-perl -pi -e "s/#Port 22/Port 7777/g" /etc/ssh/sshd_config  # 포트 변경
+sed -i  "s/#Port 22/Port 7777/g" /etc/ssh/sshd_config  # 포트 변경
 
 # root 로그인 거부 설정.
-perl -pi -e "s/#PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config
+sed -i  "s/#PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config
 
 grep 'Root\|Port' /etc/ssh/sshd_config  # 변경 후 설정 확인.
 
@@ -805,7 +803,7 @@ cp /root/LISR/usr-local-sbin/dasan_export_global_variable.sh  /usr/local/sbin/da
 CUSTOMER=<고객사 정보>
 ```
 ```bash
-perl -pi -e "s/ABCDEFG/${CUSTOMER}/" /usr/local/sbin/dasan_export_global_variable.sh
+sed -i  "s/ABCDEFG/${CUSTOMER}/" /usr/local/sbin/dasan_export_global_variable.sh
 
 cat /usr/local/sbin/dasan_export_global_variable.sh
 source /usr/local/sbin/dasan_export_global_variable.sh
@@ -817,7 +815,7 @@ echo $TITLE_TAIL
 yum -y install mailx
 
 grep inet_protocols   /etc/postfix/main.cf
-perl -pi -e 's/inet_protocols = all/inet_protocols = ipv4/' /etc/postfix/main.cf
+sed -i  's/inet_protocols = all/inet_protocols = ipv4/' /etc/postfix/main.cf
 grep inet_protocols   /etc/postfix/main.cf
 
 systemctl restart postfix
@@ -838,8 +836,8 @@ systemctl status postfix | grep Active:
 grep 'inet_interfaces =' /etc/postfix/main.cf
 
 
-perl -pi -e "s/inet_interfaces = localhost/#inet_interfaces = localhost/" /etc/postfix/main.cf
-perl -pi -e "s/#inet_interfaces = all/inet_interfaces = all/" /etc/postfix/main.cf
+sed -i  "s/inet_interfaces = localhost/#inet_interfaces = localhost/" /etc/postfix/main.cf
+sed -i  "s/#inet_interfaces = all/inet_interfaces = all/" /etc/postfix/main.cf
 grep 'inet_interfaces =' /etc/postfix/main.cf
 
 systemctl  restart postfix
