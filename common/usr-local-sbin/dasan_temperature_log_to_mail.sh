@@ -2,10 +2,10 @@
 # Copyright by Dasandata.co.ltd
 # http://www.dasandata.co.kr
 # CentOS 7.x
-# This File Locate is '/root/dasan_temperature_log_to_mail.sh'
+# This File Locate is /usr/local/sbin/
 
-#export_global_variable
-source /root/dasan_export_global_variable.sh
+# export_global_variable
+source /usr/local/sbin/dasan_export_global_variable.sh
 
 TITLE='IPMI_Temperature_log_by_'${TITLE_TAIL}
 
@@ -22,5 +22,8 @@ echo  "
 # The location of the configuration file is below.
 # /root/dasan_export_global_variable.sh,
 # /root/dasan_temperature_check_to_log.sh,
-# /root/dasan_temperature_log_to_mail.sh.sh
-################################################## \n" >> ${LOG}
+# /root/dasan_temperature_log_to_mail.sh
+##################################################
+" >> ${LOG}
+
+# End of File.

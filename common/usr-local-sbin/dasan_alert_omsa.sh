@@ -1,9 +1,10 @@
 #!/bin/bash
 # Copyright by Dasandata.co.ltd
 # http://www.dasandata.co.kr
+# This file location is /usr/local/sbin/
 
 # export_global_variable
-source /root/dasan_export_global_variable.sh
+source /usr/local/sbin/dasan_export_global_variable.sh
 
 # Email Title
 TITLE='Dell_OMSA_Alert_by_'$TITLE_TAIL
@@ -23,8 +24,8 @@ echo  "
 # This Message from ${TITLE_TAIL}
 # Using Dell Opne Mangement Server Administrator
 # The location of the configuration file is below.
-# /root/dasan_export_global_variable.sh
-# /root/dasan_alert_omsa.sh
+# /usr/local/sbin/dasan_export_global_variable.sh
+# /usr/local/sbin/dasan_alert_omsa.sh
 # $(date +%Y"-"%m"-"%d" "%r)
 ################################################## " >> ${OMSA_EMAIL_LOG}
 

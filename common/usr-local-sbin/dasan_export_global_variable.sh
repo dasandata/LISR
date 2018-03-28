@@ -1,6 +1,7 @@
 #!/bin/bash
 # Copyright by Dasandata.co.ltd
 # http://www.dasandata.co.kr
+# This file location is /usr/local/sbin/
 
 ADMIN_LOG_EMAIL='logdasandata@googlegroups.com'  # 관리자 메일주소 입력 / 여려명일 경우 콤마(,) 로 구분
 DASAN_CUSTOMER="ABCDEFG" # 고객사 정보를 기입 (회사명, 기관명 등..)
