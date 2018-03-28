@@ -10,8 +10,9 @@
 
 
 ## 목차
-- [리눅스 설치 표준안 - Centos 7.4 (2018.03)](https://github.com/dasandata/dasandata-LinuxInstall/blob/master/Standard_Install_CentOS_7.md)
-- (예정))리눅스 자동설치 스크립트.
+- [리눅스 설치 표준안 - Centos 7.4 (2018.03)][1]
+[1]:https://github.com/dasandata/LISR/blob/master/CentOS7/Standard_Install_CentOS_7.md
+- (예정...)리눅스 자동설치 스크립트.
   - 운영체제별 스크립트
       - centos 7.4
       - ubunutu 14.04
