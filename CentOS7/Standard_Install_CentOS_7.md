@@ -18,7 +18,7 @@
 [8. 스토리지, 파티션 마운트 / lvm, UUID, LABEL](https://github.com/dasandata/LISR/blob/master/CentOS7/Standard_Install_CentOS_7.md#-8-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%ED%8C%8C%ED%8B%B0%EC%85%98-%EB%A7%88%EC%9A%B4%ED%8A%B8--lvm-uuid-label)  
 [9. Banner // login wellcome message ](https://github.com/dasandata/LISR/blob/master/CentOS7/Standard_Install_CentOS_7.md#-9-banner--login-wellcome-message-)  
 [10. VNC Server 설정](https://github.com/dasandata/LISR/blob/master/CentOS7/Standard_Install_CentOS_7.md#-10-vnc-server-%EC%84%A4%EC%A0%95)  
-[11. TeamViewer 설치](https://github.com/dasandata/LISR/blob/master/CentOS7/Standard_Install_CentOS_7.md#-11-teamviewer-%EC%84%A4%EC%B9%98)
+[11. TeamViewer 설치](https://github.com/dasandata/LISR/blob/master/CentOS7/Standard_Install_CentOS_7.md#-11-teamviewer-%EC%84%A4%EC%B9%98)  
 [12. 부팅 되는 기본 커널 버젼 변경방법](https://github.com/dasandata/LISR/blob/master/CentOS7/Standard_Install_CentOS_7.md#-12-%EB%B6%80%ED%8C%85-%EB%90%98%EB%8A%94-%EA%B8%B0%EB%B3%B8-%EC%BB%A4%EB%84%90-%EB%B2%84%EC%A0%BC-%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95)  
 
 [===== 장애 모니터링 =====](https://github.com/dasandata/LISR/blob/master/CentOS7/Standard_Install_CentOS_7.md#--%EC%9E%A5%EC%95%A0-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-)  
