@@ -968,8 +968,8 @@ echo "
 # add by dasandata
 # 매시 30분에 온도체크 로그생성
 30 * * * * root /usr/local/sbin/dasan_temperature_check_to_log.sh
-# 매일 오전 7시에 온도체크 로그 발송
-0  7 * * * root /usr/local/sbin/dasan_temperature_log_to_mail.sh
+# 매일 오전 8시에 온도체크 로그 발송
+0  8 * * * root /usr/local/sbin/dasan_temperature_log_to_mail.sh
 " >>  /etc/crontab
 
 cat /etc/crontab
