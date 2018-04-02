@@ -798,7 +798,7 @@ grub2-editenv list
 #### # 이메일 경고에 사용될 메일관리자 이메일 주소 및 로그 타이틀 정보를 생성 파일 작성.
 
 ```bash
-cp /root/LISR/usr-local-sbin/dasan_export_global_variable.sh  /usr/local/sbin/dasan_export_global_variable.sh
+cp /root/LISR/common/usr-local-sbin/dasan_export_global_variable.sh  /usr/local/sbin/dasan_export_global_variable.sh
 ```
 아래 CUSTOMER 값을 고객사 정보에 맞게 변경합니다.
 ```bash
