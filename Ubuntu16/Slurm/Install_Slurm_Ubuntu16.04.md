@@ -133,7 +133,7 @@ sed -i "s/RealMemory=AA/RealMemory=$RealMemory/"              /etc/slurm-llnl/sl
 TmpFS=/tmp                # or /scrach
 TmpDisk=16384             # Megabyte
 Gres=gpu:TITANXp:4        # 실제 모델과 수량에 맞추어 변경 합니다.
-Feature=TitanXp,DellT640  # 실제 모델에 맞추어 변경 합니다.
+Feature=TITANXp,DellT640  # 실제 모델에 맞추어 변경 합니다.
 ```
 
 
