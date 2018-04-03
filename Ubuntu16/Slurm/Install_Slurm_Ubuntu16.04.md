@@ -1,5 +1,5 @@
 # Install Slurm for Ubuntu 16.04 (Standalone)   
-설치중 log 파일 추척 방법 : tail -f $(ls -tr | tail -1)  
+\# 설치중 log 파일 추척 방법 : ` tail -f $(ls -tr | tail -1)  `
 
 ## # 54. slurm   install   
 
@@ -244,7 +244,7 @@ env  | grep  SLURM | tail
 ***
 
 #### # GPU Test   
-gpu 테스트를 하는동안 모니터링 : watch 'squeue ; echo ; echo ; nvidia-smi -l ; echo ; echo '  
+\# gpu 테스트를 하는동안 모니터링 : ` watch 'squeue ; echo ; echo ; nvidia-smi -l ; echo ; echo '  
 
 ```bash
 srun  --gres=gpu:1   --exclusive  --pty  /bin/bash  
