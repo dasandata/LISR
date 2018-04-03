@@ -209,7 +209,6 @@ tail -f /var/log/slurm-llnl/slurmctld.log
 ```
 
 ### # 54-8. slurm interactive job test
-
 #### # cpu test   
 
 ```bash
@@ -236,6 +235,7 @@ env  | grep  SLURM | tail
 ```
 
 #### # GPU Test   
+gpu 테스트를 하는동안 모니터링 : watch 'squeue ; echo ; echo ; nvidia-smi -l ; echo ; echo '  
 
 ```bash
 srun  --gres=gpu:1   --exclusive  --pty  /bin/bash  
@@ -243,6 +243,17 @@ squeue
 
 /root/NVIDIA_CUDA-8.0_Samples/bin/x86_64/linux/release/deviceQuery | tail
 python  /root/TensorFlow-Examples/examples/5_DataManagement/tensorflow_dataset_api.py | tail
+
+exit
+
+srun  --gres=gpu:2   --exclusive  --pty  /bin/bash  
+squeue  
+
+/root/NVIDIA_CUDA-8.0_Samples/bin/x86_64/linux/release/deviceQuery | tail
+python  /root/TensorFlow-Examples/examples/5_DataManagement/tensorflow_dataset_api.py | tail
+
+exit
+
 ```
 
 ### # 54-9. batch job test
@@ -270,6 +281,8 @@ cat $(ls -tr | tail -1)
 ```
 
 #### # GPU batch job  
+gpu 테스트를 하는동안 모니터링 : watch 'squeue ; echo ; echo ; nvidia-smi -l ; echo ; echo '  
+
 ##### # nbody batch job    
 ```bash
 cd /root/SLURM_TEST
