@@ -242,7 +242,7 @@ env  | grep  SLURM | tail
 ***
 
 #### # GPU Test   
-\# gpu 테스트를 하는동안 모니터링 : ` watch 'squeue ; echo ; echo ; nvidia-smi -l ; echo ; echo `
+\# gpu 테스트를 하는동안 모니터링 : ` watch 'squeue ; echo ; echo ; nvidia-smi -l ; echo ; echo' `
 
 ```bash
 srun  --gres=gpu:1   --exclusive  --pty  /bin/bash  
