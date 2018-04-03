@@ -212,23 +212,28 @@ scontrol  show  job
 #### # cpu test   
 
 ```bash
+# 인터렉티브 모드 진입전 queue 상태 와 환경변수 확인.
 squeue
 env  | grep  SLURM | tail
 ```
+
 ```bash
 # 인터렉티브 모드로 진입.
 srun  -N1  -n 10   --pty /bin/bash
 ```
+
 ```bash
 # 인터렉티브 모드로 진입후 queue 상태 와 환경변수 (env)
 squeue  
 env  | grep SLURM | tail
 ```
+
 ```bash
 # 병렬작업 실행 (모드 진입시 설정한 cpu 수 [-n 값] 만큼 실행 됩니다.)
 srun  hostname
 srun  hostname | wc -l
 ```
+
 ```bash
 # 인터렉티브 모드에서 빠져나와서  queue 상태 와 환경변수 (env)
 exit
