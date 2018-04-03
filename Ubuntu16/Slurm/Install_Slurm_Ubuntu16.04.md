@@ -63,7 +63,7 @@ echo $BEFORE_IP
 
 sed -i "s/$BEFORE_IP/$AFTER_IP/" /etc/hosts
 ```
-#### # or /etc/hosts 파일에 HOSTNAME 으로 아무런 설정이 없을 경우.
+#### # (선택사항) /etc/hosts 파일에 HOSTNAME 으로 아무런 설정이 없을 경우.
 ```bash
 echo "$AFTER_IP    $HOSTNAME" >> /etc/hosts
 ```
@@ -173,21 +173,12 @@ systemctl  restart  slurmctld
 systemctl  restart  slurmd  
 ```
 
-### # 54-5. slurm alias For sinfo,squeue   
+### # 54-6. queue status control - Scontrol command  
 
 ```bash
-cat  /root/LISR/Ubuntu16/Slurm/alias.slurm.sh
-cp   /root/LISR/Ubuntu16/Slurm/alias.slurm.sh  /etc/profile.d/
-source /etc/profile.d/alias.slurm.sh
-
-
 sinfo
 sinfo  | awk '{print $5}'
-```
 
-### # 54-6. Scontrol command  
-
-```bash
 scontrol  update  NodeName=$HOSTNAME   state=resume
 
 sinfo
