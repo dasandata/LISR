@@ -257,7 +257,6 @@ exit
 
 ### # 54-9. batch job test
 
-
 ##### # Copy of Batch Scripts Samples
 
 ```bash
@@ -276,6 +275,7 @@ sbatch test-sbatch-cpu.sh
 sbatch test-sbatch-cpu.sh
 sbatch test-sbatch-cpu.sh
 
+sinfo
 squeue
 ```
 
@@ -339,7 +339,7 @@ sbatch  test-sbatch-tensorflow.sh
 sbatch  test-sbatch-tensorflow.sh
 sbatch  test-sbatch-tensorflow.sh
 
-info
+sinfo
 squeue
 ```
 
