@@ -272,7 +272,7 @@ cd /root/SLURM_SBATCH_TEST
 
 ```
 
-#### # cpu batch job
+#### # CPU Batch Job
 ```bash
 cat test-sbatch-cpu.sh
 
@@ -293,7 +293,7 @@ cat $(ls -tr | tail -1)
 ```
 
 #### # GPU batch job  
-gpu 테스트를 하는동안 모니터링 : watch 'squeue ; echo ; echo ; nvidia-smi -l ; echo ; echo '  
+\# gpu 테스트를 하는동안 모니터링 : `watch 'squeue ; echo ; echo ; nvidia-smi -l ; echo ; echo '`
 
 ##### # nbody batch job (1GPU)    
 ```bash
