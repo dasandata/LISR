@@ -144,7 +144,7 @@ sed -i "s/Gres=AA/Gres=$Gres/"                /etc/slurm-llnl/slurm.conf
 sed -i "s/Feature=AA/Feature=$Feature/"       /etc/slurm-llnl/slurm.conf
 ```
 
-### # 54-4. Standalon slurm.conf   
+### # 54-4. Standalon gres.conf   
 ```bash
 cp /root/LISR/Ubuntu16/Slurm/template_gres.conf  /etc/slurm-llnl/gres.conf
 ```
