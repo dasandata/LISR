@@ -61,7 +61,7 @@ cat /etc/hosts
 BEFORE_IP=`grep $HOSTNAME /etc/hosts | awk '{print $1}'`
 echo $BEFORE_IP
 
-sed "s/$BEFORE_IP/$AFTER_IP/" /etc/hosts
+sed -i "s/$BEFORE_IP/$AFTER_IP/" /etc/hosts
 ```
 #### # or /etc/hosts 파일에 HOSTNAME 으로 아무런 설정이 없을 경우.
 ```bash
