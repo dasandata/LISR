@@ -169,7 +169,7 @@ vi  /etc/slurm-llnl/gres.conf
 ```bash
 systemctl  list-unit-files  | grep  slurm
 
-systemctl  restart   slurmctld  
+systemctl  restart  slurmctld  
 systemctl  restart  slurmd  
 ```
 
@@ -181,11 +181,8 @@ cp   /root/LISR/Ubuntu16/Slurm/alias.slurm.sh  /etc/profile.d/
 source /etc/profile.d/alias.slurm.sh
 
 
-sinfo | grep drain
-PARTITION            NODES CPUS(A/I/O/T)        NODES(A/I/O/T) STATE  S:C:T    MEMORY     TMP_DISK   TIMELIMIT   FEATURES         NODELIST GRES
-cpu                  1     0/0/20/20            0/0/1/1        drain  1:10:2   60000      900000     10-00:00:00 (null)           DataMining gpu:gtx1080ti:1
-gpu*                 1     0/0/20/20            0/0/1/1        drain  1:10:2   60000      900000     10-00:00:00 (null)           DataMining gpu:gtx1080ti:1
-
+sinfo
+sinfo  | awk '{print $5}'
 ```
 
 ### # 54-6. Scontrol command  
@@ -193,28 +190,12 @@ gpu*                 1     0/0/20/20            0/0/1/1        drain  1:10:2   6
 ```bash
 scontrol  update  NodeName=DataMining   state=resume
 
-sinfo  
-PARTITION            NODES CPUS(A/I/O/T)        NODES(A/I/O/T) STATE  S:C:T    MEMORY     TMP_DISK   TIMELIMIT   FEATURES         NODELIST GRES
-cpu                  1     0/20/0/20            0/1/0/1        idle   1:10:2   60000      900000     10-00:00:00 (null)           DataMining gpu:gtx1080ti:1
-gpu*                 1     0/20/0/20            0/1/0/1        idle   1:10:2   60000      900000     10-00:00:00 (null)           DataMining gpu:gtx1080ti:1
+sinfo
+sinfo  | awk '{print $5}'
 
 scontrol  show node
 
-NodeName=3452453456 Arch=x86_64 CoresPerSocket=10
-   CPUAlloc=0 CPUErr=0 CPUTot=20 CPULoad=0.00 Features=(null)
-   Gres=gpu:gtx1080ti:1
-   NodeAddr=DataMining NodeHostName=DataMining Version=15.08
-   OS=Linux RealMemory=60000 AllocMem=0 FreeMem=63052 Sockets=1 Boards=1
-   State=IDLE ThreadsPerCore=2 TmpDisk=900000 Weight=1 Owner=N/A
-   BootTime=2018-01-24T15:11:16 SlurmdStartTime=2018-01-24T16:30:39
-   CapWatts=n/a
-   CurrentWatts=0 LowestJoules=0 ConsumedJoules=0
-   ExtSensorsJoules=n/s ExtSensorsWatts=0 ExtSensorsTemp=n/s
-
-
 scontrol  show  job
-No jobs in the system
-
 ```
 
 ### # 54-7. slurm log 보기  
