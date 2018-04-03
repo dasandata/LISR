@@ -130,7 +130,7 @@ sed -i "s/RealMemory=AA/RealMemory=$RealMemory/"              /etc/slurm-llnl/sl
 
 #### # 아래 항목은 실제 구성 과 용도에 맞게 변경합니다.
 ```bash
-TmpFS='/tmp'              # or /scrach
+TmpFS=/tmp                # or /scrach
 TmpDisk=16384             # Megabyte
 Gres=gpu:TitanXp:4        # 실제 모델과 수량에 맞추어 변경 합니다.
 Feature=TitanXp,DellT640  # 실제 모델에 맞추어 변경 합니다.
@@ -138,7 +138,7 @@ Feature=TitanXp,DellT640  # 실제 모델에 맞추어 변경 합니다.
 
 
 ```bash
-sed -i "s/TmpFS=AA/TmpFS=$TmpFS/"             /etc/slurm-llnl/slurm.conf
+sed -i "s#TmpFS=AA#TmpFS=$TmpFS#"             /etc/slurm-llnl/slurm.conf
 sed -i "s/TmpDisk=AA/TmpDisk=$TmpDisk/"       /etc/slurm-llnl/slurm.conf
 sed -i "s/Gres=AA/Gres=$Gres/"                /etc/slurm-llnl/slurm.conf
 sed -i "s/Feature=AA/Feature=$Feature/"       /etc/slurm-llnl/slurm.conf
