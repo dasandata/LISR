@@ -214,25 +214,29 @@ scontrol  show  job
 ```bash
 squeue
 env  | grep  SLURM | tail
-
+```
+```bash
 # 인터렉티브 모드로 진입.
 srun  -N1  -n 10   --pty /bin/bash
-
+```
+```bash
 # 인터렉티브 모드로 진입후 queue 상태 와 환경변수 (env)
 squeue  
 env  | grep SLURM | tail
-
-hostname
-
+```
+```bash
 # 병렬작업 실행 (모드 진입시 설정한 cpu 수 [-n 값] 만큼 실행 됩니다.)
 srun  hostname
 srun  hostname | wc -l
-
-exit
+```
+```bash
 # 인터렉티브 모드에서 빠져나와서  queue 상태 와 환경변수 (env)
+exit
 squeue  
 env  | grep  SLURM | tail
 ```
+
+***
 
 #### # GPU Test   
 gpu 테스트를 하는동안 모니터링 : watch 'squeue ; echo ; echo ; nvidia-smi -l ; echo ; echo '  
