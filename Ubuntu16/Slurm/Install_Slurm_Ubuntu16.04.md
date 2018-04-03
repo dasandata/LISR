@@ -153,7 +153,10 @@ cp /root/LISR/Ubuntu16/Slurm/template_gres.conf  /etc/slurm-llnl/gres.conf
 GPUTYPE=$(nvidia-smi -L | head -1 | awk '{print $3 $4}')
 echo $GPUTYPE
 
-sed -i 's/<GPUTYPE>/$GPUTYPE/' /etc/slurm-llnl/gres.conf
+sed -i "s/<GPUTYPE>/$GPUTYPE/" /etc/slurm-llnl/gres.conf
+sed -i "s/<SONIC>/$HOSTNAME/"  /etc/slurm-llnl/slurm.conf
+
+cat /etc/slurm-llnl/slurm.conf
 ```
 
 #### # gres.conf 는 총 GPU 갯수에 맞추어 변경해야 합니다.
