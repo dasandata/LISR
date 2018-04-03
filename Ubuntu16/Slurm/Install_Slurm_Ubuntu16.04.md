@@ -198,12 +198,12 @@ scontrol  show node
 scontrol  show  job
 ```
 
-### # 54-7. slurm log 보기  
+### # 54-7. slurm 디버깅 및 log 보기  
 
 ```bash
-slurmctld -D  -vv
+slurmctld -D  #  -vv 옵션을 주면 더 자세히 나옵니다.
 
-slurmd  -D  -vvv
+slurmd  -D    # -vvv 옵션을 주면 더 자세히 나옵니다.
 
 tail -f /var/log/slurm-llnl/slurmctld.log   
 ```
@@ -227,6 +227,7 @@ hostname
 
 # 병렬작업 실행 (모드 진입시 설정한 cpu 수 [-n 값] 만큼 실행 됩니다.)
 srun  hostname
+srun  hostname | wc -l 
 
 logout
 # 인터렉티브 모드에서 빠져나와서  queue 상태 와 환경변수 (env)
