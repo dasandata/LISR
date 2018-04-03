@@ -256,12 +256,18 @@ exit
 ```
 
 ### # 54-9. batch job test
+
+
+##### # Copy of Batch Scripts Samples
+
+```bash
+cp -r /root/LISR/Ubuntu16/Slurm/SLURM_SBATCH_TEST/   /root/
+cd /root/SLURM_SBATCH_TEST
+
+```
+
 #### # cpu batch job
 ```bash
-cd
-mkdir SLURM_TEST
-cd SLURM_TEST
-cp /root/LISR/Ubuntu16/Slurm/test-sbatch-cpu.sh  .
 cat test-sbatch-cpu.sh
 
 sbatch test-sbatch-cpu.sh
@@ -284,10 +290,6 @@ gpu 테스트를 하는동안 모니터링 : watch 'squeue ; echo ; echo ; nvidi
 
 ##### # nbody batch job (1GPU)    
 ```bash
-cd /root/SLURM_TEST
-cp /root/LISR/Ubuntu16/Slurm/test-sbatch-nbody.sh  .
-
-pwd
 cat test-sbatch-nbody.sh
 
 sbatch  test-sbatch-nbody.sh
@@ -308,11 +310,7 @@ tail $(ls -tr | tail -1)
 
 ##### # nbody batch job (2GPU)    
 ```bash
-cd /root/SLURM_TEST
-cp /root/LISR/Ubuntu16/Slurm/test-sbatch-nbody-2GPU.sh  .
-
-pwd
-cat test-sbatch-nbody.sh
+cat test-sbatch-nbody-2GPU.sh
 
 sbatch  test-sbatch-nbody-2GPU.sh
 sbatch  test-sbatch-nbody-2GPU.sh
@@ -333,10 +331,6 @@ tail $(ls -tr | tail -1)
 ##### # Tensor flow Test (1GPU)  
 
 ```bash
-cd /root/SLURM_TEST
-cp /root/LISR/Ubuntu16/Slurm/test-sbatch-tensorflow.sh  .
-
-pwd
 cat test-sbatch-tensorflow.sh
 
 sbatch  test-sbatch-tensorflow.sh
@@ -349,24 +343,31 @@ info
 squeue
 ```
 
+```bash
+ls -ltr
+
+tail $(ls -tr | tail -1)
+```
 
 ##### # Tensor flow Test (2GPU)  
 
 ```bash
-cd /root/SLURM_TEST
-cp /root/LISR/Ubuntu16/Slurm/test-sbatch-tensorflow-2GPU.sh  .
-
-pwd
 cat test-sbatch-tensorflow-2GPU.sh
 
 sbatch  test-sbatch-tensorflow-2GPU.sh
-sbatch  test-sbatch-tensorflow-2GPUsh
+sbatch  test-sbatch-tensorflow-2GPU.sh
 sbatch  test-sbatch-tensorflow-2GPU.sh
 sbatch  test-sbatch-tensorflow-2GPU.sh
 sbatch  test-sbatch-tensorflow-2GPU.sh
 
-info
+sinfo
 squeue
+```
+
+```bash
+ls -ltr
+
+tail $(ls -tr | tail -1)
 ```
 
 
