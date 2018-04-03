@@ -227,9 +227,9 @@ hostname
 
 # 병렬작업 실행 (모드 진입시 설정한 cpu 수 [-n 값] 만큼 실행 됩니다.)
 srun  hostname
-srun  hostname | wc -l 
+srun  hostname | wc -l
 
-logout
+exit
 # 인터렉티브 모드에서 빠져나와서  queue 상태 와 환경변수 (env)
 squeue  
 env  | grep  SLURM | tail
