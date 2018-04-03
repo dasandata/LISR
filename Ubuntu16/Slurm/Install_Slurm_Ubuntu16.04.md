@@ -201,11 +201,9 @@ scontrol  show  job
 ### # 54-7. slurm 디버깅 및 log 보기  
 
 ```bash
-# slurmctld -D  #  -vv 옵션을 주면 더 자세히 나옵니다. / Ctrl+C 를 누를떄 까지 끝나지 않음.
-
-# slurmd  -D    # -vvv 옵션을 주면 더 자세히 나옵니다. / Ctrl+C 를 누를떄 까지 끝나지 않음.
-
-# tail -f /var/log/slurm-llnl/slurmctld.log     / Ctrl+C 를 누를떄 까지 끝나지 않음.
+# slurmctld -D  #  -vv 옵션을 주면 더 자세히 나옵니다. / Ctrl+C 를 누를떄 까지 끝나지 않음.  
+# slurmd  -D    # -vvv 옵션을 주면 더 자세히 나옵니다. / Ctrl+C 를 누를떄 까지 끝나지 않음.  
+# tail -f /var/log/slurm-llnl/slurmctld.log    / Ctrl+C 를 누를떄 까지 끝나지 않음.  
 ```
 
 ### # 54-8. slurm interactive job test
@@ -244,7 +242,7 @@ env  | grep  SLURM | tail
 ***
 
 #### # GPU Test   
-\# gpu 테스트를 하는동안 모니터링 : ` watch 'squeue ; echo ; echo ; nvidia-smi -l ; echo ; echo ` 
+\# gpu 테스트를 하는동안 모니터링 : ` watch 'squeue ; echo ; echo ; nvidia-smi -l ; echo ; echo `
 
 ```bash
 srun  --gres=gpu:1   --exclusive  --pty  /bin/bash  
