@@ -188,7 +188,7 @@ sinfo  | awk '{print $5}'
 ### # 54-6. Scontrol command  
 
 ```bash
-scontrol  update  NodeName=DataMining   state=resume
+scontrol  update  NodeName=$HOSTNAME   state=resume
 
 sinfo
 sinfo  | awk '{print $5}'
