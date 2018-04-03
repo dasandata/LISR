@@ -132,7 +132,7 @@ sed -i "s/RealMemory=AA/RealMemory=$RealMemory/"              /etc/slurm-llnl/sl
 ```bash
 TmpFS=/tmp                # or /scrach
 TmpDisk=16384             # Megabyte
-Gres=gpu:TitanXp:4        # 실제 모델과 수량에 맞추어 변경 합니다.
+Gres=gpu:TITANXp:4        # 실제 모델과 수량에 맞추어 변경 합니다.
 Feature=TitanXp,DellT640  # 실제 모델에 맞추어 변경 합니다.
 ```
 
@@ -154,9 +154,9 @@ GPUTYPE=$(nvidia-smi -L | head -1 | awk '{print $3 $4}')
 echo $GPUTYPE
 
 sed -i "s/<GPUTYPE>/$GPUTYPE/" /etc/slurm-llnl/gres.conf
-sed -i "s/<SONIC>/$HOSTNAME/"  /etc/slurm-llnl/slurm.conf
+sed -i "s/<SONIC>/$HOSTNAME/"  /etc/slurm-llnl/gres.conf
 
-cat /etc/slurm-llnl/slurm.conf
+cat  /etc/slurm-llnl/gres.conf
 ```
 
 #### # gres.conf 는 총 GPU 갯수에 맞추어 변경해야 합니다.
