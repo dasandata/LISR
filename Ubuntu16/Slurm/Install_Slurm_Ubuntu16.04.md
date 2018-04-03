@@ -11,16 +11,8 @@ tail dasan_log_install_slurm-mariadb.txt
 
 ls -l  /var/run/mysqld/
 
-#total 4
-#-rw-rw---- 1 mysql mysql 5 Jan 24 13:40 mysqld.pid
-#srwxrwxrwx 1 mysql mysql 0 Jan 24 13:40 mysqld.sock
-
 ps -ef | grep  mysql
 
-#root      12876      1  0 13:49 ?        00:00:00 /bin/bash /usr/bin/mysqld_safe
-#mysql     13020  12876  0 13:49 ?        00:00:00 /usr/sbin/mysqld --basedir=/usr --datadir=/var/lib/mysql --plugin-dir=/usr/lib/mysql/plugin #--user=mysql --skip-log-error --pid-file=/var/run/mysqld/mysqld.pid --socket=/var/run/mysqld/mysqld.sock --port=3306
-#root      13021  12876  0 13:49 ?        00:00:00 logger -t mysqld -p daemon error
-#root      13195   6688  0 13:51 pts/1    00:00:00 grep --color=auto mysql
 ```
 
 ### # 54-2. Install munge     
@@ -63,7 +55,7 @@ echo $AFTER_IP
 cat /etc/hosts
 ```
 
-### # /etc/hosts 파일에 HOSTNAME 으로 내부 IP (127.0.x.x)가 설정 되어 있을 경우.
+#### # /etc/hosts 파일에 HOSTNAME 으로 내부 IP (127.0.x.x)가 설정 되어 있을 경우.
 ```bash
 
 BEFORE_IP=`grep $HOSTNAME /etc/hosts | awk '{print $1}'`
@@ -71,18 +63,18 @@ echo $BEFORE_IP
 
 sed "s/$BEFORE_IP/$AFTER_IP/" /etc/hosts
 ```
-### # or /etc/hosts 파일에 HOSTNAME 으로 아무런 설정이 없을 경우.
+#### # or /etc/hosts 파일에 HOSTNAME 으로 아무런 설정이 없을 경우.
 ```bash
 echo "$AFTER_IP    $HOSTNAME" >> /etc/hosts
 ```
 
-### # 변경된 값 확인.
+#### # 변경된 값 확인.
 ```bash
 cat /etc/hosts
 ping -c 4 $HOSTNAME
 ```
 
-### # 설치 상태 점검.
+#### # 설치 상태 점검.
 ```bash
 cat  /etc/passwd  | grep  'munge\|slurm'
 cat  /etc/group   | grep  'munge\|slurm'
@@ -98,7 +90,7 @@ ls -l /var/run/ | grep  'munge\|mysql\|slurm'
 ls -l /dev/ | grep nvidia
 ```
 
-## # 54-4. Standalon slurm.conf   
+### # 54-4. Standalon slurm.conf   
 
 ```bash
 cd /root
@@ -108,24 +100,67 @@ git pull
 cd
 ```
 
+
 ```bash
 cp /root/LISR/Ubuntu16/Slurm/template_slurm.conf  /etc/slurm-llnl/slurm.conf
-grep <SONIC>    /etc/slurm-llnl/slurm.conf
-sed "s/<SONIC>/$HOSTNAME"    /etc/slurm-llnl/slurm.conf
+
+grep "<SONIC>"    /etc/slurm-llnl/slurm.conf
+sed -i "s/<SONIC>/$HOSTNAME/"    /etc/slurm-llnl/slurm.conf
 grep $HOSTNAME  /etc/slurm-llnl/slurm.conf
-tail -20 /etc/slurm-llnl/slurm.conf
+```
+
+```bash
+Procs=$(lscpu | grep "CPU(s):" | head -1 | awk '{print $2}')
+Sockets=$(lscpu | grep "Socket(s):" | awk '{print $2}')
+CoresPerSocket=$(lscpu | grep "Core(s) per socket:" | awk '{print $4}')
+ThreadsPerCore=$(lscpu | grep "Thread(s) per core:" |  awk '{print $4}')
+RealMemory=$(free -m | grep Mem | awk '{print $2}')  # Megabyte.
 ```
 
 
 ```bash
-cp /root/LISR/Ubuntu16/Slurm/template_gres.conf  /etc/slurm-llnl/gres.conf
-cat /etc/slurm-llnl/gres.conf
+sed -i "s/Procs=AA/Procs=$Procs/"                             /etc/slurm-llnl/slurm.conf
+sed -i "s/Sockets=AA/Sockets=$Sockets/"                       /etc/slurm-llnl/slurm.conf
+sed -i "s/CoresPerSocket=AA/CoresPerSocket=$CoresPerSocket/"  /etc/slurm-llnl/slurm.conf
+sed -i "s/ThreadsPerCore=AA/ThreadsPerCore=$ThreadsPerCore/"  /etc/slurm-llnl/slurm.conf
+sed -i "s/RealMemory=AA/RealMemory=$RealMemory/"              /etc/slurm-llnl/slurm.conf
+```
 
+
+
+#### # 아래 항목은 실제 구성 과 용도에 맞게 변경합니다.
+```bash
+TmpFS='/tmp'              # or /scrach
+TmpDisk=16384             # Megabyte
+Gres=gpu:TitanXp:4        # 실제 모델과 수량에 맞추어 변경 합니다.
+Feature=TitanXp,DellT640  # 실제 모델에 맞추어 변경 합니다.
+```
+
+
+```bash
+sed -i "s/TmpFS=AA/TmpFS=$TmpFS/"             /etc/slurm-llnl/slurm.conf
+sed -i "s/TmpDisk=AA/TmpDisk=$TmpDisk/"       /etc/slurm-llnl/slurm.conf
+sed -i "s/Gres=AA/Gres=$Gres/"                /etc/slurm-llnl/slurm.conf
+sed -i "s/Feature=AA/Feature=$Feature/"       /etc/slurm-llnl/slurm.conf
+```
+
+### # 54-4. Standalon slurm.conf   
+```bash
+cp /root/LISR/Ubuntu16/Slurm/template_gres.conf  /etc/slurm-llnl/gres.conf
+```
+
+```bash
 GPUTYPE=$(nvidia-smi -L | head -1 | awk '{print $3 $4}')
 echo $GPUTYPE
 
 sed -i 's/<GPUTYPE>/$GPUTYPE' /etc/slurm-llnl/gres.conf
+```
+
+#### # gres.conf 는 총 GPU 갯수에 맞추어 변경해야 합니다.
+```bash
 cat /etc/slurm-llnl/gres.conf
+
+vi  /etc/slurm-llnl/gres.conf
 ```
 
 ```bash
