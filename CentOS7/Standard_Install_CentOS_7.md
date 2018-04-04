@@ -157,7 +157,8 @@ Disabled
 yum -y install \
 vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget \
 tcsh tree lshw tmux git kernel-headers kernel-devel ipmitool gcc make gcc-c++ \
-cmake python-devel ntfs-3g perl >>  dasan_log_install_centos_default_util.txt
+cmake python-devel ntfs-3g perl dstat \
+  >>  dasan_log_install_centos_default_util.txt 2>&1
 
 tail dasan_log_install_centos_default_util.txt # 설치 결과 확인.
 
@@ -166,7 +167,7 @@ yum grouplist
 
 yum -y groups install "Development Tools" >> dasan_log_install_centos_developtoosl.txt
 yum -y install  glibc-static glibc-devel glibc-static libstdc++ libstdc++-devel \
- >> dasan_log_install_centos_developtoosl.txt
+ >> dasan_log_install_centos_developtoosl.txt 2>&1
 
 tail dasan_log_install_centos_developtoosl.txt
 
