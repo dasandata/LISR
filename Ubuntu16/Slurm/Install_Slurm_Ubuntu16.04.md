@@ -288,13 +288,13 @@ cat $(ls -tr | tail -1)
 
 ##### # nbody batch job (1GPU)    
 ```bash
-cat test-sbatch-nbody.sh
+cat test-sbatch-nbody-1GPU.sh
 
-sbatch  test-sbatch-nbody.sh
-sbatch  test-sbatch-nbody.sh
-sbatch  test-sbatch-nbody.sh
-sbatch  test-sbatch-nbody.sh
-sbatch  test-sbatch-nbody.sh
+sbatch  test-sbatch-nbody-1GPU.sh
+sbatch  test-sbatch-nbody-1GPU.sh
+sbatch  test-sbatch-nbody-1GPU.sh
+sbatch  test-sbatch-nbody-1GPU.sh
+sbatch  test-sbatch-nbody-1GPU.sh
 
 sinfo
 squeue
@@ -329,13 +329,13 @@ tail $(ls -tr | tail -1)
 ##### # Tensor flow Test (1GPU)  
 
 ```bash
-cat test-sbatch-tensorflow.sh
+cat test-sbatch-tensorflow-1GPU.sh
 
-sbatch  test-sbatch-tensorflow.sh
-sbatch  test-sbatch-tensorflow.sh
-sbatch  test-sbatch-tensorflow.sh
-sbatch  test-sbatch-tensorflow.sh
-sbatch  test-sbatch-tensorflow.sh
+sbatch  test-sbatch-tensorflow-1GPU.sh
+sbatch  test-sbatch-tensorflow-1GPU.sh
+sbatch  test-sbatch-tensorflow-1GPU.sh
+sbatch  test-sbatch-tensorflow-1GPU.sh
+sbatch  test-sbatch-tensorflow-1GPU.sh
 
 sinfo
 squeue
