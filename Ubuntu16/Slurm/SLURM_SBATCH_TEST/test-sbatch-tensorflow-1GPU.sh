@@ -8,5 +8,11 @@
 #SBATCH --gres=gpu:1                      # Num Devices
 
 python3   ~/TensorFlow-Examples/examples/5_DataManagement/tensorflow_dataset_api.py
-
+echo
+python3 -V
+which python3
+which pip3
+echo
+pip3 list | grep tensorflow
+echo
 # End of File.
