@@ -263,8 +263,8 @@ echo " "  >> /etc/profile
 echo "export PS1='\[\e[1;30;41m\][\u@\h:\W]\\$\[\e[m\] '" >> /root/.bashrc
 tail -1 /root/.bashrc
 
-echo "export PS1='\[\e[1;31;40m\][\u@\h:\W]\\$\[\e[m\] '" >> /home/user/.bashrc
-tail -1 /home/user/.bashrc
+echo "export PS1='\[\e[1;31;40m\][\u@\h:\W]\\$\[\e[m\] '" >> /home/sonic/.bashrc
+tail -1 /home/sonic/.bashrc
 ```
 
 #### # 적용확인.
@@ -556,7 +556,7 @@ passwd: all authentication tokens updated successfully.
 [user@hostname ~]$ whoami
 user
 [user@hostname ~]$ pwd
-/home/user
+/home/sonic
 [user@hostname ~]$
 [user@hostname ~]$ sudo -i
 [sudo] password for user:
@@ -580,7 +580,7 @@ Last login: Tue Mar  6 13:19:14 KST 2018 on pts/0
 [user@hostname ~]$ whoami
 user
 [user@hostname ~]$ pwd
-/home/user
+/home/sonic
 [user@hostname ~]$
 [user@hostname ~]$ sudo -i
 [sudo] password for user:
