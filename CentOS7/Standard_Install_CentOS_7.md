@@ -157,7 +157,7 @@ Disabled
 yum -y install \
 vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget \
 tcsh tree lshw tmux git kernel-headers kernel-devel ipmitool gcc make gcc-c++ \
-cmake python-devel ntfs-3g perl dstat \
+cmake python-devel ntfs-3g perl perl-CPAN dstat \
   >>  dasan_log_install_centos_default_util.txt 2>&1
 
 tail dasan_log_install_centos_default_util.txt # 설치 결과 확인.
