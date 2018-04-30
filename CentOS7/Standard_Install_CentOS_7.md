@@ -327,7 +327,7 @@ systemctl get-default
 
 #### # GNOME Desktop 설치.
 ```bash
-yum -y  groups install "GNOME Desktop"  >> dasan_log_install_gnome-desktop.txt
+yum -y  groups install "GNOME Desktop"  >> dasan_log_install_gnome-desktop.txt  2>&1
 
 tail dasan_log_install_gnome-desktop.txt
 ```
@@ -587,7 +587,7 @@ user
 [root@hostname:~]#
 ```
 
-### # [8. 스토리지, 파티션 마운트 / lvm, UUID, LABEL](#목차)
+### # [8. 스토리지, 파티션 마운트 / lvm or Parted, UUID, LABEL](#목차)
 \# /home 디렉토리를 용량이 큰 디스크 or 스토리지 로 변경
 \# 또는 용량이 큰 디스크를 /data 로 마운트 합니다.
 
@@ -602,7 +602,7 @@ vgs # lvm 구성 확인 (볼륨그룹 리스트)
 lvs # lvm 구성 확인 (논리볼륨 리스트)
 ```
 
-#### # /dev/sdb 를 lvm 으로 구성
+#### # 8a-1. /dev/sdb 를 lvm 으로 구성
 \# (home으로 마운트 하기 위해 vg 및 lv 이름을 home 으로 지정.)
 
 ```bash
@@ -618,7 +618,7 @@ vgs
 lvs
 ```
 
-#### # 생성된 볼륨을 포맷 한 후 기존 home 내용 복제
+#### # 8a-2. lvm 으로 생성된 볼륨을 포맷 한 후 기존 home 내용 복제
 ```bash
 mkfs.xfs -L HOME  /dev/mapper/vg_home-lv_home
 
@@ -631,6 +631,38 @@ ls -l /mnt/
 umount /mnt
 cd
 ```
+
+
+***
+
+
+#### # 8b-1. /dev/sdb 를 parted 으로 구성
+\# (home으로 마운트 하기 위해 vg 및 lv 이름을 home 으로 지정.)
+
+```bash
+parted -s /dev/sdb  "mklabel gpt"
+parted -s /dev/sdb  "mkpart  primary  0% 100%"
+
+sleep 10
+```
+
+#### # 8b-2. parted로 생성된 볼륨을 포맷 한 후 기존 home 내용 복제
+```bash
+mkfs.xfs -f -L HOME  /dev/sdb1
+
+mount /dev/sdb1  /mnt
+
+
+cd /home/
+find .  | cpio -dump  /mnt
+
+ls -l /mnt/
+umount /mnt
+cd
+```
+
+***
+
 
 #### # 생성된 볼륨을 home 으로 마운트 (fstab 에 마운트 내용 추가)
 ```bash
