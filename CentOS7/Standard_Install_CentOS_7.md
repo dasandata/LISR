@@ -157,7 +157,7 @@ Disabled
 yum -y install \
 vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget \
 tcsh tree lshw tmux git kernel-headers kernel-devel ipmitool gcc make gcc-c++ \
-cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core \
+cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools \
   >>  dasan_log_install_centos_default_util.txt 2>&1
 
 tail dasan_log_install_centos_default_util.txt # 설치 결과 확인.
@@ -187,11 +187,11 @@ hwclock
 ```bash
 yum repolist # 현재 repolist 확인.
 
-yum -y  install epel-release   >>    dasan_log_install_epel.txt
+yum -y  install epel-release   >>    dasan_log_install_epel.txt 2>&1
 tail -5   dasan_log_install_epel.txt  
 sed -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo  
 
-yum -y  install yum-plugin-priorities   >>   dasan_log_install_epel.txt
+yum -y  install yum-plugin-priorities   >>   dasan_log_install_epel.txt 2>&1
 tail -5   dasan_log_install_epel.txt  
 sed -i -e "s/\]$/\]\npriority=1/g" /etc/yum.repos.d/CentOS-Base.repo
 
@@ -201,7 +201,7 @@ yum repolist  # 설치된 repolist 확인.
 # epel 이 활성화 되어야 설치 되는 htop 을 설치하여 검증
 rpm -qa | grep htop # htop 이 설치 되어있는지 확인.
 
-yum -y  install htop  > dasan_log_install_htop.txt  
+yum -y  install htop  >> dasan_log_install_htop.txt  2>&1
 tail -5  dasan_log_install_htop.txt
 ```
 
