@@ -2,6 +2,7 @@
 
 ## ======================
 
+```bash
 echo ""  >> /etc/profile
 echo "# For Module Command."  >> /etc/profile
 echo "alias ml='module'"  >> /etc/profile
@@ -9,7 +10,7 @@ echo ""  >> /etc/profile
 
 source /etc/profile
 source ~/.bashrc
-
+```
 
 ## ======================
 
