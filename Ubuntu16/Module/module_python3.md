@@ -58,7 +58,7 @@ make -j$(nproc)
 make install
 ```
 
-## Make Modulefile fot Python3
+## Make Modulefile for Python3
 
 ```bash
 mkdir /etc/modulefiles/python3/
