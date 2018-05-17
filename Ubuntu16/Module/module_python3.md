@@ -13,7 +13,7 @@ wget https://sourceforge.net/projects/modules/files/Modules/modules-4.1.2/module
 
 tar xvzf modules-4.1.2.tar.gz
 cd modules-4.1.2/
-./configure --modulepath=/opt/modules/ --modulefilesdir=/etc/modulefiles
+./configure --with-module-path=/opt/modules/ --modulefilesdir=/etc/modulefiles
 make ; make install
 
 cp ./init/profile.sh  /opt/modules/
