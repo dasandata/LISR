@@ -883,6 +883,22 @@ systemctl  restart postfix
 \# 오류 메세지를 메일로 발송 하는 기능을 구현 할 수 있습니다.   
 
 ```bash
+vi /etc/yum.repos.d/CentOS-Base.repo
+# [base] 부분에 "exclude = libsmbios smbios-utils-bin" 추가 
+```
+
+```
+[base]
+priority=1
+name=CentOS-$releasever - Base
+mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=os&infra=$infra
+#baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+exclude = libsmbios smbios-utils-bin
+```
+
+```bash
 cat /root/LISR/CentOS7/Install_Dell_OMSA_CentOS7.sh
 bash /root/LISR/CentOS7/Install_Dell_OMSA_CentOS7.sh
 ```
