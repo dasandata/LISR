@@ -159,9 +159,11 @@ systemctl  list-unit-files  | grep  slurm
 
 systemctl  restart  slurmctld  
 systemctl  restart  slurmd  
+systemctl  restart  munge  
 
 systemctl  enable  slurmctld  
 systemctl  enable  slurmd  
+systemctl  enable  munge  
 ```
 
 ### # 54-6. queue status control - Scontrol command  
@@ -231,6 +233,8 @@ srun --gres=gpu:1 --pty bash -i
 squeue  
 
 /root/NVIDIA_CUDA-8.0_Samples/bin/x86_64/linux/release/deviceQuery | tail
+/root/NVIDIA_CUDA-9.0_Samples/bin/x86_64/linux/release/deviceQuery | tail
+
 python  /root/TensorFlow-Examples/examples/5_DataManagement/tensorflow_dataset_api.py | tail
 
 exit
@@ -239,6 +243,8 @@ srun --gres=gpu:2 --pty bash -i
 squeue  
 
 /root/NVIDIA_CUDA-8.0_Samples/bin/x86_64/linux/release/deviceQuery | tail
+/root/NVIDIA_CUDA-9.0_Samples/bin/x86_64/linux/release/deviceQuery | tail
+
 python  /root/TensorFlow-Examples/examples/5_DataManagement/tensorflow_dataset_api.py | tail
 
 exit
@@ -277,7 +283,15 @@ cat $(ls -tr | tail -1)
 #### # GPU batch job  
 \# gpu 테스트를 하는동안 모니터링 : `watch 'squeue ; echo ; echo ; nvidia-smi -l ; echo ; echo '`
 
-##### # nbody batch job (1GPU)    
+##### # nbody batch job (1GPU)   
+
+```bash
+grep -r "CUDA-8.0" ./
+sed -i 's/CUDA-8.0/CUDA-9.0/' `grep -r "CUDA-8.0" ./ -l `
+grep -r "CUDA-9.0" ./
+```
+
+
 ```bash
 cat test-sbatch-nbody-1GPU.sh
 
