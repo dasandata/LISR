@@ -17,11 +17,13 @@
       - ubunutu 14.04
       - ubunutu 16.04
 
-[centos7]: https://github.com/dasandata/LISR/blob/master/CentOS7/Standard_Install_CentOS_7.md  
-[ubuntu]: https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md  
 
 ## 기타
-- [마크다운에 대하여](https://github.com/dasandata/LISR/blob/master/makrdown.md)
-
+- [마크다운에 대하여][markdown]
 ***
+
 end.
+
+[centos7]: https://github.com/dasandata/LISR/blob/master/CentOS7/Standard_Install_CentOS_7.md  
+[ubuntu]: https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md  
+[markdown]: https://github.com/dasandata/LISR/blob/master/makrdown.md
