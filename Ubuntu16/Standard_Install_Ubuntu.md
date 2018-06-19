@@ -260,8 +260,11 @@ echo ${EXT_NIC}  # 추출된 인터페이스 명이 맞는지 확인 필요.
 ```bash
 ifconfig  ${EXT_NIC}
 
-# 가독성 향상을 위해, 불 필요한 IPV6 항목 삭제.
 cat /etc/network/interfaces
+
+# Ubuntu 18.04 의 경우
+# cat /etc/netplan/01-netcfg.yaml
+# https://www.server-world.info/en/note?os=Ubuntu_18.04&p=initial_conf&f=3
 
 cat /etc/hostname
 
