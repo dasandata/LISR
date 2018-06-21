@@ -428,7 +428,13 @@ ufw status numbered
 #### # sshd 설정. (기본 포트인 22번을 7777로 변경)
 
 ```bash
-#Ubuntu16,18 sshd_config
+#Ubuntu18 sshd_config
+grep 'Root\|Port' /etc/ssh/sshd_config
+perl -pi -e "s/#Port 22/Port 7777/g" /etc/ssh/sshd_config
+perl -pi -e "s/#PermitRootLogin prohibit-password/PermitRootLogin no/g" /etc/ssh/sshd_config
+grep 'Root\|Port' /etc/ssh/sshd_config
+
+#Ubuntu16 sshd_config
 grep 'Root\|Port' /etc/ssh/sshd_config
 perl -pi -e "s/Port 22/Port 7777/g" /etc/ssh/sshd_config
 perl -pi -e "s/PermitRootLogin prohibit-password/PermitRootLogin no/g" /etc/ssh/sshd_config
@@ -864,7 +870,7 @@ source /usr/local/sbin/dasan_export_global_variable.sh
 echo $TITLE_TAIL
 ```
 
-#### # (Ubuntu16)메일 발송 테스트
+#### # (Ubuntu 16)메일 발송 테스트
 ```bash
 apt-get  -y  install mailutils  
 
@@ -877,7 +883,7 @@ cat test_message.txt
 mail -s   $TITLE_TAIL   -t   $ADMIN_LOG_EMAIL   <   test_message.txt
 ```
 
-#### # (Ubuntu17)메일 발송 테스트
+#### # (Ubuntu 18,17)메일 발송 테스트
 ```bash
 apt-get   -y   install mailutils
 
@@ -946,13 +952,6 @@ grep inet_protocols  /etc/postfix/main.cf
 \# Ubuntu 17 과 18 은 아직 linux.dell.com/repo  에 등록되어 있지 않으므로 16.04 와 동일하게 진행 합니다. (xenial)
 
 ```bash
-echo 'deb http://linux.dell.com/repo/community/ubuntu xenial openmanage' | sudo tee -a \
- /etc/apt/sources.list.d/linux.dell.com.sources.list
-```
-
-\# or  
-
-```bash
 echo 'deb http://linux.dell.com/repo/community/ubuntu xenial openmanage'  >  \
  /etc/apt/sources.list.d/linux.dell.com.sources.list
 
@@ -977,7 +976,7 @@ apt-get  -y  install srvadmin-all >> dasan_log_install_dell_OMSA.txt 2>&1
 tail dasan_log_install_dell_OMSA.txt
 ```
 
-#### # (Ubuntu16) Firewall 설정 (OMSA Web Access Port 개방)
+#### # (Ubuntu 16, 18) Firewall 설정 (OMSA Web Access Port 개방)
 ```bash
 ufw status numbered
 ufw allow 1311/tcp  #1311 이 기본값 입니다.
@@ -1049,11 +1048,13 @@ bash  /root/LISR/common/dasan_omconfig_set.sh
 \# Avago Technologies 와 Broadcom 합병 (2015년 5월 28일)  
 \# https://en.wikipedia.org/wiki/Broadcom_Limited  
 
+#### # For Ubuntu 16.04
 ```bash
 cat /root/LISR/Ubuntu16/Install_Dell_MSM_Ubuntu.sh
 
 bash /root/LISR/Ubuntu16/Install_Dell_MSM_Ubuntu.sh
 ```
+
 ***
 ### # [25. 온도(temperature) 모니터 링. (ipmitool)](#목차)
 \# 서버에 내장된 관리기능 (ipmi) 를 이용하여 온도를 모니터링 하고 이메일로 받아봅니다.

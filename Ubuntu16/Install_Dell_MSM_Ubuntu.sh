@@ -23,7 +23,7 @@ tar xvzf 17.05.00.02_Linux-64_MSM.gz
 echo "###
 ### 설치파일 변환 (rpm to deb)...
 ### "
-apt-get -y install alien sysv-rc-conf  >> dasan_log_install_alien.txt 2>&1
+apt-get -y install alien  >> dasan_log_install_alien.txt 2>&1
 alien --scripts *.rpm
 
 # 설치 시작
@@ -33,10 +33,8 @@ echo "###
 dpkg --install lib-utils2_1.00-9_all.deb
 dpkg --install megaraid-storage-manager_17.05.00-3_all.deb
 
-sysv-rc-conf --level 12345 vivaldiframeworkd  on
-sysv-rc-conf --list | grep vivaldiframe
-echo "### vivaldiframe 1:on    2:on   3:on   4:on   5:on "
-systemctl start vivaldiframeworkd
+systemctl start vivaldiframeworkd.service
+systemctl enable vivaldiframeworkd.service
 
 # 기본적으로 변경해야 할 값.
 echo "###
@@ -52,6 +50,7 @@ echo "###
 ### MSM 실행 (X11 Forwading 구성 필요)
 ### /usr/local/MegaRAID\ Storage\ Manager/startupui.sh  &
 ### "
+
 xauth add $(xauth -f /home/sonic/.Xauthority list | tail -1)
 /usr/local/MegaRAID\ Storage\ Manager/startupui.sh  &
 
