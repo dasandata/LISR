@@ -220,10 +220,10 @@ echo " "  >> /etc/profile
 
 #### # root 와 user 의 프롬프트 색상을 다르게 설정.
 ```bash
-echo "export PS1='\[\e[1;30;41m\][\u@\h:\W]\\$\[\e[m\] '" >> /root/.bashrc
+echo "export PS1='\[\e[1;47;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /root/.bashrc
 tail -1 /root/.bashrc
 
-echo "export PS1='\[\e[1;31;40m\][\u@\h:\W]\\$\[\e[m\] '" >> /home/sonic/.bashrc
+echo "export PS1='\[\e[1;48;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /home/sonic/.bashrc
 tail -1 /home/sonic/.bashrc
 ```
 
@@ -300,7 +300,7 @@ update-initramfs -u && update-grub2
 
 #### # ubuntu Desktop 설치.
 ```bash
-apt-get -y install ubuntu-desktop  >> dasan_log_install_ubuntu-desktop.txt  2>&1
+apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> dasan_log_install_ubuntu-desktop.txt  2>&1
 ```
 
 ```bash  
@@ -420,6 +420,7 @@ ufw enable
 ```bash
 ufw status
 ufw default deny
+ufw allow 22/tcp
 ufw allow 7777/tcp
 ufw status numbered
 ```
@@ -738,17 +739,19 @@ systemctl restart sshd
 dpkg --list | grep vnc  # 현재 설치된 vnc 패키지 확인
 
 # vnc server(tigervnc-server) 와 vnc viewer 를 설치 합니다.
-sudo apt-get -y install xfce4 xfce4-goodies tightvncserver  >>  dasan_log_install_vnc.txt 2>&1
+apt-get install -y vnc4server  >>  dasan_log_install_vnc.txt 2>&1
 
 tail dasan_log_install_vnc.txt
 ```
 
 \# VNC 연결을 위한 방화벽 (firewall 설정)
 ```bash
-sudo ufw status
+ufw status
 
-sudo ufw allow 5901/tcp
-sudo ufw allow 5902/tcp
+ufw allow 5901/tcp
+ufw allow 5902/tcp
+
+ufw status
 ```
 
 \# VNC 암호 설정 (일반 사용자 계정으로 전환한 후 진 )
@@ -761,10 +764,14 @@ vncserver # vnc접속용 암호를 지정합니다. (8자)
 ```bash
 vncserver -kill :1
 
-mv .vnc/xstartup .vnc/xstartup.bak
-echo '#!/bin/bash  ' > .vnc/xstartup
-echo 'xrdb $HOME/.Xresources  ' >> .vnc/xstartup
-echo 'startxfce4 &  ' >> .vnc/xstartup
+cat .vnc/xstartup
+
+cp .vnc/xstartup .vnc/xstartup.bak
+echo 'gnome-panel &  ' >> .vnc/xstartup
+echo 'gnome-settings-daemon & ' >> .vnc/xstartup
+echo 'metacity &  ' >> .vnc/xstartup
+echo 'nautilus &  ' >> .vnc/xstartup
+
 cat .vnc/xstartup
 chmod +x .vnc/xstartup
 
@@ -959,6 +966,15 @@ gpg --keyserver pool.sks-keyservers.net --recv-key 1285491434D8786F
 # ** 혹시 여기에서 오류가 발생하고 진행되지 않는 경우 nameserver 주소를 1.1.1.1 이나 8.8.8.8 로 바꾸고 재시도 합니다.
 
 gpg -a --export 1285491434D8786F |  sudo apt-key add -
+
+
+==================================== 최 신 =============================================
+
+wget http://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc
+# ** 최신 gpg key 발급 다운로드
+
+apt-key add 0x1285491434D8786F.asc
+# ** GPG Key 등록
 ```
 
 #### # (Ubuntu) OMSA (srvadmin) 설치

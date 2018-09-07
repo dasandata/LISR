@@ -23,6 +23,9 @@ tar xvzf 17.05.00.02_Linux-64_MSM.gz
 echo "###
 ### 설치파일 변환 (rpm to deb)...
 ### "
+
+cd disk/
+
 apt-get -y install alien  >> dasan_log_install_alien.txt 2>&1
 alien --scripts *.rpm
 
