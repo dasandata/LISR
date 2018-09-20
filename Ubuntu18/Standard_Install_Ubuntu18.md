@@ -379,21 +379,6 @@ apt-get -y purge network-manager
 apt-get -y autoremove
 ```
 
-#### # (Ubuntu14)불필요한 Daemon Disable 예.
-\# https://askubuntu.com/questions/19320/how-to-enable-or-disable-services
-```bash
-apt-get -y  install sysv-rc-conf
-sysv-rc-conf
-
-apt-get -y  install rcconf
-rcconf
-
-update-rc.d
-
-ll /etc/init/network-manager.conf
-mv /etc/init/network-manager.conf /etc/init/network-manager.conf.disable
-```
-
 
 ### # [6. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading](#목차)
 \# ssh port 를 7777로 변경하고, ssh를 통한 Root Login을 거부 한 후  
@@ -912,7 +897,7 @@ systemctl restart postfix
 \# 서버 자체에서 구동되며, 장애가 발생한 경우 상태를 확인하거나   
 \# 오류 메세지를 메일로 발송 하는 기능을 구현 할 수 있습니다.   
 
-#### # (Ubuntu16) dell repository 등록
+#### # (Ubuntu18) dell repository 등록
 \# Ubuntu (17.10 = artful // 16.04 = xenial // 14.04 = trusty)
 \# http://linux.dell.com/repo/community/ubuntu/
 \# Ubuntu 17 과 18 은 아직 linux.dell.com/repo  에 등록되어 있지 않으므로 16.04 와 동일하게 진행 합니다. (xenial)
@@ -1015,7 +1000,7 @@ bash  /root/LISR/common/dasan_omconfig_set.sh
 \# Avago Technologies 와 Broadcom 합병 (2015년 5월 28일)  
 \# https://en.wikipedia.org/wiki/Broadcom_Limited  
 
-#### # For Ubuntu 16.04
+#### # For Ubuntu 18.04
 ```bash
 echo " RAID 컨트롤러 관리 프로그램을 통해 서버의 전원을 끄지 않고 디스크 장애를 처리하거나 RAID 구성을 변경할 수 있습니다. "
 
