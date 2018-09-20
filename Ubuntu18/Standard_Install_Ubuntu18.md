@@ -1,4 +1,4 @@
-# 다산데이타 Ubuntu 14.04 / 16.04 / 18.04  설치 표준안 (2018.06)
+# 다산데이타 Ubuntu 18.04  설치 표준안 (2018.09)
 다산데이터 출고 장비에 설치되는 리눅스 (Ubuntu) 의 설치 표준안 입니다.  
 별도의 요청사항이 없는 경우 기본적으로 아래 절차에 따라 설치한 후 출고 하고 있습니다.  
 보완이 필요한 점이나 새로운 아이디어를 제보해 주시면 적극 반영하겠습니다 :)  
@@ -260,11 +260,7 @@ echo ${EXT_NIC}  # 추출된 인터페이스 명이 맞는지 확인 필요.
 ```bash
 ifconfig  ${EXT_NIC}
 
-cat /etc/network/interfaces
-
-# Ubuntu 18.04 의 경우
-# cat /etc/netplan/01-netcfg.yaml
-# https://www.server-world.info/en/note?os=Ubuntu_18.04&p=initial_conf&f=3
+cat /etc/netplan/01-netcfg.yaml
 
 cat /etc/hostname
 
@@ -300,7 +296,7 @@ update-initramfs -u && update-grub2
 
 #### # ubuntu Desktop 설치.
 ```bash
-apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> dasan_log_install_ubuntu-desktop.txt  2>&1
+apt-get -y install ubuntu-desktop >> dasan_log_install_ubuntu-desktop.txt  2>&1
 ```
 
 ```bash  
@@ -435,17 +431,6 @@ perl -pi -e "s/#Port 22/Port 7777/g" /etc/ssh/sshd_config
 perl -pi -e "s/#PermitRootLogin prohibit-password/PermitRootLogin no/g" /etc/ssh/sshd_config
 grep 'Root\|Port' /etc/ssh/sshd_config
 
-#Ubuntu16 sshd_config
-grep 'Root\|Port' /etc/ssh/sshd_config
-perl -pi -e "s/#Port 22/Port 7777/g" /etc/ssh/sshd_config
-perl -pi -e "s/PermitRootLogin prohibit-password/PermitRootLogin no/g" /etc/ssh/sshd_config
-grep 'Root\|Port' /etc/ssh/sshd_config
-
-# Ubuntu14 sshd_config
-grep 'Root\|Port' /etc/ssh/sshd_config
-perl -pi -e "s/Port 22/Port 7777/g" /etc/ssh/sshd_config
-perl -pi -e "s/PermitRootLogin without-password/PermitRootLogin no/g" /etc/ssh/sshd_config
-grep 'Root\|Port' /etc/ssh/sshd_config
 ```
 
 
@@ -739,7 +724,7 @@ systemctl restart sshd
 dpkg --list | grep vnc  # 현재 설치된 vnc 패키지 확인
 
 # vnc server(tigervnc-server) 와 vnc viewer 를 설치 합니다.
-apt-get install -y vnc4server  >>  dasan_log_install_vnc.txt 2>&1
+apt-get install -y apt-get -y install xfce4 xfce4-goodies tightvncserver  >>  dasan_log_install_vnc.txt 2>&1
 
 tail dasan_log_install_vnc.txt
 ```
@@ -766,11 +751,10 @@ vncserver -kill :1
 
 cat .vnc/xstartup
 
-cp .vnc/xstartup .vnc/xstartup.bak
-echo 'gnome-panel &  ' >> .vnc/xstartup
-echo 'gnome-settings-daemon & ' >> .vnc/xstartup
-echo 'metacity &  ' >> .vnc/xstartup
-echo 'nautilus &  ' >> .vnc/xstartup
+mv .vnc/xstartup .vnc/xstartup.bak
+echo '#!/bin/bash  ' > .vnc/xstartup
+echo 'xrdb $HOME/.Xresources  ' >> .vnc/xstartup
+echo 'startxfce4 &  ' >> .vnc/xstartup
 
 cat .vnc/xstartup
 chmod +x .vnc/xstartup
@@ -877,19 +861,6 @@ source /usr/local/sbin/dasan_export_global_variable.sh
 echo $TITLE_TAIL
 ```
 
-#### # (Ubuntu 16)메일 발송 테스트
-```bash
-apt-get  -y  install mailutils  
-
-source /usr/local/sbin/dasan_export_global_variable.sh
-echo $TITLE_TAIL
-
-echo "Test of SMTP... OK. " >  test_message.txt  
-cat test_message.txt
-
-mail -s   $TITLE_TAIL   -t   $ADMIN_LOG_EMAIL   <   test_message.txt
-```
-
 #### # (Ubuntu 18,17)메일 발송 테스트
 ```bash
 apt-get   -y   install mailutils
@@ -909,7 +880,7 @@ echo "Test of SMTP... OK." | mail -s $TITLE_TAIL $ADMIN_LOG_EMAIL
 ### # [21. SMTP for Email Alert (postfix for Dell RAID Manager)](#목차)
 #### # Dell Server RAID Controller Management (MSM) 의 알림 메일 발송을 위해 postifx를 구성 합니다 .
 
-\# Ubuntu16 check ( interface = all / protocols ipv4)
+\# Ubuntu18 check ( interface = all / protocols ipv4)
 ```bash
 grep "inet_interfaces\|inet_protocols" /etc/postfix/main.cf
 inet_interfaces = all
@@ -935,18 +906,6 @@ grep  'mynetworks = '   /etc/postfix/main.cf
 systemctl restart postfix
 ```
 
-\# Ubuntu14 check
-```bash
-grep mynetworks /etc/postfix/main.cf
-perl -pi -e 's/^mynetworks/#mynetworks/' /etc/postfix/main.cf
-grep mynetworks /etc/postfix/main.cf
-
-grep inet_protocols  /etc/postfix/main.cf
-perl -pi -e "s/inet_protocols = all/inet_protocols = ipv4/" /etc/postfix/main.cf
-grep inet_protocols  /etc/postfix/main.cf
-
-/etc/init.d/postfix restart
-```
 
 ***
 ### # [22. Dell OpenManage Server Administrator Install (OMSA)](#목차)
@@ -961,14 +920,6 @@ grep inet_protocols  /etc/postfix/main.cf
 ```bash
 echo 'deb http://linux.dell.com/repo/community/ubuntu xenial openmanage'  >  \
  /etc/apt/sources.list.d/linux.dell.com.sources.list
-
-gpg --keyserver pool.sks-keyservers.net --recv-key 1285491434D8786F
-# ** 혹시 여기에서 오류가 발생하고 진행되지 않는 경우 nameserver 주소를 1.1.1.1 이나 8.8.8.8 로 바꾸고 재시도 합니다.
-
-gpg -a --export 1285491434D8786F |  sudo apt-key add -
-
-
-==================================== 최 신 =============================================
 
 wget http://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc
 # ** 최신 gpg key 발급 다운로드
@@ -1066,9 +1017,31 @@ bash  /root/LISR/common/dasan_omconfig_set.sh
 
 #### # For Ubuntu 16.04
 ```bash
-cat /root/LISR/Ubuntu16/Install_Dell_MSM_Ubuntu.sh
+echo " RAID 컨트롤러 관리 프로그램을 통해 서버의 전원을 끄지 않고 디스크 장애를 처리하거나 RAID 구성을 변경할 수 있습니다. "
 
-bash /root/LISR/Ubuntu16/Install_Dell_MSM_Ubuntu.sh
+mkdir /root/raid_manager
+cd /root/raid_manager/
+wget https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/17.05.00.02_Linux-64_MSM.gz
+
+tar xvzf 17.05.00.02_Linux-64_MSM.gz
+
+cd disk/
+
+apt-get install -y alien
+
+alien --scripts *.rpm
+
+dpkg --install lib-utils2_1.00-9_all.deb
+
+dpkg --install megaraid-storage-manager_17.05.00-3_all.deb
+
+systemctl start vivaldiframeworkd.service
+systemctl enable vivaldiframeworkd.service
+
+echo " Test 를 위하여 사용자 계정으로 로그아웃 후 "
+
+ /usr/local/MegaRAID\ Storage\ Manager/startupui.sh &
+
 ```
 
 ***
