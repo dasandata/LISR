@@ -286,14 +286,6 @@ systemctl set-default multi-user.target
 systemctl get-default
 ```
 
-#### # (Ubuntu14)기본 부팅 모드 변경.
-```bash
-perl -pi -e  's/GRUB_CMDLINE_LINUX_DEFAULT="/GRUB_CMDLINE_LINUX_DEFAULT="text /g'  /etc/default/grub
-grep  "GRUB_CMDLINE_LINUX_DEFAULT="  /etc/default/grub
-
-update-initramfs -u && update-grub2
-```
-
 #### # ubuntu Desktop 설치.
 ```bash
 apt-get -y install ubuntu-desktop >> dasan_log_install_ubuntu-desktop.txt  2>&1
@@ -1002,7 +994,7 @@ bash  /root/LISR/common/dasan_omconfig_set.sh
 
 #### # For Ubuntu 18.04
 ```bash
-echo " RAID 컨트롤러 관리 프로그램을 통해 서버의 전원을 끄지 않고 디스크 장애를 처리하거나 RAID 구성을 변경할 수 있습니다. "
+" RAID 컨트롤러 관리 프로그램을 통해 서버의 전원을 끄지 않고 디스크 장애를 처리하거나 RAID 구성을 변경할 수 있습니다. "
 
 mkdir /root/raid_manager
 cd /root/raid_manager/
@@ -1023,7 +1015,7 @@ dpkg --install megaraid-storage-manager_17.05.00-3_all.deb
 systemctl start vivaldiframeworkd.service
 systemctl enable vivaldiframeworkd.service
 
-echo " Test 를 위하여 사용자 계정으로 로그아웃 후 "
+" Test 를 위하여 사용자 계정으로 로그아웃 후 "
 
  /usr/local/MegaRAID\ Storage\ Manager/startupui.sh &
 
