@@ -302,31 +302,6 @@ python3     examples/regression/main.py
 
 ```
 
-
-#### # X11Forwarding 을 위해 AddressFamily inet 을 추가 합니다.
-```bash
-echo "AddressFamily inet" >> /etc/ssh/sshd_config
-grep AddressFamily /etc/ssh/sshd_config
-
-systemctl restart sshd
-```
-
-\# 로그아웃 한 뒤 설정이 잘 적용 되었는지 검증 합니다.
-```bash
-logout
-logout
-
-ssh  user@192.168.0.?
-ssh -p7777 user@192.168.0.?
-logout
-
-ssh -p7777  root@192.168.0.?
-ssh -XYC -p 7777  user@192.168.0.?
-
-firefox & nautilus &
-
-```
-
 ### # [5. Disk 속도 측정](#목차)
 \# OS 영역 / DATA 영역 별로 측정  
 
