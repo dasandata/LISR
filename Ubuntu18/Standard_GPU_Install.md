@@ -8,9 +8,9 @@
 ![Dasandata Logo](http://www.dasandata.co.kr/dasanlogo.jpg)
 
 ## #목차
-[1. NVIDIA Driver 설치전 사전 작업][1]  
-[2. Cudnn install][2]  
-[3. Deep Learning Package Install (python-PIP, tensorflow](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-4-ip-%EB%B0%8F-hostname-%EC%A0%95%EB%B3%B4--%EC%9D%B8%ED%84%B0%EB%84%B7-%EC%97%B0%EA%B2%B0-%ED%99%95%EC%9D%B8)    
+[1. NVIDIA Driver 설치전 사전 작업](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#%EB%AA%A9%EC%B0%A8)  
+[2. Cudnn install][https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#%EB%AA%A9%EC%B0%A8]  
+[3. Deep Learning Package Install (python-PIP, tensorflow](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#%EB%AA%A9%EC%B0%A8)    
 [4. Deep Learning Package Install 2 (python-PIP, PyTorch)](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-6-ssh-%EB%B0%8F-%EB%B0%A9%ED%99%94%EB%B2%BD-firewall%EC%84%A4%EC%A0%95--%EB%B3%B4%EC%95%88%EA%B0%95%ED%99%94--x11-forwading)  
 [5. history 저장 (차후 설치기록 참고용](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-7-%EC%83%88%EB%A1%9C%EC%9A%B4-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%B6%94%EA%B0%80--sudo-%EA%B6%8C%ED%95%9C-%EB%B6%80%EC%97%AC)
 
@@ -279,28 +279,7 @@ python3  TensorFlow-Examples/examples/5_DataManagement/tensorflow_dataset_api.py
 
 ```
 
-### # [4. Disk 속도 측정](#목차)
-\# OS 영역 / DATA 영역 별로 측정  
-
-#### # (Ubuntu16,18)기본 부팅 모드 확인.  
-```bash
-lsblk
-df -hT | grep -v tmpfs
-
-cd /tmp
-date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
-
-
-cd /home
-date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
-
-cd /data
-date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
-
-cd
-```
-
-### # [5. Deep Learning Package Install 2 (python-PIP, PyTorch)](#목차)
+### # [4. Deep Learning Package Install 2 (python-PIP, PyTorch)](#목차)
 \# 홈페이지 주소 링크 http://pytorch.org/
 
 ```bash
@@ -345,6 +324,26 @@ ssh -XYC -p 7777  user@192.168.0.?
 
 firefox & nautilus &
 
+```
+
+### # [5. Disk 속도 측정](#목차)
+\# OS 영역 / DATA 영역 별로 측정  
+
+#### # (Ubuntu16,18)기본 부팅 모드 확인.  
+```bash
+lsblk
+df -hT | grep -v tmpfs
+
+cd /tmp
+date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+
+cd /home
+date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+
+cd /data
+date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+
+cd
 ```
 
 ### # [6. history 저장 (차후 설치기록 참고용)](#목차)
