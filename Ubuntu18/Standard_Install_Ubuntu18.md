@@ -701,7 +701,7 @@ systemctl restart sshd
 dpkg --list | grep vnc  # 현재 설치된 vnc 패키지 확인
 
 # vnc server(tigervnc-server) 와 vnc viewer 를 설치 합니다.
-apt-get install -y apt-get -y install xfce4 xfce4-goodies tightvncserver  >>  dasan_log_install_vnc.txt 2>&1
+apt-get install -y vnc4server xfce4 xfce4-goodies  >>  dasan_log_install_vnc.txt 2>&1
 
 tail dasan_log_install_vnc.txt
 ```
@@ -719,7 +719,7 @@ ufw status
 \# VNC 암호 설정 (일반 사용자 계정으로 전환한 후 진 )
 ```bash
 su - sonic
-vncserver # vnc접속용 암호를 지정합니다. (8자)
+vnc4server # vnc접속용 암호를 지정합니다. (8자)
 ```
 
 \# VNC 실행 및 연결
@@ -730,13 +730,12 @@ cat .vnc/xstartup
 
 mv .vnc/xstartup .vnc/xstartup.bak
 echo '#!/bin/bash  ' > .vnc/xstartup
-echo 'xrdb $HOME/.Xresources  ' >> .vnc/xstartup
 echo 'startxfce4 &  ' >> .vnc/xstartup
 
 cat .vnc/xstartup
 chmod +x .vnc/xstartup
 
-vncserver
+vnc4server
 ```
 
 \# vnc viewer program Download = https://www.realvnc.com/en/connect/download/viewer/
