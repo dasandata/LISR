@@ -12,8 +12,8 @@
 [2. Cudnn install][https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#%EB%AA%A9%EC%B0%A8]  
 [3. Deep Learning Package Install (python-PIP, tensorflow](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#%EB%AA%A9%EC%B0%A8)    
 [4. Deep Learning Package Install 2 (python-PIP, PyTorch)](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#%EB%AA%A9%EC%B0%A8)  
-[5. Disk 속도 측정] (https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#%EB%AA%A9%EC%B0%A8)
-[6. history 저장 (차후 설치기록 참고용](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#%EB%AA%A9%EC%B0%A8)
+[5. Disk 속도 측정](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#%EB%AA%A9%EC%B0%A8)
+[6. history 저장 (차후 설치기록 참고용](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-7-%EC%83%88%EB%A1%9C%EC%9A%B4-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%B6%94%EA%B0%80--sudo-%EA%B6%8C%ED%95%9C-%EB%B6%80%EC%97%AC)
 
 
 [1]: https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-1-%EA%B8%B0%EB%B3%B8-%EC%9C%A0%ED%8B%B8-%EC%84%A4%EC%B9%98--%EC%8B%9C%EA%B0%84-%EB%8F%99%EA%B8%B0%ED%99%94  
@@ -299,6 +299,31 @@ cd ~
 python     examples/regression/main.py
 
 python3     examples/regression/main.py
+
+```
+
+
+#### # X11Forwarding 을 위해 AddressFamily inet 을 추가 합니다.
+```bash
+echo "AddressFamily inet" >> /etc/ssh/sshd_config
+grep AddressFamily /etc/ssh/sshd_config
+
+systemctl restart sshd
+```
+
+\# 로그아웃 한 뒤 설정이 잘 적용 되었는지 검증 합니다.
+```bash
+logout
+logout
+
+ssh  user@192.168.0.?
+ssh -p7777 user@192.168.0.?
+logout
+
+ssh -p7777  root@192.168.0.?
+ssh -XYC -p 7777  user@192.168.0.?
+
+firefox & nautilus &
 
 ```
 
