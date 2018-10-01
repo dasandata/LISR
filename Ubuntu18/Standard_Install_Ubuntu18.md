@@ -258,7 +258,6 @@ echo ${EXT_NIC}  # 추출된 인터페이스 명이 맞는지 확인 필요.
 ```
 
 ```bash
-ifconfig  ${EXT_NIC}
 
 cat /etc/netplan/01-netcfg.yaml
 
@@ -382,7 +381,6 @@ apt-get -y autoremove
 \# 현재 상태 확인 및 활성 화
 ```bash
 systemctl status ufw
-# If Ubuntu 14 - service ufw status
 
 ufw status
 
