@@ -300,7 +300,7 @@ date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
 cd
 ```
 
-### # [6. Deep Learning Package Install 2 (python-PIP, PyTorch)](#목차)
+### # [5. Deep Learning Package Install 2 (python-PIP, PyTorch)](#목차)
 \# 홈페이지 주소 링크 http://pytorch.org/
 
 ```bash
@@ -347,7 +347,7 @@ firefox & nautilus &
 
 ```
 
-### # [5. history 저장 (차후 설치기록 참고용)](#목차)
+### # [6. history 저장 (차후 설치기록 참고용)](#목차)
 
 ```bash
 # 모든 root 사용자를 로그아웃 한 다음 다시 로그인 하여 작업
