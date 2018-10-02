@@ -10,7 +10,7 @@
 ## #목차
 [1. NVIDIA Driver 설치전 사전 작업](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#-1-nvidia-driver-%EC%84%A4%EC%B9%98%EC%A0%84-%EC%82%AC%EC%A0%84-%EC%9E%91%EC%97%85)  
 
-[2. Cudnn Install                                        ](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#-2-cudnn-install)
+[2. Cudnn Install                         ](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#-2-cudnn-install)
 
 [3. Deep Learning Package Install (python-PIP, tensorflow](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#-3-deep-learning-package-install-python-pip-tensorflow)  
 
