@@ -448,11 +448,10 @@ make
 
 ### # [7. GPU Job Scheduler](#목차)
 
-```bash
-설치문서 분리 - (링크) Install Slurm for Ubuntu 16.04
+\# 설치문서 분리 - (링크) Install Slurm for Ubuntu 16.04
 
 \# https://github.com/dasandata/LISR/blob/master/Ubuntu16/Slurm/Install_Slurm_Ubuntu16.04.md
-```
+
 
 ### # [8. history 저장 (차후 설치기록 참고용)](#목차)
 
