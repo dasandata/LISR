@@ -8,21 +8,21 @@
 ![Dasandata Logo](http://www.dasandata.co.kr/dasanlogo.jpg)
 
 ## #목차
-[1. Cuda install 사전 작업](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#-1-nvidia-driver-%EC%84%A4%EC%B9%98%EC%A0%84-%EC%82%AC%EC%A0%84-%EC%9E%91%EC%97%85)  
+[1. Cuda install 사전 작업](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard16_GPU_Install.md#-1-cuda-install-%EC%82%AC%EC%A0%84-%EC%9E%91%EC%97%85)  
 
-[2. Cudnn Install                         ](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#-2-cudnn-install)
+[2. Cudnn Install                         ](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard16_GPU_Install.md#-2-cudnn-install)
 
-[3. Deep Learning Package Install (python-PIP, tensorflow](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#-3-deep-learning-package-install-python-pip-tensorflow)  
+[3. Deep Learning Package Install (python-PIP, tensorflow](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard16_GPU_Install.md#-3-deep-learning-package-install-python-pip-tensorflow)  
 
-[4. Deep Learning Package Install 2 (python-PIP, PyTorch)](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#-4-deep-learning-package-install-2-python-pip-pytorch)  
+[4. Deep Learning Package Install 2 (python-PIP, PyTorch)](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard16_GPU_Install.md#-4-deep-learning-package-install-2-python-pip-pytorch)  
 
-[5. GPU Burning Test                                           ](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#-5-disk-%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95)
+[5. Disk 속도 측정                                           ](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard16_GPU_Install.md#-ubuntu1618%EA%B8%B0%EB%B3%B8-%EB%B6%80%ED%8C%85-%EB%AA%A8%EB%93%9C-%ED%99%95%EC%9D%B8)
 
-[6. GPU Job Scheduler                                           ](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#-5-disk-%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95)
+[6. GPU Burning Test                                           ](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard16_GPU_Install.md#-6-gpu-burning-test)
 
-[7. Disk 속도 측정                                           ](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#-5-disk-%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95)
+[7. GPU Job Scheduler                                           ](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard16_GPU_Install.md#-7-gpu-job-scheduler)
 
-[8. history 저장 (차후 설치기록 참고용](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#-6-history-%EC%A0%80%EC%9E%A5-%EC%B0%A8%ED%9B%84-%EC%84%A4%EC%B9%98%EA%B8%B0%EB%A1%9D-%EC%B0%B8%EA%B3%A0%EC%9A%A9)
+[8. history 저장 (차후 설치기록 참고용](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard16_GPU_Install.md#-8-history-%EC%A0%80%EC%9E%A5-%EC%B0%A8%ED%9B%84-%EC%84%A4%EC%B9%98%EA%B8%B0%EB%A1%9D-%EC%B0%B8%EA%B3%A0%EC%9A%A9)
 
 
 [1]: https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-1-%EA%B8%B0%EB%B3%B8-%EC%9C%A0%ED%8B%B8-%EC%84%A4%EC%B9%98--%EC%8B%9C%EA%B0%84-%EB%8F%99%EA%B8%B0%ED%99%94  
@@ -451,7 +451,7 @@ make
 ```bash
 설치문서 분리 - (링크) Install Slurm for Ubuntu 16.04
 
-https://github.com/dasandata/LISR/blob/master/Ubuntu16/Slurm/Install_Slurm_Ubuntu16.04.md
+\# https://github.com/dasandata/LISR/blob/master/Ubuntu16/Slurm/Install_Slurm_Ubuntu16.04.md
 ```
 
 ### # [8. history 저장 (차후 설치기록 참고용)](#목차)
