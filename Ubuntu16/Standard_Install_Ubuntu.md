@@ -431,13 +431,13 @@ ufw status numbered
 ```bash
 #Ubuntu18 sshd_config
 grep 'Root\|Port' /etc/ssh/sshd_config
-perl -pi -e "s/#Port 22/Port 7777/g" /etc/ssh/sshd_config
+perl -pi -e "s/Port 22/Port 7777/g" /etc/ssh/sshd_config
 perl -pi -e "s/#PermitRootLogin prohibit-password/PermitRootLogin no/g" /etc/ssh/sshd_config
 grep 'Root\|Port' /etc/ssh/sshd_config
 
 #Ubuntu16 sshd_config
 grep 'Root\|Port' /etc/ssh/sshd_config
-perl -pi -e "s/#Port 22/Port 7777/g" /etc/ssh/sshd_config
+perl -pi -e "s/Port 22/Port 7777/g" /etc/ssh/sshd_config
 perl -pi -e "s/PermitRootLogin prohibit-password/PermitRootLogin no/g" /etc/ssh/sshd_config
 grep 'Root\|Port' /etc/ssh/sshd_config
 
