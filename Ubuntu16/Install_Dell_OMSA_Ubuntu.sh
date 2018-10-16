@@ -13,6 +13,9 @@ echo 'deb http://linux.dell.com/repo/community/ubuntu xenial openmanage'  >  \
  wget http://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc
  # ** 최신 gpg key 발급 다운로드
 
+sleep 10
+#10초 여유
+
  apt-key add 0x1285491434D8786F.asc
 # ** GPG Key 등록
 
