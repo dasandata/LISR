@@ -6,42 +6,46 @@
 echo "###
 ### dell linux repo 추가...
 ### "
-wget http://linux.dell.com/repo/hardware/dsu/bootstrap.cgi -O  ./dellomsainstall.sh
-sed -i -e "s/enabled=1/enabled=0/g" ./dellomsainstall.sh
-bash ./dellomsainstall.sh
-rm -f ./dellomsainstall.sh
+
+echo 'deb http://linux.dell.com/repo/community/ubuntu xenial openmanage'  >  \
+ /etc/apt/sources.list.d/linux.dell.com.sources.list
+
+ wget http://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc
+ # ** 최신 gpg key 발급 다운로드
+
+ apt-key add 0x1285491434D8786F.asc
+# ** GPG Key 등록
 
 # 설치 시작
 echo "###
 ### 설치 시작...
 ### "
-yum -y erase  tog-pegasus-libs  >>  dasan_log_install_dell_OMSA.txt 2>&1
-tail -5  dasan_log_install_dell_OMSA.txt
+apt-get  -y update
 
-yum -y install --enablerepo=dell-system-update_dependent -y  srvadmin-all  \
- >>   dasan_log_install_dell_OMSA.txt 2>&1
-tail -5  dasan_log_install_dell_OMSA.txt
+apt-get  -y  install srvadmin-all
 
 # 방화벽 설정 (web base 모니터링)
 echo "###
 ### 방화벽 설정 (firewall-cmd)...
 ### "
-firewall-cmd   --add-port=1311/tcp  --zone=external   --permanent
-firewall-cmd   --reload
+ufw status numbered
+ufw allow 1311/tcp
+ #1311 이 기본값 입니다.
+ufw status numbered
 
 # 시스템이 시작될 때 관련 서비스가 실행 되도록 설정 (systemctl enable)
 echo "###
 ### 시스템이 시작될 때 관련 서비스가 실행 되도록 설정 (systemctl enable)...
 ### "
-systemctl enable dataeng
-systemctl enable dsm_om_connsvc
+systemctl start dataeng
+systemctl start dsm_om_connsvc
 
 # 서비스 시작
 echo "###
 ### 서비스 시작...
 ### "
-systemctl start dataeng
-systemctl start dsm_om_connsvc
+systemctl enable dataeng
+systemctl enable dsm_om_connsvc
 
 # 명령어 테스트
 echo "###
