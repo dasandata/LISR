@@ -327,7 +327,21 @@ date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
 cd
 ```
 
-### # [6. history 저장 (차후 설치기록 참고용)](#목차)
+### # [6. GPU Burning Test](#목차)
+
+```bash
+cd
+pwd
+git clone https://github.com/wilicc/gpu-burn
+
+cd gpu-burn
+make
+
+# ./gpu-burn 60  # 60sec
+./gpu_burn $((60 * 1))   # 1min
+```
+
+### # [7. history 저장 (차후 설치기록 참고용)](#목차)
 
 ```bash
 # 모든 root 사용자를 로그아웃 한 다음 다시 로그인 하여 작업

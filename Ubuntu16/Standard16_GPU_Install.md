@@ -437,7 +437,7 @@ cd
 ```bash
 cd
 pwd
-git clone https://github.com/Microway/gpu-burn
+git clone https://github.com/wilicc/gpu-burn
 
 cd gpu-burn
 make
