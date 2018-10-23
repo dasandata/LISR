@@ -2,6 +2,13 @@
 
 PROMPT="[${USER}@${HOSTNAME%%.*} ${PWD/#$HOME/~}]#"
 
+echo " # 재부팅 후 확인. "
+echo -e  "\033[1;34m${PROMPT} ip a | grep inet6 \033[0m"
+ip a | grep inet6
+echo " # 아무 결과가 없는 것이 ipv6 disable 이 잘 적용 된것 입니다. "
+
+echo ""
+
 echo " # 기본 유틸 설치. "
 echo -e  "\033[1;34m${PROMPT} apt-get install -y vim nfs-common rdate xauth firefox gcc make \033[0m"
 echo -e  "\033[1;34m${PROMPT} apt-get install -y locate htop tmux git wget ipmitool \033[0m"
