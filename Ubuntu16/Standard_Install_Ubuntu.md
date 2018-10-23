@@ -959,6 +959,14 @@ grep inet_protocols  /etc/postfix/main.cf
 \# Ubuntu 17 과 18 은 아직 linux.dell.com/repo  에 등록되어 있지 않으므로 16.04 와 동일하게 진행 합니다. (xenial)
 
 ```bash
+cat LISR/Ubuntu16/Install_Dell_OMSA_Ubuntu.sh
+
+bash LISR/Ubuntu16/Install_Dell_OMSA_Ubuntu.sh
+```
+
+```bash
+
+# 과거 내용 입니다.
 echo 'deb http://linux.dell.com/repo/community/ubuntu xenial openmanage'  >  \
  /etc/apt/sources.list.d/linux.dell.com.sources.list
 
