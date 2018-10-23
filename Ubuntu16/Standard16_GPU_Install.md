@@ -415,7 +415,7 @@ python3     examples/regression/main.py
 ### # [5. Disk 속도 측정](#목차)
 \# OS 영역 / DATA 영역 별로 측정  
 
-#### # (Ubuntu16,18)기본 부팅 모드 확인.  
+
 ```bash
 lsblk
 df -hT | grep -v tmpfs
