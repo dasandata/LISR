@@ -2,7 +2,7 @@
 
 PROMPT="[${USER}@${HOSTNAME%%.*} ${PWD/#$HOME/~}]#"
 
-echo " # 기본 alias "
+echo "  기본 alias "
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo " "  >> /etc/profile \033[0m"
 echo " "  >> /etc/profile
@@ -25,7 +25,7 @@ echo "alias grep='grep --color=auto' "   >>   /etc/profile
 echo ""
 echo ""
 
-echo " # 히스토리 사이즈 변경 (1000개 -> 100,000개 ) "
+echo "  히스토리 사이즈 변경 (1000개 -> 100,000개 ) "
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo $HISTSIZE \033[0m"
 echo  $HISTSIZE
@@ -89,7 +89,7 @@ tail -1 /home/sonic/.bashrc
 echo ""
 echo ""
 
-echo " # 적용확인. "
+echo "  적용확인. "
 echo -e  "\033[1;34m${PROMPT} tail -10 /etc/profile \033[0m"
 tail -10 /etc/profile
 echo ""
