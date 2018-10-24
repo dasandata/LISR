@@ -18,6 +18,19 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} teamviewer passwd ******* \033[0m"
 read teamviewer passwd
 
+COUNTER=20
+
+until [  $COUNTER -lt 1 ]; do
+
+      echo COUNTER $COUNTER
+
+      let COUNTER-=1
+
+done
+
+sleep 20
+
+
 echo ""
 echo " Teamviewer 실행 및 id 확인 "
 echo ""
