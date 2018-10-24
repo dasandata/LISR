@@ -27,5 +27,6 @@ usermod -G sudo ${NEW_USER}
 echo ""
 echo -e  "\033[1;34m${PROMPT} grep ${NEW_USER} /etc/group \033[0m"
 grep ${NEW_USER} /etc/group
+echo ""
 
 echo " sonic유저 계정 로그아웃 후 dasan유저 계정으로 su - 확인 "
