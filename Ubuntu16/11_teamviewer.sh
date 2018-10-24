@@ -73,3 +73,9 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} teamviewer info \033[0m"
 teamviewer info
 echo ""
+
+echo " Teamviewer Passwd 설정 다시 해주고 info 확인 "
+echo ""
+echo -e  "\033[1;34m${PROMPT} teamviewer passwd ******* \033[0m"
+echo ""
+echo -e  "\033[1;34m${PROMPT} teamviewer info \033[0m"
