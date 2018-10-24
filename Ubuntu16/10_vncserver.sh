@@ -35,4 +35,4 @@ echo -e  "\033[1;34m${PROMPT} su - sonic \033[0m"
 su - sonic
 echo ""
 echo -e  "\033[1;34m${PROMPT} vnc4server \033[0m"
-vnc4server
+read vnc4server
