@@ -16,7 +16,7 @@ echo ""
 echo " Teamviewer Passwd 설정 "
 echo ""
 echo -e  "\033[1;34m${PROMPT} teamviewer passwd ******* \033[0m"
-teamviewer passwd
+read teamviewer passwd
 
 echo ""
 echo " Teamviewer 실행 및 id 확인 "
