@@ -15,7 +15,7 @@ ufw status
 echo ""
 echo -e  "\033[1;34m${PROMPT} ufw enable \033[0m"
 ufw enable
-read Command may disrupt existing ssh connections. Proceed with operation y|n?
+read 
 
 echo " 기본 정책을 차단 (deny) 로 변경한 후 필요한 포트 (또는 서비스) 만 허용. "
 
