@@ -437,6 +437,21 @@ echo -e  "\033[1;34m${PROMPT} apt-get -y install metacity nautilus gnome-termina
 apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal
 
 echo ""
+echo " 현재 구동중인 Demon list 확인. "
+echo -e  "\033[1;34m${PROMPT} systemctl list-unit-files  -t service  | grep enable \033[0m"
+systemctl list-unit-files  -t service  | grep enable
+
+echo ""
+echo " Daemon Disable 스크립트 실행. "
+echo -e  "\033[1;34m${PROMPT} cat /root/LISR/common/dasan_ubuntu_daemon_disable.sh \033[0m"
+cat /root/LISR/common/dasan_ubuntu_daemon_disable.sh
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} bash /root/LISR/common/dasan_ubuntu_daemon_disable.sh  \033[0m"
+bash /root/LISR/common/dasan_ubuntu_daemon_disable.sh
+
+echo ""
+
 
 COUNTER=10
 
