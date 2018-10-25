@@ -326,52 +326,49 @@ systemctl list-unit-files  -t service  | grep enable
 
 \# Daemon Disable 스크립트 실행.
 ```bash
-cat /root/LISR/common/dasan_daemon_disable.sh
+cat /root/LISR/common/dasan_ubuntu_daemon_disable.sh
 
-bash /root/LISR/common/dasan_daemon_disable.sh
+bash /root/LISR/common/dasan_ubuntu_daemon_disable.sh 
 ```
 *output example>*
 ```
-[root@hostname:~]#
-[root@hostname:~]# cat /root/LISR/common/dasan_daemon_disable.sh
+[root@ubuntu:~]# cat /root/LISR/common/dasan_ubuntu_daemon_disable.sh
 #!/bin/bash
 # disable Daemon list
 systemctl disable bluetooth.service
-systemctl disable iscsi.service
-systemctl disable ksm.service
-systemctl disable ksmtuned.service
-systemctl disable libstoragemgmt.service
-systemctl disable libvirtd.service
 systemctl disable NetworkManager.service
 systemctl stop      NetworkManager.service
 systemctl disable NetworkManager-dispatcher.service
 systemctl disable NetworkManager-wait-online.service
-systemctl disable spice-vdagentd.service
-systemctl disable vmtoolsd.service
-systemctl disable ModemManager.service
+systemctl disable whoopsie.service
+systemctl disable cups-browsed.service
+systemctl disable cups.service
 
 # End of file.
-[root@hostname:~]#
-[root@hostname:~]# bash /root/LISR/common/dasan_daemon_disable.sh
+
+[root@ubuntu:~]# bash /root/LISR/common/dasan_ubuntu_daemon_disable.sh
+Synchronizing state of bluetooth.service with SysV init with /lib/systemd/systemd-sysv-install...
+Executing /lib/systemd/systemd-sysv-install disable bluetooth
+insserv: warning: current start runlevel(s) (empty) of script `bluetooth' overrides LSB defaults (2 3 4 5).
+insserv: warning: current stop runlevel(s) (0 1 2 3 4 5 6) of script `bluetooth' overrides LSB defaults (0 1 6).
 Removed symlink /etc/systemd/system/dbus-org.bluez.service.
-Removed symlink /etc/systemd/system/bluetooth.target.wants/bluetooth.service.
-Removed symlink /etc/systemd/system/sysinit.target.wants/iscsi.service.
-Removed symlink /etc/systemd/system/multi-user.target.wants/ksm.service.
-Removed symlink /etc/systemd/system/multi-user.target.wants/ksmtuned.service.
-Removed symlink /etc/systemd/system/multi-user.target.wants/libstoragemgmt.service.
-Removed symlink /etc/systemd/system/multi-user.target.wants/libvirtd.service.
-Removed symlink /etc/systemd/system/sockets.target.wants/virtlogd.socket.
-Removed symlink /etc/systemd/system/sockets.target.wants/virtlockd.socket.
-Removed symlink /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service.
-Removed symlink /etc/systemd/system/dbus-org.freedesktop.NetworkManager.service.
 Removed symlink /etc/systemd/system/multi-user.target.wants/NetworkManager.service.
-Removed symlink /etc/systemd/system/spice-vdagentd.target.wants/spice-vdagentd.service.
-Removed symlink /etc/systemd/system/vmtoolsd.service.requires/vgauthd.service.
-Removed symlink /etc/systemd/system/multi-user.target.wants/vmtoolsd.service.
-Removed symlink /etc/systemd/system/dbus-org.freedesktop.ModemManager1.service.
-Removed symlink /etc/systemd/system/multi-user.target.wants/ModemManager.service.
-[root@hostname:~]#
-[root@hostname:~]#
+Removed symlink /etc/systemd/system/dbus-org.freedesktop.nm-dispatcher.service.
+Removed symlink /etc/systemd/system/network-online.target.wants/NetworkManager-wait-online.service.
+Synchronizing state of whoopsie.service with SysV init with /lib/systemd/systemd-sysv-install...
+Executing /lib/systemd/systemd-sysv-install disable whoopsie
+insserv: warning: current start runlevel(s) (empty) of script `whoopsie' overrides LSB defaults (2 3 4 5).
+insserv: warning: current stop runlevel(s) (1 2 3 4 5) of script `whoopsie' overrides LSB defaults (1).
+Synchronizing state of cups-browsed.service with SysV init with /lib/systemd/systemd-sysv-install...
+Executing /lib/systemd/systemd-sysv-install disable cups-browsed
+insserv: warning: current start runlevel(s) (empty) of script `cups-browsed' overrides LSB defaults (2 3 4 5).
+insserv: warning: current stop runlevel(s) (0 1 2 3 4 5 6) of script `cups-browsed' overrides LSB defaults (0 1 6).
+Synchronizing state of cups.service with SysV init with /lib/systemd/systemd-sysv-install...
+Executing /lib/systemd/systemd-sysv-install disable cups
+insserv: warning: current start runlevel(s) (empty) of script `cups' overrides LSB defaults (2 3 4 5).
+insserv: warning: current stop runlevel(s) (1 2 3 4 5) of script `cups' overrides LSB defaults (1).
+Removed symlink /etc/systemd/system/sockets.target.wants/cups.socket.
+Removed symlink /etc/systemd/system/multi-user.target.wants/cups.path.
 ```
 
 \# network-manager 제거
