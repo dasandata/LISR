@@ -70,13 +70,20 @@ echo ""
 
 echo "  서버 시간 동기화. "
 echo -e  "\033[1;34m${PROMPT} rdate  -s  time.bora.net \033[0m"
-echo -e  "\033[1;34m${PROMPT} hwclock --systohc \033[0m"
-echo -e  "\033[1;34m${PROMPT} date \033[0m"
-echo -e  "\033[1;34m${PROMPT} hwclock \033[0m"
 rdate  -s  time.bora.net
+echo ""
+
+echo -e  "\033[1;34m${PROMPT} hwclock --systohc \033[0m"
 hwclock --systohc
+echo ""
+
+echo -e  "\033[1;34m${PROMPT} date \033[0m"
 date
+echo ""
+
+echo -e  "\033[1;34m${PROMPT} hwclock \033[0m"
 hwclock
+echo ""
 
 echo ""
 echo ""
@@ -100,21 +107,27 @@ echo -e  "\033[1;32m"==================== Profile Settings ===================="
 
 echo ""
 echo "  기본 alias "
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo " "  >> /etc/profile \033[0m"
 echo " "  >> /etc/profile
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo "add by dasandata"             >>   /etc/profile \033[0m"
 echo "# add by dasandata"             >>   /etc/profile
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo "alias vi='vim' "                        >>   /etc/profile \033[0m"
 echo "alias vi='vim' "                        >>   /etc/profile
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo "alias ls='ls --color=auto' "       >>   /etc/profile \033[0m"
 echo "alias ls='ls --color=auto' "       >>   /etc/profile
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo "alias ll='ls -lh' "                        >>   /etc/profile \033[0m"
 echo "alias ll='ls -lh' "                        >>   /etc/profile
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo "alias grep='grep --color=auto' "   >>   /etc/profile \033[0m"
 echo "alias grep='grep --color=auto' "   >>   /etc/profile
@@ -126,12 +139,15 @@ echo "  히스토리 사이즈 변경 (1000개 -> 100,000개 ) "
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo $HISTSIZE \033[0m"
 echo  $HISTSIZE
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} grep HISTSIZE /etc/skel/.bashrc \033[0m"
 grep HISTSIZE /etc/skel/.bashrc
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} perl -pi -e  's/HISTSIZE=1000/HISTSIZE=100000/'   /etc/skel/.bashrc \033[0m"
 perl -pi -e  's/HISTSIZE=1000/HISTSIZE=100000/'   /etc/skel/.bashrc
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} grep HISTSIZE /etc/skel/.bashrc \033[0m"
 grep HISTSIZE /etc/skel/.bashrc
@@ -139,11 +155,14 @@ grep HISTSIZE /etc/skel/.bashrc
 echo ""
 echo ""
 
+echo ""
 echo -e  "\033[1;34m${PROMPT} grep HISTSIZE .bashrc \033[0m"
 grep HISTSIZE .bashrc
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} perl -pi -e 's/HISTSIZE=1000/HISTSIZE=100000/'   ~/.bashrc \033[0m"
 perl -pi -e 's/HISTSIZE=1000/HISTSIZE=100000/'   ~/.bashrc
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} grep HISTSIZE .bashrc \033[0m"
 grep HISTSIZE .bashrc
@@ -155,12 +174,15 @@ echo " 히스토리 출력 날짜가 표시 되도록 변경 "
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo " "  >> /etc/profile \033[0m"
 echo " "  >> /etc/profile
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo " Add timestamp to .bash_history "  >> /etc/profile \033[0m"
 echo "# Add timestamp to .bash_history "  >> /etc/profile
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo 'export HISTTIMEFORMAT="20%y/%m/%d %T "' >> /etc/profile \033[0m"
 echo 'export HISTTIMEFORMAT="20%y/%m/%d %T "' >> /etc/profile
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo " "  >> /etc/profile \033[0m"
 echo " "  >> /etc/profile
@@ -172,13 +194,16 @@ echo " root 와 user 의 프롬프트 색상을 다르게 설정. "
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo "export PS1='\[\e[1;46;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /root/.bashrc \033[0m"
 echo "export PS1='\[\e[1;46;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /root/.bashrc
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} tail -1 /root/.bashrc \033[0m"
 tail -1 /root/.bashrc
+
 echo ""
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo "export PS1='\[\e[1;47;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /home/sonic/.bashrc \033[0m"
 echo "export PS1='\[\e[1;47;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /home/sonic/.bashrc
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} tail -1 /home/sonic/.bashrc \033[0m"
 tail -1 /home/sonic/.bashrc
@@ -189,15 +214,19 @@ echo ""
 echo "  적용확인. "
 echo -e  "\033[1;34m${PROMPT} tail -10 /etc/profile \033[0m"
 tail -10 /etc/profile
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} source  /etc/profile \033[0m"
 source  /etc/profile
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} source  .bashrc \033[0m"
 source  .bashrc
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo $HISTSIZE \033[0m"
 echo $HISTSIZE
+
 echo ""
 COUNTER=10
 
@@ -392,9 +421,11 @@ echo " 데스크탑 GUI Disable "
 echo ""
 echo -e  "\033[1;34m${PROMPT} systemctl get-default # 부팅시 정보 확인 \033[0m"
 systemctl get-default
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} systemctl set-default multi-user.target # 부팅시 터미널 모드 변경 \033[0m"
 systemctl set-default multi-user.target
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} systemctl get-default # 변경 정보 확인 \033[0m"
 systemctl get-default
@@ -432,34 +463,40 @@ echo " X11 Forwading 에 필요한 설정을 추가 합니다. "
 echo ""
 echo -e  "\033[1;34m${PROMPT} systemctl status ufw \033[0m"
 systemctl status ufw
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} ufw status \033[0m"
 ufw status
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} ufw enable \033[0m"
 ufw enable
+
 echo ""
 
 echo " 기본 정책을 차단 (deny) 로 변경한 후 필요한 포트 (또는 서비스) 만 허용. "
 
 echo ""
-
 echo -e  "\033[1;34m${PROMPT} ufw status \033[0m"
 ufw status
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} ufw default deny \033[0m"
 ufw default deny
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} ufw allow 22/tcp \033[0m"
 ufw allow 22/tcp
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} ufw allow 7777/tcp \033[0m"
 ufw allow 7777/tcp
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} ufw status numbered \033[0m"
 ufw status numbered
-echo ""
 
+echo ""
 echo " sshd 설정. (기본 포트인 22번을 7777로 변경) "
 echo ""
 
@@ -467,22 +504,28 @@ echo " Ubuntu16 sshd_config "
 echo ""
 echo -e  "\033[1;34m${PROMPT} grep 'Root\|Port' /etc/ssh/sshd_config \033[0m"
 grep 'Root\|Port' /etc/ssh/sshd_config
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} perl -pi -e "s/Port 22/Port 7777/g" /etc/ssh/sshd_config \033[0m"
 perl -pi -e "s/Port 22/Port 7777/g" /etc/ssh/sshd_config
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} perl -pi -e "s/PermitRootLogin prohibit-password/PermitRootLogin no/g" /etc/ssh/sshd_config \033[0m"
 perl -pi -e "s/PermitRootLogin prohibit-password/PermitRootLogin no/g" /etc/ssh/sshd_config
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} grep 'Root\|Port' /etc/ssh/sshd_config \033[0m"
 grep 'Root\|Port' /etc/ssh/sshd_config
 
 echo ""
 echo ""
+
 echo " X11Forwarding 을 위해 AddressFamily inet 을 추가 합니다. "
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo "AddressFamily inet" >> /etc/ssh/sshd_config \033[0m"
 echo "AddressFamily inet" >> /etc/ssh/sshd_config
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} grep AddressFamily /etc/ssh/sshd_config \033[0m"
 grep AddressFamily /etc/ssh/sshd_config
@@ -518,24 +561,30 @@ echo ""
 
 echo -e  "\033[1;34m${PROMPT} NEW_USER=dasan \033[0m"
 NEW_USER=dasan
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo ${NEW_USER}\033[0m"
 echo ${NEW_USER}
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} adduser ${NEW_USER} \033[0m"
 adduser ${NEW_USER}
 echo ""
 
 echo " 관리자로 전환될 수 있도록, 새 사용자를 wheel 그룹에 포함. "
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} grep ${NEW_USER} /etc/group \033[0m"
 grep ${NEW_USER} /etc/group
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} usermod -G sudo ${NEW_USER} \033[0m"
 usermod -G sudo ${NEW_USER}
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} grep ${NEW_USER} /etc/group \033[0m"
 grep ${NEW_USER} /etc/group
+
 echo ""
 
 echo " sonic유저 계정 로그아웃 후 dasan유저 계정으로 su - 확인 "
@@ -566,9 +615,11 @@ echo ""
 
 echo -e  "\033[1;34m${PROMPT} wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb \033[0m"
 wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} apt-get -y install ./teamviewer_amd64.deb \033[0m"
 apt-get -y install ./teamviewer_amd64.deb
+
 echo ""
 
 echo " Teamviewer Passwd 설정 "
@@ -675,6 +726,7 @@ echo ""
 echo "  부팅시 화면에 부팅로그가 표시 되도록 rhgb 항목 지움 "
 echo -e  "\033[1;34m${PROMPT} perl -pi -e 's/splash//' /etc/default/grub \033[0m"
 perl -pi -e 's/splash//' /etc/default/grub
+
 echo ""
 echo "  부팅시 화면에 부팅로그가 표시 되도록 quiet 항목 지움 "
 echo -e  "\033[1;34m${PROMPT} perl -pi -e 's/quiet//'  /etc/default/grub \033[0m"
