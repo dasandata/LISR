@@ -260,10 +260,10 @@ echo " "  >> /etc/profile
 
 #### # root 와 user 의 프롬프트 색상을 다르게 설정.
 ```bash
-echo "export PS1='\[\e[1;30;41m\][\u@\h:\W]\\$\[\e[m\] '" >> /root/.bashrc
+echo "export PS1='\[\e[1;46;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /root/.bashrc
 tail -1 /root/.bashrc
 
-echo "export PS1='\[\e[1;31;40m\][\u@\h:\W]\\$\[\e[m\] '" >> /home/sonic/.bashrc
+echo "export PS1='\[\e[1;47;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /home/sonic/.bashrc
 tail -1 /home/sonic/.bashrc
 ```
 
@@ -884,7 +884,7 @@ systemctl  restart postfix
 
 ```bash
 vi /etc/yum.repos.d/CentOS-Base.repo
-# [base] 부분에 "exclude = libsmbios smbios-utils-bin" 추가 
+# [base] 부분에 "exclude = libsmbios smbios-utils-bin" 추가
 ```
 
 ```
