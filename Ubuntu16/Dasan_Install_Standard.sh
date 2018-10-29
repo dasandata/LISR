@@ -27,7 +27,10 @@ echo ""
 echo ""
 
 echo -e  "\033[1;34m${PROMPT} apt-get update \033[0m"
-apt-get update
+apt-get update  >>  dasan_log_ubuntu_repo_update.txt
+
+tail -5 dasan_log_ubuntu_repo_update.txt
+
 echo "  적용 하기 "
 
 echo ""
@@ -43,7 +46,9 @@ echo -e  "\033[1;34m${PROMPT} apt-get install -y locate htop tmux git wget \033[
 echo -e  "\033[1;34m${PROMPT} apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl  \033[0m"
 apt-get install -y  \
 vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget \
-xfsprogs ntfs-3g aptitude lvm2 dstat curl
+xfsprogs ntfs-3g aptitude lvm2 dstat curl  >> dasan_log_install_ubuntu_default_util.txt 2>&1
+
+tail -5 dasan_log_install_ubuntu_default_util.txt
 
 echo ""
 echo ""
@@ -63,7 +68,9 @@ sleep 10
 echo ""
 
 echo -e  "\033[1;34m${PROMPT} apt-get install -y python-dev \033[0m"
-apt-get install -y python-dev
+apt-get install -y python-dev  >> dasan_log_ubuntu_python-dev_install.txt
+
+tail -5 dasan_log_ubuntu_python-dev_install.txt
 
 echo ""
 echo ""
@@ -434,7 +441,9 @@ echo " ubuntu desktop 설치 "
 echo ""
 echo -e  "\033[1;34m${PROMPT} apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon  \033[0m"
 echo -e  "\033[1;34m${PROMPT} apt-get -y install metacity nautilus gnome-terminal \033[0m"
-apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal
+apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal  >> dasan_log_install_ubuntu-desktop.txt  2>&1
+
+tail  dasan_log_install_ubuntu-desktop.txt
 
 echo ""
 echo " 현재 구동중인 Demon list 확인. "
@@ -633,7 +642,8 @@ wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} apt-get -y install ./teamviewer_amd64.deb \033[0m"
-apt-get -y install ./teamviewer_amd64.deb
+apt-get -y install ./teamviewer_amd64.deb          >>  dasan_log_install_teamviewer.txt 2>&1
+tail -5 dasan_log_install_teamviewer.txt
 
 echo ""
 
