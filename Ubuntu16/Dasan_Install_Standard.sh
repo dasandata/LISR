@@ -638,7 +638,8 @@ echo " Teamviewer install. "
 echo ""
 
 echo -e  "\033[1;34m${PROMPT} wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb \033[0m"
-wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
+wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb     >>  dasan_log_teamviewer.txt
+tail -5 dasan_log_teamviewer.txt
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} apt-get -y install ./teamviewer_amd64.deb \033[0m"
