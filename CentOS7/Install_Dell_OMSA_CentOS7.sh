@@ -18,7 +18,7 @@ echo "###
 yum -y erase  tog-pegasus-libs  >>  dasan_log_install_dell_OMSA.txt 2>&1
 tail -5  dasan_log_install_dell_OMSA.txt
 
-yum -y install --enablerepo=dell-system-update_dependent -y  srvadmin-all  \
+yum -y install --enablerepo=dell-system-update_dependent -y  srvadmin-all openssl-devel \
  >>   dasan_log_install_dell_OMSA.txt 2>&1
 tail -5  dasan_log_install_dell_OMSA.txt
 
