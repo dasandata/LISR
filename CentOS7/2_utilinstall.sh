@@ -47,3 +47,14 @@ echo ""
 
 echo " 인터넷 시간에 맞추어 서버의 시간 조정 "
 echo ""
+echo -e  "\033[1;34m${PROMPT} rdate  -s  time.bora.net \033[0m"
+rdate  -s  time.bora.net
+echo ""
+echo -e  "\033[1;34m${PROMPT} clock --systohc \033[0m"
+clock --systohc
+echo ""
+echo -e  "\033[1;34m${PROMPT} date \033[0m"
+date
+echo ""
+echo -e  "\033[1;34m${PROMPT} hwclock \033[0m"
+hwclock
