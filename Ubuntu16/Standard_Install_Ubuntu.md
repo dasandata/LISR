@@ -161,7 +161,7 @@ ip a | grep inet6
 # 화면에 로그가 뿌려지지 않도록 하기 위해 파이프라인(>>) 처리를 합니다.
 apt-get install -y  \
 vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget ipmitool \
-xfsprogs ntfs-3g aptitude lvm2 dstat curl >> dasan_log_install_ubuntu_default_util.txt 2>&1
+xfsprogs ntfs-3g aptitude lvm2 dstat curl libssl1.0.0 libssl-dev >> dasan_log_install_ubuntu_default_util.txt 2>&1
 ```
 
 ```bash
@@ -328,7 +328,7 @@ systemctl list-unit-files  -t service  | grep enable
 ```bash
 cat /root/LISR/common/dasan_ubuntu_daemon_disable.sh
 
-bash /root/LISR/common/dasan_ubuntu_daemon_disable.sh 
+bash /root/LISR/common/dasan_ubuntu_daemon_disable.sh
 ```
 *output example>*
 ```
