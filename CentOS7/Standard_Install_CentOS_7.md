@@ -157,7 +157,7 @@ Disabled
 yum -y install \
 vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget \
 tcsh tree lshw tmux git kernel-headers kernel-devel ipmitool gcc make gcc-c++ \
-cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel \
+cmake python-devel dstat perl perl-CPAN perl-core net-tools openssl-devel \
   >>  dasan_log_install_centos_default_util.txt 2>&1
 
 tail dasan_log_install_centos_default_util.txt # 설치 결과 확인.
@@ -201,8 +201,8 @@ yum repolist  # 설치된 repolist 확인.
 # epel 이 활성화 되어야 설치 되는 htop 을 설치하여 검증
 rpm -qa | grep htop # htop 이 설치 되어있는지 확인.
 
-yum -y  install htop  >> dasan_log_install_htop.txt  2>&1
-tail -5  dasan_log_install_htop.txt
+yum -y  install htop ntfs-3g >> dasan_log_install_htop,ntfs3g.txt  2>&1
+tail -5  dasan_log_install_htop,ntfs3g.txt
 ```
 
 #### # kernel / kernel-header / kernel-devel 버젼 일치 확인
