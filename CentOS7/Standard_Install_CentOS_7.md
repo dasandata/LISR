@@ -293,7 +293,7 @@ bash /root/LISR/common/dasan_check_to_hardware_spec.sh
 ```bash
 ip a
 
-EXT_NIC=$(ip a | grep 'state UP' | cut -d ":" -f 2)
+EXT_NIC=$(ip a | grep 'state UP' | cut -d ":" -f 2 |tr -d ' ')
 echo ${EXT_NIC}  # 추출된 인터페이스 명이 맞는지 확인 필요.
 ```
 
@@ -406,7 +406,7 @@ Removed symlink /etc/systemd/system/multi-user.target.wants/ModemManager.service
 ```bash
 ip a
 
-EXT_NIC=$(ip a | grep 'state UP' | cut -d ":" -f 2)
+EXT_NIC=$(ip a | grep 'state UP' | cut -d ":" -f 2 |tr -d ' ')
 echo ${EXT_NIC}  # 추출된 인터페이스 명이 맞는지 확인 필요.
 ```
 
