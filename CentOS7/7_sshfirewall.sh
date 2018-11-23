@@ -53,7 +53,7 @@ echo ""
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} firewall-cmd --set-default-zone=external 기본 zone 을 external 로 변경 \033[0m"
-firewall-cmd --change-interface=${EXT_NIC} --zone=external --permanent
+firewall-cmd --set-default-zone=external
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} firewall-cmd --reload  변경 사항 적용 \033[0m"
