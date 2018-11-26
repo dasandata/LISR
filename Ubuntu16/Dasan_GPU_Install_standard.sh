@@ -150,8 +150,8 @@ echo ""
 echo " 추가 확인 "
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} tail  /etc/profile   \033[0m"
-tail  /etc/profile
+echo -e  "\033[1;34m${PROMPT} tail -5  /etc/profile   \033[0m"
+tail  -5 /etc/profile
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} source /etc/profile   \033[0m"
