@@ -53,40 +53,40 @@ echo -e  "\033[1;34m${PROMPT} ln -s /usr/lib/x86_64-linux-gnu/libGLU.so    /usr/
 ln -s /usr/lib/x86_64-linux-gnu/libGLU.so    /usr/lib/libGLU.so
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} ll    /usr/lib/libGLU.so \033[0m"
-ll    /usr/lib/libGLU.so
+echo -e  "\033[1;34m${PROMPT} ls    /usr/lib/libGLU.so \033[0m"
+ls   /usr/lib/libGLU.so
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} ln -s /usr/lib/x86_64-linux-gnu/libGL.so      /usr/lib/libGL.so \033[0m"
 ln -s /usr/lib/x86_64-linux-gnu/libGL.so      /usr/lib/libGL.so
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} ll   /usr/lib/libGL.so \033[0m"
-ll   /usr/lib/libGL.so
+echo -e  "\033[1;34m${PROMPT} ls   /usr/lib/libGL.so \033[0m"
+ls   /usr/lib/libGL.so
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} ln -s /usr/lib/x86_64-linux-gnu/libX11.so     /usr/lib/libX11.so \033[0m"
 ln -s /usr/lib/x86_64-linux-gnu/libX11.so     /usr/lib/libX11.so
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} ll  /usr/lib/libX11.so \033[0m"
-ll  /usr/lib/libX11.so
+echo -e  "\033[1;34m${PROMPT} ls  /usr/lib/libX11.so \033[0m"
+ls  /usr/lib/libX11.so
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} ln -s /usr/lib/x86_64-linux-gnu/libXi.so        /usr/lib/libXi.so \033[0m"
 ln -s /usr/lib/x86_64-linux-gnu/libXi.so        /usr/lib/libXi.so
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} ll  /usr/lib/libXi.so \033[0m"
-ll  /usr/lib/libXi.so
+echo -e  "\033[1;34m${PROMPT} ls  /usr/lib/libXi.so \033[0m"
+ls  /usr/lib/libXi.so
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} ln -s /usr/lib/x86_64-linux-gnu/libXmu.so    /usr/lib/libXmu.so \033[0m"
 ln -s /usr/lib/x86_64-linux-gnu/libXmu.so    /usr/lib/libXmu.so
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} ll /usr/lib/libXmu.so \033[0m"
-ll /usr/lib/libXmu.so
+echo -e  "\033[1;34m${PROMPT} ls /usr/lib/libXmu.so \033[0m"
+ls /usr/lib/libXmu.so
 
 echo ""
 echo ""
