@@ -52,7 +52,7 @@ pip3 install  --upgrade tensorflow-gpu==1.11
 echo ""
 echo ""
 
-echo -e  "\033[1;32m"==================== Deep Learning Package Install 2 (python-PIP, PyTorch) ===================="\033[0m"
+echo -e  "\033[1;32m"==================== Deep Learning Package Install 2 python-PIP, PyTorch ===================="\033[0m"
 
 echo ""
 echo ""

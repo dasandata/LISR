@@ -210,7 +210,7 @@ time make -j$(grep process /proc/cpuinfo | wc -l)
 echo ""
 echo ""
 
-echo -e  "\033[1;32m"==================== Deep Learning Package Install (python-PIP, tensorflow) ===================="\033[0m"
+echo -e  "\033[1;32m"==================== Deep Learning Package Install python-PIP, tensorflow ===================="\033[0m"
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} cd ~ \033[0m"
