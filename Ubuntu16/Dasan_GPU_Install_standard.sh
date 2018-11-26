@@ -95,7 +95,7 @@ echo " Cuda 9.0 설치 "
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} apt-get install -y cuda-9-0 \033[0m"
-apt-get install -y cuda-9-0
+apt-get install -y cuda-9-0  >> dasan_log_install_cuda9.txt   2>&1
 
 echo ""
 echo ""
