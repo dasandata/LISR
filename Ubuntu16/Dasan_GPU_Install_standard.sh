@@ -179,8 +179,8 @@ echo ""
 echo " Cuda 컴파일러 동작 확인. "
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} ll /usr/local/ | grep cuda  \033[0m"
-ll /usr/local/ | grep cuda
+echo -e  "\033[1;34m${PROMPT} ls /usr/local/ | grep cuda  \033[0m"
+ls /usr/local/ | grep cuda
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} which nvcc \033[0m"
