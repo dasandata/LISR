@@ -46,7 +46,7 @@ echo " 쿠다 샘플 컴파일에 필요한 라이브러리 설치 ( libGLU.so l
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} apt-get install -y  libglu1-mesa  libxi-dev  libxmu-dev  libglu1-mesa-dev  libgl1-mesa-glx  libgles2-mesa-dev freeglut3-dev  build-essential  libx11-dev  libxmu-dev  \033[0m"
-apt-get install -y  libglu1-mesa  libxi-dev  libxmu-dev  libglu1-mesa-dev  libgl1-mesa-glx  libgles2-mesa-dev freeglut3-dev  build-essential  libx11-dev  libxmu-dev
+apt-get install -y  libglu1-mesa  libxi-dev  libxmu-dev  libglu1-mesa-dev  libgl1-mesa-glx  libgles2-mesa-dev freeglut3-dev  build-essential  libx11-dev  libxmu-dev  >> dasan_log_install_lib.txt   2>&1
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} ln -s /usr/lib/x86_64-linux-gnu/libGLU.so    /usr/lib/libGLU.so \033[0m"
