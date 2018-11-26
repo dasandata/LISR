@@ -121,20 +121,28 @@ echo ""
 echo " Cuda 9.0 환경변수 Profile 에 추가 "
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} export PATH=/usr/local/cuda-9.0/bin:/usr/local/cuda-9.0/include:\$PATH >> /etc/profile \033[0m"
-export PATH=/usr/local/cuda-9.0/bin:/usr/local/cuda-9.0/include:\$PATH >> /etc/profile
+echo -e  "\033[1;34m${PROMPT} echo " "  >> /etc/profile \033[0m"
+echo " "  >> /etc/profile
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH >> /etc/profile \033[0m"
-export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH >> /etc/profile
+echo -e  "\033[1;34m${PROMPT} echo " ADD Cuda 9.0 PATH "  >> /etc/profile \033[0m"
+echo " ### ADD Cuda 9.0 PATH "  >> /etc/profile
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} export CUDA_HOME=/usr/local/cuda-9.0 >> /etc/profile \033[0m"
-export CUDA_HOME=/usr/local/cuda-9.0 >> /etc/profile
+echo -e  "\033[1;34m${PROMPT} echo " export PATH=/usr/local/cuda-9.0/bin:/usr/local/cuda-9.0/include:\$PATH " >> /etc/profile \033[0m"
+echo " export PATH=/usr/local/cuda-9.0/bin:/usr/local/cuda-9.0/include:\$PATH " >> /etc/profile
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} export CUDA_INC_DIR=/usr/local/cuda-9.0/include >> /etc/profile \033[0m"
-export CUDA_INC_DIR=/usr/local/cuda-9.0/include >> /etc/profile
+echo -e  "\033[1;34m${PROMPT} echo " export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile \033[0m"
+echo " export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} echo " export CUDA_HOME=/usr/local/cuda-9.0 " >> /etc/profile \033[0m"
+echo " export CUDA_HOME=/usr/local/cuda-9.0 " >> /etc/profile
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} echo " export CUDA_INC_DIR=/usr/local/cuda-9.0/include " >> /etc/profile \033[0m"
+echo " export CUDA_INC_DIR=/usr/local/cuda-9.0/include " >> /etc/profile
 
 echo ""
 echo ""
@@ -152,6 +160,18 @@ source /etc/profile
 echo ""
 echo -e  "\033[1;34m${PROMPT} source .bashrc  \033[0m"
 source .bashrc
+
+COUNTER=10
+
+until [  $COUNTER -lt 1 ]; do
+
+      echo COUNTER $COUNTER
+
+      let COUNTER-=1
+
+done
+
+sleep 10
 
 echo ""
 echo ""
