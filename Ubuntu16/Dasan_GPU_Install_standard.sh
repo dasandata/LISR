@@ -91,7 +91,7 @@ ls /usr/lib/libXmu.so
 echo ""
 echo ""
 
-echo " Cuda 9.0 설치 "
+echo -e  "\033[1;32m"==================== Cuda 9.0 설치 ===================="\033[0m"
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} apt-get install -y cuda-9-0 \033[0m"
