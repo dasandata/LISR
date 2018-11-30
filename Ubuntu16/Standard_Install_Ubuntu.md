@@ -15,11 +15,14 @@
 [5. Desktop (X window) Install, not default](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-5-desktop-x-window-install-not-default)  
 [6. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-6-ssh-%EB%B0%8F-%EB%B0%A9%ED%99%94%EB%B2%BD-firewall%EC%84%A4%EC%A0%95--%EB%B3%B4%EC%95%88%EA%B0%95%ED%99%94--x11-forwading)  
 [7. 새로운 사용자 추가 / sudo 권한 부여](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-7-%EC%83%88%EB%A1%9C%EC%9A%B4-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%B6%94%EA%B0%80--sudo-%EA%B6%8C%ED%95%9C-%EB%B6%80%EC%97%AC)
+
 [8. 스토리지, 파티션 마운트 / lvm, UUID, LABEL](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-8-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%ED%8C%8C%ED%8B%B0%EC%85%98-%EB%A7%88%EC%9A%B4%ED%8A%B8--lvm-or-parted-uuid-label)  
 [9. Banner // login wellcome message ](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-9-banner--login-wellcome-message-)  
 [10. VNC Server 설정](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-10-vnc-server-%EC%84%A4%EC%A0%95)  
 [11. TeamViewer 설치](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-11-teamviewer-%EC%84%A4%EC%B9%98)  
 [12. 부팅 되는 기본 커널 버젼 변경방법](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-12-%EB%B6%80%ED%8C%85-%EB%90%98%EB%8A%94-%EA%B8%B0%EB%B3%B8-%EC%BB%A4%EB%84%90-%EB%B2%84%EC%A0%BC-%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95)  
+
+
 
 [===== 장애 모니터링 =====](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#--%EC%9E%A5%EC%95%A0-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-)  
 [20. SMTP for Email Alert (mailutils or mailx)](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-20-smtp-for-email-alert-mailutils-or-mailx)  
@@ -851,6 +854,121 @@ grub-set-default  0   # 또는 다른 번호
 
 grub-editenv list
 ```
+
+***
+### # [13. Disk 속도 측정](#목차)
+\# 읽기 전용 hdparm  
+\# 쓰기 전용 dd  
+
+\# 13-1 hdparm 읽기 전용
+```bash
+lsblk
+df -hT | grep -v tmpfs
+
+hdparm -tT /dev/sd*
+```
+
+*output example>*
+```
+[root@ubuntu:~]# lsblk
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda      8:0    0   32G  0 disk
+├─sda1   8:1    0  953M  0 part /boot
+├─sda2   8:2    0  3.7G  0 part [SWAP]
+└─sda3   8:3    0 27.4G  0 part /
+sdb      8:16   0   20G  0 disk
+└─sdb1   8:17   0   20G  0 part /data
+sdc      8:32   0   16G  0 disk
+└─sdc1   8:33   0   16G  0 part /data1
+sr0     11:0    1 1024M  0 rom  
+[root@ubuntu:~]#
+
+[root@ubuntu:~]# hdparm -tT /dev/sda3
+
+/dev/sda3:
+ Timing cached reads:   11772 MB in  1.99 seconds = 5926.32 MB/sec
+ Timing buffered disk reads: 290 MB in  3.02 seconds =  96.07 MB/sec
+[root@ubuntu:~]#
+
+[root@ubuntu:~]# hdparm -tT /dev/sdb1
+
+/dev/sdb1:
+ Timing cached reads:   11386 MB in  1.99 seconds = 5730.22 MB/sec
+ Timing buffered disk reads: 4580 MB in  3.00 seconds = 1526.64 MB/sec
+[root@ubuntu:~]#
+[root@ubuntu:~]# hdparm -tT /dev/sdc1
+
+/dev/sdc1:
+ Timing cached reads:   11890 MB in  1.99 seconds = 5985.80 MB/sec
+ Timing buffered disk reads: 4756 MB in  3.00 seconds = 1585.08 MB/sec
+[root@ubuntu:~]#
+```
+
+\# 13-2 dd 쓰기 전용
+```bash
+lsblk
+df -hT | grep -v tmpfs
+
+cd /tmp
+date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+
+cd /home
+date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+
+cd /data
+date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+```
+
+*output example>*
+```
+[root@ubuntu:~]# lsblk
+
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda      8:0    0   32G  0 disk
+├─sda1   8:1    0  953M  0 part /boot
+├─sda2   8:2    0  3.7G  0 part [SWAP]
+└─sda3   8:3    0 27.4G  0 part /
+sdb      8:16   0   20G  0 disk
+└─sdb1   8:17   0   20G  0 part /data
+sdc      8:32   0   16G  0 disk
+└─sdc1   8:33   0   16G  0 part /data1
+sr0     11:0    1 1024M  0 rom  
+[root@ubuntu:~]#
+
+[root@ubuntu:~]# df -hT | grep -v tmpfs
+Filesystem     Type      Size  Used Avail Use% Mounted on
+/dev/sda3      ext4       27G  4.1G   22G  16% /
+/dev/sda1      ext4      922M   61M  799M   8% /boot
+/dev/sdb1      ext4       20G   44M   19G   1% /data
+/dev/sdc1      ext4       16G   44M   15G   1% /data1
+[root@ubuntu:~]#
+
+[root@ubuntu:~]# cd /tmp
+[root@ubuntu:tmp]# date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+Fri Nov 30 20:41:52 KST 2018
+1+0 records in
+1+0 records out
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 2.26254 s, 475 MB/s
+[root@ubuntu:tmp]#
+[root@ubuntu:tmp]# cd /data
+[root@ubuntu:data]# date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+Fri Nov 30 20:41:59 KST 2018
+1+0 records in
+1+0 records out
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 7.18194 s, 150 MB/s
+[root@ubuntu:data]#
+[root@ubuntu:data]# cd /data1
+[root@ubuntu:data1]# date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+Fri Nov 30 20:42:23 KST 2018
+1+0 records in
+1+0 records out
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 4.57022 s, 235 MB/s
+[root@ubuntu:data1]#
+
+
+```
+
+
 ***
 
 ## # [===== 장애 모니터링 =====](#목차)
