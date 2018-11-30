@@ -20,6 +20,8 @@
 [10. VNC Server 설정](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-10-vnc-server-%EC%84%A4%EC%A0%95)  
 [11. TeamViewer 설치](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-11-teamviewer-%EC%84%A4%EC%B9%98)  
 [12. 부팅 되는 기본 커널 버젼 변경방법](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-12-%EB%B6%80%ED%8C%85-%EB%90%98%EB%8A%94-%EA%B8%B0%EB%B3%B8-%EC%BB%A4%EB%84%90-%EB%B2%84%EC%A0%BC-%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95)  
+[13. Disk 속도 측정](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_Install_Ubuntu18.md#-13-disk-%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95)
+
 
 [===== 장애 모니터링 =====](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#--%EC%9E%A5%EC%95%A0-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-)  
 [20. SMTP for Email Alert (mailutils or mailx)](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-20-smtp-for-email-alert-mailutils-or-mailx)  

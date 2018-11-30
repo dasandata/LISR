@@ -16,9 +16,7 @@
 
 [4. Deep Learning Package Install 2 (python-PIP, PyTorch)](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#-4-deep-learning-package-install-2-python-pip-pytorch)  
 
-[5. Disk 속도 측정                                           ](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#-5-disk-%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95)
-
-[6. history 저장 (차후 설치기록 참고용](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#-6-history-%EC%A0%80%EC%9E%A5-%EC%B0%A8%ED%9B%84-%EC%84%A4%EC%B9%98%EA%B8%B0%EB%A1%9D-%EC%B0%B8%EA%B3%A0%EC%9A%A9)
+[5. history 저장 (차후 설치기록 참고용](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_GPU_Install.md#-6-history-%EC%A0%80%EC%9E%A5-%EC%B0%A8%ED%9B%84-%EC%84%A4%EC%B9%98%EA%B8%B0%EB%A1%9D-%EC%B0%B8%EA%B3%A0%EC%9A%A9)
 
 
 [1]: https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-1-%EA%B8%B0%EB%B3%B8-%EC%9C%A0%ED%8B%B8-%EC%84%A4%EC%B9%98--%EC%8B%9C%EA%B0%84-%EB%8F%99%EA%B8%B0%ED%99%94  
@@ -307,62 +305,7 @@ python3     examples/regression/main.py
 
 ```
 
-### # [5. Disk 속도 측정](#목차)
-\# OS 영역 / DATA 영역 별로 측정  
-
-#### # (Ubuntu16,18)기본 부팅 모드 확인.  
-```bash
-lsblk
-df -hT | grep -v tmpfs
-
-lsblk
-df -hT | grep -v tmpfs
-
-hdparm -tT /dev/sd*
-
-cd ~
-
-장착 되어있는 디스크 확인
-
-ex ) 예제
-
-[root@ubuntu:~]# lsblk
-NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-sda      8:0    0   32G  0 disk
-├─sda1   8:1    0  953M  0 part /boot
-├─sda2   8:2    0  3.7G  0 part [SWAP]
-└─sda3   8:3    0 27.4G  0 part /
-sdb      8:16   0   20G  0 disk
-└─sdb1   8:17   0   20G  0 part /data
-sdc      8:32   0   16G  0 disk
-└─sdc1   8:33   0   16G  0 part /data1
-sr0     11:0    1 1024M  0 rom  
-[root@ubuntu:~]#
-
-[root@ubuntu:~]# hdparm -tT /dev/sda3
-
-/dev/sda3:
- Timing cached reads:   11772 MB in  1.99 seconds = 5926.32 MB/sec
- Timing buffered disk reads: 290 MB in  3.02 seconds =  96.07 MB/sec
-[root@ubuntu:~]#
-
-[root@ubuntu:~]# hdparm -tT /dev/sdb1
-
-/dev/sdb1:
- Timing cached reads:   11386 MB in  1.99 seconds = 5730.22 MB/sec
- Timing buffered disk reads: 4580 MB in  3.00 seconds = 1526.64 MB/sec
-[root@ubuntu:~]#
-[root@ubuntu:~]# hdparm -tT /dev/sdc1
-
-/dev/sdc1:
- Timing cached reads:   11890 MB in  1.99 seconds = 5985.80 MB/sec
- Timing buffered disk reads: 4756 MB in  3.00 seconds = 1585.08 MB/sec
-[root@ubuntu:~]# 
-
-
-```
-
-### # [6. GPU Burning Test](#목차)
+### # [5. GPU Burning Test](#목차)
 
 ```bash
 cd
