@@ -315,16 +315,14 @@ python3     examples/regression/main.py
 lsblk
 df -hT | grep -v tmpfs
 
-cd /tmp
-date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+lsblk
+df -hT | grep -v tmpfs
 
-cd /home
-date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+hdparm -tT /dev/sd*
 
-cd /data
-date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+cd ~
 
-cd
+장착 되어있는 디스크 확인
 ```
 
 ### # [6. GPU Burning Test](#목차)
