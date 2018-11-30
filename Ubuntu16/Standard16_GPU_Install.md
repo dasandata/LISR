@@ -422,9 +422,46 @@ df -hT | grep -v tmpfs
 
 hdparm -tT /dev/sd*
 
-장착 되어있는 디스크 확인 
+장착 되어있는 디스크 확인
 
 cd
+
+ex ) 예제
+
+[root@ubuntu:~]# lsblk
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda      8:0    0   32G  0 disk
+├─sda1   8:1    0  953M  0 part /boot
+├─sda2   8:2    0  3.7G  0 part [SWAP]
+└─sda3   8:3    0 27.4G  0 part /
+sdb      8:16   0   20G  0 disk
+└─sdb1   8:17   0   20G  0 part /data
+sdc      8:32   0   16G  0 disk
+└─sdc1   8:33   0   16G  0 part /data1
+sr0     11:0    1 1024M  0 rom  
+[root@ubuntu:~]#
+
+[root@ubuntu:~]# hdparm -tT /dev/sda3
+
+/dev/sda3:
+ Timing cached reads:   11772 MB in  1.99 seconds = 5926.32 MB/sec
+ Timing buffered disk reads: 290 MB in  3.02 seconds =  96.07 MB/sec
+[root@ubuntu:~]#
+
+[root@ubuntu:~]# hdparm -tT /dev/sdb1
+
+/dev/sdb1:
+ Timing cached reads:   11386 MB in  1.99 seconds = 5730.22 MB/sec
+ Timing buffered disk reads: 4580 MB in  3.00 seconds = 1526.64 MB/sec
+[root@ubuntu:~]#
+[root@ubuntu:~]# hdparm -tT /dev/sdc1
+
+/dev/sdc1:
+ Timing cached reads:   11890 MB in  1.99 seconds = 5985.80 MB/sec
+ Timing buffered disk reads: 4756 MB in  3.00 seconds = 1585.08 MB/sec
+[root@ubuntu:~]#
+
+
 ```
 
 ### # [6. GPU Burning Test](#목차)
