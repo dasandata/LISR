@@ -16,7 +16,7 @@
 
 [4. Deep Learning Package Install 2 (python-PIP, PyTorch)](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard16_GPU_Install.md#-4-deep-learning-package-install-2-python-pip-pytorch)  
 
-[5. Disk 속도 측정                                           ](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard16_GPU_Install.md#-ubuntu1618%EA%B8%B0%EB%B3%B8-%EB%B6%80%ED%8C%85-%EB%AA%A8%EB%93%9C-%ED%99%95%EC%9D%B8)
+[5. Disk 속도 측정                                           ](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard16_GPU_Install.md#-5-disk-%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95)
 
 [6. GPU Burning Test                                           ](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard16_GPU_Install.md#-6-gpu-burning-test)
 
