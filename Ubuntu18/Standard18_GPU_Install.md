@@ -197,6 +197,9 @@ pwd
 ll
 
 tar xvzf cudnn-9.0-linux-x64-v7.tgz
+tar xvzf cudnn-9.0-linux-x64-v7.1.tgz
+tar xvzf cudnn-9.0-linux-x64-v7.3.1.20.tgz
+tar xvzf cudnn-9.0-linux-x64-v7.4.1.5.tgz
 
 ls -l cuda/include/
 ls -l cuda/lib64/
