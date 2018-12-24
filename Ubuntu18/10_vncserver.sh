@@ -8,7 +8,7 @@ echo -e  "\033[1;34m${PROMPT} dpkg --list | grep   vnc 현재 설치된 vnc 패�
 dpkg --list | grep vnc
 echo ""
 echo -e  "\033[1;34m${PROMPT} apt-get install -y vnc4server xfce4 xfce4-goodies \033[0m"
-vnc4server xfce4 xfce4-goodies   >>  dasan_log_install_vnc.txt 2>&1
+apt-get install -y vnc4server xfce4 xfce4-goodies   >>  dasan_log_install_vnc.txt 2>&1
 tail dasan_log_install_vnc.txt
 echo ""
 
