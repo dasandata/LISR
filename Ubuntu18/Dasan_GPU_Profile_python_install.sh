@@ -162,4 +162,4 @@ pip3   install --upgrade pip
 echo ""
 echo ""
 
-echo " 컨트롤 + D 를 눌려 로그아웃 후 재 접속 후 Dasan_GPU_Install_standard_1 실행 파일 실행 "
+echo " 컨트롤 + D 를 눌려 로그아웃 후 재 접속 후 Dasan_GPU_pip_tensorflow_pytorch_install.sh 실행 파일 실행 "
