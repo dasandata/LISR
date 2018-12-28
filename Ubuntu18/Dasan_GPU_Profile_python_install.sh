@@ -50,15 +50,6 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} source .bashrc  \033[0m"
 source .bashrc
 
-COUNTER=10
-
-until [  $COUNTER -lt 1 ]; do
-
-      echo COUNTER $COUNTER
-
-      let COUNTER-=1
-
-done
 
 sleep 10
 

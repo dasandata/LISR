@@ -53,16 +53,6 @@ tail -5 dasan_log_install_ubuntu_default_util.txt
 echo ""
 echo ""
 
-COUNTER=10
-
-until [  $COUNTER -lt 1 ]; do
-
-      echo COUNTER $COUNTER
-
-      let COUNTER-=1
-
-done
-
 sleep 10
 
 echo ""
@@ -95,16 +85,6 @@ echo ""
 echo ""
 echo ""
 
-
-COUNTER=10
-
-until [  $COUNTER -lt 1 ]; do
-
-      echo COUNTER $COUNTER
-
-      let COUNTER-=1
-
-done
 
 sleep 10
 
@@ -235,15 +215,7 @@ echo -e  "\033[1;34m${PROMPT} echo $HISTSIZE \033[0m"
 echo $HISTSIZE
 
 echo ""
-COUNTER=10
 
-until [  $COUNTER -lt 1 ]; do
-
-      echo COUNTER $COUNTER
-
-      let COUNTER-=1
-
-done
 
 sleep 10
 
@@ -359,15 +331,6 @@ echo " "
 
 echo ""
 
-COUNTER=10
-
-until [  $COUNTER -lt 1 ]; do
-
-      echo COUNTER $COUNTER
-
-      let COUNTER-=1
-
-done
 
 sleep 10
 
@@ -406,15 +369,6 @@ echo -e  "\033[1;34m${PROMPT} ping -c 4 google.com \033[0m"
 ping -c 4 google.com
 echo ""
 
-COUNTER=10
-
-until [  $COUNTER -lt 1 ]; do
-
-      echo COUNTER $COUNTER
-
-      let COUNTER-=1
-
-done
 
 sleep 10
 
@@ -460,17 +414,6 @@ echo -e  "\033[1;34m${PROMPT} bash /root/LISR/common/dasan_ubuntu_daemon_disable
 bash /root/LISR/common/dasan_ubuntu_daemon_disable.sh
 
 echo ""
-
-
-COUNTER=10
-
-until [  $COUNTER -lt 1 ]; do
-
-      echo COUNTER $COUNTER
-
-      let COUNTER-=1
-
-done
 
 sleep 10
 
@@ -560,15 +503,6 @@ systemctl restart sshd
 
 echo ""
 
-COUNTER=10
-
-until [  $COUNTER -lt 1 ]; do
-
-      echo COUNTER $COUNTER
-
-      let COUNTER-=1
-
-done
 
 sleep 10
 
@@ -615,15 +549,6 @@ echo " sonic유저 계정 로그아웃 후 dasan유저 계정으로 su - 확인 
 
 echo ""
 
-COUNTER=10
-
-until [  $COUNTER -lt 1 ]; do
-
-      echo COUNTER $COUNTER
-
-      let COUNTER-=1
-
-done
 
 sleep 10
 
@@ -653,15 +578,6 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} teamviewer passwd ******* \033[0m"
 read teamviewer passwd
 
-COUNTER=20
-
-until [  $COUNTER -lt 1 ]; do
-
-      echo COUNTER $COUNTER
-
-      let COUNTER-=1
-
-done
 
 sleep 20
 
@@ -673,16 +589,6 @@ echo -e  "\033[1;34m${PROMPT} teamviewer daemon enable \033[0m"
 teamviewer daemon enable
 echo ""
 
-COUNTER=5
-
-until [  $COUNTER -lt 1 ]; do
-
-      echo COUNTER $COUNTER
-
-      let COUNTER-=1
-
-done
-
 sleep 5
 
 echo ""
@@ -691,15 +597,6 @@ echo -e  "\033[1;34m${PROMPT} teamviewer --daemon restart \033[0m"
 teamviewer --daemon restart
 echo ""
 
-COUNTER=10
-
-until [  $COUNTER -lt 1 ]; do
-
-      echo COUNTER $COUNTER
-
-      let COUNTER-=1
-
-done
 
 sleep 10
 
@@ -717,15 +614,6 @@ echo -e  "\033[1;34m${PROMPT} teamviewer info \033[0m"
 
 echo ""
 
-COUNTER=10
-
-until [  $COUNTER -lt 1 ]; do
-
-      echo COUNTER $COUNTER
-
-      let COUNTER-=1
-
-done
 
 sleep 10
 
