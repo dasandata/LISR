@@ -142,7 +142,7 @@ nvidia-smi
 ```bash
 echo  "export  PATH=/usr/local/cuda-9.0/bin/:\$PATH"   >> /etc/profile
 echo  "export LD_LIBRARY_PATH=/usr/local/cuda-9.0/include/:/usr/local/cuda-9.0/lib64/:\$LD_LIBRARY_PATH"  >> /etc/profile  
-echo "export  LD_LIBRARY_PATH=/usr/local/cuda-9.0/extras/CUPTI/lib64/:/usr/local/cuda-9.0/extras/CUPTI/include/:/usr/local/cuda-9.0/extras/CUPTI/:\$LD_LIBRARY_PATH"  >> /etc/profile
+echo  "export  LD_LIBRARY_PATH=/usr/local/cuda-9.0/extras/CUPTI/lib64/:/usr/local/cuda-9.0/extras/CUPTI/include/:/usr/local/cuda-9.0/extras/CUPTI/:\$LD_LIBRARY_PATH"  >> /etc/profile
 
 source /etc/profile
 ```
@@ -163,6 +163,7 @@ make -j$(grep process /proc/cpuinfo | wc -l)
 ##### # Cuda 9.0 샘플 테스트
 ```bash
 cd ~
+
 ./NVIDIA_CUDA-9.0_Samples/bin/x86_64/linux/release/deviceQuery
 
 ./NVIDIA_CUDA-9.0_Samples/bin/x86_64/linux/release/p2pBandwidthLatencyTest
