@@ -259,12 +259,12 @@ cd ~
 
 \# https://developer.nvidia.com/rdp/cudnn-download
 \# 위 사이트에서 다운로드 (로그인 필요)
-\# Cuda9.0 용 7버전 다운 받습니다.
+\# Cuda9.0 용 7버전 다운 받습니다.  /root/cudnn7 폴더 안에
 
 ```bash
 cd ~
-mkdir /root/cudnn9
-cd  /root/cudnn9
+mkdir /root/cudnn7
+cd  /root/cudnn7
 
 pwd
 ll
