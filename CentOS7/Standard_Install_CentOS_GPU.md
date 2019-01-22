@@ -92,7 +92,7 @@ reboot
 lsmod | grep nouveau
 ```
 
-##### # cuda-repo (cuda 저장소)설치
+##### # cuda-repo (cuda 저장소)
 ```bash
 curl  -L -o  cuda-repo-rhel7-9.0.176-1.x86_64.rpm \
 >  http://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-9.0.176-1.x86_64.rpm
