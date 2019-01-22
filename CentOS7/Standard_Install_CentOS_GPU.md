@@ -230,6 +230,7 @@ yum -y install   openblas*
 ```
 
 ##### # * pip 와 pip3 사용하기 위해 수정 *
+
 ```bash
 [root@Technology:~]# cat /bin/pip
 #!/usr/bin/python3.4
@@ -258,6 +259,7 @@ if __name__ == '__main__':
     )
 ```
 
+##### # pip , pip3 버전 확인 및 패키지 설치 .
 
 ```bash
 python -V
@@ -299,4 +301,27 @@ python3  TensorFlow-Examples/examples/3_NeuralNetworks/dcgan.py
 python3  TensorFlow-Examples/examples/5_DataManagement/tensorflow_dataset_api.py
 ```
 
-### # [4. Cudnn install](#목차)
+### # [4. GPU Burning Test](#목차)
+
+```bash
+cd
+pwd
+git clone https://github.com/wilicc/gpu-burn
+
+cd gpu-burn
+make
+
+# ./gpu-burn 60  # 60sec
+./gpu_burn $((60 * 1))   # 1min
+```
+
+### # [5. history 저장 (차후 설치기록 참고용)](#목차)
+
+```bash
+# 모든 root 사용자를 로그아웃 한 다음 다시 로그인 하여 작업
+
+logout
+
+history  > dasan_install_history.txt
+tail dasan_install_history.txt
+```
