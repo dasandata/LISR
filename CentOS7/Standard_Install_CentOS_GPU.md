@@ -151,3 +151,153 @@ source /etc/profile
 ```bash
 nvcc -V
 ```
+
+##### # Cuda 9.0 샘플 컴파일
+```bash
+cp -r  /usr/local/cuda-9.0/samples/   ~/NVIDIA_CUDA-9.0_Samples
+cd ~/NVIDIA_CUDA-9.0_Samples
+
+make -j$(grep process /proc/cpuinfo | wc -l)
+```
+
+##### # Cuda 9.0 샘플 테스트
+```bash
+cd ~
+./NVIDIA_CUDA-9.0_Samples/bin/x86_64/linux/release/deviceQuery
+
+./NVIDIA_CUDA-9.0_Samples/bin/x86_64/linux/release/p2pBandwidthLatencyTest
+
+./NVIDIA_CUDA-9.0_Samples/bin/x86_64/linux/release/nbody  --help
+
+./NVIDIA_CUDA-9.0_Samples/bin/x86_64/linux/release/nbody  -benchmark  -numdevices=2 or 3 or 4
+```
+
+### # [2. Cudnn install](#목차)
+
+##### # https://developer.nvidia.com/rdp/cudnn-download # 위 사이트에서 다운로드 (로그인 필요) # Cuda9.0 용 7버전 다운 받습니다.
+
+##### # /root/cudnn7 폴더에 다운로드.
+```bash
+cd ~
+mkdir /root/cudnn7
+cd /root/cudnn7
+
+pwd
+ll
+
+tar xvzf cudnn-9.0-linux-x64-v7.tgz
+tar xvzf cudnn-9.0-linux-x64-v7.1.tgz
+tar xvzf cudnn-9.0-linux-x64-v7.3.1.20.tgz
+tar xvzf cudnn-9.0-linux-x64-v7.4.1.5.tgz
+
+ls -l cuda/include/
+ls -l cuda/lib64/
+
+chmod  a+r  cuda/include/*
+chmod  a+r  cuda/lib64/*
+
+cp  -rp  cuda/include/cudnn.h  /usr/local/cuda-9.0/include/
+cp  -rp  cuda/lib64/libcudnn*  /usr/local/cuda-9.0/lib64/
+ls -l /usr/local/cuda-9.0/lib64/libcudnn*
+
+cd
+```
+
+### # [3. Deep Learning Package Install (python-pip , tensorflow)](#목차)
+
+```bash
+which  python
+rpm -qa  |  grep ^python-2.7
+python -V
+
+rpm -ql  python-2.7.5
+
+easy_install pip
+
+rpm -qa | grep  setuptools
+
+pip -V
+
+yum -y install  python34  python34-devel
+
+yum search  all  python34-setuptools
+
+yum -y install  python34-setuptools
+
+easy_install-3.4   pip
+
+yum -y install   openblas*
+
+```
+
+##### # * pip 와 pip3 사용하기 위해 수정 *
+```bash
+[root@Technology:~]# cat /bin/pip
+#!/usr/bin/python3.4
+# EASY-INSTALL-ENTRY-SCRIPT: 'pip==18.0','console_scripts','pip'
+__requires__ = 'pip==18.0'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('pip==18.0', 'console_scripts', 'pip')()
+    )
+
+[root@Technology:~]# vi /bin/pip
+
+[root@Technology:~]# cat /bin/pip
+#!/usr/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'pip==18.0','console_scripts','pip'
+__requires__ = 'pip==18.0'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('pip==18.0', 'console_scripts', 'pip')()
+    )
+
+```
+
+```bash
+
+python -V
+pip -V
+
+python3 -V
+pip3 -V
+
+cat /etc/resolv.conf
+
+pip install  numpy   scipy  nose  matplotlib  pandas  keras
+
+pip3 install  numpy   scipy  nose  matplotlib  pandas  keras
+
+rm -rf /usr/lib/python2.7/site-packages/enum*
+rm -rf /usr/share/doc/python-enum34-1.0.4/*
+
+yum erase pyparsing
+
+pip install  --upgrade tensorflow-gpu==1.11
+pip3 install  --upgrade tensorflow-gpu==1.11
+
+# tensorflow  test  package
+cd ~
+git clone https://github.com/aymericdamien/TensorFlow-Examples.git
+ll  TensorFlow-Examples/
+
+
+python        TensorFlow-Examples/examples/1_Introduction/helloworld.py  
+python        TensorFlow-Examples/examples/1_Introduction/basic_operations.py
+
+python3      TensorFlow-Examples/examples/1_Introduction/helloworld.py    
+python3      TensorFlow-Examples/examples/1_Introduction/basic_operations.py
+
+## 아래 항목도 테스트 필요 (문서에 기록은 남기지 않아도 됨)
+python3  TensorFlow-Examples/examples/3_NeuralNetworks/neural_network.py
+python3  TensorFlow-Examples/examples/3_NeuralNetworks/gan.py
+python3  TensorFlow-Examples/examples/3_NeuralNetworks/dcgan.py
+python3  TensorFlow-Examples/examples/5_DataManagement/tensorflow_dataset_api.py
+
+```
