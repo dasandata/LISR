@@ -227,7 +227,6 @@ yum -y install  python34-setuptools
 easy_install-3.4   pip
 
 yum -y install   openblas*
-
 ```
 
 ##### # * pip 와 pip3 사용하기 위해 수정 *
@@ -257,11 +256,10 @@ if __name__ == '__main__':
     sys.exit(
         load_entry_point('pip==18.0', 'console_scripts', 'pip')()
     )
-
 ```
 
-```bash
 
+```bash
 python -V
 pip -V
 
@@ -299,5 +297,6 @@ python3  TensorFlow-Examples/examples/3_NeuralNetworks/neural_network.py
 python3  TensorFlow-Examples/examples/3_NeuralNetworks/gan.py
 python3  TensorFlow-Examples/examples/3_NeuralNetworks/dcgan.py
 python3  TensorFlow-Examples/examples/5_DataManagement/tensorflow_dataset_api.py
-
 ```
+
+### # [4. Cudnn install](#목차)
