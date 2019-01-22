@@ -8,7 +8,7 @@ echo -e  "\033[1;34m${PROMPT} rpm -qa | grep vnc # 현재 설치된 vnc 패키�
 rpm -qa | grep vnc
 echo ""
 echo -e  "\033[1;34m${PROMPT} yum -y install  tigervnc-server  vnc \033[0m"
-apt-get install -y vnc4server   >>  dasan_log_install_vnc.txt
+yum -y install  tigervnc-server  vnc   >>  dasan_log_install_vnc.txt
 tail dasan_log_install_vnc.txt
 echo ""
 
