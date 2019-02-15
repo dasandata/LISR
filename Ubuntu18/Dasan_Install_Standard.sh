@@ -389,8 +389,7 @@ systemctl get-default
 
 echo " ubuntu desktop 설치 "
 echo ""
-echo -e  "\033[1;34m${PROMPT} apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon  \033[0m"
-echo -e  "\033[1;34m${PROMPT} apt-get -y install metacity nautilus gnome-terminal \033[0m"
+echo -e  "\033[1;34m${PROMPT} apt-get -y install ubuntu-desktop  \033[0m"
 apt-get -y install ubuntu-desktop  >> dasan_log_install_ubuntu-desktop.txt  2>&1
 
 tail  dasan_log_install_ubuntu-desktop.txt
