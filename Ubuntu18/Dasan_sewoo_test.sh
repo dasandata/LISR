@@ -44,10 +44,15 @@ echo "  기본 유틸 설치. "
 echo -e  "\033[1;34m${PROMPT} apt-get install -y vim nfs-common rdate xauth firefox gcc make \033[0m"
 echo -e  "\033[1;34m${PROMPT} apt-get install -y locate htop tmux git wget \033[0m"
 echo -e  "\033[1;34m${PROMPT} apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl  \033[0m"
+
+echo -e  "\033[1;34m${PROMPT}  apt-get install -y  \
+vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget \
+xfsprogs ntfs-3g aptitude lvm2 dstat curl libssl libssl-dev >> dasan_log_install_ubuntu_default_util.txt 2>&1 \033[0m"
 apt-get install -y  \
 vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget \
 xfsprogs ntfs-3g aptitude lvm2 dstat curl libssl libssl-dev >> dasan_log_install_ubuntu_default_util.txt 2>&1
 
+echo -e  "\033[1;34m${PROMPT} tail -5 dasan_log_install_ubuntu_default_util.txt \033[0m"
 tail -5 dasan_log_install_ubuntu_default_util.txt
 
 echo ""
@@ -60,6 +65,7 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} apt-get install -y python-dev \033[0m"
 apt-get install -y python-dev  >> dasan_log_ubuntu_python-dev_install.txt
 
+echo -e  "\033[1;34m${PROMPT} tail -5 dasan_log_ubuntu_python-dev_install.txt \033[0m"
 tail -5 dasan_log_ubuntu_python-dev_install.txt
 
 echo ""
@@ -389,9 +395,10 @@ systemctl get-default
 
 echo " ubuntu desktop 설치 "
 echo ""
-echo -e  "\033[1;34m${PROMPT} apt-get -y install ubuntu-desktop  \033[0m"
+echo -e  "\033[1;34m${PROMPT} apt-get -y install ubuntu-desktop  >> dasan_log_install_ubuntu-desktop.txt  2>&1 \033[0m"
 apt-get -y install ubuntu-desktop  >> dasan_log_install_ubuntu-desktop.txt  2>&1
 
+echo -e  "\033[1;34m${PROMPT} tail  dasan_log_install_ubuntu-desktop.txt  \033[0m"
 tail  dasan_log_install_ubuntu-desktop.txt
 
 echo ""
@@ -420,7 +427,7 @@ ufw status
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} ufw enable \033[0m"
-ufw enable
+echo "Y" | ufw enable
 
 echo ""
 
