@@ -2,7 +2,67 @@
 
 PROMPT="[${USER}@${HOSTNAME%%.*} ${PWD/#$HOME/~}]#"
 
+echo -e  "\033[1;32m"==================== Repository ===================="\033[0m"
 
+echo ""
+echo -e  "\033[1;34m${PROMPT} cat /etc/apt/sources.list | grep -v \"#\|^$\" \033[0m"
+cat /etc/apt/sources.list  |  grep -v "#\|^$"
+echo "  기본 저장소 확인 "
+
+echo ""
+echo ""
+
+echo -e  "\033[1;34m${PROMPT} perl -pi -e 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list \033[0m"
+perl -pi -e 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+echo "  Security 부분 변경 "
+
+echo ""
+echo ""
+
+echo -e  "\033[1;34m${PROMPT} cat /etc/apt/sources.list | grep -v \"#\|^$\" \033[0m"
+cat /etc/apt/sources.list  |  grep -v "#\|^$"
+echo "  변경 내용 확인 "
+
+echo ""
+echo ""
+
+echo -e  "\033[1;34m${PROMPT} apt-get update \033[0m"
+apt-get update  >>  dasan_log_ubuntu_repo_update.txt
+
+tail -5 dasan_log_ubuntu_repo_update.txt
+
+echo "  적용 하기 "
+
+echo ""
+echo ""
+
+echo -e  "\033[1;32m"==================== Utility Install ===================="\033[0m"
+
+echo ""
+
+echo "  기본 유틸 설치. "
+echo -e  "\033[1;34m${PROMPT} apt-get install -y vim nfs-common rdate xauth firefox gcc make \033[0m"
+echo -e  "\033[1;34m${PROMPT} apt-get install -y locate htop tmux git wget \033[0m"
+echo -e  "\033[1;34m${PROMPT} apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl  \033[0m"
+apt-get install -y  \
+vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget \
+xfsprogs ntfs-3g aptitude lvm2 dstat curl >> dasan_log_install_ubuntu_default_util.txt 2>&1
+
+tail -5 dasan_log_install_ubuntu_default_util.txt
+
+echo ""
+echo ""
+
+sleep 10
+
+echo ""
+
+echo -e  "\033[1;34m${PROMPT} apt-get install -y python-dev \033[0m"
+apt-get install -y python-dev  >> dasan_log_ubuntu_python-dev_install.txt
+
+tail -5 dasan_log_ubuntu_python-dev_install.txt
+
+echo ""
 echo ""
 
 echo "  서버 시간 동기화. "
@@ -329,10 +389,9 @@ systemctl get-default
 
 echo " ubuntu desktop 설치 "
 echo ""
-echo -e  "\033[1;34m${PROMPT} apt-get -y install ubuntu-desktop  >> dasan_log_install_ubuntu-desktop.txt  2>&1 \033[0m"
+echo -e  "\033[1;34m${PROMPT} apt-get -y install ubuntu-desktop  \033[0m"
 apt-get -y install ubuntu-desktop  >> dasan_log_install_ubuntu-desktop.txt  2>&1
 
-echo -e  "\033[1;34m${PROMPT} tail  dasan_log_install_ubuntu-desktop.txt  \033[0m"
 tail  dasan_log_install_ubuntu-desktop.txt
 
 echo ""
@@ -361,7 +420,7 @@ ufw status
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} ufw enable \033[0m"
-echo "Y" | ufw enable
+ufw enable
 
 echo ""
 
@@ -472,71 +531,6 @@ echo ""
 echo " sonic유저 계정 로그아웃 후 dasan유저 계정으로 su - 확인 "
 
 echo ""
-
-
-sleep 10
-
-echo ""
-
-echo -e  "\033[1;32m"==================== Teamviewer Install ===================="\033[0m"
-
-echo ""
-
-echo " Teamviewer install. "
-
-echo ""
-
-echo -e  "\033[1;34m${PROMPT} wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb \033[0m"
-wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb     >>  dasan_log_teamviewer.txt
-tail -5 dasan_log_teamviewer.txt
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} apt-get -y install ./teamviewer_amd64.deb \033[0m"
-apt-get -y install ./teamviewer_amd64.deb          >>  dasan_log_install_teamviewer.txt 2>&1
-tail -5 dasan_log_install_teamviewer.txt
-
-echo ""
-
-echo " Teamviewer Passwd 설정 "
-echo ""
-echo -e  "\033[1;34m${PROMPT} teamviewer passwd ******* \033[0m"
-
-sleep 20
-
-
-echo ""
-echo " Teamviewer 실행 및 id 확인 "
-echo ""
-echo -e  "\033[1;34m${PROMPT} teamviewer daemon enable \033[0m"
-teamviewer daemon enable
-echo ""
-
-
-sleep 5
-
-echo ""
-
-echo -e  "\033[1;34m${PROMPT} teamviewer --daemon restart \033[0m"
-teamviewer --daemon restart
-echo ""
-
-
-sleep 10
-
-echo ""
-
-echo -e  "\033[1;34m${PROMPT} teamviewer info \033[0m"
-teamviewer info
-echo ""
-
-echo " Teamviewer Passwd 설정 다시 해주고 info 확인 "
-echo ""
-echo -e  "\033[1;34m${PROMPT} teamviewer passwd ******* \033[0m"
-echo ""
-echo -e  "\033[1;34m${PROMPT} teamviewer info \033[0m"
-
-echo ""
-
 
 sleep 10
 
