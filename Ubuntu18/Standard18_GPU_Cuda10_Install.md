@@ -115,7 +115,7 @@ apt-key add 7fa2af80.pub
 
 apt-get update
 
-apt-get install cuda
+apt-get install cuda              # ( Ubuntu 18.04.1 에서는 오류 메세지 나타나지 않습니다. )
 
 apt --fix-broken install
 
