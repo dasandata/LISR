@@ -190,8 +190,8 @@ cd ~
 
 ```bash
 cd ~
-mkdir /root/cudnn9
-cd  /root/cudnn9
+mkdir /root/cudnn7
+cd  /root/cudnn7
 
 pwd
 ll
@@ -263,8 +263,8 @@ pip3 install  numpy   scipy  nose  matplotlib  pandas  keras
 
 
 # For CUDA 9.0
-pip install  --upgrade tensorflow-gpu==1.6
-pip3 install  --upgrade tensorflow-gpu==1.6
+pip install  --upgrade tensorflow-gpu==1.11
+pip3 install  --upgrade tensorflow-gpu==1.11
 
 # tensorflow  test  package
 cd ~
