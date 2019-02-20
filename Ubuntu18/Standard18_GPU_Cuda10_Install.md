@@ -187,7 +187,7 @@ cd ~
 
 \# https://developer.nvidia.com/rdp/cudnn-download
 \# 위 사이트에서 다운로드 (로그인 필요)
-\# Cuda9.0 용 7버전 다운 받습니다.
+\# Cuda10.0 용 7버전 다운 받습니다.
 
 ```bash
 cd ~
