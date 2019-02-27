@@ -57,8 +57,8 @@ sleep 10
 
 echo ""
 
-echo -e  "\033[1;34m${PROMPT} apt-get install -y python-dev \033[0m"
-apt-get install -y python-dev  >> dasan_log_ubuntu_python-dev_install.txt
+echo -e  "\033[1;34m${PROMPT} apt-get install -y  python-pip python3-pip  python3-tk \033[0m"
+apt-get install -y  python-pip python3-pip  python3-tk  >> dasan_log_ubuntu_python-dev_install.txt
 
 tail -5 dasan_log_ubuntu_python-dev_install.txt
 

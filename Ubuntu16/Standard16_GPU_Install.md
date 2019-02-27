@@ -325,7 +325,6 @@ which  python
 python3 -V
 which  python3
 
-apt-get install -y  python-pip python3-pip  python3-tk
 ```
 
 #### # pip Check

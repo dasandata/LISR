@@ -224,10 +224,6 @@ echo -e  "\033[1;34m${PROMPT} which  python3 \033[0m"
 which  python3
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} apt-get install -y  python-pip python3-pip  python3-tk \033[0m"
-apt-get install -y  python-pip python3-pip  python3-tk  >> dasan_log_install_python3.txt   2>&1
-
-echo ""
 echo ""
 
 echo " pip Check "

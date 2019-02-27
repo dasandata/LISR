@@ -169,7 +169,7 @@ xfsprogs ntfs-3g aptitude lvm2 dstat curl libssl1.0.0 libssl-dev >> dasan_log_in
 ```bash
 tail -5 dasan_log_install_ubuntu_default_util.txt # 설치 결과 확인.
 
-apt-get install -y python-dev  >> dasan_log_ubuntu_python-dev_install.txt
+apt-get install -y  python-pip python3-pip  python3-tk  >> dasan_log_ubuntu_python-dev_install.txt
 ```
 
 ```bash
