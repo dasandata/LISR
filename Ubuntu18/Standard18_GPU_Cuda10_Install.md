@@ -115,7 +115,11 @@ apt-key add 7fa2af80.pub
 
 apt-get update
 
-apt-get install cuda              # ( Ubuntu 18.04.1 에서는 오류 메세지 나타나지 않습니다. )
+echo deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ / >> /etc/apt/sources.list.d/cuda.list
+
+apt-get update
+
+apt-get install cuda-10-0              # ( Ubuntu 18.04.1 에서는 오류 메세지 나타나지 않습니다. )
 
 apt --fix-broken install
 
@@ -200,6 +204,8 @@ ll
 tar xvzf cudnn-10.0-linux-x64-v7.3.0.29.tgz
 tar xvzf cudnn-10.0-linux-x64-v7.3.1.20.tgz
 tar xvzf cudnn-10.0-linux-x64-v7.4.1.5.tgz
+tar xvzf cudnn-10.0-linux-x64-v7.4.2.24.tgz
+tar xvzf cudnn-10.0-linux-x64-v7.5.0.56.tgz
 
 ls -l cuda/include/
 ls -l cuda/lib64/
