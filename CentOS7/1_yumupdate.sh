@@ -67,6 +67,10 @@ echo -e  "\033[1;34m${PROMPT} grub2-mkconfig -o /boot/grub2/grub.cfg   boot kern
 grub2-mkconfig -o /boot/grub2/grub.cfg
 
 echo ""
+echo -e  "\033[1;34m${PROMPT} grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg   boot kernel 에 설정 적용 \033[0m"
+grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
+
+echo ""
 
 echo " 재 부팅 "
 echo -e  "\033[1;34m${PROMPT} reboot  재 부팅 \033[0m"

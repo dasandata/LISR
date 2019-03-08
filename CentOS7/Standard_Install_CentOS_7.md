@@ -126,6 +126,8 @@ cat /etc/default/grub  # 변경사항 확인.
 
 grub2-mkconfig -o /boot/grub2/grub.cfg  # boot kernel 에 설정 적용
 
+grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg # Uefi boot kernel 에 설정 적용
+
 reboot  # 재부팅
 ```
 
