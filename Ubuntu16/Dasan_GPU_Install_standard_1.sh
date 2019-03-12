@@ -34,16 +34,8 @@ echo -e  "\033[1;34m${PROMPT} cat /etc/resolv.conf \033[0m"
 cat /etc/resolv.conf
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} pip install  numpy   scipy  nose  matplotlib  pandas  keras \033[0m"
-pip install  numpy   scipy  nose  matplotlib  pandas  keras
-
-echo ""
 echo -e  "\033[1;34m${PROMPT} pip3 install  numpy   scipy  nose  matplotlib  pandas  keras \033[0m"
 pip3 install  numpy   scipy  nose  matplotlib  pandas  keras
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} pip install  --upgrade tensorflow-gpu==1.11 \033[0m"
-pip install  --upgrade tensorflow-gpu==1.11
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} pip3 install  --upgrade tensorflow-gpu==1.11 \033[0m"
@@ -56,10 +48,6 @@ echo -e  "\033[1;32m"==================== Deep Learning Package Install 2 python
 
 echo ""
 echo ""
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} pip install torch torchvision \033[0m"
-pip install torch torchvision
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} pip3 install torch torchvision \033[0m"
