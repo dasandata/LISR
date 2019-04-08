@@ -43,11 +43,11 @@ pip3 install  numpy   scipy  nose  matplotlib  pandas  keras
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} pip install  --upgrade tensorflow-gpu==1.13.1 \033[0m"
-pip install  --upgrade tensorflow-gpu==1.13.1
+pip install  --upgrade tensorflow-gpu==1.11
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} pip3 install  --upgrade tensorflow-gpu==1.13.1 \033[0m"
-pip3 install  --upgrade tensorflow-gpu==1.13.1
+pip3 install  --upgrade tensorflow-gpu==1.11
 
 echo ""
 echo ""
