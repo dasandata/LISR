@@ -11,6 +11,7 @@ cp LISR/Ubuntu16/sewoo-source-list/10_1_vncserver.sh /home/sonic
 echo ""
 echo -e  "\033[1;34m${PROMPT} dpkg --list | grep   vnc 현재 설치된 vnc 패키지 확인 \033[0m"
 dpkg --list | grep vnc
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} apt-get install -y vnc4server \033[0m"
 apt-get install -y vnc4server    >>  dasan_log_install_vnc.txt 2>&1
