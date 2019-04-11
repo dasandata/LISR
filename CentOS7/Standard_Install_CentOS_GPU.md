@@ -95,7 +95,7 @@ lsmod | grep nouveau
 ##### # cuda-repo (cuda 저장소)
 ```bash
 curl  -L -o  cuda-repo-rhel7-9.0.176-1.x86_64.rpm \
->  http://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-9.0.176-1.x86_64.rpm
+  http://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-9.0.176-1.x86_64.rpm
 
 yum -y install cuda-repo-rhel7-9.0.176-1.x86_64.rpm
 ```
@@ -108,7 +108,7 @@ yum --disablerepo="*" --enablerepo="cuda" list available
 ##### # 쿠다 샘플 컴파일에 필요한 라이브러리 설치 ( libGLU.so libX11.so libXi.so libXmu.so 등)
 ```bash
 yum -y install  libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-devel libXm* \
->  openmotif*
+  openmotif*
 ```
 
 ##### # cuda 9.0 설치 (드라이버도 함께 설치됨)
@@ -125,9 +125,9 @@ nvidia-smi
 
 ##### # Cuda 9.0 환경변수를 Profile 에 추가
 ```bash
-echo  "export  PATH=/usr/local/cuda-9.0/bin/:\$PATH"   >> /etc/profile
-echo  "export LD_LIBRARY_PATH=/usr/local/cuda-9.0/include/:/usr/local/cuda-9.0/lib64/:\$LD_LIBRARY_PATH"  >> /etc/profile  
-echo  "export  LD_LIBRARY_PATH=/usr/local/cuda-9.0/extras/CUPTI/lib64/:/usr/local/cuda-9.0/extras/CUPTI/include/:/usr/local/cuda-9.0/extras/CUPTI/:\$LD_LIBRARY_PATH"  >> /etc/profile
+echo  "export  PATH=/usr/local/cuda-9.0/bin/:$PATH"   >> /etc/profile
+echo  "export LD_LIBRARY_PATH=/usr/local/cuda-9.0/include/:/usr/local/cuda-9.0/lib64/:$LD_LIBRARY_PATH"  >> /etc/profile  
+echo  "export  LD_LIBRARY_PATH=/usr/local/cuda-9.0/extras/CUPTI/lib64/:/usr/local/cuda-9.0/extras/CUPTI/include/:/usr/local/cuda-9.0/extras/CUPTI/:$LD_LIBRARY_PATH"  >> /etc/profile
 
 source /etc/profile
 ```
