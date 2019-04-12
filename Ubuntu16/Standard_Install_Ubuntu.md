@@ -84,7 +84,7 @@ ssh <사용자 계정>@<IP 주소>
 
 ### # [1. 기본 유틸 설치 / 시간 동기화](#목차)
 
-#### # 빠른 설치를 위해 기본 저장소(repository) 를 ftp.daumkakao.com 으로 변경 합니다.
+#### # 빠른 설치를 위해 기본 저장소(repository) 를 mirror.daumkakao.com 으로 변경 합니다.
 
 ##### # Repository Update
 ```bash
@@ -263,10 +263,6 @@ echo ${EXT_NIC}  # 추출된 인터페이스 명이 맞는지 확인 필요.
 ifconfig  ${EXT_NIC}
 
 cat /etc/network/interfaces
-
-# Ubuntu 18.04 의 경우
-# cat /etc/netplan/01-netcfg.yaml
-# https://www.server-world.info/en/note?os=Ubuntu_18.04&p=initial_conf&f=3
 
 cat /etc/hostname
 
