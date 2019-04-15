@@ -262,9 +262,16 @@ cd ~
 \# Cuda9.0 용 7버전 다운 받습니다.  /root/cudnn7 폴더 안에
 
 ```bash
-cd ~
+
+mount -t nfs 192.168.0.5:file /mnt
+
 mkdir /root/cudnn7
+
+cp /mnt/file/2_windows 관련 (서울대)/windows_cuda_file/cudnn-9.0-linux-x64-v7.* /root/cudnn7
+
 cd  /root/cudnn7
+
+umount /mnt
 
 pwd
 ll
