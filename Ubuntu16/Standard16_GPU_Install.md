@@ -326,15 +326,22 @@ cd ~
 ```bash
 cd ~
 
+python -V
+which  python
 
 python3 -V
 which  python3
+
+apt-get install -y  python-pip python3-pip  python3-tk
 
 ```
 
 #### # pip Check
 
 ```bash
+
+pip -V  
+which pip
 
 pip3   -V  
 which pip3
@@ -344,8 +351,12 @@ which pip3
 
 ```bash
 
+pip   install --upgrade pip
 pip3   install --upgrade pip
 
+
+pip -V  
+which pip
 
 pip3   -V  
 which pip3
@@ -358,11 +369,13 @@ which pip3
 *** pip 설치전에 dns (/etc/resolv.conf) 값이 1.1.1.1 이 맞는지 확인 합니다. (속도 차이가 큽니다.)
 cat /etc/resolv.conf
 
+pip install  numpy   scipy  nose  matplotlib  pandas  keras
 pip3 install  numpy   scipy  nose  matplotlib  pandas  keras
 
 
 # For CUDA 9.0
-pip3 install  --upgrade tensorflow-gpu==1.6
+pip install  --upgrade tensorflow-gpu==1.11
+pip3 install  --upgrade tensorflow-gpu==1.11
 
 # For CUDA 8.0
 pip3 install  --upgrade tensorflow-gpu==1.4
@@ -372,6 +385,8 @@ cd ~
 git clone https://github.com/aymericdamien/TensorFlow-Examples.git
 ll  TensorFlow-Examples/
 
+python        TensorFlow-Examples/examples/1_Introduction/helloworld.py  
+python        TensorFlow-Examples/examples/1_Introduction/basic_operations.py
 
 python3      TensorFlow-Examples/examples/1_Introduction/helloworld.py    
 python3      TensorFlow-Examples/examples/1_Introduction/basic_operations.py
@@ -389,14 +404,17 @@ python3  TensorFlow-Examples/examples/5_DataManagement/tensorflow_dataset_api.py
 
 ```bash
 
-#pip3 install
+pip install torch torchvision
+
 pip3 install torch torchvision
 
 # 테스트
 
+cd ~
+
 git clone https://github.com/pytorch/examples/
 
-cd ~
+python     examples/regression/main.py
 
 python3     examples/regression/main.py
 
