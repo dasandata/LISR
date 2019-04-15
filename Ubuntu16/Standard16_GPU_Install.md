@@ -271,7 +271,7 @@ cp /mnt/file/2_windows 관련 (서울대)/windows_cuda_file/cudnn-9.0-linux-x64-
 
 cd  /root/cudnn7
 
-umount /mnt
+umount /mnt #마운트 해제 
 
 pwd
 ll
