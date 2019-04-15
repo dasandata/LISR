@@ -236,6 +236,7 @@ apt-get install -y  python-pip python3-pip  python3-tk
 #### # pip Check
 
 ```bash
+
 pip -V  
 which pip
 
