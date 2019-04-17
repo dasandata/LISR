@@ -277,8 +277,8 @@ pip3 install  numpy   scipy  nose  matplotlib  pandas  keras
 
 
 # For CUDA 10.0
-pip install  --upgrade tensorflow-gpu==1.12
-pip3 install  --upgrade tensorflow-gpu==1.12
+pip install  --upgrade tensorflow-gpu==1.13.1
+pip3 install  --upgrade tensorflow-gpu==1.13.1
 
 # tensorflow  test  package
 cd ~
