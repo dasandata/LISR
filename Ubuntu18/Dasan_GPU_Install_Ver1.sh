@@ -192,8 +192,8 @@ echo -e  "\033[1;34m${PROMPT} pwd \033[0m"
 pwd
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} ll \033[0m"
-ll
+echo -e  "\033[1;34m${PROMPT} ls \033[0m"
+ls
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} tar xvzf cudnn-10.0-linux-x64-v7.3.0.29.tgz \033[0m"
