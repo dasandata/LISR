@@ -77,7 +77,7 @@ nvidia-smi
 echo ""
 echo ""
 
-echo " Cuda 9.0 환경변수 Profile 에 추가 "
+echo " Cuda 10.0 환경변수 Profile 에 추가 "
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} echo " "  >> /etc/profile \033[0m"
@@ -143,7 +143,7 @@ nvcc -V
 echo ""
 echo ""
 
-echo " Cuda 9.0 샘플 컴파일 "
+echo " Cuda 10.0 샘플 컴파일 "
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} cp -r  /usr/local/cuda-10.0/samples/   ~/NVIDIA_CUDA-10.0_Samples \033[0m"
