@@ -54,8 +54,8 @@ module-whatis "cuda"
 module-whatis "Version: ${VERSION}"
 
 prepend-path PATH             /usr/local/cuda-${VERSION}/bin
-prepend-path LD_LIBRARY_PATH  /usr/local/cuda-${VERSION}/inclued
-prepend-path INCLUED          /usr/local/cuda-${VERSION}/lib
+prepend-path LD_LIBRARY_PATH  /usr/local/cuda-${VERSION}/lib64
+prepend-path INCLUED          /usr/local/cuda-${VERSION}/inclued
 " >> /etc/modulefiles/cuda/${VERSION}
 done
 ```
