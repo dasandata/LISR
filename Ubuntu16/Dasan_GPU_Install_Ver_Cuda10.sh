@@ -23,6 +23,14 @@ echo -e  "\033[1;34m${PROMPT} dpkg -i  cuda-repo-ubuntu1604_10.0.130-1_amd64.deb
 dpkg -i  cuda-repo-ubuntu1604_10.0.130-1_amd64.deb
 
 echo ""
+echo -e  "\033[1;34m${PROMPT} wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub \033[0m"
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} apt-key add 7fa2af80.pub \033[0m"
+apt-key add 7fa2af80.pub
+
+echo ""
 echo -e  "\033[1;34m${PROMPT} cat /etc/apt/sources.list.d/cuda.list \033[0m"
 cat /etc/apt/sources.list.d/cuda.list
 
