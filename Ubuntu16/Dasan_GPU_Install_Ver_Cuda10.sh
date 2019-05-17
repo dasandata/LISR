@@ -183,7 +183,11 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} cd  /root/cudnn7 \033[0m"
 cd  /root/cudnn7
 
-echo ""
+echo ""pip -V
+which pip
+
+pip3   -V
+which pip3
 echo -e  "\033[1;34m${PROMPT} umount /mnt #마운트 해제 \033[0m"
 umount /mnt #마운트 해제
 
