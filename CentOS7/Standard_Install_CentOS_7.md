@@ -20,6 +20,8 @@
 [10. VNC Server 설정](https://github.com/dasandata/LISR/blob/master/CentOS7/Standard_Install_CentOS_7.md#-10-vnc-server-%EC%84%A4%EC%A0%95)  
 [11. TeamViewer 설치](https://github.com/dasandata/LISR/blob/master/CentOS7/Standard_Install_CentOS_7.md#-11-teamviewer-%EC%84%A4%EC%B9%98)  
 [12. 부팅 되는 기본 커널 버젼 변경방법](https://github.com/dasandata/LISR/blob/master/CentOS7/Standard_Install_CentOS_7.md#-12-%EB%B6%80%ED%8C%85-%EB%90%98%EB%8A%94-%EA%B8%B0%EB%B3%B8-%EC%BB%A4%EB%84%90-%EB%B2%84%EC%A0%BC-%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95)  
+[13. Disk 속도 측정](https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-13-disk-%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95)
+
 
 [===== 장애 모니터링 =====](https://github.com/dasandata/LISR/blob/master/CentOS7/Standard_Install_CentOS_7.md#--%EC%9E%A5%EC%95%A0-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-)  
 [20. SMTP for Email Alert (mailutils or mailx)](https://github.com/dasandata/LISR/blob/master/CentOS7/Standard_Install_CentOS_7.md#-20-smtp-for-email-alert-mailutils-or-mailx)  
@@ -824,6 +826,73 @@ grub2-set-default 0 # 다시 원래대로 변경.
 grub2-editenv list
 
 ```
+
+
+\# 13-2 dd 쓰기 전용
+```bash
+lsblk
+df -hT | grep -v tmpfs
+
+cd /tmp
+date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+
+cd /home
+date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+
+cd /data
+date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+```
+
+*output example>*
+```
+[root@ubuntu:~]# lsblk
+
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda      8:0    0   32G  0 disk
+├─sda1   8:1    0  953M  0 part /boot
+├─sda2   8:2    0  3.7G  0 part [SWAP]
+└─sda3   8:3    0 27.4G  0 part /
+sdb      8:16   0   20G  0 disk
+└─sdb1   8:17   0   20G  0 part /data
+sdc      8:32   0   16G  0 disk
+└─sdc1   8:33   0   16G  0 part /data1
+sr0     11:0    1 1024M  0 rom  
+[root@ubuntu:~]#
+
+[root@ubuntu:~]# df -hT | grep -v tmpfs
+Filesystem     Type      Size  Used Avail Use% Mounted on
+/dev/sda3      ext4       27G  4.1G   22G  16% /
+/dev/sda1      ext4      922M   61M  799M   8% /boot
+/dev/sdb1      ext4       20G   44M   19G   1% /data
+/dev/sdc1      ext4       16G   44M   15G   1% /data1
+[root@ubuntu:~]#
+
+[root@ubuntu:~]# cd /tmp
+[root@ubuntu:tmp]# date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+Fri Nov 30 20:41:52 KST 2018
+1+0 records in
+1+0 records out
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 2.26254 s, 475 MB/s
+[root@ubuntu:tmp]#
+[root@ubuntu:tmp]# cd /data
+[root@ubuntu:data]# date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+Fri Nov 30 20:41:59 KST 2018
+1+0 records in
+1+0 records out
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 7.18194 s, 150 MB/s
+[root@ubuntu:data]#
+[root@ubuntu:data]# cd /data1
+[root@ubuntu:data1]# date ; dd if=/dev/zero bs=1G count=1 of=write_1GB_test ; rm write_1GB_test
+Fri Nov 30 20:42:23 KST 2018
+1+0 records in
+1+0 records out
+1073741824 bytes (1.1 GB, 1.0 GiB) copied, 4.57022 s, 235 MB/s
+[root@ubuntu:data1]#
+
+
+```
+
+
 ***
 
 ## # [===== 장애 모니터링 =====](#목차)
