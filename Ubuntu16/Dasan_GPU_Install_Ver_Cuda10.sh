@@ -314,4 +314,4 @@ pip3   install --upgrade pip
 echo ""
 echo ""
 
-echo " 컨트롤 + D 를 눌려 로그아웃 후 재 접속 후 Dasan_GPU_Install_Ver1-1.sh 실행 파일 실행 "
+echo " 컨트롤 + D 를 눌려 로그아웃 후 재 접속 후 Dasan_GPU_Install_Ver_Cuda10-1.sh 실행 파일 실행 "
