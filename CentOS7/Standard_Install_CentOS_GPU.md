@@ -211,13 +211,13 @@ rpm -qa | grep  setuptools
 
 pip -V
 
-yum -y install  python34  python34-devel
+yum -y install  python36  python36-devel
 
-yum search  all  python34-setuptools
+yum search  all  python36-setuptools
 
-yum -y install  python34-setuptools
+yum -y install  python36-setuptools
 
-easy_install-3.4   pip
+easy_install-3.6   pip
 
 yum -y install   openblas*
 ```
@@ -226,7 +226,7 @@ yum -y install   openblas*
 
 ```bash
 [root@Technology:~]# cat /bin/pip
-#!/usr/bin/python3.4
+#!/usr/bin/python3.6
 # EASY-INSTALL-ENTRY-SCRIPT: 'pip==18.0','console_scripts','pip'
 __requires__ = 'pip==18.0'
 import sys
