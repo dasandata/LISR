@@ -238,3 +238,37 @@ ls -l /usr/local/cuda-10.0/lib64/libcudnn*
 echo ""
 echo -e  "\033[1;34m${PROMPT} cd ~ \033[0m"
 cd ~
+
+
+echo " Cuda 9.0 샘플 컴파일 "
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} cp -r  /usr/local/cuda-9.0/samples/   ~/NVIDIA_CUDA-9.0_Samples \033[0m"
+cp -r  /usr/local/cuda-9.0/samples/   ~/NVIDIA_CUDA-9.0_Samples
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} cd ~/NVIDIA_CUDA-9.0_Samples \033[0m"
+cd ~/NVIDIA_CUDA-9.0_Samples
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} time make -j$(grep process /proc/cpuinfo | wc -l) \033[0m"
+time make -j$(grep process /proc/cpuinfo | wc -l)
+
+sleep 3
+
+echo ""
+echo ""
+
+echo " Cuda 10.0 샘플 컴파일 "
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} cp -r  /usr/local/cuda-10.0/samples/   ~/NVIDIA_CUDA-10.0_Samples \033[0m"
+cp -r  /usr/local/cuda-10.0/samples/   ~/NVIDIA_CUDA-10.0_Samples
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} cd ~/NVIDIA_CUDA-10.0_Samples \033[0m"
+cd ~/NVIDIA_CUDA-10.0_Samples
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} time make -j$(grep process /proc/cpuinfo | wc -l) \033[0m"
+time make -j$(grep process /proc/cpuinfo | wc -l)
