@@ -161,40 +161,4 @@ echo prepend-path INCLUED          /usr/local/cuda-9.0/inclued  >> /etc/modulefi
 echo ""
 echo ""
 
-sleep 3
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} ml av \033[0m"
-ml av
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} module load cuda/9.0 \033[0m"
-module load cuda/9.0
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} module list \033[0m"
-module list
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} nvcc -V \033[0m"
-nvcc -V
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} module purge \033[0m"
-module purge
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} module load cuda/10.0 \033[0m"
-module load cuda/10.0
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} module list \033[0m"
-module list
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} nvcc -V \033[0m"
-nvcc -V
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} module purge \033[0m"
-module purge
+echo -e  "\033[1;32m"==================== 로그아웃 다시 로그린 후 ml av 명령 입력 ===================="\033[0m"
