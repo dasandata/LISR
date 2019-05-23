@@ -31,6 +31,8 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} tar xvzf modules-4.1.2.tar.gz \033[0m"
 tar xvzf modules-4.1.2.tar.gz
 
+sleep 3
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} cd modules-4.1.2/ \033[0m"
 cd modules-4.1.2/
@@ -38,6 +40,8 @@ cd modules-4.1.2/
 echo ""
 echo -e  "\033[1;34m${PROMPT} ./configure --with-module-path=/opt/modules/ --modulefilesdir=/etc/modulefiles \033[0m"
 ./configure --with-module-path=/opt/modules/ --modulefilesdir=/etc/modulefiles
+
+sleep 3
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} make ; make install \033[0m"
@@ -99,58 +103,93 @@ echo ""
 
 sleep 3
 
-echo -e  "\033[1;32m"==================== Make Modulefile for CUDA 9.0 , 10.0 ===================="\033[0m"
+echo -e  "\033[1;32m"==================== Make Modulefile CUDA 9.0 , 10.0 ===================="\033[0m"
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} mkdir /etc/modulefiles/cuda/ \033[0m"
-mkdir /etc/modulefiles/cuda/
+echo -e  "\033[1;34m${PROMPT} echo #%Module1.0  >> /etc/modulefiles/cuda/10.0  \033[0m"
+echo "#%Module1.0"  >> /etc/modulefiles/cuda/10.0
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} for VERSION in 9.0 10.0  ; \033[0m"
-for VERSION in 9.0 10.0  ;
+echo -e  "\033[1;34m${PROMPT} echo module-whatis cuda >> /etc/modulefiles/cuda/10.0 \033[0m"
+echo module-whatis cuda >> /etc/modulefiles/cuda/10.0
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} do echo #%Module1.0 \033[0m"
-do echo "#%Module1.0
+echo -e  "\033[1;34m${PROMPT} echo module-whatis Version: 10.0 >> /etc/modulefiles/cuda/10.0 \033[0m"
+echo module-whatis Version: 10.0 >> /etc/modulefiles/cuda/10.0
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} module-whatis "cuda" \033[0m"
-module-whatis "cuda"
+echo -e  "\033[1;34m${PROMPT} echo prepend-path PATH             /usr/local/cuda-10.0/bin >> /etc/modulefiles/cuda/10.0 \033[0m"
+echo prepend-path PATH             /usr/local/cuda-10.0/bin >> /etc/modulefiles/cuda/10.0
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} module-whatis "Version: ${VERSION}" \033[0m"
-module-whatis "Version: ${VERSION}"
+echo -e  "\033[1;34m${PROMPT} echo prepend-path LD_LIBRARY_PATH  /usr/local/cuda-10.0/lib64  >> /etc/modulefiles/cuda/10.0  \033[0m"
+echo prepend-path LD_LIBRARY_PATH  /usr/local/cuda-10.0/lib64  >> /etc/modulefiles/cuda/10.0
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} echo prepend-path INCLUED          /usr/local/cuda-10.0/inclued  >> /etc/modulefiles/cuda/10.0  \033[0m"
+echo prepend-path INCLUED          /usr/local/cuda-10.0/inclued  >> /etc/modulefiles/cuda/10.0
 
 echo ""
 echo ""
 
-echo ""
-echo -e  "\033[1;34m${PROMPT} prepend-path PATH             /usr/local/cuda-${VERSION}/bin \033[0m"
-prepend-path PATH             /usr/local/cuda-${VERSION}/bin
+sleep 3
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} prepend-path LD_LIBRARY_PATH  /usr/local/cuda-${VERSION}/lib64 \033[0m"
-prepend-path LD_LIBRARY_PATH  /usr/local/cuda-${VERSION}/lib64
+echo -e  "\033[1;34m${PROMPT} echo #%Module1.0  >> /etc/modulefiles/cuda/9.0  \033[0m"
+echo "#%Module1.0"  >> /etc/modulefiles/cuda/9.0
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} prepend-path INCLUED          /usr/local/cuda-${VERSION}/inclued \033[0m"
-prepend-path INCLUED          /usr/local/cuda-${VERSION}/inclued
+echo -e  "\033[1;34m${PROMPT} echo module-whatis cuda >> /etc/modulefiles/cuda/9.0 \033[0m"
+echo module-whatis cuda >> /etc/modulefiles/cuda/9.0
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} " >> /etc/modulefiles/cuda/${VERSION} \033[0m"
-" >> /etc/modulefiles/cuda/${VERSION}
+echo -e  "\033[1;34m${PROMPT} echo module-whatis Version: 9.0 >> /etc/modulefiles/cuda/9.0 \033[0m"
+echo module-whatis Version: 9.0 >> /etc/modulefiles/cuda/9.0
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} done \033[0m"
-done
+echo -e  "\033[1;34m${PROMPT} echo prepend-path PATH             /usr/local/cuda-9.0/bin >> /etc/modulefiles/cuda/9.0 \033[0m"
+echo prepend-path PATH             /usr/local/cuda-9.0/bin >> /etc/modulefiles/cuda/9.0
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} echo prepend-path LD_LIBRARY_PATH  /usr/local/cuda-9.0/lib64  >> /etc/modulefiles/cuda/9.0  \033[0m"
+echo prepend-path LD_LIBRARY_PATH  /usr/local/cuda-9.0/lib64  >> /etc/modulefiles/cuda/9.0
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} echo prepend-path INCLUED          /usr/local/cuda-9.0/inclued  >> /etc/modulefiles/cuda/9.0  \033[0m"
+echo prepend-path INCLUED          /usr/local/cuda-9.0/inclued  >> /etc/modulefiles/cuda/9.0
+
+echo ""
+echo ""
+
+sleep 3
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} ml av \033[0m"
+ml av
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} module load cuda/9.0 \033[0m"
+module load cuda/9.0
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} module list \033[0m"
 module list
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} module load cuda/9.0 \033[0m"
-module load cuda/9.0
+echo -e  "\033[1;34m${PROMPT} nvcc -V \033[0m"
+nvcc -V
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} module purge \033[0m"
+module purge
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} module load cuda/10.0 \033[0m"
+module load cuda/10.0
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} module list \033[0m"
+module list
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} nvcc -V \033[0m"
