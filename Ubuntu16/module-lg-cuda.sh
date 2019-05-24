@@ -106,6 +106,10 @@ sleep 3
 echo -e  "\033[1;32m"==================== Make Modulefile CUDA 9.0 , 10.0 ===================="\033[0m"
 
 echo ""
+echo -e  "\033[1;34m${PROMPT} mkdir /etc/modulefiles/cuda/ \033[0m"
+mkdir /etc/modulefiles/cuda/
+
+echo ""
 echo -e  "\033[1;34m${PROMPT} echo #%Module1.0  >> /etc/modulefiles/cuda/10.0  \033[0m"
 echo "#%Module1.0"  >> /etc/modulefiles/cuda/10.0
 
