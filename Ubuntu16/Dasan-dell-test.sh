@@ -169,6 +169,10 @@ echo -e  "\033[1;34m${PROMPT} 72s/#/ / /usr/local/sbin/dasan_alert_omsa.sh  \033
 sed -i "72s/#/ /" /usr/local/sbin/dasan_alert_omsa.sh
 
 echo ""
+echo -e  "\033[1;34m${PROMPT} cat /usr/local/sbin/dasan_alert_omsa.sh | sed -n 72p \033[0m"
+cat /usr/local/sbin/dasan_alert_omsa.sh | sed -n 72p
+
+echo ""
 echo ""
 
 echo -e "# 경고 발생시 dasan_alert_omsa.sh 파일이 실행 되도록 설정"
@@ -189,7 +193,7 @@ sleep 10
 echo ""
 echo ""
 
-echo -e  "\033[1;32m"==================== Dell RAID Controller Management Alert by Email ===================="\033[0m"
+echo -e  "\033[1;32m"==================== Dell RAID Controller Management MSM Alert by Email ===================="\033[0m"
 
 echo ""
 echo ""
