@@ -2,7 +2,7 @@
 
 PROMPT="[${USER}@${HOSTNAME%%.*} ${PWD/#$HOME/~}]#"
 
-echo -e  "\033[1;32m"==================== SMTP for Email Alert ( mailutils or mailx ) ===================="\033[0m"
+echo -e  "\033[1;32m"==================== SMTP for Email Alert mailutils or mailx  ===================="\033[0m"
 
 echo ""
 echo ""
@@ -48,7 +48,7 @@ echo ""
 
 sleep 10
 
-echo -e "# (Ubuntu 16)메일 발송 테스트 "
+echo -e "# Ubuntu 16 메일 발송 테스트 "
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} apt-get  -y  install mailutils  \033[0m"
@@ -77,12 +77,12 @@ mail -s   $TITLE_TAIL   -t   $ADMIN_LOG_EMAIL   <   test_message.txt
 echo ""
 echo ""
 
-echo -e  "\033[1;32m"==================== SMTP for Email Alert ( postfix for Dell RAID Manager )===================="\033[0m"
+echo -e  "\033[1;32m"==================== SMTP for Email Alert  postfix for Dell RAID Manager ===================="\033[0m"
 
 echo ""
 echo ""
 
-echo -e "# Dell Server RAID Controller Management (MSM) 의 알림 메일 발송을 위해 postifx를 구성 합니다 . "
+echo -e "# Dell Server RAID Controller Management MSM 의 알림 메일 발송을 위해 postifx를 구성 합니다 . "
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} grep "inet_interfaces\|inet_protocols" /etc/postfix/main.cf \033[0m"
@@ -96,7 +96,7 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} grep inet_protocols  /etc/postfix/main.cf \033[0m"
 grep inet_protocols  /etc/postfix/main.cf
 
-echo -e "# 메일 발송에 문제가 있을 경우 ? # /etc/postfix/main.cf 의 mynetworks 주석처리 # mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 "
+echo -e "# 메일 발송에 문제가 있을 경우  # /etc/postfix/main.cf 의 mynetworks 주석처리 # mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 "
 
 echo ""
 echo ""
@@ -122,7 +122,7 @@ sleep 10
 echo ""
 echo ""
 
-echo -e  "\033[1;32m"==================== Dell OpenManage Server Administrator install (OMSA) ===================="\033[0m"
+echo -e  "\033[1;32m"==================== Dell OpenManage Server Administrator install OMSA ===================="\033[0m"
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} bash LISR/Ubuntu16/Install_Dell_OMSA_Ubuntu.sh \033[0m"
