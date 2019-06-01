@@ -12,11 +12,11 @@
 
 [2. Cudnn Install                         ](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard18_GPU_Cuda10_Install.md#-2-cudnn-install)
 
-[3. Deep Learning Package Install (python-PIP, tensorflow](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard18_GPU_Cuda10_Install.md#-3-deep-learning-package-install-python-pip-tensorflow)  
+[3. Deep Learning Package Install python-PIP, tensorflow](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard18_GPU_Cuda10_Install.md#-3-deep-learning-package-install-python-pip-tensorflow)  
 
-[4. GPU Burning Test)](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard18_GPU_Cuda10_Install.md#-4-gpu-burning-test)  
+[4. GPU Burning Test](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard18_GPU_Cuda10_Install.md#-4-gpu-burning-test)  
 
-[5. history 저장 (차후 설치기록 참고용](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard18_GPU_Cuda10_Install.md#-5-history-%EC%A0%80%EC%9E%A5-%EC%B0%A8%ED%9B%84-%EC%84%A4%EC%B9%98%EA%B8%B0%EB%A1%9D-%EC%B0%B8%EA%B3%A0%EC%9A%A9)
+[5. history 저장  차후 설치기록 참고용](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard18_GPU_Cuda10_Install.md#-5-history-%EC%A0%80%EC%9E%A5-%EC%B0%A8%ED%9B%84-%EC%84%A4%EC%B9%98%EA%B8%B0%EB%A1%9D-%EC%B0%B8%EA%B3%A0%EC%9A%A9)
 
 
 [1]: https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-1-%EA%B8%B0%EB%B3%B8-%EC%9C%A0%ED%8B%B8-%EC%84%A4%EC%B9%98--%EC%8B%9C%EA%B0%84-%EB%8F%99%EA%B8%B0%ED%99%94  
