@@ -115,13 +115,9 @@ apt-key add 7fa2af80.pub
 
 apt-get update
 
-echo deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ / >> /etc/apt/sources.list.d/cuda.list
+apt-get install cuda-10-0             
 
-apt-get update
-
-apt-get install cuda-10-0              # ( Ubuntu 18.04.1 에서는 오류 메세지 나타나지 않습니다. )
-
-apt --fix-broken install
+apt --fix-broken install           # install 관련 오류가 날 경우 명령 
 
 gcc --version
 
