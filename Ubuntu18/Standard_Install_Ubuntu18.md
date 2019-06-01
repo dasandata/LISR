@@ -15,6 +15,7 @@
 [5. Desktop (X window) Install, not default](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_Install_Ubuntu18.md#-5-desktop-x-window-install-not-default)  
 [6. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_Install_Ubuntu18.md#-6-ssh-%EB%B0%8F-%EB%B0%A9%ED%99%94%EB%B2%BD-firewall%EC%84%A4%EC%A0%95--%EB%B3%B4%EC%95%88%EA%B0%95%ED%99%94--x11-forwading)  
 [7. 새로운 사용자 추가 / sudo 권한 부여](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_Install_Ubuntu18.md#-7-%EC%83%88%EB%A1%9C%EC%9A%B4-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%B6%94%EA%B0%80--sudo-%EA%B6%8C%ED%95%9C-%EB%B6%80%EC%97%AC)
+\n
 [8. 스토리지, 파티션 마운트 / lvm, UUID, LABEL](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_Install_Ubuntu18.md#-8-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%ED%8C%8C%ED%8B%B0%EC%85%98-%EB%A7%88%EC%9A%B4%ED%8A%B8--lvm-or-parted-uuid-label)  
 [9. Banner // login wellcome message ](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_Install_Ubuntu18.md#-9-banner--login-wellcome-message-)  
 [10. VNC Server 설정](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard_Install_Ubuntu18.md#-10-vnc-server-%EC%84%A4%EC%A0%95)  
