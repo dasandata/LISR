@@ -125,11 +125,21 @@ nvidia-smi
 
 ##### # Cuda 9.0 환경변수를 Profile 에 추가
 ```bash
-echo  "export  PATH=/usr/local/cuda-9.0/bin/:$PATH"   >> /etc/profile
-echo  "export LD_LIBRARY_PATH=/usr/local/cuda-9.0/include/:/usr/local/cuda-9.0/lib64/:$LD_LIBRARY_PATH"  >> /etc/profile  
-echo  "export  LD_LIBRARY_PATH=/usr/local/cuda-9.0/extras/CUPTI/lib64/:/usr/local/cuda-9.0/extras/CUPTI/include/:/usr/local/cuda-9.0/extras/CUPTI/:$LD_LIBRARY_PATH"  >> /etc/profile
+cat << EOF >> /etc/profile
+### ADD Cuda 9.0 PATH
+export PATH=/usr/local/cuda-9.0/bin:/usr/local/cuda-9.0/include:\$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH
+export CUDA_HOME=/usr/local/cuda-9.0
+export CUDA_INC_DIR=/usr/local/cuda-9.0/include
+### add end.
+EOF
+```
 
+##### # Cuda 컴파일러 동작 확인.
+```bash
+tail  /etc/profile
 source /etc/profile
+source .bashrc
 ```
 
 ##### # Cuda 컴파일러 동작 확인.
