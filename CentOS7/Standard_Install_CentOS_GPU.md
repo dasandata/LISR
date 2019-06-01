@@ -135,7 +135,7 @@ export CUDA_INC_DIR=/usr/local/cuda-9.0/include
 EOF
 ```
 
-##### # Cuda 컴파일러 동작 확인.
+##### # Cuda 적용.
 ```bash
 tail  /etc/profile
 source /etc/profile
