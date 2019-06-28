@@ -53,7 +53,7 @@ echo ""
 echo -e  "\033[1;32m"==================== Cuda 10.0 설치 ===================="\033[0m"
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} apt-get install -y cuda-9-0 \033[0m"
+echo -e  "\033[1;34m${PROMPT} apt-get install -y cuda-10-0 \033[0m"
 apt-get install -y cuda-10-0  >> dasan_log_install_cuda9.txt   2>&1
 
 echo ""

@@ -5,8 +5,8 @@ PROMPT="[${USER}@${HOSTNAME%%.*} ${PWD/#$HOME/~}]#"
 echo " 원격 접속을 위한 VNC Server를 구성 합니다. "
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} cp LISR/Ubuntu18/10_1_vncserver.sh /home/sonic \033[0m"
-cp LISR/Ubuntu18/10_1_vncserver.sh /home/sonic
+echo -e  "\033[1;34m${PROMPT} cp LISR/Ubuntu18/Dasan_Ubuntu18-VNC-user-install.sh /home/sonic \033[0m"
+cp LISR/Ubuntu18/Dasan_Ubuntu18-VNC-user-install.sh /home/sonic
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} dpkg --list | grep   vnc 현재 설치된 vnc 패키지 확인 \033[0m"
