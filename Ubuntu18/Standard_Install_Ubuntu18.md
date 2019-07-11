@@ -159,7 +159,7 @@ ip a | grep inet6
 # 기본 유틸 설치.
 # 화면에 로그가 뿌려지지 않도록 하기 위해 파이프라인(>>) 처리를 합니다.
 apt-get install -y  \
-vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget ipmitool \
+vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget ipmitool ifconfig \
 xfsprogs ntfs-3g aptitude lvm2 dstat curl >> dasan_log_install_ubuntu_default_util.txt 2>&1
 ```
 
@@ -1185,6 +1185,16 @@ echo "
 
 cat /etc/crontab
 ```
+
+#### # idrac 시간 설정 , Web page 이름
+```bash
+racadm set iDRAC.Time.Timezone Asia/Seoul
+
+racadm set iDRAC.NIC.DNSRacName ${HOSTNAME}-$(racadm getsysinfo | grep "Service Tag" | awk '{print $4}')
+
+```
+
+
 ***
 
 
