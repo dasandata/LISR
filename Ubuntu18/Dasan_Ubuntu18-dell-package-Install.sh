@@ -48,7 +48,7 @@ echo ""
 
 sleep 10
 
-echo -e "# Ubuntu 16 메일 발송 테스트 "
+echo -e "# Ubuntu 18 메일 발송 테스트 "
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} apt-get  -y  install mailutils  \033[0m"
@@ -198,7 +198,7 @@ echo -e  "\033[1;32m"==================== Dell RAID Controller Management MSM Al
 echo ""
 echo ""
 
-echo -e "For Ubuntu 16.04"
+echo -e "For Ubuntu 18.04"
 
 echo ""
 echo ""
