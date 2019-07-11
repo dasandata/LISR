@@ -1243,6 +1243,15 @@ echo "
 
 cat /etc/crontab
 ```
+
+#### # idrac 시간 설정 , web page 이름
+```bash
+racadm set iDRAC.Time.Timezone Asia/Seoul
+
+racadm set iDRAC.NIC.DNSRacName ${HOSTNAME}-$(racadm getsysinfo | grep "Service Tag" | awk '{print $4}')
+
+```
+
 ***
 
 
