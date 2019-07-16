@@ -508,8 +508,8 @@ echo -e  "\033[1;34m${PROMPT} echo ${NEW_USER}\033[0m" >> Dasan_command.txt
 echo ${NEW_USER}
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} adduser ${NEW_USER} \033[0m" >> Dasan_command.txt
-adduser ${NEW_USER}
+echo -e  "\033[1;34m${PROMPT} adduser --disabled-login --gecos "" ${NEW_USER} \033[0m" >> Dasan_command.txt
+adduser --disabled-login --gecos "" ${NEW_USER}
 echo ""
 
 echo " 관리자로 전환될 수 있도록, 새 사용자를 wheel 그룹에 포함. "
@@ -528,7 +528,7 @@ grep ${NEW_USER} /etc/group
 
 echo ""
 
-echo " sonic유저 계정 로그아웃 후 dasan유저 계정으로 su - 확인 "
+echo " passwd dasan 입력하여 패스워드 설정 후 su - dasan 접속하여 테스트 "
 
 echo ""
 
