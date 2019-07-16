@@ -606,6 +606,14 @@ echo -e  "\033[1;34m${PROMPT} update-initramfs -u && update-grub2 \033[0m" >> Da
 update-initramfs -u && update-grub2
 
 echo ""
+echo ""
+
+echo "  rc.local 등록 "
+echo -e  "\033[1;34m${PROMPT} sed -i '13a bash /root/LISR/Ubuntu16/Dasan_Ubuntu16-nouveau.sh >> /root/dasan_install_log.txt' /etc/rc.local  \033[0m" >> Dasan_command.txt
+sed -i '13a bash /root/LISR/Ubuntu16/Dasan_Ubuntu16-nouveau.sh >> /root/dasan_install_log.txt' /etc/rc.local
+
+echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 14p \033[0m" >> Dasan_command.txt
+cat /etc/rc.local | sed -n 14p
 
 echo "  재부팅 "
 echo -e  "\033[1;34m${PROMPT} reboot \033[0m" >> Dasan_command.txt

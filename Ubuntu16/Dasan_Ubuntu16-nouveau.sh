@@ -40,5 +40,18 @@ echo -e  "\033[1;34m${PROMPT} update-grub2  \033[0m" >> Dasan_command.txt
 update-grub2
 
 echo ""
+echo ""
+
+echo "  rc.local 등록 "
+echo -e  "\033[1;34m${PROMPT} sed -i '14s/Dasan_Ubuntu16-nouveau.sh/Dasan_Ubuntu16-CUDA10_1-install.sh/g' /etc/rc.local  \033[0m" >> Dasan_command.txt
+sed -i '14s/Dasan_Ubuntu16-nouveau.sh/Dasan_Ubuntu16-CUDA10_1-install.sh/g' /etc/rc.local
+
+echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 14p \033[0m" >> Dasan_command.txt
+cat /etc/rc.local | sed -n 14p
+
+echo ""
+echo ""
+
+echo ""
 echo -e  "\033[1;34m${PROMPT} reboot  \033[0m" >> Dasan_command.txt
 reboot

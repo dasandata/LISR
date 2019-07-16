@@ -314,4 +314,16 @@ pip3   install --upgrade pip
 echo ""
 echo ""
 
-echo " 컨트롤 + D 를 눌려 로그아웃 후 재 접속 후 Dasan_Ubuntu16-CUDA10_2-install.sh 실행 파일 실행 "
+echo "  rc.local 등록 "
+echo -e  "\033[1;34m${PROMPT} sed -i '14s/Dasan_Ubuntu16-CUDA10_1-install.sh/Dasan_Ubuntu16-CUDA10_2-install.sh/g' /etc/rc.local  \033[0m" >> Dasan_command.txt
+sed -i '14s/Dasan_Ubuntu16-CUDA10_1-install.sh/Dasan_Ubuntu16-CUDA10_2-install.sh/g' /etc/rc.local
+
+echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 14p \033[0m" >> Dasan_command.txt
+cat /etc/rc.local | sed -n 14p
+
+echo ""
+echo ""
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} reboot  \033[0m" >> Dasan_command.txt
+reboot
