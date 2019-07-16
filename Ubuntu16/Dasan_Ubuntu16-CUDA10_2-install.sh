@@ -72,3 +72,13 @@ pip install torch torchvision
 echo ""
 echo -e  "\033[1;34m${PROMPT} pip3 install torch torchvision \033[0m" >> /root/Dasan_command.txt
 pip3 install torch torchvision
+
+echo ""
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} sed -i '/root/d' /etc/rc.local  \033[0m" >> /root/Dasan_command.txt
+sed -i '/root/d' /etc/rc.local
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 13p  \033[0m" >> /root/Dasan_command.txt
+cat /etc/rc.local | sed -n 13p
