@@ -5,7 +5,7 @@ PROMPT="[${USER}@${HOSTNAME%%.*} ${PWD/#$HOME/~}]#"
 echo -e  "\033[1;32m"==================== nouveau 가 비활성 화 되었는지 확인. ===================="\033[0m"
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} lsmod  | grep  nouveau \033[0m"
+echo -e  "\033[1;34m${PROMPT} lsmod  | grep  nouveau \033[0m" >> Dasan_command.txt
 lsmod  | grep  nouveau
 
 
