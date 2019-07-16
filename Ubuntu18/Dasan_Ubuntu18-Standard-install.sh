@@ -419,8 +419,8 @@ echo -e  "\033[1;34m${PROMPT} ufw status \033[0m" >> Dasan_command.txt
 ufw status
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} ufw enable \033[0m" >> Dasan_command.txt
-ufw enable
+echo -e  "\033[1;34m${PROMPT} yes | ufw enable \033[0m" >> Dasan_command.txt
+yes | ufw enable
 
 echo ""
 
