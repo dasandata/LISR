@@ -87,8 +87,8 @@ echo -e  "\033[1;34m${PROMPT} sed -i '/root/d' /etc/rc.local  \033[0m" >> /root/
 sed -i '/root/d' /etc/rc.local
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 14p  \033[0m" >> /root/Dasan_command.txt
-cat /etc/rc.local | sed -n 14p
+echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 13p  \033[0m" >> /root/Dasan_command.txt
+cat /etc/rc.local | sed -n 13p
 
 echo ""
 echo ""
