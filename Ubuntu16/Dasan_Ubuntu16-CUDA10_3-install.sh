@@ -5,6 +5,11 @@ PROMPT="[${USER}@${HOSTNAME%%.*} ${PWD/#$HOME/~}]#"
 echo -e  "\033[1;32m"==================== Cuda10 Sample Test ===================="\033[0m"
 
 echo ""
+echo ""
+
+sleep 60
+
+echo ""
 echo -e  "\033[1;34m${PROMPT} ./NVIDIA_CUDA-10.0_Samples/bin/x86_64/linux/release/deviceQuery \033[0m" >> /root/Dasan_command.txt
 ./NVIDIA_CUDA-10.0_Samples/bin/x86_64/linux/release/deviceQuery
 
@@ -29,17 +34,25 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} python        TensorFlow-Examples/examples/1_Introduction/helloworld.py \033[0m" >> /root/Dasan_command.txt
 python        TensorFlow-Examples/examples/1_Introduction/helloworld.py
 
+sleep 10
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} python        TensorFlow-Examples/examples/1_Introduction/basic_operations.py \033[0m" >> /root/Dasan_command.txt
 python        TensorFlow-Examples/examples/1_Introduction/basic_operations.py
+
+sleep 10
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} python3      TensorFlow-Examples/examples/1_Introduction/helloworld.py \033[0m" >> /root/Dasan_command.txt
 python3      TensorFlow-Examples/examples/1_Introduction/helloworld.py
 
+sleep 10
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} python3      TensorFlow-Examples/examples/1_Introduction/basic_operations.py \033[0m" >> /root/Dasan_command.txt
 python3      TensorFlow-Examples/examples/1_Introduction/basic_operations.py
+
+sleep 10
 
 echo ""
 echo ""
@@ -85,6 +98,10 @@ echo ""
 echo ""
 echo -e  "\033[1;34m${PROMPT} sed -i '/root/d' /etc/rc.local  \033[0m" >> /root/Dasan_command.txt
 sed -i '/root/d' /etc/rc.local
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} sed -i '13a nvidia-smi -pm 1' /etc/rc.local  \033[0m" >> /root/Dasan_command.txt
+sed -i '13a nvidia-smi -pm 1' /etc/rc.local
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 13p  \033[0m" >> /root/Dasan_command.txt
