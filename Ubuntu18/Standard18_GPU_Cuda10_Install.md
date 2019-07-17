@@ -14,9 +14,11 @@
 
 [3. Deep Learning Package Install python-PIP, tensorflow](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard18_GPU_Cuda10_Install.md#-3-deep-learning-package-install-python-pip-tensorflow)  
 
-[4. GPU Burning Test](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard18_GPU_Cuda10_Install.md#-4-gpu-burning-test)  
+[4. Deep Learning Package Install 2 (python-PIP, PyTorch)](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard18_GPU_Cuda10_Install.md#-4-gpu-burning-test)  
 
-[5. history 저장  차후 설치기록 참고용](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard18_GPU_Cuda10_Install.md#-5-history-%EC%A0%80%EC%9E%A5-%EC%B0%A8%ED%9B%84-%EC%84%A4%EC%B9%98%EA%B8%B0%EB%A1%9D-%EC%B0%B8%EA%B3%A0%EC%9A%A9)
+[5. GPU Burning Test](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard18_GPU_Cuda10_Install.md#-4-gpu-burning-test)
+
+[6. history 저장  차후 설치기록 참고용](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard18_GPU_Cuda10_Install.md#-5-history-%EC%A0%80%EC%9E%A5-%EC%B0%A8%ED%9B%84-%EC%84%A4%EC%B9%98%EA%B8%B0%EB%A1%9D-%EC%B0%B8%EA%B3%A0%EC%9A%A9)
 
 
 [1]: https://github.com/dasandata/LISR/blob/master/Ubuntu16/Standard_Install_Ubuntu.md#-1-%EA%B8%B0%EB%B3%B8-%EC%9C%A0%ED%8B%B8-%EC%84%A4%EC%B9%98--%EC%8B%9C%EA%B0%84-%EB%8F%99%EA%B8%B0%ED%99%94  
@@ -117,7 +119,7 @@ apt-get update
 
 apt-get install cuda-10-0             
 
-apt --fix-broken install           # install 관련 오류가 날 경우 명령 
+apt --fix-broken install           # install 관련 오류가 날 경우 명령
 
 gcc --version
 
@@ -296,7 +298,28 @@ python3  TensorFlow-Examples/examples/5_DataManagement/tensorflow_dataset_api.py
 
 ```
 
-### # [4. GPU Burning Test](#목차)
+### # [4. Deep Learning Package Install 2 (python-PIP, PyTorch)](#목차)
+\# 홈페이지 주소 링크 http://pytorch.org/
+
+```bash
+
+pip install torch torchvision
+
+pip3 install torch torchvision
+
+# 테스트
+
+cd ~
+
+git clone https://github.com/pytorch/examples/
+
+python     examples/regression/main.py
+
+python3     examples/regression/main.py
+
+```
+
+### # [5. GPU Burning Test](#목차)
 
 ```bash
 cd
