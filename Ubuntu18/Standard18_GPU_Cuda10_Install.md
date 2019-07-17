@@ -14,7 +14,7 @@
 
 [3. Deep Learning Package Install python-PIP, tensorflow](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard18_GPU_Cuda10_Install.md#-3-deep-learning-package-install-python-pip-tensorflow)  
 
-[4. Deep Learning Package Install 2 (python-PIP, PyTorch)](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard18_GPU_Cuda10_Install.md#-4-gpu-burning-test)  
+[4. Deep Learning Package Install 2 (python-PIP, PyTorch)](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard18_GPU_Cuda10_Install.md#-4-deep-learning-package-install-2-python-pip-pytorch)  
 
 [5. GPU Burning Test](https://github.com/dasandata/LISR/blob/master/Ubuntu18/Standard18_GPU_Cuda10_Install.md#-4-gpu-burning-test)
 
