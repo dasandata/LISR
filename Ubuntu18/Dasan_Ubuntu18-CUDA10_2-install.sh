@@ -61,3 +61,20 @@ pip install torch torchvision
 echo ""
 echo -e  "\033[1;34m${PROMPT} pip3 install torch torchvision \033[0m" >> Dasan_command.txt
 pip3 install torch torchvision
+
+echo ""
+echo ""
+
+echo "  rc.local 등록 "
+echo -e  "\033[1;34m${PROMPT} sed -i '2s/Dasan_Ubuntu18-CUDA10_2-install.sh/nvidia-smi -pm 1/g' /etc/rc.local  \033[0m" >> /root/Dasan_command.txt
+sed -i '2s/Dasan_Ubuntu18-CUDA10_2-install.sh/nvidia-smi -pm 1/g' /etc/rc.local 
+
+echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 2p \033[0m" >> /root/Dasan_command.txt
+cat /etc/rc.local | sed -n 2p
+
+echo ""
+echo ""
+
+echo "  재부팅 "
+echo -e  "\033[1;34m${PROMPT} reboot \033[0m" >> /root/Dasan_command.txt
+reboot
