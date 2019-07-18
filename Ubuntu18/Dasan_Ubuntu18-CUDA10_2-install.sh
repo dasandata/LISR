@@ -66,8 +66,18 @@ echo ""
 echo ""
 
 echo "  rc.local 등록 "
-echo -e  "\033[1;34m${PROMPT} sed -i '2s/Dasan_Ubuntu18-CUDA10_2-install.sh/nvidia-smi -pm 1/g' /etc/rc.local  \033[0m" >> /root//root/Dasan_command.txt
-sed -i '2s/Dasan_Ubuntu18-CUDA10_2-install.sh/nvidia-smi -pm 1/g' /etc/rc.local 
+echo ""
+echo -e  "\033[1;34m${PROMPT} sed -i '/root/d' /etc/rc.local  \033[0m" >> /root/Dasan_command.txt
+sed -i '/root/d' /etc/rc.local
+
+echo ""
+echo ""
+
+echo -e  "\033[1;34m${PROMPT} sed -i '1a nvidia-smi -pm 1' /etc/rc.local   \033[0m" >> /root/Dasan_command.txt
+sed -i '1a nvidia-smi -pm 1' /etc/rc.local 
+
+echo ""
+echo ""
 
 echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 2p \033[0m" >> /root//root/Dasan_command.txt
 cat /etc/rc.local | sed -n 2p
