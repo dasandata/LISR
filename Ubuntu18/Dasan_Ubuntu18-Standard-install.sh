@@ -44,9 +44,9 @@ echo "  기본 유틸 설치. "
 echo -e  "\033[1;34m${PROMPT} apt-get install -y vim nfs-common rdate xauth firefox gcc make net-tools \033[0m" >> /root/Dasan_command.txt
 echo -e  "\033[1;34m${PROMPT} apt-get install -y locate htop tmux git wget \033[0m" >> /root/Dasan_command.txt
 echo -e  "\033[1;34m${PROMPT} apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools \033[0m" >> /root/Dasan_command.txt
-apt-get install -y  \
-vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget net-tools \
-xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools >> dasan_log_install_ubuntu_default_util.txt 2>&1
+
+apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget net-tools >> /root/dasan_install_log.txt 2>&1
+apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools >> /root/dasan_install_log.txt 2>&1
 
 tail -5 dasan_log_install_ubuntu_default_util.txt
 
