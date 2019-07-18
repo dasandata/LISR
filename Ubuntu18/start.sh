@@ -29,7 +29,7 @@ systemctl status rc-local.service
 echo ""
 echo ""
 
-echo -e  "\033[1;34m${PROMPT} sed -i '1a bash /root/LISR/Ubuntu18/test10.sh >> /root/dasan_install_log.txt' /etc/rc.local   \033[0m" >> /root/Dasan_command.txt
+echo -e  "\033[1;34m${PROMPT} sed -i '1a bash /root/LISR/Ubuntu18/Dasan_Ubuntu18-Standard-install.sh >> /root/dasan_install_log.txt' /etc/rc.local   \033[0m" >> /root/Dasan_command.txt
 sed -i '1a bash /root/LISR/Ubuntu18/Dasan_Ubuntu18-Standard-install.sh >> /root/dasan_install_log.txt' /etc/rc.local
 
 echo ""
