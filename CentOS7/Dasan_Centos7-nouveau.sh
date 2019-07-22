@@ -38,11 +38,11 @@ dracut  -f
 sleep 15
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} grub2-mkconfig -o /boot/grub2/grub.cfg   boot kernel 에 설정 적용 \033[0m"
+echo -e  "\033[1;34m${PROMPT} grub2-mkconfig -o /boot/grub2/grub.cfg   boot kernel 에 설정 적용 \033[0m" >> /root/Dasan_command.txt
 grub2-mkconfig -o /boot/grub2/grub.cfg
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg   boot kernel 에 설정 적용 \033[0m"
+echo -e  "\033[1;34m${PROMPT} grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg   boot kernel 에 설정 적용 \033[0m" >> /root/Dasan_command.txt
 grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
 
 
