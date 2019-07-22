@@ -604,8 +604,8 @@ echo ""
 echo ""
 
 echo "  rc.local 등록 "
-echo -e  "\033[1;34m${PROMPT} sed -i '13a bash /root/LISR/Ubuntu16/Dasan_Ubuntu16-nouveau.sh >> /root/dasan_install_log.txt' /etc/rc.local  \033[0m" >> /root/Dasan_command.txt
-sed -i '13a bash /root/LISR/Ubuntu16/Dasan_Ubuntu16-nouveau.sh >> /root/dasan_install_log.txt' /etc/rc.local
+echo -e  "\033[1;34m${PROMPT} sed -i '14s/Dasan_Ubuntu16-Standard.sh/Dasan_Ubuntu16-nouveau.sh/g' /etc/rc.local  \033[0m" >> /root/Dasan_command.txt
+sed -i '14s/Dasan_Ubuntu16-Standard.sh/Dasan_Ubuntu16-nouveau.sh/g' /etc/rc.local
 
 echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 14p \033[0m" >> /root/Dasan_command.txt
 cat /etc/rc.local | sed -n 14p
