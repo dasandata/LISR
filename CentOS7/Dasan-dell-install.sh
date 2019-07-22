@@ -135,8 +135,8 @@ echo -e  "\033[1;34m${PROMPT} cat /root/LISR/CentOS7/Install_Dell_OMSA_CentOS7.s
 cat /root/LISR/CentOS7/Install_Dell_OMSA_CentOS7.sh
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} bash /root/LISR/CentOS7/Install_Dell_OMSA_CentOS7.sh \033[0m"
-bash /root/LISR/CentOS7/Install_Dell_OMSA_CentOS7.sh
+echo -e  "\033[1;34m${PROMPT} yes | bash /root/LISR/CentOS7/Install_Dell_OMSA_CentOS7.sh \033[0m"
+yes | bash /root/LISR/CentOS7/Install_Dell_OMSA_CentOS7.sh
 
 sleep 10
 
