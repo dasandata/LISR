@@ -140,3 +140,211 @@ cd ~/NVIDIA_CUDA-10.0_Samples
 echo ""
 echo -e  "\033[1;34m${PROMPT} time make -j$(grep process /proc/cpuinfo | wc -l) \033[0m" >> /root/Dasan_command.txt
 time make -j$(grep process /proc/cpuinfo | wc -l)
+
+echo ""
+echo ""
+
+echo -e  "\033[1;32m"==================== Cudnn 7 install ===================="\033[0m"
+
+echo ""
+echo ""
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} mount -t nfs 192.168.0.5:file /mnt \033[0m" >> /root/Dasan_command.txt
+mount -t nfs 192.168.0.5:file /mnt
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} mkdir /root/cudnn7 \033[0m" >> /root/Dasan_command.txt
+mkdir /root/cudnn7
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} cp /mnt/2_windows\ 관련\ \(서울대\)/windows_cuda_file/cudnn-10.0-linux-x64-v7.* /root/cudnn7 \033[0m" >> /root/Dasan_command.txt
+cp /mnt/2_windows\ 관련\ \(서울대\)/windows_cuda_file/cudnn-10.0-linux-x64-v7.* /root/cudnn7
+
+sleep 20
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} cd  /root/cudnn7 \033[0m" >> /root/Dasan_command.txt
+cd  /root/cudnn7
+
+echo ""
+
+echo -e  "\033[1;34m${PROMPT} umount /mnt #마운트 해제 \033[0m" >> /root/Dasan_command.txt
+umount /mnt #마운트 해제
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} pwd \033[0m" >> /root/Dasan_command.txt
+pwd
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} ls \033[0m" >> /root/Dasan_command.txt
+ls
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} tar xvzf cudnn-10.0-linux-x64-v7.3.0.29.tgz \033[0m" >> /root/Dasan_command.txt
+tar xvzf cudnn-10.0-linux-x64-v7.3.0.29.tgz
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} tar xvzf cudnn-10.0-linux-x64-v7.3.1.20.tgz \033[0m" >> /root/Dasan_command.txt
+tar xvzf cudnn-10.0-linux-x64-v7.3.1.20.tgz
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} tar xvzf cudnn-10.0-linux-x64-v7.4.1.5.tgz \033[0m" >> /root/Dasan_command.txt
+tar xvzf cudnn-10.0-linux-x64-v7.4.1.5.tgz
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} tar xvzf cudnn-10.0-linux-x64-v7.4.2.24.tgz \033[0m" >> /root/Dasan_command.txt
+tar xvzf cudnn-10.0-linux-x64-v7.4.2.24.tgz
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} tar xvzf cudnn-10.0-linux-x64-v7.5.0.56.tgz \033[0m" >> /root/Dasan_command.txt
+tar xvzf cudnn-10.0-linux-x64-v7.5.0.56.tgz
+
+sleep 20
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} ls -l cuda/include/ \033[0m" >> /root/Dasan_command.txt
+ls -l cuda/include/
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} ls -l cuda/lib64/ \033[0m" >> /root/Dasan_command.txt
+ls -l cuda/lib64/
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} chmod  a+r  cuda/include/* \033[0m" >> /root/Dasan_command.txt
+chmod  a+r  cuda/include/*
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} chmod  a+r  cuda/lib64/* \033[0m" >> /root/Dasan_command.txt
+chmod  a+r  cuda/lib64/*
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} cp  -rp  cuda/include/cudnn.h  /usr/local/cuda-10.0/include/ \033[0m" >> /root/Dasan_command.txt
+cp  -rp  cuda/include/cudnn.h  /usr/local/cuda-10.0/include/
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} cp  -rp  cuda/lib64/libcudnn*  /usr/local/cuda-10.0/lib64/ \033[0m" >> /root/Dasan_command.txt
+cp  -rp  cuda/lib64/libcudnn*  /usr/local/cuda-10.0/lib64/
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} ls -l /usr/local/cuda-10.0/lib64/libcudnn* \033[0m" >> /root/Dasan_command.txt
+ls -l /usr/local/cuda-10.0/lib64/libcudnn*
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} cd ~ \033[0m" >> /root/Dasan_command.txt
+cd ~
+
+echo ""
+echo ""
+
+echo -e  "\033[1;32m"==================== Deep Learning Package Install python-PIP, tensorflow ===================="\033[0m"
+
+echo ""
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} which  python \033[0m" >> /root/Dasan_command.txt
+which  python
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} rpm -qa  |  grep ^python-2.7 \033[0m" >> /root/Dasan_command.txt
+rpm -qa  |  grep ^python-2.7
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} python -V \033[0m" >> /root/Dasan_command.txt
+python -V
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} rpm -ql  python-2.7.5 \033[0m" >> /root/Dasan_command.txt
+rpm -ql  python-2.7.5
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} easy_install pip \033[0m" >> /root/Dasan_command.txt
+easy_install pip
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} rpm -qa | grep  setuptools \033[0m" >> /root/Dasan_command.txt
+rpm -qa | grep  setuptools
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} pip -V \033[0m" >> /root/Dasan_command.txt
+pip -V
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} yum -y install  python36  python36-devel \033[0m" >> /root/Dasan_command.txt
+yum -y install  python36  python36-devel
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} yum search  all  python36-setuptools \033[0m" >> /root/Dasan_command.txt
+yum search  all  python36-setuptools
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} easy_install-3.6   pip \033[0m" >> /root/Dasan_command.txt
+easy_install-3.6   pip
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} yum -y install   openblas* \033[0m" >> /root/Dasan_command.txt
+yum -y install   openblas*
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} pip -V \033[0m" >> /root/Dasan_command.txt
+pip -V
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} pip3 -V \033[0m" >> /root/Dasan_command.txt
+pip3 -V
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} python -V \033[0m" >> /root/Dasan_command.txt
+python -V
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} python3 -V \033[0m" >> /root/Dasan_command.txt
+python3 -V
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} cat /etc/resolv.conf \033[0m" >> /root/Dasan_command.txt
+cat /etc/resolv.conf
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} pip install  numpy   scipy  nose  matplotlib  pandas  keras\033[0m" >> /root/Dasan_command.txt
+pip install  numpy   scipy  nose  matplotlib  pandas  keras
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} pip uninstall dnspython \033[0m" >> /root/Dasan_command.txt
+pip uninstall dnspython
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} yum erase python-ldap pyparsing \033[0m" >> /root/Dasan_command.txt
+yum erase python-ldap pyparsing
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} pip3 install  numpy   scipy  nose  matplotlib  pandas  keras \033[0m" >> /root/Dasan_command.txt
+pip3 install  numpy   scipy  nose  matplotlib  pandas  keras
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} pip install setuptools \033[0m" >> /root/Dasan_command.txt
+pip install setuptools
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} rm -rf /usr/share/doc/python-enum34-1.0.4* \033[0m" >> /root/Dasan_command.txt
+rm -rf /usr/share/doc/python-enum34-1.0.4*
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} rm -rf /usr/lib/python2.7/site-packages/enum34-1.0.4-py2.7.egg-info \033[0m" >> /root/Dasan_command.txt
+rm -rf /usr/lib/python2.7/site-packages/enum34-1.0.4-py2.7.egg-info
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} pip install  --upgrade tensorflow-gpu==1.13.1 \033[0m" >> /root/Dasan_command.txt
+pip install  --upgrade tensorflow-gpu==1.13.1
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} pip3 install  --upgrade tensorflow-gpu==1.13.1 \033[0m" >> /root/Dasan_command.txt
+pip3 install  --upgrade tensorflow-gpu==1.13.1
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} pip install --upgrade pytorch \033[0m" >> /root/Dasan_command.txt
+pip install --upgrade pytorch
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} pip install --upgrade pytorch \033[0m" >> /root/Dasan_command.txt
+pip install --upgrade pytorch
