@@ -242,6 +242,14 @@ echo -e  "\033[1;32m"==================== Deep Learning Package Install python-P
 echo ""
 
 echo ""
+echo -e  "\033[1;34m${PROMPT} yum install -y python-devel python-setuptools python-setuptools-devel \033[0m" >> /root/Dasan_command.txt
+yum install -y python-devel python-setuptools python-setuptools-devel
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} which  python \033[0m" >> /root/Dasan_command.txt
+which  python
+
+echo ""
 echo -e  "\033[1;34m${PROMPT} which  python \033[0m" >> /root/Dasan_command.txt
 which  python
 
@@ -270,8 +278,8 @@ echo -e  "\033[1;34m${PROMPT} pip -V \033[0m" >> /root/Dasan_command.txt
 pip -V
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} yum -y install  python36  python36-devel \033[0m" >> /root/Dasan_command.txt
-yum -y install  python36  python36-devel
+echo -e  "\033[1;34m${PROMPT} yum -y install  python36  python36-devel python36-pip python36-setuptools \033[0m" >> /root/Dasan_command.txt
+yum -y install  python36  python36-devel python36-pip python36-setuptools
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} yum search  all  python36-setuptools \033[0m" >> /root/Dasan_command.txt
@@ -315,7 +323,7 @@ pip uninstall dnspython
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} yum erase python-ldap pyparsing \033[0m" >> /root/Dasan_command.txt
-yum erase python-ldap pyparsing
+yum erase -y python-ldap pyparsing
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} pip3 install  numpy   scipy  nose  matplotlib  pandas  keras \033[0m" >> /root/Dasan_command.txt
