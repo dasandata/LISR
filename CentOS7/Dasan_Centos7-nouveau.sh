@@ -35,6 +35,8 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} dracut  -f  \033[0m" >> /root/Dasan_command.txt
 dracut  -f
 
+sleep 15
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} grub2-mkconfig -o /boot/grub2/grub.cfg   boot kernel 에 설정 적용 \033[0m"
 grub2-mkconfig -o /boot/grub2/grub.cfg
