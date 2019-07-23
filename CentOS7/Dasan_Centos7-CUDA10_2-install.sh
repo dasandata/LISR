@@ -30,8 +30,8 @@ echo -e  "\033[1;34m${PROMPT} pip install  numpy   scipy  nose  matplotlib  pand
 pip install  numpy   scipy  nose  matplotlib  pandas  keras
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} pip uninstall dnspython \033[0m" >> /root/Dasan_command.txt
-pip uninstall dnspython
+echo -e  "\033[1;34m${PROMPT} pip uninstall --yes dnspython \033[0m" >> /root/Dasan_command.txt
+pip uninstall --yes dnspython
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} yum erase -y python-ldap pyparsing \033[0m" >> /root/Dasan_command.txt
@@ -42,8 +42,8 @@ echo -e  "\033[1;34m${PROMPT} pip3 install  numpy   scipy  nose  matplotlib  pan
 pip3 install  numpy   scipy  nose  matplotlib  pandas  keras
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} pip install setuptools \033[0m" >> /root/Dasan_command.txt
-pip install setuptools
+echo -e  "\033[1;34m${PROMPT} pip install --upgrade setuptools \033[0m" >> /root/Dasan_command.txt
+pip install --upgrade setuptools
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} rm -rf /usr/share/doc/python-enum34-1.0.4* \033[0m" >> /root/Dasan_command.txt
