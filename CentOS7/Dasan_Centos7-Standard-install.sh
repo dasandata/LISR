@@ -594,8 +594,8 @@ echo -e  "\033[1;34m${PROMPT} echo ${NEW_USER}\033[0m" >> /root/Dasan_command.tx
 echo ${NEW_USER}
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} adduser --disabled-login --gecos "" ${NEW_USER} \033[0m" >> /root/Dasan_command.txt
-adduser --disabled-login --gecos "" ${NEW_USER}
+echo -e  "\033[1;34m${PROMPT} useradd ${NEW_USER} \033[0m" >> /root/Dasan_command.txt
+useradd ${NEW_USER}
 echo ""
 
 echo " 관리자로 전환될 수 있도록, 새 사용자를 wheel 그룹에 포함. "
@@ -605,8 +605,8 @@ echo -e  "\033[1;34m${PROMPT} grep ${NEW_USER} /etc/group \033[0m" >> /root/Dasa
 grep ${NEW_USER} /etc/group
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} usermod -G sudo ${NEW_USER} \033[0m" >> /root/Dasan_command.txt
-usermod -G sudo ${NEW_USER}
+echo -e  "\033[1;34m${PROMPT} usermod -aG wheel ${NEW_USER} \033[0m" >> /root/Dasan_command.txt
+usermod -aG wheel ${NEW_USER}
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} grep ${NEW_USER} /etc/group \033[0m" >> /root/Dasan_command.txt
