@@ -67,3 +67,27 @@ pip3 install  --upgrade tensorflow-gpu==1.13.1
 
 echo -e  "\033[1;34m${PROMPT} pip3 install --upgrade setuptools \033[0m" >> /root/Dasan_command.txt
 pip3 install --upgrade setuptools
+
+
+echo ""
+echo ""
+
+echo "  rc.local 등록 "
+echo ""
+echo -e  "\033[1;34m${PROMPT} sed -i '/root/d' /etc/rc.local  \033[0m" >> /root/Dasan_command.txt
+sed -i '/root/d' /etc/rc.local
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} sed -i '12a nvidia-smi -pm 1' /etc/rc.local  \033[0m" >> /root/Dasan_command.txt
+sed -i '12a nvidia-smi -pm 1' /etc/rc.local
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 13p  \033[0m" >> /root/Dasan_command.txt
+cat /etc/rc.local | sed -n 13p
+
+echo ""
+echo ""
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} reboot  \033[0m" >> /root/Dasan_command.txt
+reboot

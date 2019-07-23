@@ -49,12 +49,13 @@ grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
 echo ""
 echo ""
 
+echo "  rc.local 등록 "
+echo -e  "\033[1;34m${PROMPT} sed -i '13s/Dasan_Centos7-nouveau.sh/Dasan_Centos7-CUDA10_1-install.sh/g' /etc/rc.local   \033[0m" >> /root/Dasan_command.txt
+sed -i '13s/Dasan_Centos7-nouveau.sh/Dasan_Centos7-CUDA10_1-install.sh/g' /etc/rc.local 
+
 echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 13p \033[0m" >> /root/Dasan_command.txt
 cat /etc/rc.local | sed -n 13p
 
-echo ""
-echo ""
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} reboot  \033[0m" >> /root/Dasan_command.txt
+echo " 재 부팅 "
+echo -e  "\033[1;34m${PROMPT} reboot  재 부팅 \033[0m" >> /root/Dasan_command.txt
 reboot
