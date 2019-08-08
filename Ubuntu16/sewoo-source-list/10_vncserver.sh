@@ -26,11 +26,8 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} ufw status \033[0m"
 ufw status
 echo ""
-echo -e  "\033[1;34m${PROMPT} ufw allow 5901/tcp \033[0m"
-ufw allow 5901/tcp
-echo ""
-echo -e  "\033[1;34m${PROMPT} ufw allow 5902/tcp \033[0m"
-ufw allow 5902/tcp
+echo -e  "\033[1;34m${PROMPT} ufw allow 5900:5910/tcp \033[0m"
+ufw allow 5900:5910/tcp
 echo ""
 echo -e  "\033[1;34m${PROMPT} ufw status \033[0m"
 ufw status

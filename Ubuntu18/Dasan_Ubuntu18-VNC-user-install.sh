@@ -18,14 +18,35 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} cat .vnc/xstartup \033[0m" >> Dasan_command.txt
 cat .vnc/xstartup
 echo ""
-echo -e  "\033[1;34m${PROMPT} mv .vnc/xstartup .vnc/xstartup.bak \033[0m" >> Dasan_command.txt
-mv .vnc/xstartup .vnc/xstartup.bak
+echo -e  "\033[1;34m${PROMPT} cp .vnc/xstartup .vnc/xstartup.bak \033[0m" >> Dasan_command.txt
+cp .vnc/xstartup .vnc/xstartup.bak
 echo ""
-echo -e  "\033[1;34m${PROMPT} echo '#!/bin/bash  ' > .vnc/xstartup \033[0m" >> Dasan_command.txt
-echo '#!/bin/bash  ' > .vnc/xstartup
+echo -e  "\033[1;34m${PROMPT} echo 'def ' >> .vnc/xstartup \033[0m"
+echo 'def ' >> .vnc/xstartup
 echo ""
-echo -e  "\033[1;34m${PROMPT} echo 'startxfce4 &  ' >> .vnc/xstartup \033[0m" >> Dasan_command.txt
-echo 'startxfce4 &  ' >> .vnc/xstartup
+echo -e  "\033[1;34m${PROMPT} echo 'export XKL_XMODMAP_DISABLE=1 ' >> .vnc/xstartup \033[0m"
+echo 'export XKL_XMODMAP_DISABLE=1 ' >> .vnc/xstartup
+echo ""
+echo -e  "\033[1;34m${PROMPT} echo 'unset SESSION_MANAGER ' >> .vnc/xstartup \033[0m"
+echo 'unset SESSION_MANAGER ' >> .vnc/xstartup
+echo ""
+echo -e  "\033[1;34m${PROMPT} echo 'unset DBUS_SESSION_BUS_ADDRESS ' >> .vnc/xstartup \033[0m"
+echo 'unset DBUS_SESSION_BUS_ADDRESS ' >> .vnc/xstartup
+echo ""
+echo -e  "\033[1;34m${PROMPT} echo 'xrdb $HOME/.Xresources ' >> .vnc/xstartup \033[0m"
+echo 'xrdb $HOME/.Xresources ' >> .vnc/xstartup
+echo ""
+echo -e  "\033[1;34m${PROMPT} echo 'xsetroot -solid grey ' >> .vnc/xstartup \033[0m"
+echo 'xsetroot -solid grey ' >> .vnc/xstartup
+echo ""
+echo -e  "\033[1;34m${PROMPT} echo 'startxfce4 & ' >> .vnc/xstartup \033[0m"
+echo 'startxfce4 & ' >> .vnc/xstartup
+
+
+
+
+
+
 echo ""
 echo ""
 echo -e  "\033[1;34m${PROMPT} cat .vnc/xstartup \033[0m" >> Dasan_command.txt

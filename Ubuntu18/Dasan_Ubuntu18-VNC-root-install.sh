@@ -25,11 +25,9 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} ufw status \033[0m" >> Dasan_command.txt
 ufw status
 echo ""
-echo -e  "\033[1;34m${PROMPT} ufw allow 5901/tcp \033[0m" >> Dasan_command.txt
-ufw allow 5901/tcp
+echo -e  "\033[1;34m${PROMPT} ufw allow 5900:5910/tcp \033[0m" >> Dasan_command.txt
+ufw allow 5900:5910/tcp
 echo ""
-echo -e  "\033[1;34m${PROMPT} ufw allow 5902/tcp \033[0m" >> Dasan_command.txt
-ufw allow 5902/tcp
 echo ""
 echo -e  "\033[1;34m${PROMPT} ufw status \033[0m" >> Dasan_command.txt
 ufw status
