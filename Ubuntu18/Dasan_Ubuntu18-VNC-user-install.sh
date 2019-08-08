@@ -33,12 +33,6 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} echo 'unset DBUS_SESSION_BUS_ADDRESS ' >> .vnc/xstartup \033[0m"
 echo 'unset DBUS_SESSION_BUS_ADDRESS ' >> .vnc/xstartup
 echo ""
-echo -e  "\033[1;34m${PROMPT} echo 'xrdb $HOME/.Xresources ' >> .vnc/xstartup \033[0m"
-echo 'xrdb $HOME/.Xresources ' >> .vnc/xstartup
-echo ""
-echo -e  "\033[1;34m${PROMPT} echo 'xsetroot -solid grey ' >> .vnc/xstartup \033[0m"
-echo 'xsetroot -solid grey ' >> .vnc/xstartup
-echo ""
 echo -e  "\033[1;34m${PROMPT} echo 'startxfce4 & ' >> .vnc/xstartup \033[0m"
 echo 'startxfce4 & ' >> .vnc/xstartup
 
