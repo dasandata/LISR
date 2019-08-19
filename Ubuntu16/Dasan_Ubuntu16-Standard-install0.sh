@@ -5,6 +5,12 @@ PROMPT="[${USER}@${HOSTNAME%%.*} ${PWD/#$HOME/~}]#"
 echo -e  "\033[1;32m"==================== Repository ===================="\033[0m"
 
 echo ""
+echo ""
+
+HISTFILE=~/.bash_history
+set -o history
+
+echo ""
 echo -e  "\033[1;34m${PROMPT} cat /etc/apt/sources.list | grep -v \"#\|^$\" \033[0m" >> /root/Dasan_command.txt
 cat /etc/apt/sources.list  |  grep -v "#\|^$"
 echo "  기본 저장소 확인 "
