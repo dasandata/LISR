@@ -271,6 +271,15 @@ echo "export PS1='\[\e[1;47;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /home/sonic/.bashrc
 tail -1 /home/sonic/.bashrc
 ```
 
+#### # 로그 아웃 하지 않고 command history 저장.
+```bash
+echo "export PROMPT_COMMAND="history -a" '" >> /root/.bashrc
+tail -1 /root/.bashrc
+
+echo "export PROMPT_COMMAND="history -a" '" >> /home/sonic/.bashrc
+tail -1 /home/sonic/.bashrc
+```
+
 #### # 적용확인.
 ```bash
 tail -10 /etc/profile
