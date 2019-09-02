@@ -8,7 +8,7 @@ if [ "$UID" != "$ROOT_UID" ]; then
   exit 1
 fi
 
-System=$(dmidecode --type system | grep -i product)
+System=$(dmidecode --type system | grep -i product | cut -d ':' -f 2)
 FanOffset=$(racadm get system.ThermalSettings.FanSpeedOffset | grep FanSpeedOffset | cut -d '=' -f 2 )
 LFMMode=$(racadm get system.PCIeSlotLFM.1.LFMMode  | grep LFMMode | cut -d '=' -f 2)
 GPU=$(nvidia-smi -L | head -1 | awk '{print $3 $4 $5 $6 }')
