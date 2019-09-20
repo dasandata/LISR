@@ -125,8 +125,8 @@ echo ""
 echo -e  "\033[1;32m"==================== Dell OpenManage Server Administrator install OMSA ===================="\033[0m"
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} bash LISR/Ubuntu16/Install_Dell_OMSA_Ubuntu.sh \033[0m"
-bash LISR/Ubuntu16/Install_Dell_OMSA_Ubuntu.sh
+echo -e  "\033[1;34m${PROMPT} bash LISR/Ubuntu18/Install_Dell_OMSA_Ubuntu.sh \033[0m"
+bash LISR/Ubuntu18/Install_Dell_OMSA_Ubuntu.sh
 
 sleep 10
 
