@@ -14,8 +14,8 @@ echo -e  "\033[1;34m${PROMPT} sed -i '13a bash /root/LISR/Ubuntu16/Dasan_Ubuntu1
 sed -i '13a bash /root/LISR/Ubuntu16/Dasan_Ubuntu16-Standard-install0.sh >> /root/dasan_install_log.txt' /etc/rc.local
 
 echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 14p \033[0m" >> /root/dasan_install_log.txt
-cat /etc/rc.local | sed -n 14p >> /root/dasan_install_log.txt
+cat /etc/rc.local | sed -n 14p
 
 echo "  재부팅 "
 echo -e  "\033[1;34m${PROMPT} reboot \033[0m" >> /root/dasan_install_log.txt
-reboot >> /root/dasan_install_log.txt
+reboot 
