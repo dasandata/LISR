@@ -12,15 +12,15 @@ read WORD
 case $WORD in
     1 | centos7 | Centos7)
         echo Centos7.
-        bash /root/LISR/CentOS7/
+        bash /root/LISR/CentOS7/centos7.sh
         ;;
     2 | ubuntu16 | Ubuntu16)
         echo Ubuntu16.
-        bash /root/LISR/Ubuntu16/
+        bash /root/LISR/Ubuntu16/ubuntu16.sh
         ;;
     3 | ubuntu18 | Ubuntu18)
         echo Ubuntu18.
-        bash /root/LISR/Ubuntu18/
+        bash /root/LISR/Ubuntu18/ubuntu18.sh
         ;;
     4 | exit | Exit)
         echo clear out.
