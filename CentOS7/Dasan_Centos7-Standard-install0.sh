@@ -157,28 +157,6 @@ echo ""
 echo ""
 
 echo ""
-echo " 히스토리 사이즈 변경 (1000개 -> 100,000개) "
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} echo $HISTSIZE \033[0m" >> /root/dasan_install_log.txt
-echo $HISTSIZE
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} grep HISTSIZE= /etc/profile \033[0m" >> /root/dasan_install_log.txt
-grep HISTSIZE= /etc/profile
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} sed -i  's/HISTSIZE=1000/HISTSIZE=100000/'  /etc/profile \033[0m" >> /root/dasan_install_log.txt
-sed -i  's/HISTSIZE=1000/HISTSIZE=100000/'  /etc/profile
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} grep HISTSIZE= /etc/profile \033[0m" >> /root/dasan_install_log.txt
-grep HISTSIZE= /etc/profile
-
-echo ""
-echo ""
-
-echo ""
 echo "  히스토리 출력시 날짜가 표시 되도록 변경 "
 
 echo ""
