@@ -13,15 +13,15 @@ read WORD
 case $WORD in
     1 | centos7 | Centos7)
         echo Centos7.
-        bash /root/LISR/2_Workstation_Desktop/2-1_Centos7
+        bash /root/LISR/2_Workstation_Desktop/2-1_Centos7/software.sh
         ;;
     2 | ubuntu16 | Ubuntu16)
         echo Ubuntu16.
-        bash /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16
+        bash /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/software.sh
         ;;
     3 | ubuntu18 | Ubuntu18)
         echo Ubuntu18.
-        bash /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18
+        bash /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/software.sh
         ;;
     4 | exit | Exit)
         echo clear out.
