@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "select os install?"
-echo "하나를 선택하세요."
+echo "사용되는 os 하나 를 선택하세요."
+echo "use os install ? Please select one "
 
 
 echo "1) Centos7"
