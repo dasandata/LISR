@@ -12,11 +12,11 @@ read WORD
 case $WORD in
     1 | cpu | CPU)
         echo start centos7 CPU software.
-        bash /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-1_CPU/
+        bash /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-1_CPU/start-cpu.sh
         ;;
     2 | gpu | GPU)
         echo start centos7 GPU software.
-        bash /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/
+        bash /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/start-gpu.sh
         ;;
     3 | exit | Exit)
         echo clear out.
