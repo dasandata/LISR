@@ -131,12 +131,12 @@ echo -e  "\033[1;34m${PROMPT} cat /etc/yum.repos.d/CentOS-Base.repo | sed -n 20p
 cat /etc/yum.repos.d/CentOS-Base.repo | sed -n 20p
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} cat /root/LISR/CentOS7/Install_Dell_OMSA_CentOS7.sh \033[0m"
-cat /root/LISR/CentOS7/Install_Dell_OMSA_CentOS7.sh
+echo -e  "\033[1;34m${PROMPT} cat /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Install_Dell_OMSA_CentOS7.sh \033[0m"
+cat /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Install_Dell_OMSA_CentOS7.sh
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} yes | bash /root/LISR/CentOS7/Install_Dell_OMSA_CentOS7.sh \033[0m"
-yes | bash /root/LISR/CentOS7/Install_Dell_OMSA_CentOS7.sh
+echo -e  "\033[1;34m${PROMPT} yes | bash /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Install_Dell_OMSA_CentOS7.sh \033[0m"
+yes | bash /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Install_Dell_OMSA_CentOS7.sh
 
 sleep 10
 
@@ -214,12 +214,12 @@ echo ""
 echo ""
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} cat /root/LISR/CentOS7/Install_Dell_MSM_CentOS7.sh  \033[0m"
-cat /root/LISR/CentOS7/Install_Dell_MSM_CentOS7.sh
+echo -e  "\033[1;34m${PROMPT} cat /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Install_Dell_MSM_CentOS7.sh  \033[0m"
+cat /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Install_Dell_MSM_CentOS7.sh
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} bash /root/LISR/CentOS7/Install_Dell_MSM_CentOS7.sh \033[0m"
-bash /root/LISR/CentOS7/Install_Dell_MSM_CentOS7.sh
+echo -e  "\033[1;34m${PROMPT} bash /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Install_Dell_MSM_CentOS7.sh \033[0m"
+bash /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Install_Dell_MSM_CentOS7.sh
 
 sleep 10
 
