@@ -5,11 +5,11 @@ PROMPT="[${USER}@${HOSTNAME%%.*} ${PWD/#$HOME/~}]#"
 
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} racadm set iDRAC.Time.Timezone Asia/Seoul  \033[0m"
+echo -e  "\033[1;34m${PROMPT} racadm set iDRAC.Time.Timezone Asia/Seoul  \033[0m" >> /root/dasan_install_log.txt
 racadm set iDRAC.Time.Timezone Asia/Seoul
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} racadm set iDRAC.NIC.DNSRacName ${HOSTNAME}-$(racadm getsysinfo | grep "Service Tag" | awk '{print $4}') \033[0m"
+echo -e  "\033[1;34m${PROMPT} racadm set iDRAC.NIC.DNSRacName ${HOSTNAME}-$(racadm getsysinfo | grep "Service Tag" | awk '{print $4}') \033[0m" >> /root/dasan_install_log.txt
 racadm set iDRAC.NIC.DNSRacName ${HOSTNAME}-$(racadm getsysinfo | grep "Service Tag" | awk '{print $4}')
 
 
