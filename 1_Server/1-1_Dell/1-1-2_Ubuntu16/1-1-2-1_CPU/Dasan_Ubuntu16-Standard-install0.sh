@@ -576,8 +576,9 @@ echo ""
 
 echo "  rc.local 등록 "
 echo ""
-echo -e  "\033[1;34m${PROMPT} sed -i '/root/d' /etc/rc.local  \033[0m" >> /root/dasan_install_log.txt
-sed -i '/root/d' /etc/rc.local
+
+echo -e  "\033[1;34m${PROMPT} sed -i '13s/Dasan_Ubuntu16-Standard-install0.sh/Dasan_Ubuntu16-dell-package-install.sh/g' /etc/rc.d/rc.local    \033[0m" >> /root/dasan_install_log.txt
+sed -i '13s/Dasan_Ubuntu16-Standard-install0.sh/Dasan_Ubuntu16-dell-package-install.sh/g' /etc/rc.d/rc.local
 
 echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 13p \033[0m" >> /root/dasan_install_log.txt
 cat /etc/rc.local | sed -n 13p

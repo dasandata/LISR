@@ -7,8 +7,6 @@ echo -e  "\033[1;32m"==================== rc-local file add ====================
 echo ""
 echo ""
 
-HISTFILE=~/.bash_history
-set -o history
 
 echo -e  "\033[1;34m${PROMPT} sed -i '13a bash /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-1_CPU/Dasan_Ubuntu16-Standard-install0.sh >> /root/dasan_install_log.txt' /etc/rc.local  \033[0m" >> /root/dasan_install_log.txt
 sed -i '13a bash /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-1_CPU/Dasan_Ubuntu16-Standard-install0.sh >> /root/dasan_install_log.txt' /etc/rc.local
