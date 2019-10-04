@@ -32,11 +32,11 @@ echo -e  "\033[1;32m"==================== Utility Install ===================="\
 echo ""
 
 echo "  기본 유틸 설치. "
-echo -e  "\033[1;34m${PROMPT} apt-get install -y vim nfs-common rdate xauth firefox gcc make net-tools \033[0m" >> /root/dasan_install_log.txt
+echo -e  "\033[1;34m${PROMPT} apt-get install -y vim nfs-common rdate xauth firefox gcc make net-tools ipmitool \033[0m" >> /root/dasan_install_log.txt
 echo -e  "\033[1;34m${PROMPT} apt-get install -y locate htop tmux git wget \033[0m" >> /root/dasan_install_log.txt
 echo -e  "\033[1;34m${PROMPT} apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl \033[0m" >> /root/dasan_install_log.txt
 
-apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget net-tools >> /root/dasan_install_log.txt 2>&1
+apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget net-tools ipmitool >> /root/dasan_install_log.txt 2>&1
 apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl >> /root/dasan_install_log.txt 2>&1
 
 tail -5 /root/dasan_install_log.txt
