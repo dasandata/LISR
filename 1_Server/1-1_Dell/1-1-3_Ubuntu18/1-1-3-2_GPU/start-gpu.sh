@@ -44,8 +44,8 @@ tail -5 /root/dasan_install_log.txt
 echo ""
 echo ""
 
-echo -e  "\033[1;34m${PROMPT} sed -i '1a bash /root/LISR/Ubuntu18/Dasan_Ubuntu18-Standard-install.sh >> /root/dasan_install_log.txt' /etc/rc.local   \033[0m" >> /root/dasan_install_log.txt
-sed -i '1a bash /root/LISR/Ubuntu18/Dasan_Ubuntu18-Standard-install.sh >> /root/dasan_install_log.txt' /etc/rc.local
+echo -e  "\033[1;34m${PROMPT} sed -i '1a bash /root/LISR/1_Server/1-1_Dell/1-1-3_Ubuntu18/1-1-3-2_GPU/Dasan_Ubuntu18-Standard-install.sh >> /root/dasan_install_log.txt' /etc/rc.local   \033[0m" >> /root/dasan_install_log.txt
+sed -i '1a bash /root/LISR/1_Server/1-1_Dell/1-1-3_Ubuntu18/1-1-3-2_GPU/Dasan_Ubuntu18-Standard-install.sh >> /root/dasan_install_log.txt' /etc/rc.local
 
 echo ""
 echo ""
