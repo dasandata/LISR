@@ -12,11 +12,11 @@ read WORD
 case $WORD in
     1 | cpu | CPU)
         echo start Ubuntu16 CPU software.
-        bash /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/2-2-1_CPU/
+        bash /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/2-2-1_CPU/start-cpu.sh
         ;;
     2 | gpu | GPU)
         echo start Ubuntu16 GPU software.
-        bash /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/2-2-2_GPU/
+        bash /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/2-2-2_GPU/start-gpu.sh
         ;;
     3 | exit | Exit)
         echo clear out.
