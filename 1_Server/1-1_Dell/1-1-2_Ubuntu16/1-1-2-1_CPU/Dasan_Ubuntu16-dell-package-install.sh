@@ -51,8 +51,8 @@ sleep 10
 echo -e "# Ubuntu 16 메일 발송 테스트 " >> /root/dasan_install_log.txt
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} apt-get  -y  install mailutils  \033[0m" >> /root/dasan_install_log.txt
-apt-get  -y  install mailutils
+echo -e  "\033[1;34m${PROMPT} apt install -y  mailutils  \033[0m" >> /root/dasan_install_log.txt
+apt  install -y   mailutils
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} source /usr/local/sbin/dasan_export_global_variable.sh \033[0m" >> /root/dasan_install_log.txt
