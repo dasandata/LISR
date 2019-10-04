@@ -4,6 +4,8 @@ echo "관리자 의 용도는 CPU 인가요 GPU 인가요 ?."
 echo "Administrator purpose CPU or GPU ?"
 
 
+
+
 echo "1) CPU"
 echo "2) GPU"
 echo "3) Exit"
