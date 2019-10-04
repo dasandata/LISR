@@ -125,8 +125,8 @@ echo ""
 echo -e  "\033[1;32m"==================== Dell OpenManage Server Administrator install OMSA ===================="\033[0m"
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} bash /root/LISR/Ubuntu16/Install_Dell_OMSA_Ubuntu.sh \033[0m"
-bash /root/LISR/Ubuntu16/Install_Dell_OMSA_Ubuntu.sh
+echo -e  "\033[1;34m${PROMPT} bash /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-1_CPU/Install_Dell_OMSA_Ubuntu.sh \033[0m"
+bash /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-1_CPU/Install_Dell_OMSA_Ubuntu.sh
 
 sleep 10
 
@@ -204,12 +204,12 @@ echo ""
 echo ""
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} cat /root/LISR/Ubuntu16/Install_Dell_MSM_Ubuntu.sh  \033[0m"
-cat /root/LISR/Ubuntu16/Install_Dell_MSM_Ubuntu.sh
+echo -e  "\033[1;34m${PROMPT} cat /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-1_CPU/Install_Dell_MSM_Ubuntu.sh  \033[0m"
+cat /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-1_CPU/Install_Dell_MSM_Ubuntu.sh
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} bash /root/LISR/Ubuntu16/Install_Dell_MSM_Ubuntu.sh  \033[0m"
-bash /root/LISR/Ubuntu16/Install_Dell_MSM_Ubuntu.sh
+echo -e  "\033[1;34m${PROMPT} bash /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-1_CPU/Install_Dell_MSM_Ubuntu.sh  \033[0m"
+bash /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-1_CPU/Install_Dell_MSM_Ubuntu.sh
 
 sleep 10
 
