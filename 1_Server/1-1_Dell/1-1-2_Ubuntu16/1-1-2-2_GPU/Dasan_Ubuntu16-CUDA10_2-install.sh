@@ -75,6 +75,8 @@ pip3 install torch torchvision
 
 echo ""
 
+echo "  rc.local 등록 "
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} sed -i '/root/d' /etc/rc.local  \033[0m" >> /root/dasan_install_log.txt
 sed -i '/root/d' /etc/rc.local
@@ -86,6 +88,15 @@ sed -i '13a nvidia-smi -pm 1' /etc/rc.local
 echo ""
 echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 13p  \033[0m" >> /root/dasan_install_log.txt
 cat /etc/rc.local | sed -n 13p
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} sed -i '14a bash /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-2_GPU/Dasan_Ubuntu16-dell-package-install.sh >> /root/dasan_install_log.txt' /etc/rc.local  \033[0m" >> /root/dasan_install_log.txt
+sed -i '14a bash /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-2_GPU/Dasan_Ubuntu16-dell-package-install.sh >> /root/dasan_install_log.txt' /etc/rc.local
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 15p \033[0m" >> /root/dasan_install_log.txt
+cat /etc/rc.local | sed -n 15p
+
 
 echo ""
 echo ""
