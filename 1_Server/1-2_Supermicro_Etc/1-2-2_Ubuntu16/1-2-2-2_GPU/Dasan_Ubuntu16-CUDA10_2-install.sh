@@ -75,6 +75,29 @@ pip3 install torch torchvision
 
 echo ""
 
+echo -e  "\033[1;32m"==================== RAID Controller Management MSM  ===================="\033[0m" >> /root/dasan_install_log.txt
+
+echo ""
+echo ""
+
+echo -e "Ubuntu16" >> /root/dasan_install_log.txt
+
+echo ""
+echo ""
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} cat /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-2_Ubuntu16/1-2-2-2_GPU/Install_MSM_Ubuntu.sh  \033[0m" >> /root/dasan_install_log.txt
+cat /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-2_Ubuntu16/1-2-2-2_GPU/Install_MSM_Ubuntu.sh
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} bash /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-2_Ubuntu16/1-2-2-2_GPU/Install_MSM_Ubuntu.sh \033[0m" >> /root/dasan_install_log.txt
+bash /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-2_Ubuntu16/1-2-2-2_GPU/Install_MSM_Ubuntu.sh
+
+sleep 10
+
+echo ""
+echo ""
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} sed -i '/root/d' /etc/rc.local  \033[0m" >> /root/dasan_install_log.txt
 sed -i '/root/d' /etc/rc.local
