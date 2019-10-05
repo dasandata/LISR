@@ -540,8 +540,12 @@ echo ""
 echo ""
 
 echo "  rc.local 등록 "
-echo -e  "\033[1;34m${PROMPT} sed -i '/root/d' /etc/rc.local  \033[0m" >> /root/dasan_install_log.txt
-sed -i '/root/d' /etc/rc.local
+
+echo ""
+echo ""
+
+echo -e  "\033[1;34m${PROMPT} sed -i '2s/Dasan_Ubuntu18-Standard-install0.sh/Dasan_Ubuntu18-dell-package-Install.sh/g' /etc/rc.local    \033[0m" >> /root/dasan_install_log.txt
+sed -i '2s/Dasan_Ubuntu18-Standard-install0.sh/Dasan_Ubuntu18-dell-package-Install.sh/g' /etc/rc.local
 
 echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 2p \033[0m" >> /root/dasan_install_log.txt
 cat /etc/rc.local | sed -n 2p
