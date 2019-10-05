@@ -18,6 +18,8 @@ case $WORD in
         ;;
     2 | gpu | GPU)
         echo start centos7 GPU software.
+        echo " Installed application test file " 
+        echo " bash /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Dasan_Centos7-CUDA10_3-install.sh "
         bash /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/start-gpu.sh
         ;;
     3 | exit | Exit)
