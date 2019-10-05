@@ -78,7 +78,9 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 2p \033[0m" >> /root/dasan_install_log.txt
 cat /etc/rc.local | sed -n 2p
 
-
+echo ""
+echo -e  "\033[1;34m${PROMPT} sed -i '1a bash /root/LISR/1_Server/1-1_Dell/1-1-3_Ubuntu18/1-1-3-2_GPU/Dasan_Ubuntu18-dell-package-Install.sh >> /root/dasan_install_log.txt' /etc/rc.local   \033[0m" >> /root/dasan_install_log.txt
+sed -i '1a bash /root/LISR/1_Server/1-1_Dell/1-1-3_Ubuntu18/1-1-3-2_GPU/Dasan_Ubuntu18-dell-package-Install.sh >> /root/dasan_install_log.txt' /etc/rc.local
 
 echo ""
 echo ""
