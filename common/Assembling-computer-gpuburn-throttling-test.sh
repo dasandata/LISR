@@ -8,7 +8,7 @@ if [ "$UID" != "$ROOT_UID" ]; then
   exit 1
 fi
 
-System=$(dmidecode --type system | grep -i product | cut -d ':' -f 2 | cut -d ' ' -f 2)
+System=$(dmidecode --type system | grep -i product | cut -d ':' -f 2 | tr -d ' ')
 CPU=$(lscpu | grep -v "Flags\|NUMA" | grep -i name | cut -d ':' -f 2 | tr -d ' ')
 Socket=$(lscpu | grep -v "Flags\|NUMA" | grep -i socket | grep -v "Core" | tr -d ' ')
 GPU=$(nvidia-smi -L | head -1 | awk '{print $3 $4}')
