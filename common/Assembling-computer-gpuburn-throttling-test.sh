@@ -12,9 +12,10 @@ System=$(dmidecode --type system | grep -i product | cut -d ':' -f 2 | cut -d ' 
 CPU=$(lscpu | grep -v "Flags\|NUMA" | grep -i name | cut -d ':' -f 2 | tr -d ' ')
 Socket=$(lscpu | grep -v "Flags\|NUMA" | grep -i socket | grep -v "Core" | tr -d ' ')
 GPU=$(nvidia-smi -L | head -1 | awk '{print $3 $4}')
+Count=$(nvidia-smi -L | wc -l)
 
 # export VAR
-export LOGFILENAME="/root/${System}-${CPU}-${Socket}-${GPU}-4EA.txt"
+export LOGFILENAME="/root/${System}-${CPU}-${Socket}-${GPU}-${Count}EA.txt"
 
 # gpu gurn
 cd ~
