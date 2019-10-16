@@ -10,7 +10,7 @@ fi
 
 System=$(dmidecode --type system | grep -i product | cut -d ':' -f 2 | cut -d ' ' -f 2)
 CPU=$(lscpu | grep -v "Flags\|NUMA" | grep -i name | cut -d ':' -f 2 | tr -d ' ')
-Socket=$(lscpu | grep -v "Flags\|NUMA" | grep -i socket | grep -v "Core")
+Socket=$(lscpu | grep -v "Flags\|NUMA" | grep -i socket | grep -v "Core" | tr -d ' ')
 GPU=$(nvidia-smi -L | head -1 | awk '{print $3 $4 $5 $6 }')
 
 # export VAR
