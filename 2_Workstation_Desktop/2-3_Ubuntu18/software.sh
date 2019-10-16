@@ -16,8 +16,6 @@ case $WORD in
         ;;
     2 | gpu | GPU)
         echo start Ubuntu18 GPU software.
-        echo " Installed application test file "
-        echo " bash /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/Dasan_Ubuntu18-CUDA10_3-install.sh "
         bash /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/start-gpu.sh
         ;;
     3 | exit | Exit)
