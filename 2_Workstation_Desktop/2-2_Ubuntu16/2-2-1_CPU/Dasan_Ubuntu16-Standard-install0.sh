@@ -30,9 +30,8 @@ echo ""
 echo ""
 
 echo -e  "${PROMPT} apt-get update " >> /root/dasan_install_log.txt
-apt-get update  >>  dasan_log_ubuntu_repo_update.txt
+apt-get update  >> /root/log.txt
 
-tail -5 dasan_log_ubuntu_repo_update.txt
 
 echo "  적용 하기 "
 
@@ -47,8 +46,8 @@ echo "  기본 유틸 설치. "
 echo -e  "${PROMPT} apt-get install -y vim nfs-common rdate xauth firefox gcc make " >> /root/dasan_install_log.txt
 echo -e  "${PROMPT} apt-get install -y locate htop tmux git wget " >> /root/dasan_install_log.txt
 echo -e  "${PROMPT} apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools " >> /root/dasan_install_log.txt
-apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget >> /root/dasan_install_log.txt 2>&1
-apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools >> /root/dasan_install_log.txt 2>&1
+apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget >> /root/log.txt
+apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools >> /root/log.txt
 
 echo ""
 echo ""
@@ -58,7 +57,7 @@ sleep 10
 echo ""
 
 echo -e  "${PROMPT} apt-get install -y  python-pip python3-pip  python3-tk " >> /root/dasan_install_log.txt
-apt-get install -y  python-pip python3-pip  python3-tk  >> /root/dasan_install_log.txt 2>&1
+apt-get install -y  python-pip python3-pip  python3-tk  >> /root/log.txt
 
 echo ""
 echo ""
@@ -220,14 +219,9 @@ echo ""
 echo -e "${PROMPT} dmidecode --type memory  | grep Size | grep -v No | wc -l "
 dmidecode --type memory  | grep Size | grep -v No | wc -l
 
-<<<<<<< HEAD
-echo " "
-echo -e "\033[1;34m${PROMPT} dmidecode --type memory  | grep Size | grep -v No | grep -c MB \033[0m"
-=======
 echo ""
 echo ""
 echo -e "${PROMPT} dmidecode --type memory  | grep Size | grep -v No | grep -c MB "
->>>>>>> f6011fdfaa41da46713372344ae00557b4e315f6
 dmidecode --type memory  | grep Size | grep -v No | grep -c MB
 
 echo ""
@@ -393,9 +387,9 @@ echo " ubuntu desktop 설치 "
 echo ""
 echo -e  "${PROMPT} apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon  " >> /root/dasan_install_log.txt
 echo -e  "${PROMPT} apt-get -y install metacity nautilus gnome-terminal " >> /root/dasan_install_log.txt
-apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal  >> dasan_log_install_ubuntu-desktop.txt  2>&1
+apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal  >> /root/log.txt
 
-tail  dasan_log_install_ubuntu-desktop.txt
+tail  /root/log.txt
 
 echo ""
 echo " 현재 구동중인 Demon list 확인. "
