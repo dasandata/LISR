@@ -226,67 +226,67 @@ echo -e "${PROMPT} cat /proc/meminfo | grep MemTotal "
 cat /proc/meminfo | grep MemTotal
 
 echo " "
-echo -e ""${PROMPT} free -m "
+echo -e "${PROMPT} free -m "
 free -m
 
 echo " "
-echo -e ""${PROMPT} free -h "
+echo -e "${PROMPT} free -h "
 free -h
 
 echo " "
 echo -e  "=== Pci Device ==="
-echo -e ""${PROMPT} lspci \| grep -i vga "
+echo -e "${PROMPT} lspci \| grep -i vga "
 lspci | grep -i vga
 
 echo " "
-echo -e ""${PROMPT} lspci \| grep -i nvidia "
+echo -e "${PROMPT} lspci \| grep -i nvidia "
 lspci | grep -i nvidia
 
 echo " "
-echo -e ""${PROMPT} lspci \| grep -i raid "
+echo -e "${PROMPT} lspci \| grep -i raid "
 lspci | grep -i raid
 
 echo " "
-echo -e ""${PROMPT} dmidecode \| grep NIC "
+echo -e "${PROMPT} dmidecode \| grep NIC "
 dmidecode | grep NIC
 
 echo " "
-echo -e ""${PROMPT} lspci \| grep -i communication "
+echo -e "${PROMPT} lspci \| grep -i communication "
 lspci | grep -i communication
 
 echo " "
-echo -e ""${PROMPT} dmesg \| grep NIC "
+echo -e "${PROMPT} dmesg \| grep NIC "
 dmesg | grep NIC
 
 echo " "
 echo -e  "=== Power Supply ==="
-echo -e ""${PROMPT} dmidecode --type 39  \| grep \"System\|Name:\|Capacity\"  "
+echo -e "${PROMPT} dmidecode --type 39  \| grep \"System\|Name:\|Capacity\" "
 dmidecode --type 39  | grep "System\|Name:\|Capacity"
 
 echo " "
 echo -e  "=== Disk "&" Partition ==="
-echo -e ""${PROMPT} lsblk "
+echo -e "${PROMPT} lsblk "
 lsblk
 
 echo " "
-echo -e ""${PROMPT} blkid "
+echo -e "${PROMPT} blkid "
 blkid
 
 echo " "
-echo -e ""${PROMPT} cat /etc/fstab \| grep -v \"#\|^$\" "
+echo -e "${PROMPT} cat /etc/fstab \| grep -v \"#\|^$\" "
 cat /etc/fstab | grep -v "#\|^$"
 
 echo " "
-echo -e ""${PROMPT} df -hT \| grep -v tmpfs "
+echo -e "${PROMPT} df -hT \| grep -v tmpfs "
 df -hT | grep -v tmpfs
 
 echo " "
 echo -e  "=== O/S ==="
-echo -e ""${PROMPT} cat /etc/*-release "
+echo -e "${PROMPT} cat /etc/*-release "
 cat /etc/*-release
 
 echo " "
-echo -e ""${PROMPT} uname -a "
+echo -e "${PROMPT} uname -a "
 uname -a
 
 echo " "

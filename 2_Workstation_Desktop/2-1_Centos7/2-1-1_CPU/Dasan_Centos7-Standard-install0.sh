@@ -15,7 +15,7 @@ ip a | grep inet6
 echo ""
 echo ""
 
-echo -e  "\033[1;32m"==================== Utility Install ====================""
+echo -e  ""==================== Utility Install ====================""
 echo ""
 
 echo -e  "${PROMPT} yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig " >> /root/dasan_install_log.txt
@@ -124,7 +124,7 @@ rpm -qa | grep $(uname -r) | grep 'headers\|devel'
 echo ""
 echo ""
 
-echo -e  "\033[1;32m"==================== Profile Settings ====================""
+echo -e  ""==================== Profile Settings ====================""
 echo ""
 echo ""
 
@@ -224,18 +224,18 @@ echo ""
 
 sleep 10
 
-echo -e  "\033[1;32m"==================== Hardware Spec ====================""
+echo -e  ""==================== Hardware Spec ====================""
 
 echo ""
 
-echo -e "\033[1;32m"### Start to Check Hardware Spec.... ""
+echo -e ""### Start to Check Hardware Spec.... ""
 echo " "
-echo -e  "\033[1;32m"=== System ===""
+echo -e  ""=== System ===""
 echo -e  "${PROMPT} dmidecode --type system | grep -v \"^$\|#\|SMBIOS\|Handle\|Not\" "
 dmidecode --type system | grep -v "^$\|#\|SMBIOS\|Handle\|Not"
 
 echo " "
-echo -e  "\033[1;32m"=== CPU ===""
+echo -e  ""=== CPU ===""
 echo -e  "${PROMPT} lscpu | grep -v \"Flags\|NUMA\"  "
 lscpu | grep -v "Flags\|NUMA"
 
@@ -244,7 +244,7 @@ echo -e  "${PROMPT} cat /proc/cpuinfo | head "
 cat /proc/cpuinfo | head
 
 echo " "
-echo -e  "\033[1;32m"=== Memory Device ===""
+echo -e  ""=== Memory Device ===""
 echo -e "${PROMPT} dmidecode --type 16 | grep -v \"dmidecode\|SMBIOS\|Handle\" "
 dmidecode --type 16 | grep -v "dmidecode\|SMBIOS\|Handle"
 
@@ -273,7 +273,7 @@ echo -e ""${PROMPT} free -h ""
 free -h
 
 echo " "
-echo -e  "\033[1;32m"=== Pci Device ===""
+echo -e  ""=== Pci Device ===""
 echo -e ""${PROMPT} lspci \| grep -i vga ""
 lspci | grep -i vga
 
@@ -298,12 +298,12 @@ echo -e ""${PROMPT} dmesg \| grep NIC ""
 dmesg | grep NIC
 
 echo " "
-echo -e  "\033[1;32m"=== Power Supply ===""
+echo -e  ""=== Power Supply ===""
 echo -e ""${PROMPT} dmidecode --type 39  \| grep \"System\|Name:\|Capacity\"  ""
 dmidecode --type 39  | grep "System\|Name:\|Capacity"
 
 echo " "
-echo -e  "\033[1;32m"=== Disk "&" Partition ===""
+echo -e  ""=== Disk "&" Partition ===""
 echo -e ""${PROMPT} lsblk ""
 lsblk
 
@@ -312,7 +312,7 @@ echo -e ""${PROMPT} blkid ""
 blkid
 
 echo " "
-echo -e ""${PROMPT} cat /etc/fstab \| grep -v \"#\|^$\" ""
+echo -e "${PROMPT} cat /etc/fstab \| grep -v \"#\|^$\" "
 cat /etc/fstab | grep -v "#\|^$"
 
 echo " "
@@ -320,7 +320,7 @@ echo -e ""${PROMPT} df -hT \| grep -v tmpfs ""
 df -hT | grep -v tmpfs
 
 echo " "
-echo -e  "\033[1;32m"=== O/S ===""
+echo -e  ""=== O/S ===""
 echo -e ""${PROMPT} cat /etc/*-release ""
 cat /etc/*-release
 
@@ -329,7 +329,7 @@ echo -e ""${PROMPT} uname -a ""
 uname -a
 
 echo " "
-echo -e  "\033[1;32m"=== END / 하드웨어 사양 확인 끝 ===""
+echo -e  ""=== END / 하드웨어 사양 확인 끝 ===""
 echo " "
 
 # End of file.
@@ -342,7 +342,7 @@ sleep 10
 echo ""
 echo ""
 
-echo -e  "\033[1;32m"==================== Network info ====================""
+echo -e  ""==================== Network info ====================""
 
 echo ""
 echo -e  "${PROMPT} ip a " >> /root/dasan_install_log.txt
@@ -387,7 +387,7 @@ sleep 10
 echo ""
 echo ""
 
-echo -e  "\033[1;32m"==================== Desktop install ====================""
+echo -e  ""==================== Desktop install ====================""
 
 echo " 기본 부팅 모드 확인 "
 echo ""
@@ -430,7 +430,7 @@ echo ""
 
 echo ""
 echo ""
-echo -e  "\033[1;32m"==================== Ssh Firewall Settings ====================""
+echo -e  ""==================== Ssh Firewall Settings ====================""
 
 echo " ssh port 를 7777로 변경하고, ssh를 통한 Root Login을 거부 한 후 "
 echo " 변경된 포트에 맞게 방화벽을 설정한 합니다. "
@@ -557,7 +557,7 @@ sleep 10
 echo ""
 echo ""
 
-echo -e  "\033[1;32m"==================== Useradd ====================""
+echo -e  ""==================== Useradd ====================""
 
 echo " 새로운 사용자를 추가하고, sudo 권한을 부여 합니다. "
 
