@@ -2,7 +2,7 @@
 
 PROMPT="[${USER}@${HOSTNAME%%.*}]#"
 
-echo -e  ""==================== nouveau 가 비활성 화 되었는지 확인. ====================""
+echo -e  "==================== nouveau 가 비활성 화 되었는지 확인. ===================="
 
 echo ""
 echo -e  "${PROMPT} lsmod  | grep  nouveau " >> /root/dasan_install_log.txt
@@ -16,19 +16,19 @@ echo " Cuda-repo (Cuda 저장소) 설치 "
 
 echo ""
 echo -e  "${PROMPT} wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_10.0.130-1_amd64.deb " >> /root/dasan_install_log.txt
-wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_10.0.130-1_amd64.deb
+wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_10.0.130-1_amd64.deb >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} dpkg -i  cuda-repo-ubuntu1604_10.0.130-1_amd64.deb " >> /root/dasan_install_log.txt
-dpkg -i  cuda-repo-ubuntu1604_10.0.130-1_amd64.deb
+dpkg -i  cuda-repo-ubuntu1604_10.0.130-1_amd64.deb >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub " >> /root/dasan_install_log.txt
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} apt-key add 7fa2af80.pub " >> /root/dasan_install_log.txt
-apt-key add 7fa2af80.pub
+apt-key add 7fa2af80.pub >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} cat /etc/apt/sources.list.d/cuda.list " >> /root/dasan_install_log.txt
@@ -41,11 +41,11 @@ echo " Cuda-repo 에서 설치가능한 패키지 목록 확인. "
 
 echo ""
 echo -e  "${PROMPT} apt-get update " >> /root/dasan_install_log.txt
-apt-get update
+apt-get update >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} apt-cache  search   cuda " >> /root/dasan_install_log.txt
-apt-cache  search   cuda
+apt-cache  search   cuda >> /root/log.txt
 
 echo ""
 echo ""
@@ -54,7 +54,7 @@ echo -e  ""==================== Cuda 10.0 설치 ====================""
 
 echo ""
 echo -e  "${PROMPT} apt-get install -y cuda-10-0 " >> /root/dasan_install_log.txt
-apt-get install -y cuda-10-0  >> /root/dasan_install_log.txt   2>&1
+apt-get install -y cuda-10-0  >> /root/log.txt
 
 echo ""
 echo ""
@@ -155,7 +155,7 @@ cd ~/NVIDIA_CUDA-10.0_Samples
 
 echo ""
 echo -e  "${PROMPT} time make -j$(grep process /proc/cpuinfo | wc -l) " >> /root/dasan_install_log.txt
-time make -j$(grep process /proc/cpuinfo | wc -l)
+time make -j$(grep process /proc/cpuinfo | wc -l) >> /root/log.txt
 
 echo ""
 echo ""
@@ -277,7 +277,7 @@ which  python3
 
 echo ""
 echo -e  "${PROMPT} apt-get install -y  python-pip python3-pip  python3-tk " >> /root/dasan_install_log.txt
-apt-get install -y  python-pip python3-pip  python3-tk
+apt-get install -y  python-pip python3-pip  python3-tk >> /root/log.txt
 
 echo ""
 echo ""
@@ -307,11 +307,11 @@ echo " ADD package install "
 
 echo ""
 echo -e  "${PROMPT} pip   install --upgrade pip " >> /root/dasan_install_log.txt
-pip   install --upgrade pip
+pip   install --upgrade pip >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip3   install --upgrade pip " >> /root/dasan_install_log.txt
-pip3   install --upgrade pip
+pip3   install --upgrade pip >> /root/log.txt
 
 echo ""
 echo ""

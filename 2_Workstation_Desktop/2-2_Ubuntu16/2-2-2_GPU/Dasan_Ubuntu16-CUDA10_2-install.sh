@@ -35,27 +35,27 @@ cat /etc/resolv.conf
 
 echo ""
 echo -e  "${PROMPT} pip install  numpy   scipy  nose  matplotlib  pandas  keras " >> /root/dasan_install_log.txt
-pip install  numpy   scipy  nose  matplotlib  pandas  keras
+pip install  numpy   scipy  nose  matplotlib  pandas  keras >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip3 install  numpy   scipy  nose  matplotlib  pandas  keras " >> /root/dasan_install_log.txt
-pip3 install  numpy   scipy  nose  matplotlib  pandas  keras
+pip3 install  numpy   scipy  nose  matplotlib  pandas  keras >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip install  --upgrade tensorflow-gpu==1.13.1 " >> /root/dasan_install_log.txt
-pip install  --upgrade tensorflow-gpu==1.13.1
+pip install  --upgrade tensorflow-gpu==1.13.1 >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip install  --upgrade setuptools " >> /root/dasan_install_log.txt
-pip install  --upgrade setuptools
+pip install  --upgrade setuptools >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip3 install  --upgrade tensorflow-gpu==1.13.1 " >> /root/dasan_install_log.txt
-pip3 install  --upgrade tensorflow-gpu==1.13.1
+pip3 install  --upgrade tensorflow-gpu==1.13.1 >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip3 install  --upgrade setuptools " >> /root/dasan_install_log.txt
-pip3 install  --upgrade setuptools
+pip3 install  --upgrade setuptools >> /root/log.txt
 
 echo ""
 echo ""
@@ -67,11 +67,11 @@ echo ""
 
 echo ""
 echo -e  "${PROMPT} pip install torch torchvision " >> /root/dasan_install_log.txt
-pip install torch torchvision
+pip install torch torchvision >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip3 install torch torchvision " >> /root/dasan_install_log.txt
-pip3 install torch torchvision
+pip3 install torch torchvision >> /root/log.txt
 
 echo ""
 

@@ -27,9 +27,8 @@ echo ""
 echo ""
 
 echo -e  "${PROMPT} apt-get update " >> /root/dasan_install_log.txt
-apt-get update  >>  dasan_log_ubuntu_repo_update.txt
+apt-get update  >> /root/log.txt
 
-tail -5 dasan_log_ubuntu_repo_update.txt
 
 echo "  적용 하기 "
 
@@ -44,8 +43,8 @@ echo "  기본 유틸 설치. "
 echo -e  "${PROMPT} apt-get install -y vim nfs-common rdate xauth firefox gcc make " >> /root/dasan_install_log.txt
 echo -e  "${PROMPT} apt-get install -y locate htop tmux git wget " >> /root/dasan_install_log.txt
 echo -e  "${PROMPT} apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools " >> /root/dasan_install_log.txt
-apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget >> /root/dasan_install_log.txt 2>&1
-apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools >> /root/dasan_install_log.txt 2>&1
+apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget >> /root/log.txt
+apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools >> /root/log.txt
 
 echo ""
 echo ""
@@ -55,7 +54,7 @@ sleep 10
 echo ""
 
 echo -e  "${PROMPT} apt-get install -y  python-pip python3-pip  python3-tk " >> /root/dasan_install_log.txt
-apt-get install -y  python-pip python3-pip  python3-tk  >> /root/dasan_install_log.txt 2>&1
+apt-get install -y  python-pip python3-pip  python3-tk  >> /root/log.txt
 
 echo ""
 echo ""
@@ -191,11 +190,11 @@ dmidecode --type system | grep -v "^$\|#\|SMBIOS\|Handle\|Not"
 
 echo " "
 echo -e  "=== CPU ==="
-echo -e  "${PROMPT} lscpu | grep -v \"Flags\|NUMA\"
+echo -e  "${PROMPT} lscpu | grep -v \"Flags\|NUMA\" "
 lscpu | grep -v "Flags\|NUMA"
 
 echo " "
-echo -e  "${PROMPT} cat /proc/cpuinfo | head
+echo -e  "${PROMPT} cat /proc/cpuinfo | head "
 cat /proc/cpuinfo | head
 
 echo " "
@@ -212,80 +211,75 @@ echo -e "${PROMPT} dmidecode --type memory  | grep Size | grep -v No | wc -l"
 dmidecode --type memory  | grep Size | grep -v No | wc -l
 
 echo " "
-<<<<<<< HEAD
-echo -e "\033[1;34m${PROMPT} dmidecode --type memory  | grep Size | grep -v No | grep -c MB \033[0m"
+echo -e "${PROMPT} dmidecode --type memory  | grep Size | grep -v No | grep -c MB"
 dmidecode --type memory  | grep Size | grep -v No | grep -c MB
-=======
-echo -e "${PROMPT} dmidecode --type memory  | grep Size | grep -v No | grep -c GB"
-dmidecode --type memory  | grep Size | grep -v No | grep -c GB
->>>>>>> f6011fdfaa41da46713372344ae00557b4e315f6
 
 echo " "
 echo -e "${PROMPT} cat /proc/meminfo | grep MemTotal"
 cat /proc/meminfo | grep MemTotal
 
 echo " "
-echo -e ""${PROMPT} free -m ""
+echo -e "${PROMPT} free -m "
 free -m
 
 echo " "
-echo -e ""${PROMPT} free -h ""
+echo -e "${PROMPT} free -h "
 free -h
 
 echo " "
 echo -e  "=== Pci Device ==="
-echo -e ""${PROMPT} lspci \| grep -i vga ""
+echo -e "${PROMPT} lspci \| grep -i vga "
 lspci | grep -i vga
 
 echo " "
-echo -e ""${PROMPT} lspci \| grep -i nvidia ""
+echo -e "${PROMPT} lspci \| grep -i nvidia "
 lspci | grep -i nvidia
 
 echo " "
-echo -e ""${PROMPT} lspci \| grep -i raid ""
+echo -e "${PROMPT} lspci \| grep -i raid "
 lspci | grep -i raid
 
 echo " "
-echo -e ""${PROMPT} dmidecode \| grep NIC ""
+echo -e "${PROMPT} dmidecode \| grep NIC "
 dmidecode | grep NIC
 
 echo " "
-echo -e ""${PROMPT} lspci \| grep -i communication ""
+echo -e "${PROMPT} lspci \| grep -i communication "
 lspci | grep -i communication
 
 echo " "
-echo -e ""${PROMPT} dmesg \| grep NIC ""
+echo -e "${PROMPT} dmesg \| grep NIC "
 dmesg | grep NIC
 
 echo " "
 echo -e  "=== Power Supply ==="
-echo -e ""${PROMPT} dmidecode --type 39  \| grep \"System\|Name:\|Capacity\"  ""
+echo -e "${PROMPT} dmidecode --type 39  \| grep \"System\|Name:\|Capacity\"  "
 dmidecode --type 39  | grep "System\|Name:\|Capacity"
 
 echo " "
 echo -e  "=== Disk "&" Partition ==="
-echo -e ""${PROMPT} lsblk ""
+echo -e "${PROMPT} lsblk "
 lsblk
 
 echo " "
-echo -e ""${PROMPT} blkid ""
+echo -e "${PROMPT} blkid "
 blkid
 
 echo " "
-echo -e ""${PROMPT} cat /etc/fstab \| grep -v \"#\|^$\"
+echo -e "${PROMPT} cat /etc/fstab \| grep -v \"#\|^$\" "
 cat /etc/fstab | grep -v "#\|^$"
 
 echo " "
-echo -e ""${PROMPT} df -hT \| grep -v tmpfs ""
+echo -e "${PROMPT} df -hT \| grep -v tmpfs "
 df -hT | grep -v tmpfs
 
 echo " "
 echo -e  "=== O/S ==="
-echo -e ""${PROMPT} cat /etc/*-release ""
+echo -e "${PROMPT} cat /etc/*-release "
 cat /etc/*-release
 
 echo " "
-echo -e ""${PROMPT} uname -a ""
+echo -e "${PROMPT} uname -a "
 uname -a
 
 echo " "
@@ -360,9 +354,9 @@ echo " ubuntu desktop 설치 "
 echo ""
 echo -e  "${PROMPT} apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon "  >> /root/dasan_install_log.txt
 echo -e  "${PROMPT} apt-get -y install metacity nautilus gnome-terminal " >> /root/dasan_install_log.txt
-apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal  >> dasan_log_install_ubuntu-desktop.txt  2>&1
+apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal  >> /root/log.txt
 
-tail  dasan_log_install_ubuntu-desktop.txt
+tail  /root/log.txt
 
 echo ""
 echo " 현재 구동중인 Demon list 확인. "

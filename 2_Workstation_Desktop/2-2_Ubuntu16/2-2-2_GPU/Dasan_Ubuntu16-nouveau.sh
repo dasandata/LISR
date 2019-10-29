@@ -4,7 +4,7 @@ PROMPT="[${USER}@${HOSTNAME%%.*}]#"
 
 echo ""
 
-echo -e  ""==================== Nouveau Disable ====================""
+echo -e  "==================== Nouveau Disable ===================="
 
 echo ""
 
