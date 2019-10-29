@@ -329,7 +329,7 @@ echo -e "${PROMPT} uname -a "
 uname -a
 
 echo " "
-echo -e  "=== END / 하드웨어 사양 확인 끝 ===""
+echo -e  "=== END / 하드웨어 사양 확인 끝 ==="
 echo " "
 
 # End of file.
@@ -342,7 +342,7 @@ sleep 10
 echo ""
 echo ""
 
-echo -e  "==================== Network info ====================""
+echo -e  "==================== Network info ===================="
 
 echo ""
 echo -e  "${PROMPT} ip a " >> /root/dasan_install_log.txt
