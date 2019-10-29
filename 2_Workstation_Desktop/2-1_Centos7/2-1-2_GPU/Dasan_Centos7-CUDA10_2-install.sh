@@ -27,46 +27,46 @@ cat /etc/resolv.conf
 
 echo ""
 echo -e  "${PROMPT} pip install  numpy   scipy  nose  matplotlib  pandas  keras" >> /root/dasan_install_log.txt
-pip install  numpy   scipy  nose  matplotlib  pandas  keras
+pip install  numpy   scipy  nose  matplotlib  pandas  keras >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip uninstall --yes dnspython " >> /root/dasan_install_log.txt
-pip uninstall --yes dnspython
+pip uninstall --yes dnspython >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} yum erase -y python-ldap pyparsing " >> /root/dasan_install_log.txt
-yum erase -y python-ldap pyparsing
+yum erase -y python-ldap pyparsing >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip3 install  numpy   scipy  nose  matplotlib  pandas  keras " >> /root/dasan_install_log.txt
-pip3 install  numpy   scipy  nose  matplotlib  pandas  keras
+pip3 install  numpy   scipy  nose  matplotlib  pandas  keras >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip install --upgrade setuptools " >> /root/dasan_install_log.txt
-pip install --upgrade setuptools
+pip install --upgrade setuptools >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} rm -rf /usr/share/doc/python-enum34-1.0.4* " >> /root/dasan_install_log.txt
-rm -rf /usr/share/doc/python-enum34-1.0.4*
+rm -rf /usr/share/doc/python-enum34-1.0.4* >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} rm -rf /usr/lib/python2.7/site-packages/enum34-1.0.4-py2.7.egg-info " >> /root/dasan_install_log.txt
-rm -rf /usr/lib/python2.7/site-packages/enum34-1.0.4-py2.7.egg-info
+rm -rf /usr/lib/python2.7/site-packages/enum34-1.0.4-py2.7.egg-info >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip install  --upgrade tensorflow-gpu==1.13.1 " >> /root/dasan_install_log.txt
-pip install  --upgrade tensorflow-gpu==1.13.1
+pip install  --upgrade tensorflow-gpu==1.13.1 >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip install --upgrade setuptools " >> /root/dasan_install_log.txt
-pip install --upgrade setuptools
+pip install --upgrade setuptools >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip3 install  --upgrade tensorflow-gpu==1.13.1 " >> /root/dasan_install_log.txt
-pip3 install  --upgrade tensorflow-gpu==1.13.1
+pip3 install  --upgrade tensorflow-gpu==1.13.1 >> /root/log.txt
 
 echo -e  "${PROMPT} pip3 install --upgrade setuptools " >> /root/dasan_install_log.txt
-pip3 install --upgrade setuptools
+pip3 install --upgrade setuptools >> /root/log.txt
 
 
 echo ""

@@ -15,11 +15,11 @@ echo " Cuda-repo (Cuda 저장소) 설치 "
 
 echo ""
 echo -e  "${PROMPT} wget http://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-10.0.130-1.x86_64.rpm " >> /root/dasan_install_log.txt
-wget http://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-10.0.130-1.x86_64.rpm
+wget http://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-10.0.130-1.x86_64.rpm >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} yum -y install cuda-repo-rhel7-10.0.130-1.x86_64.rpm" >> /root/dasan_install_log.txt
-yum -y install cuda-repo-rhel7-10.0.130-1.x86_64.rpm
+yum -y install cuda-repo-rhel7-10.0.130-1.x86_64.rpm >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} yum --disablerepo="*" --enablerepo="cuda" list available" >> /root/dasan_install_log.txt
@@ -27,11 +27,11 @@ yum --disablerepo="*" --enablerepo="cuda" list available
 
 echo ""
 echo -e  "${PROMPT} yum -y install  libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-devel libXm*" >> /root/dasan_install_log.txt
-yum -y install  libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-devel libXm*
+yum -y install  libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-devel libXm* >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} yum -y install openmotif*" >> /root/dasan_install_log.txt
-yum -y install openmotif*
+yum -y install openmotif* >> /root/log.txt
 
 echo ""
 echo ""
@@ -40,7 +40,7 @@ echo -e  "==================== Cuda 10.0 설치 ===================="
 
 echo ""
 echo -e  "${PROMPT} yum -y install yum -y install cuda-10-0" >> /root/dasan_install_log.txt
-yum -y install cuda-10-0
+yum -y install cuda-10-0 >> /root/log.txt
 
 sleep 5
 
@@ -139,7 +139,7 @@ cd ~/NVIDIA_CUDA-10.0_Samples
 
 echo ""
 echo -e  "${PROMPT} time make -j$(grep process /proc/cpuinfo | wc -l) " >> /root/dasan_install_log.txt
-time make -j$(grep process /proc/cpuinfo | wc -l)
+time make -j$(grep process /proc/cpuinfo | wc -l) >> /root/log.txt
 
 echo ""
 echo ""
@@ -243,7 +243,7 @@ echo ""
 
 echo ""
 echo -e  "${PROMPT} yum install -y python-devel python-setuptools python-setuptools-devel " >> /root/dasan_install_log.txt
-yum install -y python-devel python-setuptools python-setuptools-devel
+yum install -y python-devel python-setuptools python-setuptools-devel >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} which  python " >> /root/dasan_install_log.txt
@@ -267,7 +267,7 @@ rpm -ql  python-2.7.5
 
 echo ""
 echo -e  "${PROMPT} easy_install pip " >> /root/dasan_install_log.txt
-easy_install pip
+easy_install pip >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} rpm -qa | grep  setuptools " >> /root/dasan_install_log.txt
@@ -279,7 +279,7 @@ pip -V
 
 echo ""
 echo -e  "${PROMPT} yum -y install  python36  python36-devel python36-pip python36-setuptools " >> /root/dasan_install_log.txt
-yum -y install  python36  python36-devel python36-pip python36-setuptools
+yum -y install  python36  python36-devel python36-pip python36-setuptools >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} yum search  all  python36-setuptools " >> /root/dasan_install_log.txt
@@ -287,11 +287,11 @@ yum search  all  python36-setuptools
 
 echo ""
 echo -e  "${PROMPT} easy_install-3.6   pip " >> /root/dasan_install_log.txt
-easy_install-3.6   pip
+easy_install-3.6   pip >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} yum -y install   openblas* " >> /root/dasan_install_log.txt
-yum -y install   openblas*
+yum -y install   openblas* >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip -V " >> /root/dasan_install_log.txt
@@ -311,11 +311,11 @@ python3 -V
 
 echo ""
 echo -e  "${PROMPT} pip   install --upgrade pip " >> /root/dasan_install_log.txt
-pip   install --upgrade pip
+pip   install --upgrade pip >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip3   install --upgrade pip " >> /root/dasan_install_log.txt
-pip3   install --upgrade pip
+pip3   install --upgrade pip >> /root/log.txt
 
 echo ""
 echo ""

@@ -21,28 +21,28 @@ echo ""
 echo -e  "${PROMPT} yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig " >> /root/dasan_install_log.txt
 echo -e  "${PROMPT} yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ " >> /root/dasan_install_log.txt
 echo -e  "${PROMPT} yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel " >> /root/dasan_install_log.txt
-yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig >> /root/dasan_install_log.txt 2>&1
-yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ >> /root/dasan_install_log.txt 2>&1
-yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel >> /root/dasan_install_log.txt 2>&1
+yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig >> /root/log.txt
+yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ >> /root/log.txt
+yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel >> /root/log.txt
 
 echo ""
 
 echo " Development Tools 설치 "
 echo ""
 echo -e  "${PROMPT} yum grouplist " >> /root/dasan_install_log.txt
-yum grouplist >> /root/dasan_install_log.txt 2>&1
+yum grouplist >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} yum -y groups install "Development Tools" " >> /root/dasan_install_log.txt
-yum -y groups install "Development Tools" >> /root/dasan_install_log.txt 2>&1
+yum -y groups install "Development Tools" >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} yum -y install  glibc-static glibc-devel glibc-static libstdc++ libstdc++-devel " >> /root/dasan_install_log.txt
-yum -y install  glibc-static glibc-devel glibc-static libstdc++ libstdc++-devel >> /root/dasan_install_log.txt 2>&1
+yum -y install  glibc-static glibc-devel glibc-static libstdc++ libstdc++-devel >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} yum grouplist " >> /root/dasan_install_log.txt
-yum grouplist >> /root/dasan_install_log.txt 2>&1
+yum grouplist >> /root/log.txt
 
 echo ""
 echo ""
@@ -72,11 +72,11 @@ echo ""
 echo " Centos EPEL(Extra Packages for Enterprise Linux) 저장소(Repository) 설치. "
 echo ""
 echo -e  "${PROMPT} yum repolist " >> /root/dasan_install_log.txt
-yum repolist
+yum repolist >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} yum -y  install epel-release  " >> /root/dasan_install_log.txt
-yum -y  install epel-release   >>    dasan_log_install_epel.txt 2>&1
+yum -y  install epel-release   >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} sed -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo  " >> /root/dasan_install_log.txt
@@ -84,7 +84,7 @@ sed -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo
 
 echo ""
 echo -e  "${PROMPT} yum -y  install yum-plugin-priorities   " >> /root/dasan_install_log.txt
-yum -y  install yum-plugin-priorities   >>   dasan_log_install_epel.txt 2>&1
+yum -y  install yum-plugin-priorities   >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} sed -i -e "s/\]$/\]\npriority=1/g" /etc/yum.repos.d/CentOS-Base.repo " >> /root/dasan_install_log.txt
@@ -104,7 +104,7 @@ rpm -qa | grep htop
 
 echo ""
 echo -e  "${PROMPT} yum -y  install htop ntfs-3g " >> /root/dasan_install_log.txt
-yum -y  install htop ntfs-3g >> dasan_log_install_htop,ntfs3g.txt  2>&1
+yum -y  install htop ntfs-3g >> /root/log.txt
 
 echo ""
 echo ""
@@ -400,7 +400,7 @@ echo ""
 echo " GNOME Desktop 설치 "
 echo ""
 echo -e  "${PROMPT} yum -y  groups install "GNOME Desktop" " >> /root/dasan_install_log.txt
-yum -y  groups install "GNOME Desktop"  >> dasan_log_install_gnome-desktop.txt  2>&1
+yum -y  groups install "GNOME Desktop"  >> /root/log.txt
 
 echo ""
 echo ""

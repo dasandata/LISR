@@ -22,7 +22,7 @@ echo -e  "==================== Tensorflow-gpu Test ===================="
 
 echo ""
 echo -e  "${PROMPT} git clone https://github.com/aymericdamien/TensorFlow-Examples.git " >> /root/dasan_install_log.txt
-git clone https://github.com/aymericdamien/TensorFlow-Examples.git >> /root/dasan_install_log.txt 2>&1
+git clone https://github.com/aymericdamien/TensorFlow-Examples.git >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} ls  TensorFlow-Examples " >> /root/dasan_install_log.txt
@@ -51,7 +51,7 @@ echo -e  "==================== GPU Burning Test ===================="
 
 echo ""
 echo -e  "${PROMPT} git clone https://github.com/wilicc/gpu-burn " >> /root/dasan_install_log.txt
-git clone https://github.com/wilicc/gpu-burn >> /root/dasan_install_log.txt 2>&1
+git clone https://github.com/wilicc/gpu-burn >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} cd gpu-burn " >> /root/dasan_install_log.txt
@@ -59,7 +59,7 @@ cd gpu-burn >> /root/dasan_install_log.txt 2>&1
 
 echo ""
 echo -e  "${PROMPT} make " >> /root/dasan_install_log.txt
-make >> /root/dasan_install_log.txt 2>&1
+make >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} ./gpu_burn 60 " >> /root/dasan_install_log.txt

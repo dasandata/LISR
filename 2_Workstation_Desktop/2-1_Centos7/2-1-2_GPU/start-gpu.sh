@@ -5,6 +5,13 @@ PROMPT="[${USER}@${HOSTNAME%%.*}]#"
 echo ""
 echo ""
 
+echo " 패키지 로그 파일 추가 "
+touch /root/log.txt
+
+echo " rc.local 서비스 추가 "
+
+echo ""
+echo ""
 echo -e  "${PROMPT} chmod +x /etc/rc.d/rc.local  " >> /root/dasan_install_log.txt
 chmod +x /etc/rc.d/rc.local
 
