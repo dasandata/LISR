@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROMPT="[${USER}@${HOSTNAME%%.*} ${PWD/#$HOME/~}]#"
+PROMPT="[${USER}@${HOSTNAME%%.*}]#"
 
 echo "  우선 kernel 을 업데이트 와 grub 를 수정하고, 재부팅 한 후 진행 합니다. "
 echo ""

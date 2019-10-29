@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROMPT="[${USER}@${HOSTNAME%%.*} ${PWD/#$HOME/~}]#"
+PROMPT="[${USER}@${HOSTNAME%%.*}]#"
 
 echo -e  "\033[1;32m"==================== nouveau 가 비활성 화 되었는지 확인. ===================="\033[0m"
 
