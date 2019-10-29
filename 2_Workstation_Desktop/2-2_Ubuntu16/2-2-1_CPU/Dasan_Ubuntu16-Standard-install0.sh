@@ -218,8 +218,8 @@ echo -e "\033[1;34m${PROMPT} dmidecode --type memory  | grep Size | grep -v No |
 dmidecode --type memory  | grep Size | grep -v No | wc -l
 
 echo " "
-echo -e "\033[1;34m${PROMPT} dmidecode --type memory  | grep Size | grep -v No | grep -c GB \033[0m"
-dmidecode --type memory  | grep Size | grep -v No | grep -c GB
+echo -e "\033[1;34m${PROMPT} dmidecode --type memory  | grep Size | grep -v No | grep -c MB \033[0m"
+dmidecode --type memory  | grep Size | grep -v No | grep -c MB
 
 echo " "
 echo -e "\033[1;34m${PROMPT} cat /proc/meminfo | grep MemTotal \033[0m"
