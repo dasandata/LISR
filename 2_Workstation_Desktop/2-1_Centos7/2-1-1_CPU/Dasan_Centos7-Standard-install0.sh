@@ -21,28 +21,28 @@ echo ""
 echo -e  "${PROMPT} yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig " >> /root/dasan_install_log.txt
 echo -e  "${PROMPT} yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ " >> /root/dasan_install_log.txt
 echo -e  "${PROMPT} yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel " >> /root/dasan_install_log.txt
-yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig >> /root/dasan_install_log.txt 2>&1
-yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ >> /root/dasan_install_log.txt 2>&1
-yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel >> /root/dasan_install_log.txt 2>&1
+yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig >> /root/log.txt
+yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ >> /root/log.txt
+yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel >> /root/log.txt
 
 echo ""
 
 echo " Development Tools 설치 "
 echo ""
 echo -e  "${PROMPT} yum grouplist " >> /root/dasan_install_log.txt
-yum grouplist >> /root/dasan_install_log.txt 2>&1
+yum grouplist >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} yum -y groups install "Development Tools" " >> /root/dasan_install_log.txt
-yum -y groups install "Development Tools" >> /root/dasan_install_log.txt 2>&1
+yum -y groups install "Development Tools" >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} yum -y install  glibc-static glibc-devel glibc-static libstdc++ libstdc++-devel " >> /root/dasan_install_log.txt
-yum -y install  glibc-static glibc-devel glibc-static libstdc++ libstdc++-devel >> /root/dasan_install_log.txt 2>&1
+yum -y install  glibc-static glibc-devel glibc-static libstdc++ libstdc++-devel >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} yum grouplist " >> /root/dasan_install_log.txt
-yum grouplist >> /root/dasan_install_log.txt 2>&1
+yum grouplist
 
 echo ""
 echo ""
@@ -72,11 +72,11 @@ echo ""
 echo " Centos EPEL(Extra Packages for Enterprise Linux) 저장소(Repository) 설치. "
 echo ""
 echo -e  "${PROMPT} yum repolist " >> /root/dasan_install_log.txt
-yum repolist
+yum repolist >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} yum -y  install epel-release  " >> /root/dasan_install_log.txt
-yum -y  install epel-release   >>    dasan_log_install_epel.txt 2>&1
+yum -y  install epel-release   >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} sed -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo  " >> /root/dasan_install_log.txt
@@ -84,7 +84,7 @@ sed -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo
 
 echo ""
 echo -e  "${PROMPT} yum -y  install yum-plugin-priorities   " >> /root/dasan_install_log.txt
-yum -y  install yum-plugin-priorities   >>   dasan_log_install_epel.txt 2>&1
+yum -y  install yum-plugin-priorities   >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} sed -i -e "s/\]$/\]\npriority=1/g" /etc/yum.repos.d/CentOS-Base.repo " >> /root/dasan_install_log.txt
@@ -104,7 +104,7 @@ rpm -qa | grep htop
 
 echo ""
 echo -e  "${PROMPT} yum -y  install htop ntfs-3g " >> /root/dasan_install_log.txt
-yum -y  install htop ntfs-3g >> dasan_log_install_htop,ntfs3g.txt  2>&1
+yum -y  install htop ntfs-3g >> /root/log.txt
 
 echo ""
 echo ""
@@ -224,18 +224,18 @@ echo ""
 
 sleep 10
 
-echo -e  ""==================== Hardware Spec ====================""
+echo -e  "==================== Hardware Spec ===================="
 
 echo ""
 
-echo -e ""### Start to Check Hardware Spec.... ""
+echo -e "### Start to Check Hardware Spec.... "
 echo " "
-echo -e  ""=== System ===""
+echo -e  "=== System ==="
 echo -e  "${PROMPT} dmidecode --type system | grep -v \"^$\|#\|SMBIOS\|Handle\|Not\" "
 dmidecode --type system | grep -v "^$\|#\|SMBIOS\|Handle\|Not"
 
 echo " "
-echo -e  ""=== CPU ===""
+echo -e  "=== CPU ==="
 echo -e  "${PROMPT} lscpu | grep -v \"Flags\|NUMA\"  "
 lscpu | grep -v "Flags\|NUMA"
 
@@ -244,7 +244,7 @@ echo -e  "${PROMPT} cat /proc/cpuinfo | head "
 cat /proc/cpuinfo | head
 
 echo " "
-echo -e  ""=== Memory Device ===""
+echo -e  "=== Memory Device ==="
 echo -e "${PROMPT} dmidecode --type 16 | grep -v \"dmidecode\|SMBIOS\|Handle\" "
 dmidecode --type 16 | grep -v "dmidecode\|SMBIOS\|Handle"
 
@@ -265,50 +265,50 @@ echo -e "${PROMPT} cat /proc/meminfo | grep MemTotal "
 cat /proc/meminfo | grep MemTotal
 
 echo " "
-echo -e ""${PROMPT} free -m ""
+echo -e "${PROMPT} free -m "
 free -m
 
 echo " "
-echo -e ""${PROMPT} free -h ""
+echo -e "${PROMPT} free -h "
 free -h
 
 echo " "
-echo -e  ""=== Pci Device ===""
-echo -e ""${PROMPT} lspci \| grep -i vga ""
+echo -e  "=== Pci Device ==="
+echo -e "${PROMPT} lspci \| grep -i vga "
 lspci | grep -i vga
 
 echo " "
-echo -e ""${PROMPT} lspci \| grep -i nvidia ""
+echo -e "${PROMPT} lspci \| grep -i nvidia "
 lspci | grep -i nvidia
 
 echo " "
-echo -e ""${PROMPT} lspci \| grep -i raid ""
+echo -e "${PROMPT} lspci \| grep -i raid "
 lspci | grep -i raid
 
 echo " "
-echo -e ""${PROMPT} dmidecode \| grep NIC ""
+echo -e "${PROMPT} dmidecode \| grep NIC "
 dmidecode | grep NIC
 
 echo " "
-echo -e ""${PROMPT} lspci \| grep -i communication ""
+echo -e "${PROMPT} lspci \| grep -i communication "
 lspci | grep -i communication
 
 echo " "
-echo -e ""${PROMPT} dmesg \| grep NIC ""
+echo -e "${PROMPT} dmesg \| grep NIC "
 dmesg | grep NIC
 
 echo " "
-echo -e  ""=== Power Supply ===""
-echo -e ""${PROMPT} dmidecode --type 39  \| grep \"System\|Name:\|Capacity\"  ""
+echo -e  "=== Power Supply ==="
+echo -e "${PROMPT} dmidecode --type 39  \| grep \"System\|Name:\|Capacity\"  "
 dmidecode --type 39  | grep "System\|Name:\|Capacity"
 
 echo " "
-echo -e  ""=== Disk "&" Partition ===""
-echo -e ""${PROMPT} lsblk ""
+echo -e  "=== Disk "&" Partition ==="
+echo -e "${PROMPT} lsblk "
 lsblk
 
 echo " "
-echo -e ""${PROMPT} blkid ""
+echo -e "${PROMPT} blkid "
 blkid
 
 echo " "
@@ -316,20 +316,20 @@ echo -e "${PROMPT} cat /etc/fstab \| grep -v \"#\|^$\" "
 cat /etc/fstab | grep -v "#\|^$"
 
 echo " "
-echo -e ""${PROMPT} df -hT \| grep -v tmpfs ""
+echo -e "${PROMPT} df -hT \| grep -v tmpfs "
 df -hT | grep -v tmpfs
 
 echo " "
-echo -e  ""=== O/S ===""
-echo -e ""${PROMPT} cat /etc/*-release ""
+echo -e  "=== O/S ==="
+echo -e "${PROMPT} cat /etc/*-release "
 cat /etc/*-release
 
 echo " "
-echo -e ""${PROMPT} uname -a ""
+echo -e "${PROMPT} uname -a "
 uname -a
 
 echo " "
-echo -e  ""=== END / 하드웨어 사양 확인 끝 ===""
+echo -e  "=== END / 하드웨어 사양 확인 끝 ==="
 echo " "
 
 # End of file.
@@ -342,7 +342,7 @@ sleep 10
 echo ""
 echo ""
 
-echo -e  ""==================== Network info ====================""
+echo -e  "==================== Network info ===================="
 
 echo ""
 echo -e  "${PROMPT} ip a " >> /root/dasan_install_log.txt
@@ -387,7 +387,7 @@ sleep 10
 echo ""
 echo ""
 
-echo -e  ""==================== Desktop install ====================""
+echo -e  "==================== Desktop install ===================="
 
 echo " 기본 부팅 모드 확인 "
 echo ""
@@ -400,7 +400,7 @@ echo ""
 echo " GNOME Desktop 설치 "
 echo ""
 echo -e  "${PROMPT} yum -y  groups install "GNOME Desktop" " >> /root/dasan_install_log.txt
-yum -y  groups install "GNOME Desktop"  >> dasan_log_install_gnome-desktop.txt  2>&1
+yum -y  groups install "GNOME Desktop"  >> /root/log.txt
 
 echo ""
 echo ""
@@ -430,7 +430,7 @@ echo ""
 
 echo ""
 echo ""
-echo -e  ""==================== Ssh Firewall Settings ====================""
+echo -e  "==================== Ssh Firewall Settings ===================="
 
 echo " ssh port 를 7777로 변경하고, ssh를 통한 Root Login을 거부 한 후 "
 echo " 변경된 포트에 맞게 방화벽을 설정한 합니다. "
@@ -557,7 +557,7 @@ sleep 10
 echo ""
 echo ""
 
-echo -e  ""==================== Useradd ====================""
+echo -e  "==================== Useradd ===================="
 
 echo " 새로운 사용자를 추가하고, sudo 권한을 부여 합니다. "
 

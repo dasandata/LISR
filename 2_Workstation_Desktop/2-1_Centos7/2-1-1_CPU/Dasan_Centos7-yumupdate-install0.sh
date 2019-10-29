@@ -5,7 +5,7 @@ PROMPT="[${USER}@${HOSTNAME%%.*}]#"
 echo "  우선 kernel 을 업데이트 와 grub 를 수정하고, 재부팅 한 후 진행 합니다. "
 echo ""
 echo -e  "${PROMPT} yum -y update " >> /root/dasan_install_log.txt
-yum -y update
+yum -y update >> /root/log.txt
 
 echo ""
 
@@ -44,7 +44,7 @@ echo -e  "${PROMPT} cat /etc/default/grub  기존 설정 내용 확인 " >> /roo
 cat /etc/default/grub
 
 echo ""
-echo -e  "${PROMPT} sed -i  's/rhgb//'   /etc/default/grub  부팅시 화면에 부팅로그가 표시 되도록 rhgb 항목 지움 " >> /root/dasan_install_log.txt
+echo -e  "${PROMPT} sed -i  's/rhgb//'   /etc/default/grub  # 부팅시 화면에 부팅로그가 표시 되도록 rhgb 항목 지움 " >> /root/dasan_install_log.txt
 sed -i  's/rhgb//'   /etc/default/grub
 
 echo ""
