@@ -7,9 +7,6 @@ echo -e  "==================== Repository ===================="
 echo ""
 echo ""
 
-HISTFILE=~/.bash_history
-set -o history
-
 echo ""
 echo -e  "${PROMPT} cat /etc/apt/sources.list | grep -v \"#\|^$\" " >> /root/dasan_install_log.txt
 cat /etc/apt/sources.list  |  grep -v "#\|^$"
@@ -190,108 +187,138 @@ echo -e  "==================== Hardware Spec ===================="
 echo ""
 
 echo -e "### Start to Check Hardware Spec.... "
-echo " "
+echo ""
 echo -e  "=== System ==="
 echo -e  "${PROMPT} dmidecode --type system | grep -v \"^$\|#\|SMBIOS\|Handle\|Not\" "
 dmidecode --type system | grep -v "^$\|#\|SMBIOS\|Handle\|Not"
 
-echo " "
+sleep 3
+
+echo ""
 echo -e  "=== CPU ==="
 echo -e  "${PROMPT} lscpu | grep -v \"Flags\|NUMA\"  "
 lscpu | grep -v "Flags\|NUMA"
 
-echo " "
+echo ""
 echo -e  "${PROMPT} cat /proc/cpuinfo | head "
 cat /proc/cpuinfo | head
 
-echo " "
+sleep 3
+
+echo ""
 echo -e  "=== Memory Device ==="
 echo -e "${PROMPT} dmidecode --type 16 | grep -v \"dmidecode\|SMBIOS\|Handle\" "
 dmidecode --type 16 | grep -v "dmidecode\|SMBIOS\|Handle"
 
-echo " "
+echo ""
+echo ""
 echo -e "${PROMPT} dmidecode --type memory | grep \"Number Of Devices\|Size\|Locator\|Clock\|DDR\|Rank\" | grep -v \"No\|Unknown\"  "
 dmidecode --type memory | grep "Number Of Devices\|Size\|Locator\|Clock\|DDR\|Rank" | grep -v "No\|Unknown"
 
-echo " "
+echo ""
+echo ""
 echo -e "${PROMPT} dmidecode --type memory  | grep Size | grep -v No | wc -l "
 dmidecode --type memory  | grep Size | grep -v No | wc -l
 
-echo " "
+echo ""
+echo ""
 echo -e "${PROMPT} dmidecode --type memory  | grep Size | grep -v No | grep -c GB "
 dmidecode --type memory  | grep Size | grep -v No | grep -c GB
 
-echo " "
+echo ""
+echo ""
 echo -e "${PROMPT} cat /proc/meminfo | grep MemTotal "
 cat /proc/meminfo | grep MemTotal
 
-echo " "
+echo ""
+echo ""
 echo -e "${PROMPT} free -m "
 free -m
 
-echo " "
+echo ""
+echo ""
 echo -e "${PROMPT} free -h "
 free -h
 
-echo " "
+sleep 3
+
+echo ""
+echo ""
 echo -e  "=== Pci Device ==="
 echo -e "${PROMPT} lspci \| grep -i vga "
 lspci | grep -i vga
 
-echo " "
+echo ""
+echo ""
 echo -e "${PROMPT} lspci \| grep -i nvidia "
 lspci | grep -i nvidia
 
-echo " "
+echo ""
+echo ""
 echo -e "${PROMPT} lspci \| grep -i raid "
 lspci | grep -i raid
 
-echo " "
+echo ""
+echo ""
 echo -e "${PROMPT} dmidecode \| grep NIC "
 dmidecode | grep NIC
 
-echo " "
+echo ""
+echo ""
 echo -e "${PROMPT} lspci \| grep -i communication "
 lspci | grep -i communication
 
-echo " "
+echo ""
+echo ""
 echo -e "${PROMPT} dmesg \| grep NIC "
 dmesg | grep NIC
 
-echo " "
+sleep 3
+
+echo ""
+echo ""
 echo -e  "=== Power Supply ==="
 echo -e "${PROMPT} dmidecode --type 39  \| grep \"System\|Name:\|Capacity\" "
 dmidecode --type 39  | grep "System\|Name:\|Capacity"
 
-echo " "
+echo ""
+echo ""
 echo -e  "=== Disk "&" Partition ==="
 echo -e "${PROMPT} lsblk "
 lsblk
 
-echo " "
+echo ""
+echo ""
 echo -e "${PROMPT} blkid "
 blkid
 
-echo " "
+echo ""
+echo ""
 echo -e "${PROMPT} cat /etc/fstab \| grep -v \"#\|^$\" "
 cat /etc/fstab | grep -v "#\|^$"
 
-echo " "
+echo ""
+echo ""
 echo -e "${PROMPT} df -hT \| grep -v tmpfs "
 df -hT | grep -v tmpfs
 
-echo " "
+sleep 3
+
+echo ""
+echo ""
 echo -e  "=== O/S ==="
 echo -e "${PROMPT} cat /etc/*-release "
 cat /etc/*-release
 
-echo " "
+echo ""
+echo ""
 echo -e "${PROMPT} uname -a "
 uname -a
 
-echo " "
+echo ""
+echo ""
 echo -e  "=== END / 하드웨어 사양 확인 끝 ==="
-echo " "
+echo ""
 
 # End of file.
 
