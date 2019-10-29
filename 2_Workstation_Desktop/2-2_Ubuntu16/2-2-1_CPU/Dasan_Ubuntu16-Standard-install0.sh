@@ -222,8 +222,8 @@ dmidecode --type memory  | grep Size | grep -v No | wc -l
 
 echo ""
 echo ""
-echo -e "${PROMPT} dmidecode --type memory  | grep Size | grep -v No | grep -c GB "
-dmidecode --type memory  | grep Size | grep -v No | grep -c GB
+echo -e "${PROMPT} dmidecode --type memory  | grep Size | grep -v No | grep -c MB "
+dmidecode --type memory  | grep Size | grep -v No | grep -c MB
 
 echo ""
 echo ""
