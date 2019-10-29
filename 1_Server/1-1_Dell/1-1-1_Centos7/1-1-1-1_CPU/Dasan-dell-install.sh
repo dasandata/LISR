@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROMPT="[${USER}@${HOSTNAME%%.*} ${PWD/#$HOME/~}]#"
+PROMPT="[${USER}@${HOSTNAME%%.*}]#"
 
 echo -e  "\033[1;32m"==================== SMTP for Email Alert mailutils or mailx  ===================="\033[0m"
 

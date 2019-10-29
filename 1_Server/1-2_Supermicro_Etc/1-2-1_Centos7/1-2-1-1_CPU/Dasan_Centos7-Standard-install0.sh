@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROMPT="[${USER}@${HOSTNAME%%.*} ${PWD/#$HOME/~}]#"
+PROMPT="[${USER}@${HOSTNAME%%.*}]#"
 
 echo " 재부팅 후 확인. "
 echo ""

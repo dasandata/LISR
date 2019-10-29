@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROMPT="[${USER}@${HOSTNAME%%.*} ${PWD/#$HOME/~}]#"
+PROMPT="[${USER}@${HOSTNAME%%.*}]#"
 
 echo -e  "\033[1;32m"==================== pip가 phyhon3 로 바뀌여서 아래 명령 실행 ===================="\033[0m"
 
