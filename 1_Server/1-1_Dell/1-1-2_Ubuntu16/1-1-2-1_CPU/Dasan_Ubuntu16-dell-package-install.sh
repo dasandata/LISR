@@ -77,7 +77,7 @@ mail -s   $TITLE_TAIL   -t   $ADMIN_LOG_EMAIL   <   test_message.txt
 echo ""
 echo ""
 
-echo -e  "==================== SMTP for Email Alert  postfix for Dell RAID Manager ===================="" >> /root/dasan_install_log.txt
+echo -e  "==================== SMTP for Email Alert  postfix for Dell RAID Manager ====================" >> /root/dasan_install_log.txt
 
 echo ""
 echo ""
