@@ -2,18 +2,18 @@
 
 PROMPT="[${USER}@${HOSTNAME%%.*}]#"
 
-echo -e  "==================== Cuda10 Sample Test ===================="
+echo -e  "==================== Cuda10.1 Sample Test ===================="
 
 echo ""
 echo ""
 
 echo ""
-echo -e  "${PROMPT} ./NVIDIA_CUDA-10.0_Samples/bin/x86_64/linux/release/deviceQuery " >> /root/dasan_install_log.txt
-./NVIDIA_CUDA-10.0_Samples/bin/x86_64/linux/release/deviceQuery >> /root/dasan_install_log.txt 2>&1
+echo -e  "${PROMPT} ./NVIDIA_CUDA-10.1_Samples/bin/x86_64/linux/release/deviceQuery " >> /root/dasan_install_log.txt
+./NVIDIA_CUDA-10.1_Samples/bin/x86_64/linux/release/deviceQuery >> /root/dasan_install_log.txt 2>&1
 
 echo ""
-echo -e  "${PROMPT} ./NVIDIA_CUDA-10.0_Samples/bin/x86_64/linux/release/p2pBandwidthLatencyTest " >> /root/dasan_install_log.txt
-./NVIDIA_CUDA-10.0_Samples/bin/x86_64/linux/release/p2pBandwidthLatencyTest >> /root/dasan_install_log.txt 2>&1
+echo -e  "${PROMPT} ./NVIDIA_CUDA-10.1_Samples/bin/x86_64/linux/release/p2pBandwidthLatencyTest " >> /root/dasan_install_log.txt
+./NVIDIA_CUDA-10.1_Samples/bin/x86_64/linux/release/p2pBandwidthLatencyTest >> /root/dasan_install_log.txt 2>&1
 
 echo ""
 echo ""

@@ -125,8 +125,8 @@ echo ""
 echo -e  "==================== Dell OpenManage Server Administrator install OMSA ===================="
 
 echo ""
-echo -e  "${PROMPT} bash /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-2_GPU/Install_Dell_OMSA_Ubuntu.sh " >> /root/dasan_install_log.txt
-bash /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-2_GPU/Install_Dell_OMSA_Ubuntu.sh >> /root/log.txt
+echo -e  "${PROMPT} bash /root/LISR/cuk-gpu-install/Install_Dell_OMSA_Ubuntu.sh " >> /root/dasan_install_log.txt
+bash /root/LISR/cuk-gpu-install/Install_Dell_OMSA_Ubuntu.sh >> /root/log.txt
 
 sleep 10
 
@@ -204,12 +204,12 @@ echo ""
 echo ""
 
 echo ""
-echo -e  "${PROMPT} cat /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-2_GPU/Install_Dell_MSM_Ubuntu.sh  " >> /root/dasan_install_log.txt
-cat /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-2_GPU/Install_Dell_MSM_Ubuntu.sh >> /root/log.txt
+echo -e  "${PROMPT} cat /root/LISR/cuk-gpu-install/Install_Dell_MSM_Ubuntu.sh  " >> /root/dasan_install_log.txt
+cat /root/LISR/cuk-gpu-install/Install_Dell_MSM_Ubuntu.sh >> /root/log.txt
 
 echo ""
-echo -e  "${PROMPT} bash /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-2_GPU/Install_Dell_MSM_Ubuntu.sh  " >> /root/dasan_install_log.txt
-bash /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-2_GPU/Install_Dell_MSM_Ubuntu.sh >> /root/log.txt
+echo -e  "${PROMPT} bash /root/LISR/cuk-gpu-install/Install_Dell_MSM_Ubuntu.sh  " >> /root/dasan_install_log.txt
+bash /root/LISR/cuk-gpu-install/Install_Dell_MSM_Ubuntu.sh >> /root/log.txt
 
 sleep 10
 
