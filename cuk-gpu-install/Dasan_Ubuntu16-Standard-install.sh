@@ -392,8 +392,8 @@ systemctl get-default
 echo " ubuntu desktop 설치 "
 echo ""
 echo -e  "${PROMPT} apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon  " >> /root/dasan_install_log.txt
-echo -e  "${PROMPT} apt-get -y install metacity nautilus gnome-terminal " >> /root/dasan_install_log.txt
-apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal  >> /root/log.txt
+echo -e  "${PROMPT} apt-get -y install metacity nautilus gnome-terminal unity-tweak-tool " >> /root/dasan_install_log.txt
+apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal unity-tweak-tool >> /root/log.txt
 
 tail  /root/log.txt
 
