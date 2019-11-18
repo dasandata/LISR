@@ -45,3 +45,14 @@ echo ""
 echo ""
 echo -e  "${PROMPT} apt-get install -y  rdesktop  " >> /root/dasan_install_log.txt
 apt-get install -y  rdesktop   >> /root/log.txt
+
+
+echo ""
+echo ""
+echo -e  "${PROMPT} ufw allow 8787/tcp  " >> /root/dasan_install_log.txt
+ufw allow 8787/tcp   >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} ufw status  " >> /root/dasan_install_log.txt
+ufw status   >> /root/log.txt
