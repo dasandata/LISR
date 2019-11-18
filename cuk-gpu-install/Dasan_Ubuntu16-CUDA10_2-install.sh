@@ -42,7 +42,7 @@ echo -e  "${PROMPT} pip3 install  numpy   scipy  nose  matplotlib  pandas  keras
 pip3 install  numpy   scipy  nose  matplotlib  pandas  keras oauth2client sklearn >> /root/log.txt
 
 echo ""
-echo -e  "${PROMPT} pip install  --upgrade tensorflow-gpu==1.13.1 " >> /root/dasan_install_log.txt
+echo -e  "${PROMPT} pip install  --upgrade tensorflow-gpu==2.0 " >> /root/dasan_install_log.txt
 pip install  --upgrade tensorflow-gpu==2.0 >> /root/log.txt
 
 echo ""
@@ -50,7 +50,7 @@ echo -e  "${PROMPT} pip install  --upgrade setuptools " >> /root/dasan_install_l
 pip install  --upgrade setuptools >> /root/log.txt
 
 echo ""
-echo -e  "${PROMPT} pip3 install  --upgrade tensorflow-gpu==1.13.1 " >> /root/dasan_install_log.txt
+echo -e  "${PROMPT} pip3 install  --upgrade tensorflow-gpu==2.0 " >> /root/dasan_install_log.txt
 pip3 install  --upgrade tensorflow-gpu==2.0 >> /root/log.txt
 
 echo ""
