@@ -34,16 +34,16 @@ echo -e  "${PROMPT} cat /etc/resolv.conf " >> /root/dasan_install_log.txt
 cat /etc/resolv.conf
 
 echo ""
-echo -e  "${PROMPT} pip install  numpy   scipy  nose  matplotlib  pandas  keras " >> /root/dasan_install_log.txt
-pip install  numpy   scipy  nose  matplotlib  pandas  keras >> /root/log.txt
+echo -e  "${PROMPT} pip install  numpy   scipy  nose  matplotlib  pandas  keras oauth2client sklearn " >> /root/dasan_install_log.txt
+pip install  numpy   scipy  nose  matplotlib  pandas  keras oauth2client sklearn >> /root/log.txt
 
 echo ""
-echo -e  "${PROMPT} pip3 install  numpy   scipy  nose  matplotlib  pandas  keras " >> /root/dasan_install_log.txt
-pip3 install  numpy   scipy  nose  matplotlib  pandas  keras >> /root/log.txt
+echo -e  "${PROMPT} pip3 install  numpy   scipy  nose  matplotlib  pandas  keras oauth2client sklearn " >> /root/dasan_install_log.txt
+pip3 install  numpy   scipy  nose  matplotlib  pandas  keras oauth2client sklearn >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip install  --upgrade tensorflow-gpu==1.13.1 " >> /root/dasan_install_log.txt
-pip install  --upgrade tensorflow-gpu==1.13.1 >> /root/log.txt
+pip install  --upgrade tensorflow-gpu==2.0 >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip install  --upgrade setuptools " >> /root/dasan_install_log.txt
@@ -51,7 +51,7 @@ pip install  --upgrade setuptools >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip3 install  --upgrade tensorflow-gpu==1.13.1 " >> /root/dasan_install_log.txt
-pip3 install  --upgrade tensorflow-gpu==1.13.1 >> /root/log.txt
+pip3 install  --upgrade tensorflow-gpu==2.0 >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} pip3 install  --upgrade setuptools " >> /root/dasan_install_log.txt
