@@ -29,7 +29,7 @@ yes | gdebi rstudio-server-1.2.5019-amd64.deb   >> /root/log.txt
 echo ""
 echo ""
 
-echo " R desktop install "
+echo " R desktop install & XRDP install "
 
 echo ""
 echo ""
@@ -46,11 +46,30 @@ echo ""
 echo -e  "${PROMPT} apt-get install -y  rdesktop  " >> /root/dasan_install_log.txt
 apt-get install -y  rdesktop   >> /root/log.txt
 
+echo ""
+echo ""
+echo -e  "${PROMPT} apt-get install -y xrdp  " >> /root/dasan_install_log.txt
+apt-get install -y xrdp   >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} apt-get install -y dconf-editor  " >> /root/dasan_install_log.txt
+apt-get install -y dconf-editor   >> /root/log.txt
 
 echo ""
 echo ""
 echo -e  "${PROMPT} ufw allow 8787/tcp  " >> /root/dasan_install_log.txt
 ufw allow 8787/tcp   >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} ufw allow 5900/tcp  " >> /root/dasan_install_log.txt
+ufw allow 5900/tcp   >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} ufw allow 3389/tcp  " >> /root/dasan_install_log.txt
+ufw allow 3389/tcp   >> /root/log.txt
 
 echo ""
 echo ""
