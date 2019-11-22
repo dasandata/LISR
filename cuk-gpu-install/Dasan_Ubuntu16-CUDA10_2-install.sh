@@ -90,8 +90,8 @@ echo -e  "${PROMPT} cat /etc/rc.local | sed -n 13p  " >> /root/dasan_install_log
 cat /etc/rc.local | sed -n 13p
 
 echo ""
-echo -e  "${PROMPT} sed -i '14a bash /root/LISR/cuk-gpu-install/Dasan_Ubuntu16-dell-package-install.sh >> /root/dasan_install_log.txt' /etc/rc.local  " >> /root/dasan_install_log.txt
-sed -i '14a bash /root/LISR/cuk-gpu-install/Dasan_Ubuntu16-dell-package-install.sh >> /root/dasan_install_log.txt' /etc/rc.local
+echo -e  "${PROMPT} sed -i '14a bash /root/LISR/cuk-gpu-install/R_install.sh >> /root/dasan_install_log.txt' /etc/rc.local  " >> /root/dasan_install_log.txt
+sed -i '14a bash /root/LISR/cuk-gpu-install/R_install.sh >> /root/dasan_install_log.txt' /etc/rc.local
 
 echo ""
 echo -e  "${PROMPT} cat /etc/rc.local | sed -n 15p " >> /root/dasan_install_log.txt

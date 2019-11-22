@@ -56,3 +56,9 @@ echo ""
 echo ""
 echo -e  "${PROMPT} ufw status  " >> /root/dasan_install_log.txt
 ufw status   >> /root/log.txt
+
+echo "  rc.local 등록 "
+
+echo ""
+echo -e  "${PROMPT} sed -i '/root/d' /etc/rc.local  " >> /root/dasan_install_log.txt
+sed -i '/root/d' /etc/rc.local
