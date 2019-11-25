@@ -471,8 +471,8 @@ echo " 새로운 사용자를 추가하고, sudo 권한을 부여 합니다. "
 echo ""
 echo ""
 
-echo -e  "${PROMPT} NEW_USER=dasan " >> /root/dasan_install_log.txt
-NEW_USER=dasan
+echo -e  "${PROMPT} NEW_USER=mathadmin " >> /root/dasan_install_log.txt
+NEW_USER=mathadmin
 
 echo ""
 echo -e  "${PROMPT} echo ${NEW_USER}" >> /root/dasan_install_log.txt
@@ -482,6 +482,35 @@ echo ""
 echo -e  "${PROMPT} adduser --disabled-login --gecos "" ${NEW_USER} " >> /root/dasan_install_log.txt
 adduser --disabled-login --gecos "" ${NEW_USER}
 echo ""
+
+sleep 5
+
+echo -e  "${PROMPT} NEW_USER1=math01 " >> /root/dasan_install_log.txt
+NEW_USER1=math01
+
+echo ""
+echo -e  "${PROMPT} echo ${NEW_USER1}" >> /root/dasan_install_log.txt
+echo ${NEW_USER1}
+
+echo ""
+echo -e  "${PROMPT} adduser --disabled-login --gecos "" ${NEW_USER1} " >> /root/dasan_install_log.txt
+adduser --disabled-login --gecos "" ${NEW_USER1}
+echo ""
+
+sleep 5
+
+echo -e  "${PROMPT} NEW_USER2=grad01 " >> /root/dasan_install_log.txt
+NEW_USER2=grad01
+
+echo ""
+echo -e  "${PROMPT} echo ${NEW_USER2}" >> /root/dasan_install_log.txt
+echo ${NEW_USER2}
+
+echo ""
+echo -e  "${PROMPT} adduser --disabled-login --gecos "" ${NEW_USER2} " >> /root/dasan_install_log.txt
+adduser --disabled-login --gecos "" ${NEW_USER2}
+echo ""
+
 
 echo " 관리자로 전환될 수 있도록, 새 사용자를 wheel 그룹에 포함. "
 
