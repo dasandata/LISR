@@ -418,25 +418,17 @@ echo -e  "${PROMPT} ufw allow 22/tcp " >> /root/dasan_install_log.txt
 ufw allow 22/tcp
 
 echo ""
-echo -e  "${PROMPT} ufw allow 7777/tcp " >> /root/dasan_install_log.txt
-ufw allow 7777/tcp
-
-echo ""
 echo -e  "${PROMPT} ufw status numbered " >> /root/dasan_install_log.txt
 ufw status numbered
 
 echo ""
-echo " sshd 설정. (기본 포트인 22번을 7777로 변경) "
+echo " sshd 설정. (기본 포트 22번 root 비활성화) "
 echo ""
 
 echo " Ubuntu16 sshd_config "
 echo ""
 echo -e  "${PROMPT} grep 'Root\|Port' /etc/ssh/sshd_config " >> /root/dasan_install_log.txt
 grep 'Root\|Port' /etc/ssh/sshd_config
-
-echo ""
-echo -e  "${PROMPT} perl -pi -e "s/Port 22/Port 7777/g" /etc/ssh/sshd_config " >> /root/dasan_install_log.txt
-perl -pi -e "s/Port 22/Port 7777/g" /etc/ssh/sshd_config
 
 echo ""
 echo -e  "${PROMPT} perl -pi -e "s/PermitRootLogin prohibit-password/PermitRootLogin no/g" /etc/ssh/sshd_config " >> /root/dasan_install_log.txt
