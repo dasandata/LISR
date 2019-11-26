@@ -29,10 +29,14 @@ npm install -g configurable-http-proxy  >> /root/log.txt
 echo ""
 echo ""
 
+sleep 5
+
 echo ""
 echo ""
 echo -e  "${PROMPT} pip3 install optimuspyspark " >> /root/dasan_install_log.txt
 pip3 install optimuspyspark  >> /root/log.txt
+
+sleep 5
 
 echo ""
 echo ""
