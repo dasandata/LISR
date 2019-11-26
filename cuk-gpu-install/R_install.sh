@@ -79,5 +79,16 @@ ufw status   >> /root/log.txt
 echo "  rc.local 등록 "
 
 echo ""
-echo -e  "${PROMPT} sed -i '/root/d' /etc/rc.local  " >> /root/dasan_install_log.txt
-sed -i '/root/d' /etc/rc.local
+echo ""
+echo -e  "${PROMPT} sed -i '15s/R_install.sh/jupyterhub.sh/g' /etc/rc.local  " >> /root/dasan_install_log.txt
+sed -i '15s/R_install.sh/jupyterhub.sh/g' /etc/rc.local
+
+echo ""
+echo ""
+echo -e  "${PROMPT} cat /etc/rc.local | sed -n 15p " >> /root/dasan_install_log.txt
+cat /etc/rc.local | sed -n 15p
+
+echo ""
+echo ""
+echo -e  "${PROMPT} reboot  " >> /root/dasan_install_log.txt
+reboot   >> /root/log.txt
