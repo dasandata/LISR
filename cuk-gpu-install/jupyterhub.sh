@@ -120,16 +120,6 @@ cat /etc/jupyterhub/jupyterhub_config.py | sed -n 360p  >> /root/log.txt
 
 echo ""
 echo ""
-echo -e  "${PROMPT} sed -i '824a c.Authenticator.admin_users = {'UserAdmin'}' /etc/jupyterhub/jupyterhub_config.py   " >> /root/dasan_install_log.txt
-sed -i '824a c.Authenticator.admin_users = {'UserAdmin'}' /etc/jupyterhub/jupyterhub_config.py    >> /root/log.txt
-
-echo ""
-echo ""
-echo -e  "${PROMPT} cat /etc/jupyterhub/jupyterhub_config.py | sed -n 825p  " >> /root/dasan_install_log.txt
-cat /etc/jupyterhub/jupyterhub_config.py | sed -n 825p  >> /root/log.txt
-
-echo ""
-echo ""
 echo -e  "${PROMPT} ufw status  " >> /root/dasan_install_log.txt
 ufw status   >> /root/log.txt
 
