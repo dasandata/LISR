@@ -155,8 +155,8 @@ ufw status   >> /root/log.txt
 
 echo ""
 echo ""
-echo -e  "${PROMPT} mv LISR/cuk-gpu-install/jupyterhub /etc/init.d/  " >> /root/dasan_install_log.txt
-mv LISR/cuk-gpu-install/jupyterhub /etc/init.d/  >> /root/log.txt
+echo -e  "${PROMPT} mv /root/LISR/cuk-gpu-install/jupyterhub /etc/init.d/  " >> /root/dasan_install_log.txt
+mv /root/LISR/cuk-gpu-install/jupyterhub /etc/init.d/  >> /root/log.txt
 
 echo ""
 echo ""
@@ -165,8 +165,8 @@ chmod 755 /etc/init.d/jupyterhub   >> /root/log.txt
 
 echo ""
 echo ""
-echo -e  "${PROMPT} mv LISR/cuk-gpu-install/jupyterhub.service /lib/systemd/system/ " >> /root/dasan_install_log.txt
-mv LISR/cuk-gpu-install/jupyterhub.service /lib/systemd/system/  >> /root/log.txt
+echo -e  "${PROMPT} mv /root/LISR/cuk-gpu-install/jupyterhub.service /lib/systemd/system/ " >> /root/dasan_install_log.txt
+mv /root/LISR/cuk-gpu-install/jupyterhub.service /lib/systemd/system/  >> /root/log.txt
 
 echo ""
 echo ""
