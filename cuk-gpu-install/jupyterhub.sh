@@ -168,6 +168,10 @@ echo ""
 echo -e  "${PROMPT} mv LISR/cuk-gpu-install/jupyterhub.service /lib/systemd/system/ " >> /root/dasan_install_log.txt
 mv LISR/cuk-gpu-install/jupyterhub.service /lib/systemd/system/  >> /root/log.txt
 
+echo ""
+echo ""
+echo -e  "${PROMPT} systemctl daemon-reload " >> /root/dasan_install_log.txt
+systemctl daemon-reload >> /root/log.txt
 
 echo ""
 echo ""
