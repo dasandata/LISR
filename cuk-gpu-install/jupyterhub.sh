@@ -90,8 +90,8 @@ jupyterhub --generate-config -f /etc/jupyterhub/jupyterhub_config.py   >> /root/
 
 echo ""
 echo ""
-echo -e  "${PROMPT} sed -i '356a c.JupyterHub.port = 80' /etc/jupyterhub/jupyterhub_config.py   " >> /root/dasan_install_log.txt
-sed -i '356a c.JupyterHub.port = 80' /etc/jupyterhub/jupyterhub_config.py    >> /root/log.txt
+echo -e  "${PROMPT} sed -i '356a c.JupyterHub.port = 8000' /etc/jupyterhub/jupyterhub_config.py   " >> /root/dasan_install_log.txt
+sed -i '356a c.JupyterHub.port = 8000' /etc/jupyterhub/jupyterhub_config.py    >> /root/log.txt
 
 echo ""
 echo ""
@@ -117,6 +117,28 @@ echo ""
 echo ""
 echo -e  "${PROMPT} cat /etc/jupyterhub/jupyterhub_config.py | sed -n 360p  " >> /root/dasan_install_log.txt
 cat /etc/jupyterhub/jupyterhub_config.py | sed -n 360p  >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} sed -i '384a c.JupyterHub.proxy_class = 'jupyterhub.proxy.ConfigurableHTTPProxy'' /etc/jupyterhub/jupyterhub_config.py   " >> /root/dasan_install_log.txt
+sed -i '384a c.JupyterHub.proxy_class = 'jupyterhub.proxy.ConfigurableHTTPProxy'' /etc/jupyterhub/jupyterhub_config.py   >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} cat /etc/jupyterhub/jupyterhub_config.py | sed -n 385p  " >> /root/dasan_install_log.txt
+cat /etc/jupyterhub/jupyterhub_config.py | sed -n 385p   >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} sed -i '824a c.Authenticator.admin_users = {"sonic","mathadmin"}' /etc/jupyterhub/jupyterhub_config.py   " >> /root/dasan_install_log.txt
+sed -i '824a c.Authenticator.admin_users = {"sonic","mathadmin"}' /etc/jupyterhub/jupyterhub_config.py    >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} cat /etc/jupyterhub/jupyterhub_config.py | sed -n 825p  " >> /root/dasan_install_log.txt
+cat /etc/jupyterhub/jupyterhub_config.py | sed -n 825p  >> /root/log.txt
+
+
 
 echo ""
 echo ""
