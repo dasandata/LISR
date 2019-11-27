@@ -170,8 +170,18 @@ mv /root/LISR/cuk-gpu-install/jupyterhub.service /lib/systemd/system/  >> /root/
 
 echo ""
 echo ""
+echo -e  "${PROMPT} chmod 777 /lib/systemd/system/jupyterhub.service  " >> /root/dasan_install_log.txt
+chmod 777 /lib/systemd/system/jupyterhub.service  >> /root/log.txt
+
+echo ""
+echo ""
 echo -e  "${PROMPT} systemctl daemon-reload " >> /root/dasan_install_log.txt
 systemctl daemon-reload >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} systemctl enable jupyterhub.service  " >> /root/dasan_install_log.txt
+systemctl enable jupyterhub.service  >> /root/log.txt
 
 echo ""
 echo ""
