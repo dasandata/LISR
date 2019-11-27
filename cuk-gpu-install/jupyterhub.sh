@@ -138,8 +138,6 @@ echo ""
 echo -e  "${PROMPT} cat /etc/jupyterhub/jupyterhub_config.py | sed -n 825p  " >> /root/dasan_install_log.txt
 cat /etc/jupyterhub/jupyterhub_config.py | sed -n 825p  >> /root/log.txt
 
-
-
 echo ""
 echo ""
 echo -e  "${PROMPT} ufw status  " >> /root/dasan_install_log.txt
@@ -149,6 +147,27 @@ echo ""
 echo ""
 echo -e  "${PROMPT} ufw allow 8000/tcp " >> /root/dasan_install_log.txt
 ufw allow 8000/tcp   >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} ufw status  " >> /root/dasan_install_log.txt
+ufw status   >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} mv LISR/cuk-gpu-install/jupyterhub /etc/init.d/  " >> /root/dasan_install_log.txt
+mv LISR/cuk-gpu-install/jupyterhub /etc/init.d/  >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} chmod 755 /etc/init.d/jupyterhub  " >> /root/dasan_install_log.txt
+chmod 755 /etc/init.d/jupyterhub   >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} mv LISR/cuk-gpu-install/jupyterhub.service /lib/systemd/system/ " >> /root/dasan_install_log.txt
+mv LISR/cuk-gpu-install/jupyterhub.service /lib/systemd/system/  >> /root/log.txt
+
 
 echo ""
 echo ""
