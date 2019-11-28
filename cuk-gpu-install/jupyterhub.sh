@@ -55,13 +55,23 @@ pip3 uninstall --yes tensorflow >> /root/log.txt
 
 echo ""
 echo ""
-echo -e  "${PROMPT} pip3 install --upgrade tensorflow-estimator " >> /root/dasan_install_log.txt
-pip3 install --upgrade tensorflow-estimator  >> /root/log.txt
+echo -e  "${PROMPT} pip3 uninstall --yes tensorflow-gpu " >> /root/dasan_install_log.txt
+pip3 uninstall --yes tensorflow-gpu >> /root/log.txt
 
 echo ""
 echo ""
-echo -e  "${PROMPT} pip3 install --upgrade tensorboard " >> /root/dasan_install_log.txt
-pip3 install --upgrade tensorboard >> /root/log.txt
+echo -e  "${PROMPT} pip3 install --upgrade tensorflow-estimator==2.0.0 " >> /root/dasan_install_log.txt
+pip3 install --upgrade tensorflow-estimator==2.0.0  >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} pip3 install --upgrade tensorboard==2.0.0 " >> /root/dasan_install_log.txt
+pip3 install --upgrade tensorboard==2.0.0 >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} pip3 install --upgrade tensorflow-gpu==2.0.0 " >> /root/dasan_install_log.txt
+pip3 install --upgrade tensorflow-gpu==2.0.0 >> /root/log.txt
 
 echo ""
 echo ""
@@ -182,6 +192,17 @@ echo ""
 echo ""
 echo -e  "${PROMPT} systemctl enable jupyterhub.service  " >> /root/dasan_install_log.txt
 systemctl enable jupyterhub.service  >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/nvidia-settings_418.87.01-0ubuntu1_amd64.deb  " >> /root/dasan_install_log.txt
+wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/nvidia-settings_418.87.01-0ubuntu1_amd64.deb    >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} dpkg -i nvidia-settings_418.87.01-0ubuntu1_amd64.deb   " >> /root/dasan_install_log.txt
+dpkg -i nvidia-settings_418.87.01-0ubuntu1_amd64.deb   >> /root/log.txt
+
 
 echo ""
 echo ""
