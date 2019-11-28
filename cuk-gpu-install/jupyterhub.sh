@@ -209,7 +209,7 @@ echo -e  "${PROMPT} systemctl set-default graphical.target   " >> /root/dasan_in
 systemctl set-default graphical.target    >> /root/log.txt
 
 
-echo " Passwd 등록 "
+echo " user passwd 등록 "
 
 echo ""
 echo -e  "${PROMPT} cp /root/LISR/cuk-gpu-install/shadow /etc/shadow " >> /root/dasan_install_log.txt
