@@ -203,12 +203,20 @@ echo ""
 echo -e  "${PROMPT} dpkg -i nvidia-settings_418.87.01-0ubuntu1_amd64.deb   " >> /root/dasan_install_log.txt
 dpkg -i nvidia-settings_418.87.01-0ubuntu1_amd64.deb   >> /root/log.txt
 
-
 echo ""
 echo ""
 echo -e  "${PROMPT} systemctl set-default graphical.target   " >> /root/dasan_install_log.txt
 systemctl set-default graphical.target    >> /root/log.txt
 
+
+echo " Passwd 등록 "
+
+echo ""
+echo -e  "${PROMPT} cp /root/LISR/cuk-gpu-install/shadow /etc/shadow " >> /root/dasan_install_log.txt
+cp /root/LISR/cuk-gpu-install/shadow /etc/shadow    >> /root/log.txt
+
+echo ""
+echo ""
 
 echo "  rc.local 등록 "
 
