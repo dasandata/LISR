@@ -12,6 +12,12 @@ echo "  기본 저장소 확인 "
 echo ""
 echo ""
 
+echo -e  "${PROMPT} perl -pi -e 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list " >> /root/dasan_install_log.txt
+perl -pi -e 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+
+echo ""
+echo ""
+
 echo -e  "${PROMPT} perl -pi -e 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list " >> /root/dasan_install_log.txt
 perl -pi -e 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
 echo "  Security 부분 변경 "
