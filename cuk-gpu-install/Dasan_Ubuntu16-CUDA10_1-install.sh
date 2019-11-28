@@ -162,31 +162,10 @@ echo ""
 
 echo -e  "==================== Cudnn 7 install ===================="
 
-echo ""
-echo ""
-
-echo ""
-echo -e  "${PROMPT} mount -t nfs 192.168.0.5:file /mnt " >> /root/dasan_install_log.txt
-mount -t nfs 192.168.0.5:file /mnt
-
-echo ""
-echo -e  "${PROMPT} mkdir /root/cudnn7 " >> /root/dasan_install_log.txt
-mkdir /root/cudnn7
-
-echo ""
-echo -e  "${PROMPT} cp /mnt/2_windows\ 관련\ \(서울대\)/windows_cuda_file/cudnn-10.1-linux-x64-v7.6.4.38.tgz /root/cudnn7 " >> /root/dasan_install_log.txt
-cp /mnt/2_windows\ 관련\ \(서울대\)/windows_cuda_file/cudnn-10.1-linux-x64-v7.6.4.38.tgz /root/cudnn7
-
-sleep 20
 
 echo ""
 echo -e  "${PROMPT} cd  /root/cudnn7 " >> /root/dasan_install_log.txt
 cd  /root/cudnn7
-
-echo ""
-
-echo -e  "${PROMPT} umount /mnt #마운트 해제 " >> /root/dasan_install_log.txt
-umount /mnt #마운트 해제
 
 echo ""
 echo -e  "${PROMPT} pwd " >> /root/dasan_install_log.txt
