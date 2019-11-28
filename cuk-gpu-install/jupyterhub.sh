@@ -60,13 +60,13 @@ pip3 uninstall --yes tensorflow-gpu >> /root/log.txt
 
 echo ""
 echo ""
-echo -e  "${PROMPT} pip3 install --upgrade tensorflow-estimator==2.0.0 " >> /root/dasan_install_log.txt
-pip3 install --upgrade tensorflow-estimator==2.0.0  >> /root/log.txt
+echo -e  "${PROMPT} pip3 install --upgrade tensorflow-estimator==2.0.1 " >> /root/dasan_install_log.txt
+pip3 install --upgrade tensorflow-estimator==2.0.1  >> /root/log.txt
 
 echo ""
 echo ""
-echo -e  "${PROMPT} pip3 install --upgrade tensorboard==2.0.0 " >> /root/dasan_install_log.txt
-pip3 install --upgrade tensorboard==2.0.0 >> /root/log.txt
+echo -e  "${PROMPT} pip3 install --upgrade tensorboard==2.0.2 " >> /root/dasan_install_log.txt
+pip3 install --upgrade tensorboard==2.0.2 >> /root/log.txt
 
 echo ""
 echo ""
