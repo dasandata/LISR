@@ -79,3 +79,13 @@ echo ""
 echo ""
 echo -e  "${PROMPT} ls -l /home  " >> /root/dasan_install_log.txt
 ls -l /home  >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} cp /root/LISR/cuk-gpu-install/copy_launcher.py /tmp/ " >> /root/dasan_install_log.txt
+cp /root/LISR/cuk-gpu-install/copy_launcher.py /tmp/  >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} cp /root/LISR/cuk-gpu-install/saved_launcher.txt\  /tmp/  " >> /root/dasan_install_log.txt
+cp /root/LISR/cuk-gpu-install/saved_launcher.txt\  /tmp/  >> /root/log.txt
