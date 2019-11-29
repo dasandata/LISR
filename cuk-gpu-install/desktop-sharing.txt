@@ -1,6 +1,26 @@
 
 ### ssh -XYC user@xxx.xxx.xxx.xxx
 
+### User Password
+
+=======================================================
+
+### Admin User
+
+### root      / rmadbdtngkr2018 (금융수학2018)
+### mathadmin / rmadbdtngkr2018 (금융수학2018)
+### sonic     / 123456qwer!
+
+========================================================
+
+### User
+
+### math01 / math01
+### grad01 / grad01
+
+========================================================
+
+
 ### Ubuntu-Desktop dconf & sharing  user command
 
 
@@ -16,3 +36,5 @@ gsettings set org.gnome.Vino enabled true
 cd /tmp
 
 python3 copy_launcher.py  set
+
+cd
