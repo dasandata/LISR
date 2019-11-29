@@ -1,0 +1,18 @@
+
+### ssh -XYC user@xxx.xxx.xxx.xxx
+
+### Ubuntu-Desktop dconf & sharing  user command
+
+
+gsettings set org.gnome.Vino prompt-enabled false
+gsettings set org.gnome.Vino require-encryption false
+
+gsettings set org.gnome.Vino enabled true
+
+
+
+### desktop i-con  user command
+
+cd /tmp
+
+python3 copy_launcher.py  set
