@@ -166,86 +166,28 @@ echo ""
 echo ""
 
 echo ""
-echo -e  "${PROMPT} mount -t nfs 192.168.0.5:file /mnt " >> /root/dasan_install_log.txt
-mount -t nfs 192.168.0.5:file /mnt
+echo -e  "${PROMPT} wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb " >> /root/dasan_install_log.txt
+wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb
 
 echo ""
-echo -e  "${PROMPT} mkdir /root/cudnn7 " >> /root/dasan_install_log.txt
-mkdir /root/cudnn7
+echo -e  "${PROMPT} wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/libcudnn7-dev_7.6.5.32-1+cuda10.0_amd64.deb " >> /root/dasan_install_log.txt
+wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/libcudnn7-dev_7.6.5.32-1+cuda10.0_amd64.deb
 
 echo ""
-echo -e  "${PROMPT} cp /mnt/2_windows\ 관련\ \(서울대\)/windows_cuda_file/cudnn-10.0-linux-x64-v7.* /root/cudnn7 " >> /root/dasan_install_log.txt
-cp /mnt/2_windows\ 관련\ \(서울대\)/windows_cuda_file/cudnn-10.0-linux-x64-v7.* /root/cudnn7
-
-sleep 5
+echo -e  "${PROMPT} dpkg -i libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb  " >> /root/dasan_install_log.txt
+dpkg -i libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb
 
 echo ""
-echo -e  "${PROMPT} cd  /root/cudnn7 " >> /root/dasan_install_log.txt
-cd  /root/cudnn7
+echo -e  "${PROMPT} dpkg -i libcudnn7-dev_7.6.5.32-1+cuda10.0_amd64.deb  " >> /root/dasan_install_log.txt
+dpkg -i libcudnn7-dev_7.6.5.32-1+cuda10.0_amd64.deb
 
 echo ""
-echo -e  "${PROMPT} umount /mnt #마운트 해제 " >> /root/dasan_install_log.txt
-umount /mnt #마운트 해제
+echo -e  "${PROMPT} apt-get update " >> /root/dasan_install_log.txt
+apt-get update >> /root/log.txt
 
 echo ""
-echo -e  "${PROMPT} pwd " >> /root/dasan_install_log.txt
-pwd
-
-echo ""
-echo -e  "${PROMPT} ls " >> /root/dasan_install_log.txt
-ls
-
-echo ""
-echo -e  "${PROMPT} tar xvzf cudnn-10.0-linux-x64-v7.3.0.29.tgz " >> /root/dasan_install_log.txt
-tar xvzf cudnn-10.0-linux-x64-v7.3.0.29.tgz
-
-echo ""
-echo -e  "${PROMPT} tar xvzf cudnn-10.0-linux-x64-v7.3.1.20.tgz " >> /root/dasan_install_log.txt
-tar xvzf cudnn-10.0-linux-x64-v7.3.1.20.tgz
-
-echo ""
-echo -e  "${PROMPT} tar xvzf cudnn-10.0-linux-x64-v7.4.1.5.tgz " >> /root/dasan_install_log.txt
-tar xvzf cudnn-10.0-linux-x64-v7.4.1.5.tgz
-
-echo ""
-echo -e  "${PROMPT} tar xvzf cudnn-10.0-linux-x64-v7.4.2.24.tgz " >> /root/dasan_install_log.txt
-tar xvzf cudnn-10.0-linux-x64-v7.4.2.24.tgz
-
-echo ""
-echo -e  "${PROMPT} tar xvzf cudnn-10.0-linux-x64-v7.5.0.56.tgz " >> /root/dasan_install_log.txt
-tar xvzf cudnn-10.0-linux-x64-v7.5.0.56.tgz
-
-echo ""
-echo -e  "${PROMPT} ls -l cuda/include/ " >> /root/dasan_install_log.txt
-ls -l cuda/include/
-
-echo ""
-echo -e  "${PROMPT} ls -l cuda/lib64/ " >> /root/dasan_install_log.txt
-ls -l cuda/lib64/
-
-echo ""
-echo -e  "${PROMPT} chmod  a+r  cuda/include/* " >> /root/dasan_install_log.txt
-chmod  a+r  cuda/include/*
-
-echo ""
-echo -e  "${PROMPT} chmod  a+r  cuda/lib64/* " >> /root/dasan_install_log.txt
-chmod  a+r  cuda/lib64/*
-
-echo ""
-echo -e  "${PROMPT} cp  -rp  cuda/include/cudnn.h  /usr/local/cuda-10.0/include/ " >> /root/dasan_install_log.txt
-cp  -rp  cuda/include/cudnn.h  /usr/local/cuda-10.0/include/
-
-echo ""
-echo -e  "${PROMPT} cp  -rp  cuda/lib64/libcudnn*  /usr/local/cuda-10.0/lib64/ " >> /root/dasan_install_log.txt
-cp  -rp  cuda/lib64/libcudnn*  /usr/local/cuda-10.0/lib64/
-
-echo ""
-echo -e  "${PROMPT} ls -l /usr/local/cuda-10.0/lib64/libcudnn* " >> /root/dasan_install_log.txt
-ls -l /usr/local/cuda-10.0/lib64/libcudnn*
-
-echo ""
-echo -e  "${PROMPT} cd ~ " >> /root/dasan_install_log.txt
-cd ~
+echo -e  "${PROMPT} apt-get install -y libcublas-dev " >> /root/dasan_install_log.txt
+apt-get install -y libcublas-dev >> /root/log.txt
 
 echo ""
 echo ""
@@ -273,8 +215,8 @@ echo -e  "${PROMPT} which  python3 " >> /root/dasan_install_log.txt
 which  python3
 
 echo ""
-echo -e  "${PROMPT} apt-get install -y  python-pip python3-pip  python3-tk " >> /root/dasan_install_log.txt
-apt-get install -y  python-pip python3-pip  python3-tk >> /root/log.txt
+echo -e  "${PROMPT} apt-get install -y  python-pip python3-pip python-tk python3-tk " >> /root/dasan_install_log.txt
+apt-get install -y  python-pip python3-pip python-tk python3-tk >> /root/log.txt
 
 echo ""
 echo ""
