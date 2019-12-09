@@ -183,11 +183,11 @@ dpkg -i libcudnn7-dev_7.6.5.32-1+cuda10.0_amd64.deb
 
 echo ""
 echo -e  "${PROMPT} apt-get update " >> /root/dasan_install_log.txt
-apt-get update
+apt-get update >> /root/log.txt
 
 echo ""
 echo -e  "${PROMPT} apt-get install -y libcublas-dev " >> /root/dasan_install_log.txt
-apt-get install -y libcublas-dev
+apt-get install -y libcublas-dev >> /root/log.txt
 
 echo ""
 echo ""
