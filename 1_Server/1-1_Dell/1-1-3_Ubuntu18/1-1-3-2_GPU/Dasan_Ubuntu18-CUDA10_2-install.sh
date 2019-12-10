@@ -71,12 +71,8 @@ echo -e  "${PROMPT} sed -i '/root/d' /etc/rc.local  " >> /root/dasan_install_log
 sed -i '/root/d' /etc/rc.local
 
 echo ""
-echo -e  "${PROMPT} sed -i '1a nvidia-smi -pm 1' /etc/rc.local   " >> /root/dasan_install_log.txt
-sed -i '1a nvidia-smi -pm 1' /etc/rc.local
-
-echo ""
-echo -e  "${PROMPT} cat /etc/rc.local | sed -n 2p " >> /root/dasan_install_log.txt
-cat /etc/rc.local | sed -n 2p
+echo -e  "${PROMPT} systemctl enable nvidia-persistenced " >> /root/dasan_install_log.txt
+systemctl enable nvidia-persistenced
 
 echo ""
 echo -e  "${PROMPT} sed -i '1a bash /root/LISR/1_Server/1-1_Dell/1-1-3_Ubuntu18/1-1-3-2_GPU/Dasan_Ubuntu18-dell-package-Install.sh >> /root/dasan_install_log.txt' /etc/rc.local   " >> /root/dasan_install_log.txt

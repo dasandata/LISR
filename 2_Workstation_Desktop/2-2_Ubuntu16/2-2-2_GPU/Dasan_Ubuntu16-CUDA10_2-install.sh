@@ -80,12 +80,8 @@ echo -e  "${PROMPT} sed -i '/root/d' /etc/rc.local  " >> /root/dasan_install_log
 sed -i '/root/d' /etc/rc.local
 
 echo ""
-echo -e  "${PROMPT} sed -i '13a nvidia-smi -pm 1' /etc/rc.local  " >> /root/dasan_install_log.txt
-sed -i '13a nvidia-smi -pm 1' /etc/rc.local
-
-echo ""
-echo -e  "${PROMPT} cat /etc/rc.local | sed -n 13p  " >> /root/dasan_install_log.txt
-cat /etc/rc.local | sed -n 13p
+echo -e  "${PROMPT} systemctl enable nvidia-persistenced " >> /root/dasan_install_log.txt
+systemctl enable nvidia-persistenced
 
 echo ""
 echo ""

@@ -78,19 +78,15 @@ echo -e  "\033[1;34m${PROMPT} sed -i '/root/d' /etc/rc.d/rc.local   \033[0m" >> 
 sed -i '/root/d' /etc/rc.d/rc.local
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} sed -i '12a nvidia-smi -pm 1' /etc/rc.d/rc.local   \033[0m" >> /root/dasan_install_log.txt
-sed -i '12a nvidia-smi -pm 1' /etc/rc.d/rc.local
+echo -e  "\033[1;34m${PROMPT} systemctl enable nvidia-persistenced  \033[0m" >> /root/dasan_install_log.txt
+systemctl enable nvidia-persistenced
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} cat /etc/rc.d/rc.local  | sed -n 13p  \033[0m" >> /root/dasan_install_log.txt
+echo -e  "\033[1;34m${PROMPT} sed -i '12a bash /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Dasan-dell-install.sh >> /root/dasan_install_log.txt' /etc/rc.d/rc.local   \033[0m" >> /root/dasan_install_log.txt
+sed -i '12a bash /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Dasan-dell-install.sh >> /root/dasan_install_log.txt' /etc/rc.d/rc.local
+
+echo -e  "\033[1;34m${PROMPT} cat /etc/rc.d/rc.local  | sed -n 13p \033[0m" >> /root/dasan_install_log.txt
 cat /etc/rc.d/rc.local  | sed -n 13p
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} sed -i '13a bash /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Dasan-dell-install.sh >> /root/dasan_install_log.txt' /etc/rc.d/rc.local   \033[0m" >> /root/dasan_install_log.txt
-sed -i '13a bash /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Dasan-dell-install.sh >> /root/dasan_install_log.txt' /etc/rc.d/rc.local
-
-echo -e  "\033[1;34m${PROMPT} cat /etc/rc.d/rc.local  | sed -n 14p \033[0m" >> /root/dasan_install_log.txt
-cat /etc/rc.d/rc.local  | sed -n 14p
 
 echo ""
 echo ""

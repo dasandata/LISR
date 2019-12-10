@@ -82,20 +82,16 @@ echo -e  "${PROMPT} sed -i '/root/d' /etc/rc.local  " >> /root/dasan_install_log
 sed -i '/root/d' /etc/rc.local
 
 echo ""
-echo -e  "${PROMPT} sed -i '13a nvidia-smi -pm 1' /etc/rc.local  " >> /root/dasan_install_log.txt
-sed -i '13a nvidia-smi -pm 1' /etc/rc.local
+echo -e  "${PROMPT} systemctl enable nvidia-persistenced  " >> /root/dasan_install_log.txt
+systemctl enable nvidia-persistenced
 
 echo ""
-echo -e  "${PROMPT} cat /etc/rc.local | sed -n 13p  " >> /root/dasan_install_log.txt
-cat /etc/rc.local | sed -n 13p
+echo -e  "${PROMPT} sed -i '13a bash /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-2_GPU/Dasan_Ubuntu16-dell-package-install.sh >> /root/dasan_install_log.txt' /etc/rc.local  " >> /root/dasan_install_log.txt
+sed -i '13a bash /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-2_GPU/Dasan_Ubuntu16-dell-package-install.sh >> /root/dasan_install_log.txt' /etc/rc.local
 
 echo ""
-echo -e  "${PROMPT} sed -i '14a bash /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-2_GPU/Dasan_Ubuntu16-dell-package-install.sh >> /root/dasan_install_log.txt' /etc/rc.local  " >> /root/dasan_install_log.txt
-sed -i '14a bash /root/LISR/1_Server/1-1_Dell/1-1-2_Ubuntu16/1-1-2-2_GPU/Dasan_Ubuntu16-dell-package-install.sh >> /root/dasan_install_log.txt' /etc/rc.local
-
-echo ""
-echo -e  "${PROMPT} cat /etc/rc.local | sed -n 15p " >> /root/dasan_install_log.txt
-cat /etc/rc.local | sed -n 15p
+echo -e  "${PROMPT} cat /etc/rc.local | sed -n 14p " >> /root/dasan_install_log.txt
+cat /etc/rc.local | sed -n 14p
 
 
 echo ""
