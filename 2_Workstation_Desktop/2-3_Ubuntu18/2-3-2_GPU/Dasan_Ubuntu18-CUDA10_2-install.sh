@@ -67,12 +67,12 @@ echo ""
 
 echo "  rc.local 등록 "
 echo ""
-echo -e  "${PROMPT} sed -i '/root/d' /etc/rc.local  " >> /root/dasan_install_log.txt
-sed -i '/root/d' /etc/rc.local
+echo ""
+echo -e  "${PROMPT} sed -i '2s/Dasan_Ubuntu18-CUDA10_2-install.sh/Dasan_Ubuntu18-R_install.sh/g' /etc/rc.local  " >> /root/dasan_install_log.txt
+sed -i '2s/Dasan_Ubuntu18-CUDA10_2-install.sh/Dasan_Ubuntu18-R_install.sh/g' /etc/rc.local
 
 echo ""
 echo ""
-
 echo -e  "${PROMPT} systemctl enable nvidia-persistenced " >> /root/dasan_install_log.txt
 systemctl enable nvidia-persistenced
 
