@@ -166,3 +166,18 @@ echo ""
 echo ""
 
 echo -e  "\033[1;32m"==================== 로그아웃 다시 로그린 후 ml av 명령 입력 ===================="\033[0m"
+
+
+echo "  rc.local 등록 "
+echo -e  "\033[1;34m${PROMPT} sed -i '14s/Dasan_Ubuntu16-Module-CUDA-install.sh/Dasan_Ubuntu16-dell-package-install.sh/g' /etc/rc.local  \033[0m" >> /root/dasan_install_log.txt
+sed -i '14s/Dasan_Ubuntu16-Module-CUDA-install.sh/Dasan_Ubuntu16-dell-package-install.sh/g' /etc/rc.local
+
+echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 14p \033[0m" >> /root/dasan_install_log.txt
+cat /etc/rc.local | sed -n 14p
+
+echo ""
+echo ""
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} reboot  \033[0m" >> /root/dasan_install_log.txt
+reboot

@@ -43,8 +43,8 @@ echo ""
 echo ""
 
 echo "  rc.local 등록 "
-echo -e  "\033[1;34m${PROMPT} sed -i '14s/Dasan_Ubuntu16-nouveau.sh/Dasan_Ubuntu16-CUDA10_1-install.sh/g' /etc/rc.local  \033[0m" >> /root/dasan_install_log.txt
-sed -i '14s/Dasan_Ubuntu16-nouveau.sh/Dasan_Ubuntu16-CUDA10_1-install.sh/g' /etc/rc.local
+echo -e  "\033[1;34m${PROMPT} sed -i '14s/Dasan_Ubuntu16-nouveau.sh/Dasan_Ubuntu16-GPU-LG-install.sh/g' /etc/rc.local  \033[0m" >> /root/dasan_install_log.txt
+sed -i '14s/Dasan_Ubuntu16-nouveau.sh/Dasan_Ubuntu16-GPU-LG-install.sh/g' /etc/rc.local
 
 echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 14p \033[0m" >> /root/dasan_install_log.txt
 cat /etc/rc.local | sed -n 14p

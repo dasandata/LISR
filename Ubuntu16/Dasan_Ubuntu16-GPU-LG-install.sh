@@ -272,3 +272,21 @@ cd ~/NVIDIA_CUDA-10.0_Samples
 echo ""
 echo -e  "\033[1;34m${PROMPT} time make -j$(grep process /proc/cpuinfo | wc -l) \033[0m" >> Dasan_command.txt
 time make -j$(grep process /proc/cpuinfo | wc -l)
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} systemctl enable nvidia-persistenced \033[0m" >> Dasan_command.txt
+systemctl enable nvidia-persistenced
+
+echo "  rc.local 등록 "
+echo -e  "\033[1;34m${PROMPT} sed -i '14s/Dasan_Ubuntu16-GPU-LG-install.sh/Dasan_Ubuntu16-Module-CUDA-install.sh/g' /etc/rc.local  \033[0m" >> /root/dasan_install_log.txt
+sed -i '14s/Dasan_Ubuntu16-GPU-LG-install.sh/Dasan_Ubuntu16-Module-CUDA-install.sh/g' /etc/rc.local
+
+echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local | sed -n 14p \033[0m" >> /root/dasan_install_log.txt
+cat /etc/rc.local | sed -n 14p
+
+echo ""
+echo ""
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} reboot  \033[0m" >> /root/dasan_install_log.txt
+reboot
