@@ -43,9 +43,9 @@ echo ""
 echo "  기본 유틸 설치. "
 echo -e  "\033[1;34m${PROMPT} apt-get install -y vim nfs-common rdate xauth firefox gcc make ipmitool \033[0m" >> /root/dasan_install_log.txt
 echo -e  "\033[1;34m${PROMPT} apt-get install -y locate htop tmux git wget \033[0m" >> /root/dasan_install_log.txt
-echo -e  "\033[1;34m${PROMPT} apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools \033[0m" >> /root/dasan_install_log.txt
+echo -e  "\033[1;34m${PROMPT} apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools git-lfs \033[0m" >> /root/dasan_install_log.txt
 apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget ipmitool >> /root/dasan_install_log.txt 2>&1
-apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools >> /root/dasan_install_log.txt 2>&1
+apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools git-lfs >> /root/dasan_install_log.txt 2>&1
 
 echo ""
 echo ""
@@ -354,8 +354,8 @@ systemctl get-default
 echo " ubuntu desktop 설치 "
 echo ""
 echo -e  "\033[1;34m${PROMPT} apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon  \033[0m" >> /root/dasan_install_log.txt
-echo -e  "\033[1;34m${PROMPT} apt-get -y install metacity nautilus gnome-terminal \033[0m" >> /root/dasan_install_log.txt
-apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal  >> dasan_log_install_ubuntu-desktop.txt  2>&1
+echo -e  "\033[1;34m${PROMPT} apt-get -y install metacity nautilus gnome-terminal dconf-editor \033[0m" >> /root/dasan_install_log.txt
+apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal dconf-editor >> dasan_log_install_ubuntu-desktop.txt  2>&1
 
 tail  dasan_log_install_ubuntu-desktop.txt
 

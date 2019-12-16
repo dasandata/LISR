@@ -43,10 +43,10 @@ echo ""
 
 echo "  기본 유틸 설치. "
 echo -e  "${PROMPT} apt-get install -y vim nfs-common rdate xauth firefox gcc make net-tools ipmitool " >> /root/dasan_install_log.txt
-echo -e  "${PROMPT} apt-get install -y locate htop tmux git wget " >> /root/dasan_install_log.txt
+echo -e  "${PROMPT} apt-get install -y locate htop tmux git wget git-lfs " >> /root/dasan_install_log.txt
 echo -e  "${PROMPT} apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl " >> /root/dasan_install_log.txt
 
-apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget net-tools ipmitool >> /root/log.txt
+apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget net-tools ipmitool git-lfs >> /root/log.txt
 apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl >> /root/log.txt
 
 tail -5 /root/log.txt

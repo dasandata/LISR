@@ -42,9 +42,9 @@ echo ""
 
 echo "  기본 유틸 설치. "
 echo -e  "${PROMPT} apt-get install -y vim nfs-common rdate xauth firefox gcc make ipmitool " >> /root/dasan_install_log.txt
-echo -e  "${PROMPT} apt-get install -y locate htop tmux git wget " >> /root/dasan_install_log.txt
+echo -e  "${PROMPT} apt-get install -y locate htop tmux git wget git-lfs " >> /root/dasan_install_log.txt
 echo -e  "${PROMPT} apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools " >> /root/dasan_install_log.txt
-apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget ipmitool >> /root/log.txt
+apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget ipmitool git-lfs >> /root/log.txt
 apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools >> /root/log.txt
 
 echo ""
@@ -354,8 +354,8 @@ systemctl get-default
 echo " ubuntu desktop 설치 "
 echo ""
 echo -e  "${PROMPT} apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon  " >> /root/dasan_install_log.txt
-echo -e  "${PROMPT} apt-get -y install metacity nautilus gnome-terminal " >> /root/dasan_install_log.txt
-apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal  >> /root/log.txt
+echo -e  "${PROMPT} apt-get -y install metacity nautilus gnome-terminal dconf-editor " >> /root/dasan_install_log.txt
+apt-get -y install ubuntu-desktop gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal dconf-editor >> /root/log.txt
 
 tail  /root/log.txt
 

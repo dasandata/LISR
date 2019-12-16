@@ -20,10 +20,10 @@ echo ""
 
 echo -e  "${PROMPT} yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig ipmitool " >> /root/dasan_install_log.txt
 echo -e  "${PROMPT} yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ " >> /root/dasan_install_log.txt
-echo -e  "${PROMPT} yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel " >> /root/dasan_install_log.txt
+echo -e  "${PROMPT} yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs " >> /root/dasan_install_log.txt
 yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig ipmitool >> /root/log.txt
 yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ >> /root/log.txt
-yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel >> /root/log.txt
+yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs >> /root/log.txt
 
 echo ""
 
