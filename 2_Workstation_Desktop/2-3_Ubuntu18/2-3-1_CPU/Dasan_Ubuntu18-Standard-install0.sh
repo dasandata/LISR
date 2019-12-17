@@ -335,8 +335,8 @@ systemctl get-default
 
 echo " ubuntu desktop 설치 "
 echo ""
-echo -e  "${PROMPT} apt-get -y install ubuntu-desktop dconf-editor " >> /root/dasan_install_log.txt
-apt-get -y install ubuntu-desktop dconf-editor >> /root/log.txt
+echo -e  "${PROMPT} apt-get -y install ubuntu-desktop dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal " >> /root/dasan_install_log.txt
+apt-get -y install ubuntu-desktop dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> /root/log.txt
 
 tail  /root/log.txt
 
