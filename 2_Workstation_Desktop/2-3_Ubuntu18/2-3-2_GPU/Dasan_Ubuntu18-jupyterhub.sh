@@ -178,6 +178,39 @@ echo ""
 echo -e  "${PROMPT} R CMD BATCH /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/r_jupyterhub.R " >> /root/dasan_install_log.txt
 R CMD BATCH /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/r_jupyterhub.R >> /root/log.txt
 
+echo ""
+echo ""
+
+echo " desktop sharing NetworkManager & pycharm install "
+
+echo ""
+echo ""
+echo -e  "${PROMPT} snap install pycharm-community --classic  " >> /root/dasan_install_log.txt
+snap install pycharm-community --classic  >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} sed -i "5s/networkd/NetworkManager/" /etc/netplan/01-netcfg.yaml " >> /root/dasan_install_log.txt
+sed -i "5s/networkd/NetworkManager/" /etc/netplan/01-netcfg.yaml  >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} cp /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/Dasan_Ubuntu18-sharing.sh /tmp/  " >> /root/dasan_install_log.txt
+cp /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/Dasan_Ubuntu18-sharing.sh /tmp/  >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} chmod 777 /tmp/Dasan_Ubuntu18-sharing.sh  " >> /root/dasan_install_log.txt
+chmod 777 /tmp/Dasan_Ubuntu18-sharing.sh  >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} ufw allow 5900/tcp " >> /root/dasan_install_log.txt
+ufw allow 5900/tcp >> /root/log.txt
+
+echo ""
+echo ""
+
 echo "  rc.local 등록 "
 
 echo ""
