@@ -105,8 +105,8 @@ cat /etc/jupyterhub/jupyterhub_config.py | sed -n 385p   >> /root/log.txt
 
 echo ""
 echo ""
-echo -e  "${PROMPT} sed -i '824a c.Authenticator.admin_users = {"sonic","mathadmin"}' /etc/jupyterhub/jupyterhub_config.py   " >> /root/dasan_install_log.txt
-sed -i '824a c.Authenticator.admin_users = {"sonic","mathadmin"}' /etc/jupyterhub/jupyterhub_config.py    >> /root/log.txt
+echo -e  "${PROMPT} sed -i '824a c.Authenticator.admin_users = {"sonic"}' /etc/jupyterhub/jupyterhub_config.py   " >> /root/dasan_install_log.txt
+sed -i '824a c.Authenticator.admin_users = {"sonic"}' /etc/jupyterhub/jupyterhub_config.py    >> /root/log.txt
 
 echo ""
 echo ""
