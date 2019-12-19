@@ -587,6 +587,11 @@ perl -pi -e  's/^GRUB_HIDDEN_TIMEOUT=/#GRUB_HIDDEN_TIMEOUT=/'  /etc/default/grub
 
 echo ""
 
+echo -e  "${PROMPT} apt-get install -y dkms linux-generic-hwe-16.04 xserver-xorg-hwe-16.04 " >> /root/dasan_install_log.txt
+apt-get install -y dkms linux-generic-hwe-16.04 xserver-xorg-hwe-16.04
+
+echo ""
+echo ""
 echo "  변경 사항 확인 "
 echo -e  "${PROMPT} cat /etc/default/grub | grep -v #\|^$ " >> /root/dasan_install_log.txt
 cat /etc/default/grub | grep -v "#\|^$"
