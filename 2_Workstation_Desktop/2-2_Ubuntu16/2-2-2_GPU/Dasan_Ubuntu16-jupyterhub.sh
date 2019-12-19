@@ -130,8 +130,8 @@ ufw status   >> /root/log.txt
 
 echo ""
 echo ""
-echo -e  "${PROMPT} mv /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/jupyterhub /etc/init.d/  " >> /root/dasan_install_log.txt
-mv /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/jupyterhub /etc/init.d/  >> /root/log.txt
+echo -e  "${PROMPT} mv /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/2-2-2_GPU/jupyterhub /etc/init.d/  " >> /root/dasan_install_log.txt
+mv /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/2-2-2_GPU/jupyterhub /etc/init.d/  >> /root/log.txt
 
 echo ""
 echo ""
@@ -140,8 +140,8 @@ chmod 755 /etc/init.d/jupyterhub   >> /root/log.txt
 
 echo ""
 echo ""
-echo -e  "${PROMPT} mv /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/jupyterhub.service /lib/systemd/system/ " >> /root/dasan_install_log.txt
-mv /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/jupyterhub.service /lib/systemd/system/  >> /root/log.txt
+echo -e  "${PROMPT} mv /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/2-2-2_GPU/jupyterhub.service /lib/systemd/system/ " >> /root/dasan_install_log.txt
+mv /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/2-2-2_GPU/jupyterhub.service /lib/systemd/system/  >> /root/log.txt
 
 echo ""
 echo ""
@@ -175,23 +175,18 @@ apt-get install -y libxml2-dev  >> /root/log.txt
 
 echo ""
 echo ""
-echo -e  "${PROMPT} R CMD BATCH /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/r_jupyterhub.R " >> /root/dasan_install_log.txt
-R CMD BATCH /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/r_jupyterhub.R >> /root/log.txt
+echo -e  "${PROMPT} R CMD BATCH /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/2-2-2_GPU/r_jupyterhub.R " >> /root/dasan_install_log.txt
+R CMD BATCH /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/2-2-2_GPU/r_jupyterhub.R >> /root/log.txt
 
 echo ""
 echo ""
 
-echo " desktop sharing NetworkManager & pycharm install "
+echo " desktop sharing Port & pycharm install "
 
 echo ""
 echo ""
 echo -e  "${PROMPT} snap install pycharm-community --classic  " >> /root/dasan_install_log.txt
 snap install pycharm-community --classic  >> /root/log.txt
-
-echo ""
-echo ""
-echo -e  "${PROMPT} sed -i "5s/networkd/NetworkManager/" /etc/netplan/01-netcfg.yaml " >> /root/dasan_install_log.txt
-sed -i "5s/networkd/NetworkManager/" /etc/netplan/01-netcfg.yaml  >> /root/log.txt
 
 echo ""
 echo ""
@@ -205,6 +200,7 @@ systemctl set-default graphical.target    >> /root/log.txt
 
 echo ""
 echo ""
+
 echo "  rc.local 등록 "
 
 echo ""

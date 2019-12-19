@@ -73,15 +73,20 @@ echo ""
 echo -e  "${PROMPT} pip3 install torch torchvision " >> /root/dasan_install_log.txt
 pip3 install torch torchvision >> /root/log.txt
 
+echo "  rc.local 등록 "
 echo ""
+echo ""
+echo -e  "${PROMPT} sed -i '14s/Dasan_Ubuntu16-CUDA10_2-install.sh/Dasan_Ubuntu16-R_install.sh/g' /etc/rc.local  " >> /root/dasan_install_log.txt
+sed -i '14s/Dasan_Ubuntu16-CUDA10_2-install.sh/Dasan_Ubuntu16-R_install.sh/g' /etc/rc.local
 
 echo ""
-echo -e  "${PROMPT} sed -i '/root/d' /etc/rc.local  " >> /root/dasan_install_log.txt
-sed -i '/root/d' /etc/rc.local
+echo ""
+echo -e  "${PROMPT} cat /etc/rc.local | sed -n 14p " >> /root/dasan_install_log.txt
+cat /etc/rc.local | sed -n 14p
 
 echo ""
 echo -e  "${PROMPT} systemctl enable nvidia-persistenced " >> /root/dasan_install_log.txt
-systemctl enable nvidia-persistenced
+systemctl enable nvidia-persistenced >> /root/log.txt
 
 echo ""
 echo ""
