@@ -19,7 +19,7 @@ apt-get install -y  gdebi-core  >> /root/log.txt
 echo ""
 echo ""
 echo -e  "${PROMPT} wget https://download2.rstudio.org/server/trusty/amd64/rstudio-server-1.2.5019-amd64.deb " >> /root/dasan_install_log.txt
-wget https://download2.rstudio.org/server/trusty/amd64/rstudio-server-1.2.5019-amd64.deb >> /root/log.txt
+wget https://download2.rstudio.org/server/trusty/amd64/rstudio-server-1.2.5019-amd64.deb  >> /root/log.txt
 
 echo ""
 echo ""
@@ -40,6 +40,11 @@ echo ""
 echo ""
 echo -e  "${PROMPT} dpkg -i rstudio-1.2.5019-amd64.deb " >> /root/dasan_install_log.txt
 dpkg -i rstudio-1.2.5019-amd64.deb  >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} apt-get install -y  rdesktop  " >> /root/dasan_install_log.txt
+apt-get install -y  rdesktop   >> /root/log.txt
 
 echo ""
 echo ""

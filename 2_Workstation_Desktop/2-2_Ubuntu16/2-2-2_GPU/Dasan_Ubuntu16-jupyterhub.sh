@@ -188,7 +188,7 @@ R CMD BATCH /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/2-2-2_GPU/r_jupyterhub
 echo ""
 echo ""
 
-echo " desktop sharing Port & pycharm install "
+echo " desktop sharing Port + file & pycharm install "
 
 echo ""
 echo ""
@@ -199,6 +199,21 @@ echo ""
 echo ""
 echo -e  "${PROMPT} ufw allow 5900/tcp " >> /root/dasan_install_log.txt
 ufw allow 5900/tcp >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} cp /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/2-2-2_GPU/copy_launcher.py /home/sonic/ " >> /root/dasan_install_log.txt
+cp /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/2-2-2_GPU/copy_launcher.py /home/sonic/ >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} cp /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/2-2-2_GPU/saved_launcher.txt /home/sonic/ " >> /root/dasan_install_log.txt
+cp /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/2-2-2_GPU/saved_launcher.txt /home/sonic/ >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} cp /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/2-2-2_GPU/sharing.sh /home/sonic/ " >> /root/dasan_install_log.txt
+cp /root/LISR/2_Workstation_Desktop/2-2_Ubuntu16/2-2-2_GPU/sharing.sh /home/sonic/ >> /root/log.txt
 
 echo ""
 echo ""
