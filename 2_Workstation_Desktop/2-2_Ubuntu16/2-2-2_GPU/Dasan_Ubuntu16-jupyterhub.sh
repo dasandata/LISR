@@ -207,6 +207,16 @@ systemctl set-default graphical.target    >> /root/log.txt
 
 echo ""
 echo ""
+echo -e  "${PROMPT} cd / " >> /root/dasan_install_log.txt
+cd / >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} rm -rf 7fa2af80.pub cuda-repo-ubuntu1604_10.0.130-1_amd64.deb rstudio-1.2.5019-amd64.deb rstudio-server-1.2.5019-amd64.deb " >> /root/dasan_install_log.txt
+rm -rf 7fa2af80.pub cuda-repo-ubuntu1604_10.0.130-1_amd64.deb rstudio-1.2.5019-amd64.deb rstudio-server-1.2.5019-amd64.deb >> /root/log.txt
+
+echo ""
+echo ""
 
 echo "  rc.local 등록 "
 
