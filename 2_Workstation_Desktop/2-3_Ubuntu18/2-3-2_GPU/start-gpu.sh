@@ -47,6 +47,9 @@ echo -e  "${PROMPT} apt-get install -y locate htop tmux git wget " >> /root/dasa
 echo -e  "${PROMPT} apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl git-lfs " >> /root/dasan_install_log.txt
 
 apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget net-tools >> /root/log.txt
+
+sleep 10
+
 apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl git-lfs >> /root/log.txt
 
 tail -5 /root/log.txt
