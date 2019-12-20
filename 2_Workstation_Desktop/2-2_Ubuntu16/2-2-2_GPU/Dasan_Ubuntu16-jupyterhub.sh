@@ -6,6 +6,13 @@ PROMPT="[${USER}@${HOSTNAME%%.*}]#"
 
 echo " Jupyterhub install "
 
+sleep 5
+
+echo ""
+echo ""
+echo -e  "${PROMPT} apt-get install -y curl " >> /root/dasan_install_log.txt
+apt-get install -y curl  >> /root/log.txt
+
 echo ""
 echo ""
 echo -e  "${PROMPT} curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - " >> /root/dasan_install_log.txt
@@ -19,7 +26,7 @@ apt-get install -y  nodejs  >> /root/log.txt
 echo ""
 echo ""
 echo -e  "${PROMPT} apt-get install -y  default-jre " >> /root/dasan_install_log.txt
-apt-get install -y  default-jre >> /root/log.txt
+apt-get install -y  default-jre  >> /root/log.txt
 
 echo ""
 echo ""
