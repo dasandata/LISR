@@ -19,10 +19,10 @@
 
 
       [root@dasandata-script-test:~]# yum install -y git  # Centos
-      [root@dasandata-script-test:~]#
-      [root@dasandata-script-test:~]# apt-get install -y git # Ubuntu
-      [root@dasandata-script-test:~]#
-      [root@dasandata-script-test:~]# git clone https://github.com/dasandata/LISR
+\      [root@dasandata-script-test:~]#
+\      [root@dasandata-script-test:~]# apt-get install -y git # Ubuntu
+\      [root@dasandata-script-test:~]#
+\      [root@dasandata-script-test:~]# git clone https://github.com/dasandata/LISR
       Cloning into 'LISR'...
       remote: Enumerating objects: 364, done.
       remote: Counting objects: 100% (364/364), done.
