@@ -18,10 +18,10 @@
       - ubunutu 18.04
 
 
-      [root@ubuntu1604-ftp-system:~]# yum install -y git  # Centos
-      [root@ubuntu1604-ftp-system:~]#
-      [root@ubuntu1604-ftp-system:~]# apt-get install -y git # Ubuntu
-      [root@ubuntu1604-ftp-system:~]# 
+      [root@dasandata-script-test:~]# yum install -y git  # Centos
+      [root@dasandata-script-test:~]#
+      [root@dasandata-script-test:~]# apt-get install -y git # Ubuntu
+      [root@dasandata-script-test:~]#
       [root@dasandata-script-test:~]# git clone https://github.com/dasandata/LISR
       Cloning into 'LISR'...
       remote: Enumerating objects: 364, done.
@@ -33,6 +33,7 @@
       Checking connectivity... done.
       [root@dasandata-script-test:~]#
       [root@dasandata-script-test:~]# bash /root/LISR/Dasandata_master_install.sh
+
       안녕하세요 다산데이타 리눅스 설치 파일을 실행 한 것을 환영 합니다
 
 
