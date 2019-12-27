@@ -19,19 +19,17 @@
 
 
       [root@dasandata-script-test:~]# yum install -y git  # Centos
-\      [root@dasandata-script-test:~]#
-\      [root@dasandata-script-test:~]# apt-get install -y git # Ubuntu
-\      [root@dasandata-script-test:~]#
-\      [root@dasandata-script-test:~]# git clone https://github.com/dasandata/LISR
-      Cloning into 'LISR'...
-      remote: Enumerating objects: 364, done.
-      remote: Counting objects: 100% (364/364), done.
-      remote: Compressing objects: 100% (225/225), done.
-      remote: Total 3532 (delta 205), reused 273 (delta 139), pack-reused 3168
-      Receiving objects: 100% (3532/3532), 599.18 KiB | 333.00 KiB/s, done.
-      Resolving deltas: 100% (2323/2323), done.
-      Checking connectivity... done.
+      
       [root@dasandata-script-test:~]#
+
+      [root@dasandata-script-test:~]# apt-get install -y git # Ubuntu
+
+      [root@dasandata-script-test:~]#
+
+      [root@dasandata-script-test:~]# git clone https://github.com/dasandata/LISR
+
+      [root@dasandata-script-test:~]#
+
       [root@dasandata-script-test:~]# bash /root/LISR/Dasandata_master_install.sh
 
       안녕하세요 다산데이타 리눅스 설치 파일을 실행 한 것을 환영 합니다
