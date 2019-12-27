@@ -19,7 +19,7 @@
 
 
       [root@dasandata-script-test:~]# yum install -y git  # Centos
-      
+
       [root@dasandata-script-test:~]#
 
       [root@dasandata-script-test:~]# apt-get install -y git # Ubuntu
@@ -42,7 +42,7 @@
       What is your hardware? Please select one
       1) Server
       2) Workstation_Desktop
-      3) Exit
+      3) Exit 
       1
       Server.
       어느 제조사의 시스템인가요? 하나를 선택하세요
