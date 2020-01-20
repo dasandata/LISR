@@ -1,11 +1,11 @@
 # 다산데이타 CentOS 7.7 설치 표준안 (2020.01)
-다산데이터 출고 장비에 설치되는 리눅스 (CenOS 7.4) 의 설치 표준안 입니다.  
+다산데이터 출고 장비에 설치되는 리눅스 (CenOS 7.7) 의 설치 표준안 입니다.  
 별도의 요청사항이 없는 경우 기본적으로 아래 절차에 따라 설치한 후 출고 하고 있습니다.  
 보완이 필요한 점이나 새로운 아이디어를 제보해 주시면 적극 반영하겠습니다 :)  
 
 감사합니다.  
 
-![Dasandata Logo](http://www.dasandata.co.kr/dasanlogo.jpg)
+![Dasandata Logo](http://dasandata.co.kr/wp-content/uploads/2019/05/%EB%8B%A4%EC%82%B0%EB%A1%9C%EA%B3%A0_%EC%88%98%EC%A0%951-300x109.jpg)
 
 ## #목차
 [1. 기본 유틸 설치 / 시간 동기화](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_7.md#-1-%EA%B8%B0%EB%B3%B8-%EC%9C%A0%ED%8B%B8-%EC%84%A4%EC%B9%98--%EC%8B%9C%EA%B0%84-%EB%8F%99%EA%B8%B0%ED%99%94)  
