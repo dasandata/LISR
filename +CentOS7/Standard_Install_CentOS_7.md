@@ -158,7 +158,7 @@ Disabled
 ```bash
 # 기본 유틸 설치.
 # 화면에 로그가 뿌려지지 않도록 하기 위해 파이프라인(>>) 처리를 합니다.
-yum -y install \
+yum  -y  install \
 vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig \
 tcsh tree lshw tmux git kernel-headers kernel-devel ipmitool gcc make gcc-c++ \
 cmake python-devel dstat perl perl-CPAN perl-core net-tools openssl-devel smartmontools \
@@ -169,8 +169,8 @@ tail dasan_log_install_centos_default_util.txt # 설치 결과 확인.
 # Development Tools 설치
 yum grouplist
 
-yum -y groups install "Development Tools" >> dasan_log_install_centos_developtoosl.txt
-yum -y install  glibc-static glibc-devel glibc-static libstdc++ libstdc++-devel \
+yum  -y  groups install "Development Tools" >> dasan_log_install_centos_developtoosl.txt
+yum  -y  install  glibc-static glibc-devel glibc-static libstdc++ libstdc++-devel \
  >> dasan_log_install_centos_developtoosl.txt 2>&1
 
 tail dasan_log_install_centos_developtoosl.txt
@@ -191,21 +191,21 @@ hwclock
 ```bash
 yum repolist # 현재 repolist 확인.
 
-yum -y  install epel-release   >>    dasan_log_install_epel.txt 2>&1
+yum  -y  install epel-release   >>    dasan_log_install_epel.txt 2>&1
 tail -5   dasan_log_install_epel.txt  
-sed -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo  
+sed  -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo  
 
-yum -y  install yum-plugin-priorities   >>   dasan_log_install_epel.txt 2>&1
+yum  -y  install yum-plugin-priorities   >>   dasan_log_install_epel.txt 2>&1
 tail -5   dasan_log_install_epel.txt  
-sed -i -e "s/\]$/\]\npriority=1/g" /etc/yum.repos.d/CentOS-Base.repo
+sed  -i -e "s/\]$/\]\npriority=1/g" /etc/yum.repos.d/CentOS-Base.repo
 
 yum repolist  # 설치된 repolist 확인.
 
 
-# epel 이 활성화 되어야 설치 되는 htop 을 설치하여 검증
+# epel 이 활성화 되어야 설치 되는 htop 과 ntfs3g 을 설치하여 epel-repo 정상 설치 검증
 rpm -qa | grep htop # htop 이 설치 되어있는지 확인.
 
-yum -y  install htop ntfs-3g >> dasan_log_install_htop,ntfs3g.txt  2>&1
+yum  -y  install htop ntfs-3g >> dasan_log_install_htop,ntfs3g.txt  2>&1
 tail -5  dasan_log_install_htop,ntfs3g.txt
 ```
 
