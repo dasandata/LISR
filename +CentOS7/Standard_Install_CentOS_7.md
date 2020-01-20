@@ -46,16 +46,10 @@
 
 ### # 터미널을 통해 리눅스가 새로 설치된 장비에 로그인 합니다.
 
-#### # Windows 에서 리눅스 접속 (putty) / X11 Forwading / 파일 송수신 (winscp)
+#### # Windows 에서 리눅스 접속
 \#  
-\# putty (SSH Terminal - X11 Forwarding Enable)  
-\# https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html  
-\#  
-\# Xming (X11 Forward - Windows Application)  
-\# https://sourceforge.net/projects/xming/  
-\#  
-\# 파일 전송 winscp  
-\# https://winscp.net/eng/download.php  
+\# Mobaxterm
+\# https://mobaxterm.mobatek.net/download.html
 \#  
 #### # 리눅스 터미널 에서.
 ```bash
