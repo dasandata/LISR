@@ -48,9 +48,10 @@
 
 #### # Windows 에서 리눅스 접속
 \#  
-\# Mobaxterm
-\# https://mobaxterm.mobatek.net/download.html
+\# Mobaxterm  
+\# https://mobaxterm.mobatek.net/download.html  
 \#  
+
 #### # 리눅스 터미널 에서.
 ```bash
 ssh <사용자 계정>@<IP 주소>
@@ -88,7 +89,7 @@ tail dasan_log_yum_update.txt
 setenforce 0
 getenforce
 
-sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+sed -i  's/SELINUX=enforcing/SELINUX=disabled/'  /etc/selinux/config
 grep 'SELINUX=' /etc/sysconfig/selinux  
 ```
 
@@ -186,11 +187,11 @@ hwclock
 yum repolist # 현재 repolist 확인.
 
 yum  -y  install epel-release   >>    dasan_log_install_epel.txt 2>&1
-tail -5   dasan_log_install_epel.txt  
+tail -5  dasan_log_install_epel.txt  
 sed  -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo  
 
 yum  -y  install yum-plugin-priorities   >>   dasan_log_install_epel.txt 2>&1
-tail -5   dasan_log_install_epel.txt  
+tail -5  dasan_log_install_epel.txt  
 sed  -i -e "s/\]$/\]\npriority=1/g" /etc/yum.repos.d/CentOS-Base.repo
 
 yum repolist  # 설치된 repolist 확인.
@@ -228,8 +229,6 @@ kernel-headers-3.10.0-693.17.1.el7.x86_64
 ### # [2. profile 설정 - Console Color , alias](#목차)
 \# 사용 편의를 위한 alias를 설정, History Size 및 format 변경.  
 \# Console 의 가독성을 높이기 위하여 Prompt 색상변경.  
-\# Console Color Codes : http://bitmote.com/public/ansi_4bit_color_table.png  
-![Console Color Codes](http://bitmote.com/public/ansi_4bit_color_table.png)  
 
 #### # 기본 alias.
 ```bash
@@ -241,11 +240,11 @@ echo "alias ll='ls -lh' "                        >>   /etc/profile
 echo "alias grep='grep --color=auto' "   >>   /etc/profile
 ```
 
-#### # 히스토리 사이즈 변경 (1000개 -> 100,000개)
+#### # 히스토리 사이즈 변경 (1000개 -> 10,000개)
 ```bash
 echo $HISTSIZE
 grep HISTSIZE= /etc/profile
-sed -i  's/HISTSIZE=1000/HISTSIZE=100000/'  /etc/profile
+sed -i  's/HISTSIZE=1000/HISTSIZE=10000/'  /etc/profile
 grep HISTSIZE= /etc/profile
 ```
 #### # 히스토리 출력시 날짜가 표시 되도록 변경
@@ -256,7 +255,11 @@ echo 'export HISTTIMEFORMAT="20%y/%m/%d %T "' >> /etc/profile
 echo " "  >> /etc/profile
 ```
 
-#### # root 와 user 의 프롬프트 색상을 다르게 설정.
+#### # root 와 일반 사용자계정 (sonic) 의 프롬프트 색상을 다르게 설정.
+
+\# Console Color Codes : http://bitmote.com/public/ansi_4bit_color_table.png  
+![Console Color Codes](http://bitmote.com/public/ansi_4bit_color_table.png)  
+
 ```bash
 echo "export PS1='\[\e[1;46;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /root/.bashrc
 tail -1 /root/.bashrc
@@ -265,24 +268,15 @@ echo "export PS1='\[\e[1;47;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /home/sonic/.bashrc
 tail -1 /home/sonic/.bashrc
 ```
 
-#### # 로그 아웃 하지 않고 command history 저장.
-```bash
-echo "export PROMPT_COMMAND="history -a" " >> /root/.bashrc
-tail -1 /root/.bashrc
-
-echo "export PROMPT_COMMAND="history -a" " >> /home/sonic/.bashrc
-tail -1 /home/sonic/.bashrc
-```
-
 #### # 적용확인.
 ```bash
 tail -10 /etc/profile
 
 source  /etc/profile
+source  .bashrc
 
 echo $HISTSIZE
 
-source  .bashrc
 ```
 
 ### # [3. 하드웨어 사양 / 기본 환경 확인 (os 버젼 등)](#목차)
