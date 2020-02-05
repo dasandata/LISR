@@ -318,6 +318,11 @@ echo -e  "${PROMPT} racadm set iDRAC.NIC.DNSRacName ${HOSTNAME}-$(racadm getsysi
 racadm set iDRAC.NIC.DNSRacName ${HOSTNAME}-$(racadm getsysinfo | grep "Service Tag" | awk '{print $4}')
 
 echo ""
+echo -e  "${PROMPT} apt-get install -y dkms linux-generic-hwe-16.04 xserver-xorg-hwe-16.04 " >> /root/dasan_install_log.txt
+apt-get install -y dkms linux-generic-hwe-16.04 xserver-xorg-hwe-16.04
+
+
+echo ""
 echo "  rc.local 등록 "
 
 echo ""

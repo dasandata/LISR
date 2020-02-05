@@ -601,6 +601,10 @@ update-initramfs -u && update-grub2
 echo ""
 echo ""
 
+echo ""
+echo -e  "${PROMPT} apt-get install -y dkms linux-generic-hwe-16.04 xserver-xorg-hwe-16.04 " >> /root/dasan_install_log.txt
+apt-get install -y dkms linux-generic-hwe-16.04 xserver-xorg-hwe-16.04
+
 echo "  rc.local 등록 "
 echo ""
 echo -e  "\033[1;34m${PROMPT} sed -i '/root/d' /etc/rc.local  \033[0m" >> /root/dasan_install_log.txt
