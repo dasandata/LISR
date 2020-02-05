@@ -88,15 +88,11 @@ sleep 10
 echo ""
 echo ""
 
-echo ""
-echo -e  "${PROMPT} apt-get install -y dkms linux-generic-hwe-18.04 xserver-xorg-hwe-18.04 " >> /root/dasan_install_log.txt
-apt-get install -y dkms linux-generic-hwe-18.04 xserver-xorg-hwe-18.04
-
-
 echo "  rc.local 등록 "
 echo ""
-echo -e  "${PROMPT} sed -i '/root/d' /etc/rc.local  " >> /root/dasan_install_log.txt
-sed -i '/root/d' /etc/rc.local
+echo ""
+echo -e  "${PROMPT} sed -i '2s/Dasan_Ubuntu18-CUDA10_2-install.sh/Dasan_Ubuntu18-R_install.sh/g' /etc/rc.local  " >> /root/dasan_install_log.txt
+sed -i '2s/Dasan_Ubuntu18-CUDA10_2-install.sh/Dasan_Ubuntu18-R_install.sh/g' /etc/rc.local
 
 echo ""
 echo ""
