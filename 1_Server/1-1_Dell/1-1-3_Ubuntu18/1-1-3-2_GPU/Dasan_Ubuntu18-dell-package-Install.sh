@@ -320,8 +320,9 @@ racadm set iDRAC.NIC.DNSRacName ${HOSTNAME}-$(racadm getsysinfo | grep "Service 
 
 echo "  rc.local 등록 "
 echo ""
-echo -e  "${PROMPT} sed -i '/root/d' /etc/rc.local  " >> /root/dasan_install_log.txt
-sed -i '/root/d' /etc/rc.local
+echo ""
+echo -e  "${PROMPT} sed -i '2s/Dasan_Ubuntu18-dell-package-Install.sh/Dasan_Ubuntu18-R_install.sh/g' /etc/rc.local  " >> /root/dasan_install_log.txt
+sed -i '2s/Dasan_Ubuntu18-dell-package-Install.sh/Dasan_Ubuntu18-R_install.sh/g' /etc/rc.local
 
 echo ""
 echo -e  "${PROMPT} cat /etc/rc.local | sed -n 2p " >> /root/dasan_install_log.txt
