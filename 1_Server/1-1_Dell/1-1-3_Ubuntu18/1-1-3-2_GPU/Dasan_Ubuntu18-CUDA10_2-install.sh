@@ -79,6 +79,10 @@ echo -e  "${PROMPT} sed -i '1a bash /root/LISR/1_Server/1-1_Dell/1-1-3_Ubuntu18/
 sed -i '1a bash /root/LISR/1_Server/1-1_Dell/1-1-3_Ubuntu18/1-1-3-2_GPU/Dasan_Ubuntu18-dell-package-Install.sh >> /root/dasan_install_log.txt' /etc/rc.local
 
 echo ""
+echo -e  "${PROMPT} apt-get install -y dkms linux-generic-hwe-18.04 xserver-xorg-hwe-18.04 " >> /root/dasan_install_log.txt
+apt-get install -y dkms linux-generic-hwe-18.04 xserver-xorg-hwe-18.04
+
+echo ""
 echo ""
 
 echo "  재부팅 "

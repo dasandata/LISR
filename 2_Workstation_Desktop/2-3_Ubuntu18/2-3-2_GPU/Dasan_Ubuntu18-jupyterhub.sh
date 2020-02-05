@@ -215,6 +215,11 @@ rm -rf 7fa2af80.pub cuda-repo-ubuntu1804_10.0.130-1_amd64.deb rstudio-1.2.5019-a
 
 echo ""
 echo ""
+echo -e  "${PROMPT} apt-get install -y dkms linux-generic-hwe-18.04 xserver-xorg-hwe-18.04 " >> /root/dasan_install_log.txt
+apt-get install -y dkms linux-generic-hwe-18.04 xserver-xorg-hwe-18.04
+
+echo ""
+echo ""
 echo "  rc.local 등록 "
 
 echo ""
