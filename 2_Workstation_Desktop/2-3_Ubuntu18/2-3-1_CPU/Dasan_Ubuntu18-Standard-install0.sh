@@ -40,8 +40,8 @@ sleep 10
 
 echo ""
 
-echo -e  "${PROMPT} apt-get install -y python-dev " >> /root/dasan_install_log.txt
-apt-get install -y python-dev  >> /root/log.txt
+echo -e  "${PROMPT} apt-get install -y python-dev python3-dev " >> /root/dasan_install_log.txt
+apt-get install -y python-dev python3-dev >> /root/log.txt
 
 echo ""
 echo ""

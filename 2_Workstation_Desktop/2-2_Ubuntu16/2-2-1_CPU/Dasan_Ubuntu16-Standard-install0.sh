@@ -59,8 +59,8 @@ sleep 10
 
 echo ""
 
-echo -e  "${PROMPT} apt-get install -y  python-pip python3-pip  python3-tk " >> /root/dasan_install_log.txt
-apt-get install -y  python-pip python3-pip  python3-tk  >> /root/log.txt
+echo -e  "${PROMPT} apt-get install -y python-dev python3-dev python-pip python3-pip python-tk python3-tk " >> /root/dasan_install_log.txt
+apt-get install -y python-dev python3-dev python-pip python3-pip python-tk python3-tk  >> /root/log.txt
 
 echo ""
 echo ""
