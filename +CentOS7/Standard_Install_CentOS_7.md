@@ -247,11 +247,11 @@ echo "alias ll='ls -lh' "                        >>   /etc/profile
 echo "alias grep='grep --color=auto' "   >>   /etc/profile
 ```
 
-#### # 히스토리 사이즈 변경 (1000개 -> 100,000개)
+#### # 히스토리 사이즈 변경 (1000개 -> 10,000개)
 ```bash
 echo $HISTSIZE
 grep HISTSIZE= /etc/profile
-sed -i  's/HISTSIZE=1000/HISTSIZE=100000/'  /etc/profile
+sed -i  's/HISTSIZE=1000/HISTSIZE=10000/'  /etc/profile
 grep HISTSIZE= /etc/profile
 ```
 #### # 히스토리 출력시 날짜가 표시 되도록 변경
