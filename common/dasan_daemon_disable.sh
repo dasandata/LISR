@@ -13,5 +13,7 @@ systemctl disable NetworkManager-wait-online.service
 systemctl disable spice-vdagentd.service
 systemctl disable vmtoolsd.service
 systemctl disable ModemManager.service
+systemctl disable cups.service
+systemctl disable cups-browsed.service
 
 # End of file.
