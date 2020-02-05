@@ -1,11 +1,11 @@
-# 다산데이타 CentOS 7.7 설치 표준안 (2020.01)
-다산데이터 출고 장비에 설치되는 리눅스 (CenOS 7.7) 의 설치 표준안 입니다.  
+# 다산데이타 CentOS 7.4 설치 표준안 (2018.03)
+다산데이터 출고 장비에 설치되는 리눅스 (CenOS 7.4) 의 설치 표준안 입니다.  
 별도의 요청사항이 없는 경우 기본적으로 아래 절차에 따라 설치한 후 출고 하고 있습니다.  
 보완이 필요한 점이나 새로운 아이디어를 제보해 주시면 적극 반영하겠습니다 :)  
 
 감사합니다.  
 
-![Dasandata Logo](http://dasandata.co.kr/wp-content/uploads/2019/05/%EB%8B%A4%EC%82%B0%EB%A1%9C%EA%B3%A0_%EC%88%98%EC%A0%951-300x109.jpg)
+![Dasandata Logo](http://www.dasandata.co.kr/dasanlogo.jpg)
 
 ## #목차
 [1. 기본 유틸 설치 / 시간 동기화](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_7.md#-1-%EA%B8%B0%EB%B3%B8-%EC%9C%A0%ED%8B%B8-%EC%84%A4%EC%B9%98--%EC%8B%9C%EA%B0%84-%EB%8F%99%EA%B8%B0%ED%99%94)  
@@ -46,12 +46,17 @@
 
 ### # 터미널을 통해 리눅스가 새로 설치된 장비에 로그인 합니다.
 
-#### # Windows 에서 리눅스 접속
+#### # Windows 에서 리눅스 접속 (putty) / X11 Forwading / 파일 송수신 (winscp)
 \#  
-\# Mobaxterm  
-\# https://mobaxterm.mobatek.net/download.html  
+\# putty (SSH Terminal - X11 Forwarding Enable)  
+\# https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html  
 \#  
-
+\# Xming (X11 Forward - Windows Application)  
+\# https://sourceforge.net/projects/xming/  
+\#  
+\# 파일 전송 winscp  
+\# https://winscp.net/eng/download.php  
+\#  
 #### # 리눅스 터미널 에서.
 ```bash
 ssh <사용자 계정>@<IP 주소>
@@ -89,7 +94,7 @@ tail dasan_log_yum_update.txt
 setenforce 0
 getenforce
 
-sed -i  's/SELINUX=enforcing/SELINUX=disabled/'  /etc/selinux/config
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 grep 'SELINUX=' /etc/sysconfig/selinux  
 ```
 
@@ -153,7 +158,7 @@ Disabled
 ```bash
 # 기본 유틸 설치.
 # 화면에 로그가 뿌려지지 않도록 하기 위해 파이프라인(>>) 처리를 합니다.
-yum  -y  install \
+yum -y install \
 vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig \
 tcsh tree lshw tmux git kernel-headers kernel-devel ipmitool gcc make gcc-c++ \
 cmake python-devel dstat perl perl-CPAN perl-core net-tools openssl-devel smartmontools \
@@ -164,8 +169,8 @@ tail dasan_log_install_centos_default_util.txt # 설치 결과 확인.
 # Development Tools 설치
 yum grouplist
 
-yum  -y  groups install "Development Tools" >> dasan_log_install_centos_developtoosl.txt
-yum  -y  install  glibc-static glibc-devel glibc-static libstdc++ libstdc++-devel \
+yum -y groups install "Development Tools" >> dasan_log_install_centos_developtoosl.txt
+yum -y install  glibc-static glibc-devel glibc-static libstdc++ libstdc++-devel \
  >> dasan_log_install_centos_developtoosl.txt 2>&1
 
 tail dasan_log_install_centos_developtoosl.txt
@@ -186,21 +191,21 @@ hwclock
 ```bash
 yum repolist # 현재 repolist 확인.
 
-yum  -y  install epel-release   >>    dasan_log_install_epel.txt 2>&1
-tail -5  dasan_log_install_epel.txt  
-sed  -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo  
+yum -y  install epel-release   >>    dasan_log_install_epel.txt 2>&1
+tail -5   dasan_log_install_epel.txt  
+sed -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo  
 
-yum  -y  install yum-plugin-priorities   >>   dasan_log_install_epel.txt 2>&1
-tail -5  dasan_log_install_epel.txt  
-sed  -i -e "s/\]$/\]\npriority=1/g" /etc/yum.repos.d/CentOS-Base.repo
+yum -y  install yum-plugin-priorities   >>   dasan_log_install_epel.txt 2>&1
+tail -5   dasan_log_install_epel.txt  
+sed -i -e "s/\]$/\]\npriority=1/g" /etc/yum.repos.d/CentOS-Base.repo
 
 yum repolist  # 설치된 repolist 확인.
 
 
-# epel 이 활성화 되어야 설치 되는 htop 과 ntfs3g 을 설치하여 epel-repo 정상 설치 검증
+# epel 이 활성화 되어야 설치 되는 htop 을 설치하여 검증
 rpm -qa | grep htop # htop 이 설치 되어있는지 확인.
 
-yum  -y  install htop ntfs-3g >> dasan_log_install_htop,ntfs3g.txt  2>&1
+yum -y  install htop ntfs-3g >> dasan_log_install_htop,ntfs3g.txt  2>&1
 tail -5  dasan_log_install_htop,ntfs3g.txt
 ```
 
@@ -229,6 +234,8 @@ kernel-headers-3.10.0-693.17.1.el7.x86_64
 ### # [2. profile 설정 - Console Color , alias](#목차)
 \# 사용 편의를 위한 alias를 설정, History Size 및 format 변경.  
 \# Console 의 가독성을 높이기 위하여 Prompt 색상변경.  
+\# Console Color Codes : http://bitmote.com/public/ansi_4bit_color_table.png  
+![Console Color Codes](http://bitmote.com/public/ansi_4bit_color_table.png)  
 
 #### # 기본 alias.
 ```bash
@@ -240,11 +247,11 @@ echo "alias ll='ls -lh' "                        >>   /etc/profile
 echo "alias grep='grep --color=auto' "   >>   /etc/profile
 ```
 
-#### # 히스토리 사이즈 변경 (1000개 -> 10,000개)
+#### # 히스토리 사이즈 변경 (1000개 -> 100,000개)
 ```bash
 echo $HISTSIZE
 grep HISTSIZE= /etc/profile
-sed -i  's/HISTSIZE=1000/HISTSIZE=10000/'  /etc/profile
+sed -i  's/HISTSIZE=1000/HISTSIZE=100000/'  /etc/profile
 grep HISTSIZE= /etc/profile
 ```
 #### # 히스토리 출력시 날짜가 표시 되도록 변경
@@ -255,11 +262,7 @@ echo 'export HISTTIMEFORMAT="20%y/%m/%d %T "' >> /etc/profile
 echo " "  >> /etc/profile
 ```
 
-#### # root 와 일반 사용자계정 (sonic) 의 프롬프트 색상을 다르게 설정.
-
-\# Console Color Codes : http://bitmote.com/public/ansi_4bit_color_table.png  
-![Console Color Codes](http://bitmote.com/public/ansi_4bit_color_table.png)  
-
+#### # root 와 user 의 프롬프트 색상을 다르게 설정.
 ```bash
 echo "export PS1='\[\e[1;46;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /root/.bashrc
 tail -1 /root/.bashrc
@@ -268,15 +271,16 @@ echo "export PS1='\[\e[1;47;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /home/sonic/.bashrc
 tail -1 /home/sonic/.bashrc
 ```
 
+
 #### # 적용확인.
 ```bash
 tail -10 /etc/profile
 
 source  /etc/profile
-source  .bashrc
 
 echo $HISTSIZE
 
+source  .bashrc
 ```
 
 ### # [3. 하드웨어 사양 / 기본 환경 확인 (os 버젼 등)](#목차)
