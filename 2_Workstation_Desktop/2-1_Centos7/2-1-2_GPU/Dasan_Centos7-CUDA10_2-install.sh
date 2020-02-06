@@ -10,8 +10,8 @@ echo -e  "==================== Deep Learning Package Install python-PIP, tensorf
 echo ""
 
 echo ""
-echo -e  "${PROMPT} perl -pi -e 's/python3.6/python/'   /usr/local/bin/pip " >> /root/dasan_install_log.txt
-perl -pi -e 's/python3.6/python/'   /usr/local/bin/pip
+echo -e  "${PROMPT} perl -pi -e 's/python3/python/'   /usr/local/bin/pip " >> /root/dasan_install_log.txt
+perl -pi -e 's/python3/python/'   /usr/local/bin/pip
 
 echo ""
 echo -e  "${PROMPT} pip -V " >> /root/dasan_install_log.txt

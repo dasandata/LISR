@@ -10,8 +10,8 @@ echo -e  "\033[1;32m"==================== Deep Learning Package Install python-P
 echo ""
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} perl -pi -e 's/python3.6/python/'   /usr/local/bin/pip \033[0m" >> /root/dasan_install_log.txt
-perl -pi -e 's/python3.6/python/'   /usr/local/bin/pip
+echo -e  "\033[1;34m${PROMPT} perl -pi -e 's/python3/python/'   /usr/local/bin/pip \033[0m" >> /root/dasan_install_log.txt
+perl -pi -e 's/python3/python/'   /usr/local/bin/pip
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} pip -V \033[0m" >> /root/dasan_install_log.txt
