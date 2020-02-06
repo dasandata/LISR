@@ -327,3 +327,7 @@ sed -i '2s/Dasan_Ubuntu18-dell-package-Install.sh/Dasan_Ubuntu18-R_install.sh/g'
 echo ""
 echo -e  "${PROMPT} cat /etc/rc.local | sed -n 2p " >> /root/dasan_install_log.txt
 cat /etc/rc.local | sed -n 2p
+
+echo ""
+echo -e  "${PROMPT} reboot  " >> /root/dasan_install_log.txt
+reboot
