@@ -18,19 +18,19 @@
       - ubunutu 18.04
 
 
-      [root@dasandata-script-test:~]# yum install -y git  # Centos
+[root@dasandata-script-test:~]#  yum install -y git  # Centos
 
-      [root@dasandata-script-test:~]#
+[root@dasandata-script-test:~]#
 
-      [root@dasandata-script-test:~]# apt-get install -y git # Ubuntu
+[root@dasandata-script-test:~]# apt-get install -y git # Ubuntu
 
-      [root@dasandata-script-test:~]#
+[root@dasandata-script-test:~]#
 
-      [root@dasandata-script-test:~]# git clone https://github.com/dasandata/LISR
+[root@dasandata-script-test:~]# git clone https://github.com/dasandata/LISR
 
-      [root@dasandata-script-test:~]#
+[root@dasandata-script-test:~]#
 
-      [root@dasandata-script-test:~]# bash /root/LISR/Dasandata_master_install.sh
+[root@dasandata-script-test:~]# bash /root/LISR/Dasandata_master_install.sh
 
       안녕하세요 다산데이타 리눅스 설치 파일을 실행 한 것을 환영 합니다
 
@@ -38,29 +38,29 @@
       Hello, Welcome to Run Dasan Data Linux Installation File
 
 
-      너의 하드웨어는 무엇 입니까? 하나를 선택하세요.
-      What is your hardware? Please select one
+      너의 하드웨어는 무엇 입니까? 하나를 선택하세요.\n
+      What is your hardware? Please select one\n
       1) Server
       2) Workstation_Desktop
-      3) Exit 
-      1
-      Server.
-      어느 제조사의 시스템인가요? 하나를 선택하세요
-      Which manufacturer's system? Please select one
+      3) Exit \n
+      1 \n
+      Server.\n
+      어느 제조사의 시스템인가요? 하나를 선택하세요\n
+      Which manufacturer's system? Please select one\n
       1) Dell
       2) Supermicro_Etc
-      3) Exit
-      1
-      Dell.
-      사용되는 os 하나 를 선택하세요.
-      use os install ? Please select one
+      3) Exit\n
+      1\n
+      Dell.\n  
+      사용되는 os 하나 를 선택하세요.\n
+      use os install ? Please select one\n
       1) Centos7
       2) Ubuntu16
       3) Ubuntu18
-      4) Exit
-      1
-      Centos7.
-      관리자 의 용도는 CPU 인가요 GPU 인가요 ?.
+      4) Exit\n
+      1\n
+      Centos7.\n
+      관리자 의 용도는 CPU 인가요 GPU 인가요 ?\n
       Administrator purpose CPU or GPU ?
       1) CPU
       2) GPU
