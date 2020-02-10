@@ -26,8 +26,8 @@ pip3 install --upgrade optimuspyspark >> /root/log.txt
 
 echo ""
 echo ""
-echo -e  "${PROMPT} pip3 uninstall tensorflow " >> /root/dasan_install_log.txt
-pip3 uninstall tensorflow >> /root/log.txt
+echo -e  "${PROMPT} pip3 uninstall --yes tensorflow " >> /root/dasan_install_log.txt
+pip3 uninstall --yes tensorflow >> /root/log.txt
 
 echo ""
 echo ""
