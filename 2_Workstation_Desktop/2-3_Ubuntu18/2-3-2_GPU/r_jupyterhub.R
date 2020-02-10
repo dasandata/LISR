@@ -1,8 +1,6 @@
 #! /usr/bin/env Rscript
 
-install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'))
-
-51
+options(repos = c(CRAN = "https://cran.seoul.go.kr/"))
 
 install.packages(c('repr', 'IRdisplay', 'IRkernel'), type = 'source')
 
