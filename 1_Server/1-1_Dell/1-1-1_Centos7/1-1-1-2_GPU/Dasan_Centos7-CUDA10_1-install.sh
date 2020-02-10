@@ -150,89 +150,31 @@ echo ""
 echo ""
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} mount -t nfs 192.168.0.5:file /mnt \033[0m" >> /root/dasan_install_log.txt
-mount -t nfs 192.168.0.5:file /mnt
+echo -e  "\033[1;34m${PROMPT} wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/libcudnn7-7.6.5.32-1.cuda10.0.x86_64.rpm \033[0m" >> /root/dasan_install_log.txt
+wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/libcudnn7-7.6.5.32-1.cuda10.0.x86_64.rpm
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} mkdir /root/cudnn7 \033[0m" >> /root/dasan_install_log.txt
-mkdir /root/cudnn7
+echo -e  "\033[1;34m${PROMPT} wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/libcudnn7-devel-7.6.5.32-1.cuda10.0.x86_64.rpm \033[0m" >> /root/dasan_install_log.txt
+wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/libcudnn7-devel-7.6.5.32-1.cuda10.0.x86_64.rpm
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} cp /mnt/2_windows\ 관련\ \(서울대\)/windows_cuda_file/cudnn-10.0-linux-x64-v7.* /root/cudnn7 \033[0m" >> /root/dasan_install_log.txt
-cp /mnt/2_windows\ 관련\ \(서울대\)/windows_cuda_file/cudnn-10.0-linux-x64-v7.* /root/cudnn7
+echo -e  "\033[1;34m${PROMPT} rpm -ivh libcudnn7-7.6.5.32-1.cuda10.0.x86_64.rpm  \033[0m" >> /root/dasan_install_log.txt
+rpm -ivh libcudnn7-7.6.5.32-1.cuda10.0.x86_64.rpm
 
-sleep 20
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} cd  /root/cudnn7 \033[0m" >> /root/dasan_install_log.txt
-cd  /root/cudnn7
+sleep 5
 
 echo ""
-
-echo -e  "\033[1;34m${PROMPT} umount /mnt #마운트 해제 \033[0m" >> /root/dasan_install_log.txt
-umount /mnt #마운트 해제
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} pwd \033[0m" >> /root/dasan_install_log.txt
-pwd
+echo -e  "\033[1;34m${PROMPT} rpm -ivh libcudnn7-devel-7.6.5.32-1.cuda10.0.x86_64.rpm   \033[0m" >> /root/dasan_install_log.txt
+rpm -ivh libcudnn7-devel-7.6.5.32-1.cuda10.0.x86_64.rpm
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} ls \033[0m" >> /root/dasan_install_log.txt
-ls
+echo -e  "\033[1;34m${PROMPT} rpm -qa | grep libcudnn7 \033[0m" >> /root/dasan_install_log.txt
+rpm -qa | grep libcudnn7
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} tar xvzf cudnn-10.0-linux-x64-v7.3.0.29.tgz \033[0m" >> /root/dasan_install_log.txt
-tar xvzf cudnn-10.0-linux-x64-v7.3.0.29.tgz
 
-echo ""
-echo -e  "\033[1;34m${PROMPT} tar xvzf cudnn-10.0-linux-x64-v7.3.1.20.tgz \033[0m" >> /root/dasan_install_log.txt
-tar xvzf cudnn-10.0-linux-x64-v7.3.1.20.tgz
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} tar xvzf cudnn-10.0-linux-x64-v7.4.1.5.tgz \033[0m" >> /root/dasan_install_log.txt
-tar xvzf cudnn-10.0-linux-x64-v7.4.1.5.tgz
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} tar xvzf cudnn-10.0-linux-x64-v7.4.2.24.tgz \033[0m" >> /root/dasan_install_log.txt
-tar xvzf cudnn-10.0-linux-x64-v7.4.2.24.tgz
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} tar xvzf cudnn-10.0-linux-x64-v7.5.0.56.tgz \033[0m" >> /root/dasan_install_log.txt
-tar xvzf cudnn-10.0-linux-x64-v7.5.0.56.tgz
-
-sleep 20
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} ls -l cuda/include/ \033[0m" >> /root/dasan_install_log.txt
-ls -l cuda/include/
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} ls -l cuda/lib64/ \033[0m" >> /root/dasan_install_log.txt
-ls -l cuda/lib64/
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} chmod  a+r  cuda/include/* \033[0m" >> /root/dasan_install_log.txt
-chmod  a+r  cuda/include/*
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} chmod  a+r  cuda/lib64/* \033[0m" >> /root/dasan_install_log.txt
-chmod  a+r  cuda/lib64/*
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} cp  -rp  cuda/include/cudnn.h  /usr/local/cuda-10.0/include/ \033[0m" >> /root/dasan_install_log.txt
-cp  -rp  cuda/include/cudnn.h  /usr/local/cuda-10.0/include/
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} cp  -rp  cuda/lib64/libcudnn*  /usr/local/cuda-10.0/lib64/ \033[0m" >> /root/dasan_install_log.txt
-cp  -rp  cuda/lib64/libcudnn*  /usr/local/cuda-10.0/lib64/
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} ls -l /usr/local/cuda-10.0/lib64/libcudnn* \033[0m" >> /root/dasan_install_log.txt
-ls -l /usr/local/cuda-10.0/lib64/libcudnn*
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} cd ~ \033[0m" >> /root/dasan_install_log.txt
-cd ~
+echo -e  "\033[1;34m${PROMPT} yum -y upgrade \033[0m" >> /root/dasan_install_log.txt
+yum -y upgrade
 
 echo ""
 echo ""
