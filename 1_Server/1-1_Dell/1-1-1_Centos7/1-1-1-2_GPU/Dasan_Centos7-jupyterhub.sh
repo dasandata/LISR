@@ -166,6 +166,16 @@ R CMD BATCH /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/r_jupyterhub
 
 echo ""
 echo ""
+echo -e  "${PROMPT} cd / " >> /root/dasan_install_log.txt
+cd / >> /root/log.txt
+
+echo ""
+echo ""
+echo -e  "${PROMPT} rm -rf cuda-repo-rhel7-10.0.130-1.x86_64.rpm rstudio-1.2.5033-x86_64.rpm rstudio-server-rhel-1.2.5033-x86_64.rpm r_jupyterhub.Rout dasan_log_install_* " >> /root/dasan_install_log.txt
+rm -rf cuda-repo-rhel7-10.0.130-1.x86_64.rpm rstudio-1.2.5033-x86_64.rpm rstudio-server-rhel-1.2.5033-x86_64.rpm r_jupyterhub.Rout dasan_log_install_* >> /root/log.txt
+
+echo ""
+echo ""
 
 echo "  rc.local 등록 "
 
