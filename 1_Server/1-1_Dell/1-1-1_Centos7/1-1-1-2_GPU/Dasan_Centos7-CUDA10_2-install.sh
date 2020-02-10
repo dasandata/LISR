@@ -68,6 +68,18 @@ pip3 install  --upgrade tensorflow-gpu==1.13.1
 echo -e  "\033[1;34m${PROMPT} pip3 install --upgrade setuptools \033[0m" >> /root/dasan_install_log.txt
 pip3 install --upgrade setuptools
 
+echo -e  "==================== Deep Learning Package Install 2 python-PIP, PyTorch ===================="
+
+echo ""
+echo ""
+
+echo ""
+echo -e  "${PROMPT} pip install torch torchvision " >> /root/dasan_install_log.txt
+pip install torch torchvision >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} pip3 install torch torchvision " >> /root/dasan_install_log.txt
+pip3 install torch torchvision >> /root/log.txt
 
 echo ""
 echo ""
