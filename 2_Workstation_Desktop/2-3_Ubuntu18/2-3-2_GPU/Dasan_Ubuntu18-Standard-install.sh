@@ -340,6 +340,10 @@ echo ""
 echo -e  "${PROMPT} apt-get -y install ubuntu-desktop dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal " >> /root/dasan_install_log.txt
 apt-get -y install ubuntu-desktop dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> /root/log.txt
 
+echo ""
+echo -e  "${PROMPT} bash /root/LISR/common/dasan_daemon_disable.sh " >> /root/dasan_install_log.txt
+bash /root/LISR/common/dasan_daemon_disable.sh
+
 tail  /root/log.txt
 
 echo ""
