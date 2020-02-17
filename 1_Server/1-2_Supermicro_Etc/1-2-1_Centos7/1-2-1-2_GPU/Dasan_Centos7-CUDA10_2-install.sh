@@ -98,9 +98,11 @@ echo ""
 
 echo "  rc.local 등록 "
 echo ""
-echo -e  "\033[1;34m${PROMPT} sed -i '/root/d' /etc/rc.d/rc.local   \033[0m" >> /root/dasan_install_log.txt
-sed -i '/root/d' /etc/rc.d/rc.local
+echo ""
+echo -e  "\033[1;34m${PROMPT} sed -i '13s/Dasan_Centos7-CUDA10_2-install.sh/Dasan_Centos7-R_install.sh/g' /etc/rc.d/rc.local    \033[0m" >> /root/dasan_install_log.txt
+sed -i '13s/Dasan_Centos7-CUDA10_2-install.sh/Dasan_Centos7-R_install.sh/g' /etc/rc.d/rc.local
 
+echo ""
 echo ""
 echo -e  "\033[1;34m${PROMPT} systemctl enable nvidia-persistenced  \033[0m" >> /root/dasan_install_log.txt
 systemctl enable nvidia-persistenced
