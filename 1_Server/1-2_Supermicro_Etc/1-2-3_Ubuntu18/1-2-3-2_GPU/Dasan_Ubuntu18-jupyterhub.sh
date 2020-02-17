@@ -195,6 +195,11 @@ sed -i "5s/networkd/NetworkManager/" /etc/netplan/01-netcfg.yaml  >> /root/log.t
 
 echo ""
 echo ""
+echo -e  "${PROMPT} systemctl enable network-manager.service " >> /root/dasan_install_log.txt
+systemctl enable network-manager.service >> /root/log.txt
+
+echo ""
+echo ""
 echo -e  "${PROMPT} ufw allow 5900/tcp " >> /root/dasan_install_log.txt
 ufw allow 5900/tcp >> /root/log.txt
 
