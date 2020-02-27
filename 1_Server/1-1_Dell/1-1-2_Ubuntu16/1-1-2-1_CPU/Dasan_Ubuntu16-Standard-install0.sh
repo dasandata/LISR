@@ -264,7 +264,7 @@ echo -e "${PROMPT} dmidecode --type 39  \| grep \"System\|Name:\|Capacity\"  "
 dmidecode --type 39  | grep "System\|Name:\|Capacity"
 
 echo " "
-echo -e  "=== Disk "&" Partition ==="
+echo -e  "=== Disk & Partition ==="
 echo -e "${PROMPT} lsblk "
 lsblk
 
