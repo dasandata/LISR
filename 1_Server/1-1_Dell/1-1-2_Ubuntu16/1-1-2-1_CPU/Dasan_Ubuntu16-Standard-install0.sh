@@ -45,9 +45,9 @@ echo ""
 
 echo "  기본 유틸 설치. "
 echo -e  "${PROMPT} apt-get install -y vim nfs-common rdate xauth firefox gcc make ipmitool " >> /root/dasan_install_log.txt
-echo -e  "${PROMPT} apt-get install -y locate htop tmux git wget git-lfs " >> /root/dasan_install_log.txt
+echo -e  "${PROMPT} apt-get install -y locate htop tmux git wget " >> /root/dasan_install_log.txt
 echo -e  "${PROMPT} apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools " >> /root/dasan_install_log.txt
-apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget ipmitool git-lfs >> /root/log.txt
+apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget ipmitool >> /root/log.txt
 
 sleep 10
 
