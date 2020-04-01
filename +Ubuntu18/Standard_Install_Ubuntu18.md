@@ -5,7 +5,7 @@
 
 감사합니다.  
 
-![Dasandata Logo](http://www.dasandata.co.kr/dasanlogo.jpg)
+![Dasandata Logo](http://dasandata.co.kr/wp-content/uploads/2019/05/%EB%8B%A4%EC%82%B0%EB%A1%9C%EA%B3%A0_%EC%88%98%EC%A0%951-300x109.jpg)
 
 ## #목차
 [1. 기본 유틸 설치 / 시간 동기화](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-1-%EA%B8%B0%EB%B3%B8-%EC%9C%A0%ED%8B%B8-%EC%84%A4%EC%B9%98--%EC%8B%9C%EA%B0%84-%EB%8F%99%EA%B8%B0%ED%99%94)  

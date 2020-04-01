@@ -5,7 +5,7 @@
 
 감사합니다.  
 
-![Dasandata Logo](http://www.dasandata.co.kr/dasanlogo.jpg)
+![Dasandata Logo](http://dasandata.co.kr/wp-content/uploads/2019/05/%EB%8B%A4%EC%82%B0%EB%A1%9C%EA%B3%A0_%EC%88%98%EC%A0%951-300x109.jpg)
 
 ## #목차
 [1. Cuda install 사전 작업](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_GPU.md#-1-cuda-install-%EC%82%AC%EC%A0%84-%EC%9E%91%EC%97%85)  

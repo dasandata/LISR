@@ -1,7 +1,7 @@
 # 안녕하세요 다산데이타 입니다.  
 다산데이타 에서 출고되는 서버 & 워크스테이션에 설치되는 리눅스 표준설치 메뉴얼 과 스크립트 입니다.  
 
-![Dasandata Logo](http://www.dasandata.co.kr/dasanlogo.jpg)
+![Dasandata Logo](http://dasandata.co.kr/wp-content/uploads/2019/05/%EB%8B%A4%EC%82%B0%EB%A1%9C%EA%B3%A0_%EC%88%98%EC%A0%951-300x109.jpg)
 
 ### 먼저 git 사용방법을 간략하게(?) 확인 하시기 바랍니다.    
 #### - [1분 git 사용 방법 (리눅스 터미널에서)][how-to-git]  
