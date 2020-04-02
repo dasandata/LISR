@@ -7,6 +7,12 @@ echo -e  "==================== Repository ===================="
 echo ""
 echo ""
 
+echo -e  "\033[1;34m${PROMPT} perl -pi -e 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list \033[0m" >> /root/dasan_install_log.txt
+perl -pi -e 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+
+echo ""
+echo ""
+
 echo ""
 echo -e  "${PROMPT} cat /etc/apt/sources.list | grep -v \"#\|^$\" " >> /root/dasan_install_log.txt
 cat /etc/apt/sources.list  |  grep -v "#\|^$"
