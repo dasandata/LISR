@@ -24,8 +24,6 @@
 
 [root@dasandata-script-test:~]# apt-get install -y git # Ubuntu
 
-[root@dasandata-script-test:~]# apt-get install -y git mailutils  # Ubuntu ( Dell )
-
 [root@dasandata-script-test:~]#
 
 [root@dasandata-script-test:~]# git clone https://github.com/dasandata/LISR
