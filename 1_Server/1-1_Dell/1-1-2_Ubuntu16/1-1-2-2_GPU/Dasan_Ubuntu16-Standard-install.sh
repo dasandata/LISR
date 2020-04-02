@@ -56,6 +56,13 @@ sleep 10
 
 apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools >> /root/log.txt
 
+sleep 5
+
+echo ""
+echo -e  "${PROMPT} DEBIAN_FRONTEND=noninteractive apt-get install -y mailutils " >> /root/dasan_install_log.txt
+
+DEBIAN_FRONTEND=noninteractive apt-get install -y mailutils >> /root/log.txt
+
 echo ""
 echo ""
 
