@@ -114,11 +114,9 @@ apt-key add 7fa2af80.pub
 
 apt-get update
 
-apt-get install cuda-10-0             
+apt-get install cuda-10-0       
 
-apt --fix-broken install           # install 관련 오류가 날 경우 명령
-
-gcc --version
+systemctl enable nvidia-persistenced      
 
 ```
 
@@ -190,36 +188,18 @@ cd ~
 
 ```bash
 
-mount -t nfs 192.168.0.5:file /mnt
+wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb
 
-mkdir /root/cudnn7
+wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/libcudnn7-dev_7.6.5.32-1+cuda10.0_amd64.deb
 
-cp /mnt/2_windows\ 관련\ \(서울대\)/windows_cuda_file/cudnn-10.0-linux-x64-v7.* /root/cudnn7
+dpkg -i libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb
 
-cd  /root/cudnn7
+dpkg -i libcudnn7-dev_7.6.5.32-1+cuda10.0_amd64.deb
 
-umount /mnt #마운트 해제
+apt-get update
 
-pwd
-ll
+apt-get install -y libcublas-dev
 
-tar xvzf cudnn-10.0-linux-x64-v7.3.0.29.tgz
-tar xvzf cudnn-10.0-linux-x64-v7.3.1.20.tgz
-tar xvzf cudnn-10.0-linux-x64-v7.4.1.5.tgz
-tar xvzf cudnn-10.0-linux-x64-v7.4.2.24.tgz
-tar xvzf cudnn-10.0-linux-x64-v7.5.0.56.tgz
-
-ls -l cuda/include/
-ls -l cuda/lib64/
-
-chmod  a+r  cuda/include/*
-chmod  a+r  cuda/lib64/*
-
-cp  -rp  cuda/include/cudnn.h  /usr/local/cuda-10.0/include/
-cp  -rp  cuda/lib64/libcudnn*  /usr/local/cuda-10.0/lib64/
-ls -l /usr/local/cuda-10.0/lib64/libcudnn*
-
-cd ~
 ```
 
 ### # [3. Deep Learning Package Install (python-PIP, tensorflow)](#목차)
@@ -232,7 +212,7 @@ which  python
 python3 -V
 which  python3
 
-apt-get install -y  python-pip python3-pip  python3-tk
+apt-get install -y  python-pip python3-pip python-tk python3-tk
 ```
 
 #### # pip Check
@@ -330,7 +310,84 @@ make
 ./gpu_burn $((60 * 1))   # 1min
 ```
 
-### # [6. history 저장 (차후 설치기록 참고용)](#목차)
+### # [6. R-Server , R-desktop , R / install](#목차)
+
+```bash
+
+# R install
+apt-get install -y  r-base
+
+apt-get install -y  gdebi-core
+
+# R-server install
+wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5019-amd64.deb
+
+yes | gdebi rstudio-server-1.2.5019-amd64.deb
+
+ufw allow 8787/tcp
+
+ufw status
+
+# R-desktop install
+wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.2.5019-amd64.deb
+
+dpkg -i rstudio-1.2.5019-amd64.deb
+
+apt-get install -y  rdesktop
+
+```
+
+### # [7. Jupyterhub install](#목차)
+
+```bash
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+
+apt-get install -y  nodejs
+
+apt-get install -y  default-jre
+
+npm install -g configurable-http-proxy
+
+pip3 install --upgrade optimuspyspark
+
+pip3 install --upgrade testresources
+
+pip3 install --upgrade jupyterhub
+
+pip3 install --upgrade notebook
+
+ufw allow 8000/tcp
+
+ufw status
+
+mv /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/jupyterhub /etc/init.d/
+
+chmod 755 /etc/init.d/jupyterhub
+
+mv /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/jupyterhub.service /lib/systemd/system/
+
+chmod 777 /lib/systemd/system/jupyterhub.service
+
+systemctl daemon-reload
+
+systemctl enable jupyterhub.service
+
+## Jupyterhub-r kernel
+apt-get install -y libzmq3-dev libcurl4-openssl-dev
+
+apt-get install -y libxml2-dev
+
+R CMD BATCH /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/r_jupyterhub.R
+
+```
+
+### # [8. pycharm install](#목차)
+
+```bash
+snap install pycharm-community --classic
+```
+
+### # [9. history 저장 (차후 설치기록 참고용)](#목차)
 
 ```bash
 # 모든 root 사용자를 로그아웃 한 다음 다시 로그인 하여 작업
