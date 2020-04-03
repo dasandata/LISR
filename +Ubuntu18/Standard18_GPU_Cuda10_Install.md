@@ -24,7 +24,7 @@
 
 [8. pycharm install ](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-8-pycharm-install)
 
-[9. history 저장  차후 설치기록 참고용](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-5-history-%EC%A0%80%EC%9E%A5-%EC%B0%A8%ED%9B%84-%EC%84%A4%EC%B9%98%EA%B8%B0%EB%A1%9D-%EC%B0%B8%EA%B3%A0%EC%9A%A9)
+[9. history 저장 차후 설치기록 참고용](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-9-history-%EC%A0%80%EC%9E%A5-%EC%B0%A8%ED%9B%84-%EC%84%A4%EC%B9%98%EA%B8%B0%EB%A1%9D-%EC%B0%B8%EA%B3%A0%EC%9A%A9)
 
 
 ***
@@ -393,7 +393,7 @@ R CMD BATCH /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/r_jupyterhub
 snap install pycharm-community --classic
 ```
 
-### # [9. history 저장 (차후 설치기록 참고용)](#목차)
+### # [9. history 저장 / 차후 설치기록 참고용](#목차)
 
 ```bash
 # 모든 root 사용자를 로그아웃 한 다음 다시 로그인 하여 작업
