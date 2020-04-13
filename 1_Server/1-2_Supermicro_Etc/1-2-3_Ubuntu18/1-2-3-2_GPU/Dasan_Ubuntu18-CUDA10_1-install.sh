@@ -15,24 +15,20 @@ echo ""
 echo " Cuda-repo (Cuda 저장소) 설치 "
 
 echo ""
-echo -e  "${PROMPT} wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.0.130-1_amd64.deb " >> /root/dasan_install_log.txt
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.0.130-1_amd64.deb >> /root/log.txt
+release="ubuntu"$(lsb_release -sr | sed -e "s/\.//g")
 
 echo ""
-echo -e  "${PROMPT} dpkg -i cuda-repo-ubuntu1804_10.0.130-1_amd64.deb " >> /root/dasan_install_log.txt
-dpkg -i cuda-repo-ubuntu1804_10.0.130-1_amd64.deb >> /root/log.txt
+echo -e  "${PROMPT} apt-get install sudo gnupg " >> /root/dasan_install_log.txt
+apt-get install -y sudo gnupg >> /root/log.txt
 
 echo ""
-echo -e  "${PROMPT} wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub " >> /root/dasan_install_log.txt
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub >> /root/log.txt
+apt-key adv --fetch-keys "http://developer.download.nvidia.com/compute/cuda/repos/"$release"/x86_64/7fa2af80.pub" >> /root/log.txt
 
 echo ""
-echo -e  "${PROMPT} apt-key add 7fa2af80.pub " >> /root/dasan_install_log.txt
-apt-key add 7fa2af80.pub >> /root/log.txt
+sh -c 'echo "deb http://developer.download.nvidia.com/compute/cuda/repos/'$release'/x86_64 /" > /etc/apt/sources.list.d/nvidia-cuda.list' >> /root/log.txt
 
 echo ""
-echo -e  "${PROMPT} cat /etc/apt/sources.list.d/cuda.list " >> /root/dasan_install_log.txt
-cat /etc/apt/sources.list.d/cuda.list
+sh -c 'echo "deb http://developer.download.nvidia.com/compute/machine-learning/repos/'$release'/x86_64 /" > /etc/apt/sources.list.d/nvidia-machine-learning.list' >> /root/log.txt
 
 echo ""
 echo ""
@@ -166,20 +162,12 @@ echo ""
 echo ""
 
 echo ""
-echo -e  "${PROMPT} wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb " >> /root/dasan_install_log.txt
-wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb
+echo -e  "${PROMPT} apt-get install -y libcudnn7=7.6.5.32-1+cuda10.0 " >> /root/dasan_install_log.txt
+apt-get install -y libcudnn7=7.6.5.32-1+cuda10.0
 
 echo ""
-echo -e  "${PROMPT} wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/libcudnn7-dev_7.6.5.32-1+cuda10.0_amd64.deb " >> /root/dasan_install_log.txt
-wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/libcudnn7-dev_7.6.5.32-1+cuda10.0_amd64.deb
-
-echo ""
-echo -e  "${PROMPT} dpkg -i libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb  " >> /root/dasan_install_log.txt
-dpkg -i libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb
-
-echo ""
-echo -e  "${PROMPT} dpkg -i libcudnn7-dev_7.6.5.32-1+cuda10.0_amd64.deb  " >> /root/dasan_install_log.txt
-dpkg -i libcudnn7-dev_7.6.5.32-1+cuda10.0_amd64.deb
+echo -e  "${PROMPT} apt-get install -y libcudnn7-dev=7.6.5.32-1+cuda10.0  " >> /root/dasan_install_log.txt
+apt-get install -y libcudnn7-dev=7.6.5.32-1+cuda10.0
 
 echo ""
 echo -e  "${PROMPT} apt-get update " >> /root/dasan_install_log.txt
