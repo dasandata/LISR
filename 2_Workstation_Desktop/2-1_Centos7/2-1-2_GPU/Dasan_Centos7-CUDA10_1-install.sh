@@ -36,11 +36,11 @@ yum -y install openmotif* >> /root/log.txt
 echo ""
 echo ""
 
-echo -e  "==================== Cuda 10.0 설치 ===================="
+echo -e  "==================== Cuda 10.2 설치 ===================="
 
 echo ""
-echo -e  "${PROMPT} yum -y install yum -y install cuda-10-0" >> /root/dasan_install_log.txt
-yum -y install cuda-10-0 >> /root/log.txt
+echo -e  "${PROMPT} yum -y install yum -y install cuda-10-2" >> /root/dasan_install_log.txt
+yum -y install cuda-10-2 >> /root/log.txt
 
 sleep 5
 
@@ -61,31 +61,31 @@ nvidia-smi
 echo ""
 echo ""
 
-echo " Cuda 10.0 환경변수 Profile 에 추가 "
+echo " Cuda 10.2 환경변수 Profile 에 추가 "
 
 echo ""
 echo -e  "${PROMPT} echo " "  >> /etc/profile " >> /root/dasan_install_log.txt
 echo " "  >> /etc/profile
 
 echo ""
-echo -e  "${PROMPT} echo " ADD Cuda 10.0 PATH "  >> /etc/profile " >> /root/dasan_install_log.txt
-echo " ### ADD Cuda 10.0 PATH "  >> /etc/profile
+echo -e  "${PROMPT} echo " ADD Cuda 10.2 PATH "  >> /etc/profile " >> /root/dasan_install_log.txt
+echo " ### ADD Cuda 10.2 PATH "  >> /etc/profile
 
 echo ""
-echo -e  "${PROMPT} echo " export PATH=/usr/local/cuda-10.0/bin:/usr/local/cuda-10.0/include:\$PATH " >> /etc/profile " >> /root/dasan_install_log.txt
-echo " export PATH=/usr/local/cuda-10.0/bin:/usr/local/cuda-10.0/include:\$PATH " >> /etc/profile
+echo -e  "${PROMPT} echo " export PATH=/usr/local/cuda-10.2/bin:/usr/local/cuda-10.2/include:\$PATH " >> /etc/profile " >> /root/dasan_install_log.txt
+echo " export PATH=/usr/local/cuda-10.2/bin:/usr/local/cuda-10.2/include:\$PATH " >> /etc/profile
 
 echo ""
-echo -e  "${PROMPT} echo " export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile " >> /root/dasan_install_log.txt
-echo " export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
+echo -e  "${PROMPT} echo " export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile " >> /root/dasan_install_log.txt
+echo " export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
 
 echo ""
-echo -e  "${PROMPT} echo " export CUDA_HOME=/usr/local/cuda-10.0 " >> /etc/profile " >> /root/dasan_install_log.txt
-echo " export CUDA_HOME=/usr/local/cuda-10.0 " >> /etc/profile
+echo -e  "${PROMPT} echo " export CUDA_HOME=/usr/local/cuda-10.2 " >> /etc/profile " >> /root/dasan_install_log.txt
+echo " export CUDA_HOME=/usr/local/cuda-10.2 " >> /etc/profile
 
 echo ""
-echo -e  "${PROMPT} echo " export CUDA_INC_DIR=/usr/local/cuda-10.0/include " >> /etc/profile " >> /root/dasan_install_log.txt
-echo " export CUDA_INC_DIR=/usr/local/cuda-10.0/include " >> /etc/profile
+echo -e  "${PROMPT} echo " export CUDA_INC_DIR=/usr/local/cuda-10.2/include " >> /etc/profile " >> /root/dasan_install_log.txt
+echo " export CUDA_INC_DIR=/usr/local/cuda-10.2/include " >> /etc/profile
 
 echo ""
 echo ""
@@ -127,15 +127,15 @@ nvcc -V
 echo ""
 echo ""
 
-echo " Cuda 10.0 샘플 컴파일 "
+echo " Cuda 10.2 샘플 컴파일 "
 
 echo ""
-echo -e  "${PROMPT} cp -r  /usr/local/cuda-10.0/samples/   ~/NVIDIA_CUDA-10.0_Samples " >> /root/dasan_install_log.txt
-cp -r  /usr/local/cuda-10.0/samples/   ~/NVIDIA_CUDA-10.0_Samples
+echo -e  "${PROMPT} cp -r  /usr/local/cuda-10.2/samples/   ~/NVIDIA_CUDA-10.2_Samples " >> /root/dasan_install_log.txt
+cp -r  /usr/local/cuda-10.2/samples/   ~/NVIDIA_CUDA-10.2_Samples
 
 echo ""
-echo -e  "${PROMPT} cd ~/NVIDIA_CUDA-10.0_Samples " >> /root/dasan_install_log.txt
-cd ~/NVIDIA_CUDA-10.0_Samples
+echo -e  "${PROMPT} cd ~/NVIDIA_CUDA-10.2_Samples " >> /root/dasan_install_log.txt
+cd ~/NVIDIA_CUDA-10.2_Samples
 
 echo ""
 echo -e  "${PROMPT} time make -j$(grep process /proc/cpuinfo | wc -l) " >> /root/dasan_install_log.txt
@@ -150,22 +150,22 @@ echo ""
 echo ""
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/libcudnn7-7.6.5.32-1.cuda10.0.x86_64.rpm \033[0m" >> /root/dasan_install_log.txt
-wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/libcudnn7-7.6.5.32-1.cuda10.0.x86_64.rpm
+echo -e  "\033[1;34m${PROMPT} wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/libcudnn7-7.6.5.33-1.cuda10.2.x86_64.rpm \033[0m" >> /root/dasan_install_log.txt
+wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/libcudnn7-7.6.5.33-1.cuda10.2.x86_64.rpm
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/libcudnn7-devel-7.6.5.32-1.cuda10.0.x86_64.rpm \033[0m" >> /root/dasan_install_log.txt
-wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/libcudnn7-devel-7.6.5.32-1.cuda10.0.x86_64.rpm
+echo -e  "\033[1;34m${PROMPT} wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/libcudnn7-devel-7.6.5.33-1.cuda10.2.x86_64.rpm \033[0m" >> /root/dasan_install_log.txt
+wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/libcudnn7-devel-7.6.5.33-1.cuda10.2.x86_64.rpm
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} rpm -ivh libcudnn7-7.6.5.32-1.cuda10.0.x86_64.rpm  \033[0m" >> /root/dasan_install_log.txt
-rpm -ivh libcudnn7-7.6.5.32-1.cuda10.0.x86_64.rpm
+echo -e  "\033[1;34m${PROMPT} rpm -ivh libcudnn7-7.6.5.33-1.cuda10.2.x86_64.rpm  \033[0m" >> /root/dasan_install_log.txt
+rpm -ivh libcudnn7-7.6.5.33-1.cuda10.2.x86_64.rpm
 
 sleep 5
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} rpm -ivh libcudnn7-devel-7.6.5.32-1.cuda10.0.x86_64.rpm   \033[0m" >> /root/dasan_install_log.txt
-rpm -ivh libcudnn7-devel-7.6.5.32-1.cuda10.0.x86_64.rpm
+echo -e  "\033[1;34m${PROMPT} rpm -ivh libcudnn7-devel-7.6.5.33-1.cuda10.2.x86_64.rpm   \033[0m" >> /root/dasan_install_log.txt
+rpm -ivh libcudnn7-devel-7.6.5.33-1.cuda10.2.x86_64.rpm
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} rpm -qa | grep libcudnn7 \033[0m" >> /root/dasan_install_log.txt
