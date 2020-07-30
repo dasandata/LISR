@@ -13,7 +13,7 @@ echo ""
 
 echo " Cuda-repo (Cuda 저장소) 설치 "
 
-sleep 10
+sleep 60
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} wget http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm \033[0m" >> /root/dasan_install_log.txt
