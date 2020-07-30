@@ -83,6 +83,8 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg   boot kernel 에 설정 적용 \033[0m" >> /root/dasan_install_log.txt
 grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
 
+sleep 5
+
 echo ""
 echo ""
 
