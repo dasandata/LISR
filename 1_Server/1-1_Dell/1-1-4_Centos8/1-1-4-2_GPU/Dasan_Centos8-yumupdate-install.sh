@@ -7,14 +7,18 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} dnf -y update \033[0m" >> /root/dasan_install_log.txt
 dnf -y update
 
-sleep 30
+sleep 5
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} dnf --refresh upgrade \033[0m" >> /root/dasan_install_log.txt
+dnf --refresh upgrade
 
 echo ""
 echo ""
 
 echo " Kdump service disabled"
 echo ""
-echo -e  "\033[1;34m${PROMPT} systemctl disable kdump.service  \033[0m" >> /root/dasan_install_log.txt
+echo -e  "\033[1;34m${PROMPT} systemctl disable kdump.service \033[0m" >> /root/dasan_install_log.txt
 systemctl disable kdump.service
 
 sleep 5
