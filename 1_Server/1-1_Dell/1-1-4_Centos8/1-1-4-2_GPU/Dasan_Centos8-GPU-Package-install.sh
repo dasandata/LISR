@@ -13,13 +13,15 @@ echo ""
 
 echo " Cuda-repo (Cuda 저장소) 설치 "
 
+sleep 10
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} wget http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm \033[0m" >> /root/dasan_install_log.txt
 wget http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} dnf install -y cuda-repo-rhel8-10.2.89-1.x86_64.rpm \033[0m" >> /root/dasan_install_log.txt
-yum -y install cuda-repo-rhel7-10.0.130-1.x86_64.rpm
+dnf install -y cuda-repo-rhel8-10.2.89-1.x86_64.rpm
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} dnf install -y libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-devel libXm* \033[0m" >> /root/dasan_install_log.txt
@@ -389,9 +391,13 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} systemctl restart snapd.socket \033[0m" >> /root/dasan_install_log.txt
 systemctl restart snapd.socket
 
+sleep 30
+
 echo ""
 echo -e  "\033[1;34m${PROMPT} snap install pycharm-community --classic \033[0m" >> /root/dasan_install_log.txt
 snap install pycharm-community --classic
+
+sleep 10
 
 echo ""
 echo ""
