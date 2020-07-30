@@ -18,59 +18,73 @@ echo ""
 echo -e  "\033[1;32m"==================== Utility Install ===================="\033[0m"
 echo ""
 
-echo -e  "\033[1;34m${PROMPT} yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig ipmitool \033[0m" >> /root/dasan_install_log.txt
-echo -e  "\033[1;34m${PROMPT} yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ \033[0m" >> /root/dasan_install_log.txt
-echo -e  "\033[1;34m${PROMPT} yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs \033[0m" >> /root/dasan_install_log.txt
-yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig ipmitool >> /root/dasan_install_log.txt 2>&1
-
-sleep 10
-
-yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ >> /root/dasan_install_log.txt 2>&1
-
-sleep 10
-
-yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs >> /root/dasan_install_log.txt 2>&1
-
+echo -e  "\033[1;34m${PROMPT} dnf install -y vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget ipmitool \033[0m" >> /root/dasan_install_log.txt
+echo -e  "\033[1;34m${PROMPT} dnf install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ cmake smartmontools \033[0m" >> /root/dasan_install_log.txt
+echo -e  "\033[1;34m${PROMPT} dnf install -y python2 python2-devel python3 python3-devel dstat perl perl-CPAN perl-core net-tools openssl-devel \033[0m" >> /root/dasan_install_log.txt
+dnf install -y vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget ipmitool
 sleep 5
+dnf install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ cmake smartmontools
+sleep 5
+dnf install -y python2 python2-devel python3 python3-devel dstat perl perl-CPAN perl-core net-tools openssl-devel
 
 echo ""
 
 echo " Development Tools 설치 "
 echo ""
-echo -e  "\033[1;34m${PROMPT} yum grouplist \033[0m" >> /root/dasan_install_log.txt
-yum grouplist >> /root/dasan_install_log.txt 2>&1
+echo -e  "\033[1;34m${PROMPT} dnf grouplist \033[0m" >> /root/dasan_install_log.txt
+dnf grouplist
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} yum -y groups install "Development Tools" \033[0m" >> /root/dasan_install_log.txt
-yum -y groups install "Development Tools" >> /root/dasan_install_log.txt 2>&1
+echo -e  "\033[1;34m${PROMPT} dnf groups install -y "Development Tools" \033[0m" >> /root/dasan_install_log.txt
+dnf groups install -y "Development Tools"
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} yum -y install  glibc-static glibc-devel glibc-static libstdc++ libstdc++-devel \033[0m" >> /root/dasan_install_log.txt
-yum -y install  glibc-static glibc-devel glibc-static libstdc++ libstdc++-devel >> /root/dasan_install_log.txt 2>&1
+echo -e  "\033[1;34m${PROMPT} dnf install -y glibc-devel libstdc++ libstdc++-devel \033[0m" >> /root/dasan_install_log.txt
+dnf install -y glibc-devel libstdc++ libstdc++-devel
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} yum grouplist \033[0m" >> /root/dasan_install_log.txt
-yum grouplist >> /root/dasan_install_log.txt 2>&1
+echo -e  "\033[1;34m${PROMPT} dnf grouplist \033[0m" >> /root/dasan_install_log.txt
+dnf grouplist
 
 echo ""
 echo ""
 
 echo " 인터넷 시간에 맞추어 서버의 시간 조정 "
 echo ""
-echo -e  "\033[1;34m${PROMPT} rdate  -s  time.bora.net \033[0m" >> /root/dasan_install_log.txt
-rdate  -s  time.bora.net
+echo -e  "\033[1;34m${PROMPT} rpm -qa | grep chrony \033[0m" >> /root/dasan_install_log.txt
+rpm -qa | grep chrony
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} clock --systohc \033[0m" >> /root/dasan_install_log.txt
-clock --systohc
+echo -e  "\033[1;34m${PROMPT} chronyc sources -v \033[0m" >> /root/dasan_install_log.txt
+chronyc sources -v
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} date \033[0m" >> /root/dasan_install_log.txt
-date
+echo -e  "\033[1;34m${PROMPT} cat /etc/chrony.conf | sed -n 3p \033[0m" >> /root/dasan_install_log.txt
+cat /etc/chrony.conf | sed -n 3p
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} hwclock \033[0m" >> /root/dasan_install_log.txt
-hwclock
+echo -e  "\033[1;34m${PROMPT} perl -pi -e 's/pool 2.centos.pool.ntp.org iburst/server time.bora.net iburst/g' /etc/chrony.conf  \033[0m" >> /root/dasan_install_log.txt
+perl -pi -e 's/pool 2.centos.pool.ntp.org iburst/server time.bora.net iburst/g' /etc/chrony.conf
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} cat /etc/chrony.conf | sed -n 3p \033[0m" >> /root/dasan_install_log.txt
+cat /etc/chrony.conf | sed -n 3p
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} service chronyd restart \033[0m" >> /root/dasan_install_log.txt
+service chronyd restart
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} timedatectl set-ntp true \033[0m" >> /root/dasan_install_log.txt
+timedatectl set-ntp true
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} timedatectl  \033[0m" >> /root/dasan_install_log.txt
+timedatectl
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} chronyc sources -v \033[0m" >> /root/dasan_install_log.txt
+chronyc sources -v
 
 echo ""
 echo ""
@@ -79,40 +93,29 @@ echo ""
 
 echo " Centos EPEL(Extra Packages for Enterprise Linux) 저장소(Repository) 설치. "
 echo ""
-echo -e  "\033[1;34m${PROMPT} yum repolist \033[0m" >> /root/dasan_install_log.txt
-yum repolist
+echo -e  "\033[1;34m${PROMPT} dnf repolist \033[0m" >> /root/dasan_install_log.txt
+dnf repolist
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} yum -y  install epel-release  \033[0m" >> /root/dasan_install_log.txt
-yum -y  install epel-release   >>    dasan_log_install_epel.txt 2>&1
+echo -e  "\033[1;34m${PROMPT} dnf install -y epel-release  \033[0m" >> /root/dasan_install_log.txt
+dnf install -y epel-release
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} sed -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo  \033[0m" >> /root/dasan_install_log.txt
-sed -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} yum -y  install yum-plugin-priorities   \033[0m" >> /root/dasan_install_log.txt
-yum -y  install yum-plugin-priorities   >>   dasan_log_install_epel.txt 2>&1
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} sed -i -e "s/\]$/\]\npriority=1/g" /etc/yum.repos.d/CentOS-Base.repo \033[0m" >> /root/dasan_install_log.txt
-sed -i -e "s/\]$/\]\npriority=1/g" /etc/yum.repos.d/CentOS-Base.repo
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} yum repolist \033[0m" >> /root/dasan_install_log.txt
-yum repolist
+echo -e  "\033[1;34m${PROMPT} dnf repolist \033[0m" >> /root/dasan_install_log.txt
+dnf repolist
 
 echo ""
 echo ""
 
 echo " epel 이 활성화 되어야 설치 되는 htop 을 설치하여 검증 "
-echo ""
-echo -e  "\033[1;34m${PROMPT} rpm -qa | grep htop ntfs-3g 설치되었는지 확인 \033[0m" >> /root/dasan_install_log.txt
-rpm -qa | grep htop
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} yum -y  install htop ntfs-3g \033[0m" >> /root/dasan_install_log.txt
-yum -y  install htop ntfs-3g >> dasan_log_install_htop,ntfs3g.txt  2>&1
+echo -e  "\033[1;34m${PROMPT} dnf install -y htop ntfs-3g \033[0m" >> /root/dasan_install_log.txt
+dnf install -y htop ntfs-3g
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} rpm -qa | grep htop \033[0m" >> /root/dasan_install_log.txt
+rpm -qa | grep htop
 
 echo ""
 echo ""
@@ -405,10 +408,10 @@ systemctl get-default
 echo ""
 echo ""
 
-echo " GNOME Desktop 설치 "
+echo " Server with GUI 설치 "
 echo ""
-echo -e  "\033[1;34m${PROMPT} yum -y  groups install "GNOME Desktop" \033[0m" >> /root/dasan_install_log.txt
-yum -y  groups install "GNOME Desktop"  >> dasan_log_install_gnome-desktop.txt  2>&1
+echo -e  "\033[1;34m${PROMPT} dnf group install -y "Server with GUI" \033[0m" >> /root/dasan_install_log.txt
+dnf group install -y "Server with GUI"
 
 echo ""
 echo ""
@@ -539,7 +542,7 @@ echo ""
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} sed -i  "s/PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config \033[0m" >> /root/dasan_install_log.txt
-sed -i  "s/#PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config
+sed -i  "s/PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} grep 'Root\|Port' /etc/ssh/sshd_config  # 변경 후 설정 확인. \033[0m" >> /root/dasan_install_log.txt
@@ -605,14 +608,54 @@ echo " passwd dasan 입력하여 패스워드 설정 후 su - dasan 접속하여
 sleep 10
 
 echo ""
+
+echo -e  "\033[1;32m"==================== Nouveau Disable ===================="\033[0m"
+
+echo ""
+
+echo -e  "\033[1;34m${PROMPT} systemctl  get-default \033[0m" >> /root/dasan_install_log.txt
+systemctl  get-default
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} lsmod  | grep  nouveau \033[0m" >> /root/dasan_install_log.txt
+lsmod  | grep  nouveau
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf  \033[0m" >> /root/dasan_install_log.txt
+echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} echo "options nouveau modeset=0" >> /etc/modprobe.d/blacklist.conf  \033[0m" >> /root/dasan_install_log.txt
+echo "options nouveau modeset=0" >> /etc/modprobe.d/blacklist.conf
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} tail /etc/modprobe.d/blacklist.conf \033[0m" >> /root/dasan_install_log.txt
+tail /etc/modprobe.d/blacklist.conf
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} dracut  -f  \033[0m" >> /root/dasan_install_log.txt
+dracut  -f
+
+sleep 5
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} grub2-mkconfig -o /boot/grub2/grub.cfg   boot kernel 에 설정 적용 \033[0m" >> /root/dasan_install_log.txt
+grub2-mkconfig -o /boot/grub2/grub.cfg
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg   boot kernel 에 설정 적용 \033[0m" >> /root/dasan_install_log.txt
+grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg
+
+
+echo ""
 echo ""
 
 echo "  rc.local 등록 "
-echo -e  "\033[1;34m${PROMPT} sed -i '13s/Dasan_Centos7-Standard-install.sh/Dasan_Centos7-nouveau.sh/g' /etc/rc.d/rc.local    \033[0m" >> /root/dasan_install_log.txt
-sed -i '13s/Dasan_Centos7-Standard-install.sh/Dasan_Centos7-nouveau.sh/g' /etc/rc.d/rc.local
+echo -e  "\033[1;34m${PROMPT} sed -i '14s/Dasan_Centos8-Standard-install.sh/Dasan_Centos8-GPU-Package-install.sh/g' /etc/rc.d/rc.local    \033[0m" >> /root/dasan_install_log.txt
+sed -i '14s/Dasan_Centos8-Standard-install.sh/Dasan_Centos8-GPU-Package-install.sh/g' /etc/rc.d/rc.local
 
-echo -e  "\033[1;34m${PROMPT} cat /etc/rc.d/rc.local  | sed -n 13p \033[0m" >> /root/dasan_install_log.txt
-cat /etc/rc.d/rc.local  | sed -n 13p
+echo -e  "\033[1;34m${PROMPT} cat /etc/rc.d/rc.local  | sed -n 14p \033[0m" >> /root/dasan_install_log.txt
+cat /etc/rc.d/rc.local  | sed -n 14p
 
 echo " 재 부팅 "
 echo -e  "\033[1;34m${PROMPT} reboot  재 부팅 \033[0m" >> /root/dasan_install_log.txt

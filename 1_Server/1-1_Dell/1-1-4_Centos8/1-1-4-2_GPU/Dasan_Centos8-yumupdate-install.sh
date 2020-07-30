@@ -8,6 +8,15 @@ echo -e  "\033[1;34m${PROMPT} dnf -y update \033[0m" >> /root/dasan_install_log.
 dnf -y update
 
 echo ""
+echo ""
+
+echo " Kdump service disabled"
+echo ""
+echo -e  "\033[1;34m${PROMPT} systemctl disable kdump.service  \033[0m" >> /root/dasan_install_log.txt
+systemctl disable kdump.service
+
+echo ""
+echo ""
 
 echo " 설정이 까다로운 SELINUX 를 disable 합니다. "
 echo ""
@@ -74,11 +83,11 @@ echo ""
 echo ""
 
 echo "  rc.local 등록 "
-echo -e  "\033[1;34m${PROMPT} sed -i '13s/Dasan_Centos7-yumupdate-install.sh/Dasan_Centos7-Standard-install.sh/g' /etc/rc.d/rc.local    \033[0m" >> /root/dasan_install_log.txt
-sed -i '13s/Dasan_Centos7-yumupdate-install.sh/Dasan_Centos7-Standard-install.sh/g' /etc/rc.d/rc.local
+echo -e  "\033[1;34m${PROMPT} sed -i '14s/Dasan_Centos8-yumupdate-install.sh/Dasan_Centos8-Standard-install.sh/g' /etc/rc.d/rc.local    \033[0m" >> /root/dasan_install_log.txt
+sed -i '14s/Dasan_Centos8-yumupdate-install.sh/Dasan_Centos8-Standard-install.sh/g' /etc/rc.d/rc.local
 
-echo -e  "\033[1;34m${PROMPT} cat /etc/rc.d/rc.local  | sed -n 13p \033[0m" >> /root/dasan_install_log.txt
-cat /etc/rc.d/rc.local  | sed -n 13p
+echo -e  "\033[1;34m${PROMPT} cat /etc/rc.d/rc.local  | sed -n 14p \033[0m" >> /root/dasan_install_log.txt
+cat /etc/rc.d/rc.local  | sed -n 14p
 
 echo " 재 부팅 "
 echo -e  "\033[1;34m${PROMPT} reboot  재 부팅 \033[0m" >> /root/dasan_install_log.txt

@@ -48,11 +48,15 @@ echo ""
 
 sleep 10
 
-echo -e "# Centos 7  메일 발송 테스트 "
+echo -e "# Centos 8  메일 발송 테스트 "
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} yum -y install mailx \033[0m" >> /root/dasan_install_log.txt
-yum -y install mailx
+echo -e  "\033[1;34m${PROMPT} dnf install -y mailx postfix \033[0m" >> /root/dasan_install_log.txt
+dnf install -y mailx postfix
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} systemctl enable postfix.service \033[0m" >> /root/dasan_install_log.txt
+systemctl enable postfix.service
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} grep inet_protocols   /etc/postfix/main.cf \033[0m" >> /root/dasan_install_log.txt
@@ -82,11 +86,7 @@ echo -e  "\033[1;32m"==================== SMTP for Email Alert  postfix for Dell
 echo ""
 echo ""
 
-echo -e "# Dell Server RAID Controller Management (MSM) 의 알림 메일 발송을 위해 postifx를 구성 합니다 . "
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} yum -y install postfix \033[0m" >> /root/dasan_install_log.txt
-yum -y install postfix
+echo -e "# Dell Server RAID Controller Management (MSM) 의 알림 메일 발송 구성 합니다 . "
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} systemctl status postfix | grep Active: \033[0m" >> /root/dasan_install_log.txt
@@ -111,11 +111,6 @@ grep 'inet_interfaces =' /etc/postfix/main.cf
 echo ""
 echo -e  "\033[1;34m${PROMPT} systemctl  restart postfix \033[0m" >> /root/dasan_install_log.txt
 systemctl  restart postfix
-
-echo ""
-echo ""
-
-sleep 10
 
 echo ""
 echo ""
@@ -204,14 +199,6 @@ echo ""
 echo ""
 
 echo -e  "\033[1;32m"==================== Dell RAID Controller Management MSM Alert by Email ===================="\033[0m"
-
-echo ""
-echo ""
-
-echo -e "Centos 7"
-
-echo ""
-echo ""
 
 echo ""
 echo -e  "\033[1;34m${PROMPT} cat /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Install_Dell_MSM_CentOS7.sh  \033[0m" >> /root/dasan_install_log.txt
@@ -317,16 +304,22 @@ echo -e  "\033[1;34m${PROMPT} cat /etc/crontab  \033[0m" >> /root/dasan_install_
 cat /etc/crontab
 
 echo ""
+echo -e  "\033[1;34m${PROMPT} racadm set iDRAC.Time.Timezone Asia/Seoul  \033[0m" >> /root/dasan_install_log.txt
+racadm set iDRAC.Time.Timezone Asia/Seoul
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} racadm set iDRAC.NIC.DNSRacName ${HOSTNAME}-$(racadm getsysinfo | grep "Service Tag" | awk '{print $4}') \033[0m" >> /root/dasan_install_log.txt
+racadm set iDRAC.NIC.DNSRacName ${HOSTNAME}-$(racadm getsysinfo | grep "Service Tag" | awk '{print $4}')
+
+
+echo ""
 echo ""
 
 
 echo "  rc.local 등록 "
 
-echo -e  "\033[1;34m${PROMPT} sed -i '13s/Dasan-dell-install.sh/Dasan-dell-install0.sh/g' /etc/rc.d/rc.local    \033[0m" >> /root/dasan_install_log.txt
-sed -i '13s/Dasan-dell-install.sh/Dasan-dell-install0.sh/g' /etc/rc.d/rc.local
-
-echo -e  "\033[1;34m${PROMPT} cat /etc/rc.d/rc.local  | sed -n 13p \033[0m" >> /root/dasan_install_log.txt
-cat /etc/rc.d/rc.local  | sed -n 13p
+echo -e  "\033[1;34m${PROMPT} sed -i '/root/d' /etc/rc.d/rc.local   \033[0m" >> /root/dasan_install_log.txt
+sed -i '/root/d' /etc/rc.d/rc.local
 
 echo " 재 부팅 "
 echo -e  "\033[1;34m${PROMPT} reboot  재 부팅 \033[0m" >> /root/dasan_install_log.txt
