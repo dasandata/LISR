@@ -7,7 +7,7 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} dnf -y update \033[0m" >> /root/dasan_install_log.txt
 dnf -y update
 
-sleep 5
+sleep 30
 
 echo ""
 echo ""
