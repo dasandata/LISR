@@ -10,8 +10,8 @@ dnf -y update
 sleep 5
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} dnf --refresh upgrade \033[0m" >> /root/dasan_install_log.txt
-dnf --refresh upgrade
+echo -e  "\033[1;34m${PROMPT} dnf --refresh -y upgrade \033[0m" >> /root/dasan_install_log.txt
+dnf --refresh -y upgrade
 
 echo ""
 echo ""
