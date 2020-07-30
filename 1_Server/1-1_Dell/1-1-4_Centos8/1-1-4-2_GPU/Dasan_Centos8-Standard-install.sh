@@ -416,29 +416,6 @@ dnf group install -y "Server with GUI"
 echo ""
 echo ""
 
-echo " 현재 구동중인 Demon list 확인 "
-echo ""
-echo -e  "\033[1;34m${PROMPT} systemctl list-unit-files  -t service  | grep enable \033[0m" >> /root/dasan_install_log.txt
-systemctl list-unit-files  -t service  | grep enable
-
-echo ""
-echo ""
-
-echo " Daemon Disable 스크립트 실행. "
-echo ""
-echo -e  "\033[1;34m${PROMPT} cat /root/LISR/common/dasan_daemon_disable.sh \033[0m" >> /root/dasan_install_log.txt
-cat /root/LISR/common/dasan_daemon_disable.sh
-
-echo ""
-echo ""
-
-echo ""
-echo -e  "\033[1;34m${PROMPT} bash /root/LISR/common/dasan_daemon_disable.sh \033[0m" >> /root/dasan_install_log.txt
-bash /root/LISR/common/dasan_daemon_disable.sh
-
-echo ""
-
-
 echo ""
 echo ""
 echo -e  "\033[1;32m"==================== Ssh Firewall Settings ===================="\033[0m"
