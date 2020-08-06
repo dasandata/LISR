@@ -3,7 +3,7 @@
 
 | Build           | Tensorflow-gpu  | torch-gpu |         |         |         |
 | :-------------: | :-------------: | :-------: | :-----: | :-----: | :-----: |
-| Your Os         | Linux                                                 |||||
+| Your Os         | Linux                                                     |
 | Package         | Conda                                                     |
 | Language        | Python                                                    |
 | Python Version  | 3.5.5           | 3.6.5     |  3.7.5  |  3.8.3  |         |
