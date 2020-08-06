@@ -89,7 +89,7 @@
 #### Conda yaml file Import command
 
 ```
-wget git clone https://github.com/dasandata/LISR
+git clone https://github.com/dasandata/LISR
 
 conda env create -f /home/$USER/LISR/conda-files/(tensor & pytorch)/option.yaml
 ```
