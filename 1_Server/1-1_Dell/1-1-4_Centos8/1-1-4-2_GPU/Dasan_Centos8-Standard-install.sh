@@ -413,6 +413,22 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} dnf group install -y "Server with GUI" \033[0m" >> /root/dasan_install_log.txt
 dnf group install -y "Server with GUI"
 
+echo " Desktop Service Disable "
+echo ""
+systemctl disable bluetooth.service
+systemctl disable iscsi.service
+systemctl disable ksm.service
+systemctl disable ksmtuned.service
+systemctl disable libstoragemgmt.service
+systemctl disable libvirtd.service
+systemctl disable spice-vdagentd.service
+systemctl disable vmtoolsd.service
+systemctl disable ModemManager.service
+systemctl disable cups.service
+systemctl disable cups-browsed.service
+systemctl disable cups.path
+systemctl disable cups.socket
+
 echo ""
 echo ""
 

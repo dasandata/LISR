@@ -16,8 +16,4 @@ systemctl disable ModemManager.service
 systemctl disable cups.service
 systemctl disable cups-browsed.service
 
-## Centos 8
-systemctl disable cups.path
-systemctl disable cups.socket
-
 # End of file.
