@@ -251,6 +251,10 @@ echo -e  "\033[1;34m${PROMPT} pip3 list | grep -i ten \033[0m" >> /root/dasan_in
 pip3 list | grep -i ten
 
 echo ""
+echo -e  "\033[1;34m${PROMPT} perl -pi -e 's/python3.6/python2.7/'   /usr/local/bin/pip \033[0m" >> /root/dasan_install_log.txt
+perl -pi -e 's/python3.6/python2.7/'   /usr/local/bin/pip
+
+echo ""
 echo ""
 
 echo -e  "\033[1;32m"==================== R-studio Server install ===================="\033[0m"
