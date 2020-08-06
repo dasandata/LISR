@@ -6,5 +6,5 @@
 | Your Os  | Linux |
 | Package  | Conda |
 | Language  | Python  |
-| Python Version  | 3.5.5  | 3.6.5  |  3.7.5  |  3.8.5  |
+| Python Version  | :heavy_check_mark: 3.5.5  | 3.6.5  |  3.7.5  |  3.8.3  |
 | Cuda Version  | 9.0  | 9.2  | 10.0  | 10.1  | 10.2  |
