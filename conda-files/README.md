@@ -11,7 +11,7 @@
 
 ## Install option
 
-- [x] Linux
+- :white_check_mark:  Linux
 - [x] Python
 - [x] Cuda
 - [x] Conda
