@@ -45,19 +45,19 @@
     |       |-- Python 3.7.5
     |
     |-- Cuda 10.1
-    |   |-- Tensor Ver 2.0
-    |   |   |-- Python 3.5.5
-    |   |   |-- Python 3.6.5
-    |   |   |-- Python 3.7.5
-    |   |
-    |   |-- Tensor Ver 2.1
-    |   |   |-- Python 3.5.5
-    |   |   |-- Python 3.6.5
-    |   |   |-- Python 3.7.5
-    |   |
-    |   |-- Tensor Ver 2.2
-    |       |-- Python 3.5.5
-    |       |-- Python 3.6.5
-    |       |-- Python 3.7.5
+        |-- Tensor Ver 2.0
+        |   |-- Python 3.5.5
+        |   |-- Python 3.6.5
+        |   |-- Python 3.7.5
+        |
+        |-- Tensor Ver 2.1
+        |   |-- Python 3.5.5
+        |   |-- Python 3.6.5
+        |   |-- Python 3.7.5
+        |
+        |-- Tensor Ver 2.2
+            |-- Python 3.5.5
+            |-- Python 3.6.5
+            |-- Python 3.7.5
 
 ```
