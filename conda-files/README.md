@@ -16,11 +16,11 @@
 - [x] Cuda
 - [x] Conda
 
-'''bash
+```
 
 +-- dir1
     +--file1
 +-- dir2
     +-- file2
 
-'''
+```
