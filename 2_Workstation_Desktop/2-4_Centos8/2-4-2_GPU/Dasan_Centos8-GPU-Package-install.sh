@@ -407,11 +407,9 @@ echo ""
 echo ""
 
 echo "  rc.local 등록 "
-echo -e  "\033[1;34m${PROMPT} sed -i '14s/Dasan_Centos8-GPU-Package-install.sh/Dasan-dell-install.sh/g' /etc/rc.d/rc.local    \033[0m" >> /root/dasan_install_log.txt
-sed -i '14s/Dasan_Centos8-GPU-Package-install.sh/Dasan-dell-install.sh/g' /etc/rc.d/rc.local
 
-echo -e  "\033[1;34m${PROMPT} cat /etc/rc.d/rc.local  | sed -n 14p \033[0m" >> /root/dasan_install_log.txt
-cat /etc/rc.d/rc.local  | sed -n 14p
+echo -e  "\033[1;34m${PROMPT} sed -i '/root/d' /etc/rc.d/rc.local   \033[0m" >> /root/dasan_install_log.txt
+sed -i '/root/d' /etc/rc.d/rc.local
 
 echo " 재 부팅 "
 echo -e  "\033[1;34m${PROMPT} reboot  재 부팅 \033[0m" >> /root/dasan_install_log.txt

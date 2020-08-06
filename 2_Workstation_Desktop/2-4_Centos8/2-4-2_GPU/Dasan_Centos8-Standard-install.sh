@@ -18,10 +18,10 @@ echo ""
 echo -e  "\033[1;32m"==================== Utility Install ===================="\033[0m"
 echo ""
 
-echo -e  "\033[1;34m${PROMPT} dnf install -y vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget ipmitool \033[0m" >> /root/dasan_install_log.txt
+echo -e  "\033[1;34m${PROMPT} dnf install -y vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget \033[0m" >> /root/dasan_install_log.txt
 echo -e  "\033[1;34m${PROMPT} dnf install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ cmake smartmontools \033[0m" >> /root/dasan_install_log.txt
 echo -e  "\033[1;34m${PROMPT} dnf install -y python2 python2-devel python3 python3-devel dstat perl perl-CPAN perl-core net-tools openssl-devel \033[0m" >> /root/dasan_install_log.txt
-dnf install -y vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget ipmitool
+dnf install -y vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget
 sleep 5
 dnf install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ cmake smartmontools
 sleep 5

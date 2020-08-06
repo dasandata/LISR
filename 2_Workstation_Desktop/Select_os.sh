@@ -7,7 +7,8 @@ echo "use os install ? Please select one "
 echo "1) Centos7"
 echo "2) Ubuntu16"
 echo "3) Ubuntu18"
-echo "4) Exit"
+echo "4) Centos8"
+echo "5) Exit"
 
 read WORD
 case $WORD in
@@ -23,7 +24,11 @@ case $WORD in
         echo Ubuntu18.
         bash /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/software.sh
         ;;
-    4 | exit | Exit)
+    4 | centos8 | Centos8)
+        echo Centos7.
+        bash /root/LISR/2_Workstation_Desktop/2-4_Centos8/software.sh
+        ;;
+    5 | exit | Exit)
         echo clear out.
         ;;
     *)

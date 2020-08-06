@@ -406,12 +406,25 @@ sleep 10
 echo ""
 echo ""
 
-echo "  rc.local 등록 "
-echo -e  "\033[1;34m${PROMPT} sed -i '14s/Dasan_Centos8-GPU-Package-install.sh/Dasan-dell-install.sh/g' /etc/rc.d/rc.local    \033[0m" >> /root/dasan_install_log.txt
-sed -i '14s/Dasan_Centos8-GPU-Package-install.sh/Dasan-dell-install.sh/g' /etc/rc.d/rc.local
+echo -e  "\033[1;32m"==================== Dell RAID Controller Management MSM Alert by Email ===================="\033[0m"
 
-echo -e  "\033[1;34m${PROMPT} cat /etc/rc.d/rc.local  | sed -n 14p \033[0m" >> /root/dasan_install_log.txt
-cat /etc/rc.d/rc.local  | sed -n 14p
+echo ""
+echo -e  "\033[1;34m${PROMPT} cat /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Install_Dell_MSM_CentOS7.sh  \033[0m" >> /root/dasan_install_log.txt
+cat /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Install_Dell_MSM_CentOS7.sh
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} bash /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Install_Dell_MSM_CentOS7.sh \033[0m" >> /root/dasan_install_log.txt
+bash /root/LISR/1_Server/1-1_Dell/1-1-1_Centos7/1-1-1-2_GPU/Install_Dell_MSM_CentOS7.sh
+
+sleep 10
+
+echo ""
+echo ""
+
+echo "  rc.local 등록 "
+
+echo -e  "\033[1;34m${PROMPT} sed -i '/root/d' /etc/rc.d/rc.local   \033[0m" >> /root/dasan_install_log.txt
+sed -i '/root/d' /etc/rc.d/rc.local
 
 echo " 재 부팅 "
 echo -e  "\033[1;34m${PROMPT} reboot  재 부팅 \033[0m" >> /root/dasan_install_log.txt
