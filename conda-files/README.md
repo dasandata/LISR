@@ -13,7 +13,7 @@
 - [x] Python Version
 - [x] Cuda Version
 
-'''
+'''bash
 
 +-- dir1
     +--file1
