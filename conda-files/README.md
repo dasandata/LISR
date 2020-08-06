@@ -9,12 +9,14 @@
 | Python Version  | 3.5.5           | 3.6.5     |  3.7.5  |  3.8.3  |         |
 | Cuda Version    | 9.0             |  9.2      | 10.0    | 10.1    | 10.2    |
 
-### Install option
+## Install option
 
 - [x] Linux
 - [x] Python
 - [x] Cuda
 - [x] Conda
+
+### Tensorflow-GPU rescue
 
 ```
 
@@ -59,5 +61,32 @@
             |-- Python 3.5.5
             |-- Python 3.6.5
             |-- Python 3.7.5
+
+```
+
+### Pytorch-GPU rescue
+
+```
+
++-- Tensorflow-GPU
+    |
+    |-- Cuda 9.2
+    |   |-- Python 3.5.5
+    |   |-- Python 3.6.5
+    |   |-- Python 3.7.5
+    |   |-- Python 3.8.3
+    |
+    |-- Cuda 10.1
+    |   |-- Python 3.5.5
+    |   |-- Python 3.6.5
+    |   |-- Python 3.7.5
+    |   |-- Python 3.8.3
+    |
+    |-- Cuda 10.2
+        |-- Python 3.5.5
+        |-- Python 3.6.5
+        |-- Python 3.7.5
+        |-- Python 3.8.3
+        
 
 ```
