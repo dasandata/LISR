@@ -65,7 +65,7 @@
 ### Pytorch-GPU rescue
 
 ```
-+-- Tensorflow-GPU
++-- Pytorch-GPU
     |
     |-- Cuda 9.2
     |   |-- Python 3.5.5    /root/LISR/conda-files/pytorch-gpu/cuda9.2-torch-gpu-py35.yaml
@@ -89,5 +89,5 @@
 #### Conda yaml file Import command
 
 ```
-
+conda env create -f /root/LISR/conda-files/(tensor & pytorch)/option.yaml
 ```
