@@ -1,8 +1,8 @@
 Dasandata conda file Install
 
 
-| Build  | Tensorflow-gpu  | torch-gpu | |  |
-| :----- | ----: | :---: | :---: | :---: |
+| Build  | Tensorflow-gpu  | torch-gpu |  |  |  |
+| :----- | :----- | :----- | :----- | :----- | :----- |
 | Your Os  | Linux |
 | Package  | Conda |
 | Language  | Python  |
