@@ -10,5 +10,14 @@
 | Cuda Version    | 9.0             |  9.2      | 10.0    | 10.1    | 10.2    |
 
 - [x] Build
-- [] Python Version
-- [] Cuda Version
+- [x] Python Version
+- [x] Cuda Version
+
+'''
+
++-- dir1
+    +--file1
++-- dir2
+    +-- file2
+
+'''
