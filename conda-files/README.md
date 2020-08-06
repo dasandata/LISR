@@ -12,9 +12,9 @@
 ## Install option
 
 - :white_check_mark: &nbsp; Linux
-- [x] Python
-- [x] Cuda
-- [x] Conda
+- :white_check_mark: &nbsp; Python
+- :white_check_mark: &nbsp; Cuda
+- :white_check_mark: &nbsp; Conda
 
 ### Tensorflow-GPU rescue
 
