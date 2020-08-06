@@ -18,7 +18,17 @@
 
 ```
 
-+-- dir1
++-- Tensorflow-GPU
+    |-- Cuda 9.0
+        |-- Tensor Ver 1.5
+        |   |-- Python 3.5.5
+        |   |-- Python 3.6.5
+        |-- Tensor Ver 1.8
+            |-- Python 3.5.5
+            |-- Python 3.6.5
+
+                
+
     +--file1
 +-- dir2
     +-- file2
