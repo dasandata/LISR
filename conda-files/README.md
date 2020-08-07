@@ -11,12 +11,19 @@
 
 ## Install option
 
-- :white_check_mark: &nbsp; Linux
-- :white_check_mark: &nbsp; Python
+- :white_check_mark: &nbsp; [Linux] (https://docs.google.com/document/d/e/2PACX-1vRdA0TAiFlUCJoYw08IkbenWqNFrdoinAovtkRt1uC70ABjjZztYNg1DR11UPtt5QFoAiQ4gpjcy5-b/pub)
 - :white_check_mark: &nbsp; Cuda
 - :white_check_mark: &nbsp; Conda
 
-### Tensorflow-GPU rescue
+### Conda yaml file Import command
+
+```
+git clone https://github.com/dasandata/LISR
+
+conda env create -f /home/$USER/LISR/conda-files/(tensor & pytorch)/option.yaml
+```
+
+#### Tensorflow-GPU rescue
 
 ```
 +-- Tensorflow-GPU
@@ -62,7 +69,7 @@
             |-- Python 3.7.5    /home/$USER/LISR/conda-files/tensorflow-gpu/cuda10.1-tf-g2.2-py37.yaml
 ```
 
-### Pytorch-GPU rescue
+#### Pytorch-GPU rescue
 
 ```
 +-- Pytorch-GPU
@@ -84,12 +91,4 @@
         |-- Python 3.6.5    /home/$USER/LISR/conda-files/pytorch-gpu/cuda10.2-torch-gpu-py36.yaml
         |-- Python 3.7.5    /home/$USER/LISR/conda-files/pytorch-gpu/cuda10.2-torch-gpu-py37.yaml
         |-- Python 3.8.3    /home/$USER/LISR/conda-files/pytorch-gpu/cuda10.2-torch-gpu-py38.yaml
-```
-
-#### Conda yaml file Import command
-
-```
-git clone https://github.com/dasandata/LISR
-
-conda env create -f /home/$USER/LISR/conda-files/(tensor & pytorch)/option.yaml
 ```
