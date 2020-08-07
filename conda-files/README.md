@@ -13,7 +13,7 @@
 
 - :white_check_mark: &nbsp; [Linux](https://docs.google.com/document/d/e/2PACX-1vRdA0TAiFlUCJoYw08IkbenWqNFrdoinAovtkRt1uC70ABjjZztYNg1DR11UPtt5QFoAiQ4gpjcy5-b/pub)
 - :white_check_mark: &nbsp; [Cuda](https://docs.google.com/document/d/e/2PACX-1vRRzZh28QiNwC9LheLhqcezDs-pPT290KtXEj6EeAbBQu46zZxoFAdu7g0eJyIC1_Ztbi-NZS5gfhFL/pub)
-- :white_check_mark: &nbsp; Conda
+- :white_check_mark: &nbsp; [Conda](https://docs.google.com/document/d/e/2PACX-1vRF4ou1sHWx-6D5L8o2904vP2ksRB2YzmXhGU2vi4Frma6U53v4es1BSBKjpeyDQQNH16kx8cSc4rpE/pub)
 
 ### Conda yaml file Import command
 
