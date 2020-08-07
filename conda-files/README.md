@@ -1,13 +1,13 @@
 # Dasandata conda file Install
 
 
-| Build           | Tensorflow-gpu  | torch-gpu |         |         |         |
+| Build           | Tensorflow-gpu  | torch-gpu |    <    |    <    |    <    |
 | :-------------: | :-------------: | :-------: | :-----: | :-----: | :-----: |
 | Your OS         | Linux           | Linux     |    <    |    <    |    <    |
 | Package         | Conda           | Conda     |    <    |    <    |    <    |
 | Language        | Python          | Python    |    <    |    <    |    <    |
 | Python Version  | 3.5.5           | 3.6.5     |  3.7.5  |  3.8.3  |    <    |
-| Cuda Version    | 9.0             |  9.2      | 10.0    | 10.1    | 10.2    |
+| Cuda Version    | 9.0             |  9.2      |   10.0  |   10.1  |   10.2  |
 
 ## Install option
 
