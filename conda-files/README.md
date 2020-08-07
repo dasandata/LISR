@@ -15,7 +15,7 @@
 - :white_check_mark: &nbsp; [Cuda](https://docs.google.com/document/d/e/2PACX-1vRRzZh28QiNwC9LheLhqcezDs-pPT290KtXEj6EeAbBQu46zZxoFAdu7g0eJyIC1_Ztbi-NZS5gfhFL/pub)
 - :white_check_mark: &nbsp; [Conda](https://docs.google.com/document/d/e/2PACX-1vRF4ou1sHWx-6D5L8o2904vP2ksRB2YzmXhGU2vi4Frma6U53v4es1BSBKjpeyDQQNH16kx8cSc4rpE/pub)
 
-### Conda yaml file Import command
+### Conda yaml file Import command [예제](https://docs.google.com/document/d/e/2PACX-1vQ7D9l4evGjXnBFUL4axTyZ2UM8CTwzsmavzsx4nM7tuYGJ8WjL55QluwnGZSX9fAYoz--W-IUeMFIB/pub)
 
 ```
 git clone https://github.com/dasandata/LISR
