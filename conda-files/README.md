@@ -11,8 +11,8 @@
 
 ## Install option
 
-- :white_check_mark: &nbsp;[Linux](https://docs.google.com/document/d/e/2PACX-1vRdA0TAiFlUCJoYw08IkbenWqNFrdoinAovtkRt1uC70ABjjZztYNg1DR11UPtt5QFoAiQ4gpjcy5-b/pub)
-- :white_check_mark: &nbsp; Cuda
+- :white_check_mark: &nbsp; [Linux](https://docs.google.com/document/d/e/2PACX-1vRdA0TAiFlUCJoYw08IkbenWqNFrdoinAovtkRt1uC70ABjjZztYNg1DR11UPtt5QFoAiQ4gpjcy5-b/pub)
+- :white_check_mark: &nbsp; [Cuda](https://docs.google.com/document/d/e/2PACX-1vRRzZh28QiNwC9LheLhqcezDs-pPT290KtXEj6EeAbBQu46zZxoFAdu7g0eJyIC1_Ztbi-NZS5gfhFL/pub)
 - :white_check_mark: &nbsp; Conda
 
 ### Conda yaml file Import command
