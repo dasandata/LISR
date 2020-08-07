@@ -401,7 +401,7 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} snap install pycharm-community --classic \033[0m" >> /root/dasan_install_log.txt
 snap install pycharm-community --classic
 
-sleep 10
+sleep 300
 
 echo ""
 echo ""
