@@ -11,7 +11,7 @@
 
 ## Install option
 
-- :white_check_mark: &nbsp; [Linux] (https://docs.google.com/document/d/e/2PACX-1vRdA0TAiFlUCJoYw08IkbenWqNFrdoinAovtkRt1uC70ABjjZztYNg1DR11UPtt5QFoAiQ4gpjcy5-b/pub)
+- :white_check_mark: &nbsp;[Linux](https://docs.google.com/document/d/e/2PACX-1vRdA0TAiFlUCJoYw08IkbenWqNFrdoinAovtkRt1uC70ABjjZztYNg1DR11UPtt5QFoAiQ4gpjcy5-b/pub)
 - :white_check_mark: &nbsp; Cuda
 - :white_check_mark: &nbsp; Conda
 
