@@ -15,7 +15,7 @@
 - :white_check_mark: &nbsp; [Cuda](https://github.com/dasandata/LISR/blob/master/conda-files/Cuda.md)
 - :white_check_mark: &nbsp; [Conda](https://github.com/dasandata/LISR/blob/master/conda-files/Conda.md)
 
-### Conda yaml file Import command [예제](https://docs.google.com/document/d/e/2PACX-1vQ7D9l4evGjXnBFUL4axTyZ2UM8CTwzsmavzsx4nM7tuYGJ8WjL55QluwnGZSX9fAYoz--W-IUeMFIB/pub)
+### Conda yaml file Import command [예제](https://github.com/dasandata/LISR/blob/master/conda-files/example.md)
 
 ```
 git clone https://github.com/dasandata/LISR
