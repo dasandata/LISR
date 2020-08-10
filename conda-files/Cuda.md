@@ -54,19 +54,19 @@ test@ubuntu:~$
 
 test@ubuntu:~$ cat << EOF >> .bashrc
 
-> ### ADD Cuda 9.0 PATH
+ ### ADD Cuda 9.0 PATH
 
-> export PATH=/usr/local/cuda-9.0/bin:/usr/local/cuda-9.0/include:\$PATH
+export PATH=/usr/local/cuda-9.0/bin:/usr/local/cuda-9.0/include:\$PATH
 
-> export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH
 
-> export CUDA_HOME=/usr/local/cuda-9.0
+export CUDA_HOME=/usr/local/cuda-9.0
 
-> export CUDA_INC_DIR=/usr/local/cuda-9.0/include
+export CUDA_INC_DIR=/usr/local/cuda-9.0/include
 
-> ### add end.
+### add end.
 
-> EOF
+EOF
 
 test@ubuntu:~$
 
@@ -111,19 +111,19 @@ test@ubuntu:~$
 
 [sonic@ubuntu:~]$ cat << EOF >> .bashrc
 
-> ### ADD Cuda 9.2 PATH
+ ### ADD Cuda 9.2 PATH
 
-> export PATH=/usr/local/cuda-9.2/bin:/usr/local/cuda-9.2/include:\$PATH
+export PATH=/usr/local/cuda-9.2/bin:/usr/local/cuda-9.2/include:\$PATH
 
-> export LD_LIBRARY_PATH=/usr/local/cuda-9.2/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-9.2/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH
 
-> export CUDA_HOME=/usr/local/cuda-9.2
+export CUDA_HOME=/usr/local/cuda-9.2
 
-> export CUDA_INC_DIR=/usr/local/cuda-9.2/include
+export CUDA_INC_DIR=/usr/local/cuda-9.2/include
 
-> ### add end.
+### add end.
 
-> EOF
+EOF
 
 [sonic@ubuntu:~]$
 
@@ -169,19 +169,19 @@ Cuda compilation tools, release 9.2, V9.2.148
 
 [sonic@ubuntu:~]$ cat << EOF >> .bashrc
 
-> ### ADD Cuda 10.0 PATH
+ ### ADD Cuda 10.0 PATH
 
-> export PATH=/usr/local/cuda-10.0/bin:/usr/local/cuda-10.0/include:\$PATH
+export PATH=/usr/local/cuda-10.0/bin:/usr/local/cuda-10.0/include:\$PATH
 
-> export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH
 
-> export CUDA_HOME=/usr/local/cuda-10.0
+export CUDA_HOME=/usr/local/cuda-10.0
 
-> export CUDA_INC_DIR=/usr/local/cuda-10.0/include
+export CUDA_INC_DIR=/usr/local/cuda-10.0/include
 
-> ### add end.
+### add end.
 
-> EOF
+EOF
 
 [sonic@ubuntu:~]$
 
@@ -226,19 +226,19 @@ Cuda compilation tools, release 10.0, V10.0.130
 
 [sonic@ubuntu:~]$ cat << EOF >> .bashrc
 
-> ### ADD Cuda 10.1 PATH
+ ### ADD Cuda 10.1 PATH
 
-> export PATH=/usr/local/cuda-10.1/bin:/usr/local/cuda-10.1/include:\$PATH
+export PATH=/usr/local/cuda-10.1/bin:/usr/local/cuda-10.1/include:\$PATH
 
-> export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH
 
-> export CUDA_HOME=/usr/local/cuda-10.1
+export CUDA_HOME=/usr/local/cuda-10.1
 
-> export CUDA_INC_DIR=/usr/local/cuda-10.1/include
+export CUDA_INC_DIR=/usr/local/cuda-10.1/include
 
-> ### add end.
+### add end.
 
-> EOF
+EOF
 
 [sonic@ubuntu:~]$
 
@@ -284,19 +284,19 @@ Cuda compilation tools, release 10.1, V10.1.243
 
 [sonic@ubuntu:~]$ cat << EOF >> .bashrc
 
-> ### ADD Cuda 10.2 PATH
+ ### ADD Cuda 10.2 PATH
 
-> export PATH=/usr/local/cuda-10.2/bin:/usr/local/cuda-10.2/include:\$PATH
+export PATH=/usr/local/cuda-10.2/bin:/usr/local/cuda-10.2/include:\$PATH
 
-> export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH
 
-> export CUDA_HOME=/usr/local/cuda-10.2
+export CUDA_HOME=/usr/local/cuda-10.2
 
-> export CUDA_INC_DIR=/usr/local/cuda-10.2/include
+export CUDA_INC_DIR=/usr/local/cuda-10.2/include
 
-> ### add end.
+### add end.
 
-> EOF
+EOF
 
 [sonic@ubuntu:~]$
 
