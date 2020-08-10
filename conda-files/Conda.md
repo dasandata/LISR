@@ -1,6 +1,6 @@
 # 0. Anaconda install 파일 다운로드
 
-![Anaconda](https://drive.google.com/file/d/1rrn4MbwEJ4Oe1_m1d41Tv6hv465msZzO/view?usp=sharing)
+![Anaconda](/Users/sewoo/Downloads/Anaconda | Individual Edition 2020-08-10 16-28-18.jpg)
 
 ```
 1. 빨간 박스 에 마우스 대기
