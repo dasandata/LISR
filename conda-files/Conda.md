@@ -1,6 +1,6 @@
 # 0. Anaconda install 파일 다운로드
 
-![Anaconda-dasan](file:///Users/sewoo/Downloads/Anaconda-2020-08-10%2016-28-18.jpg)
+![Anaconda-dasan](file:///Users/sewoo/git/image/Anaconda-dasan.jpg)
 
 ```
 1. 빨간 박스 에 마우스 대기
