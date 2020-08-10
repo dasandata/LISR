@@ -90,8 +90,6 @@ test@ubuntu:~$ source .bashrc
 
 test@ubuntu:~$
 
-```
-
 test@ubuntu:~$ nvcc -V
 
 nvcc: NVIDIA (R) Cuda compiler driver
@@ -103,6 +101,8 @@ Built on Fri_Sep__1_21:08:03_CDT_2017
 Cuda compilation tools, release 9.0, V9.0.176
 
 test@ubuntu:~$
+
+```
 
 #### 1-2. Cuda 9.2 환경 변수 적용하기
 
@@ -147,8 +147,6 @@ export CUDA_INC_DIR=/usr/local/cuda-9.2/include
 
 [sonic@ubuntu:~]$
 
-```
-
 [sonic@ubuntu:~]$ nvcc -V
 
 nvcc: NVIDIA (R) Cuda compiler driver
@@ -160,6 +158,9 @@ Built on Tue_Jun_12_23:07:04_CDT_2018
 Cuda compilation tools, release 9.2, V9.2.148
 
 [sonic@ubuntu:~]$
+
+```
+
 
 #### 1-3. Cuda 10.0 환경 변수 적용하기
 
@@ -204,9 +205,6 @@ export CUDA_INC_DIR=/usr/local/cuda-10.0/include
 
 [sonic@ubuntu:~]$
 
-```
-
-
 [sonic@ubuntu:~]$ nvcc -V
 
 nvcc: NVIDIA (R) Cuda compiler driver
@@ -219,6 +217,7 @@ Cuda compilation tools, release 10.0, V10.0.130
 
 [sonic@ubuntu:~]$
 
+```
 
 #### 1-4. Cuda 10.1 환경 변수 적용하기
 
@@ -263,9 +262,6 @@ export CUDA_INC_DIR=/usr/local/cuda-10.1/include
 
 [sonic@ubuntu:~]$
 
-```
-
-
 [sonic@ubuntu:~]$ nvcc -V
 
 nvcc: NVIDIA (R) Cuda compiler driver
@@ -277,6 +273,8 @@ Built on Sun_Jul_28_19:07:16_PDT_2019
 Cuda compilation tools, release 10.1, V10.1.243
 
 [sonic@ubuntu:~]$
+
+```
 
 
 #### 1-5. Cuda 10.2 환경 변수 적용하기
@@ -322,8 +320,6 @@ export CUDA_INC_DIR=/usr/local/cuda-10.2/include
 
 [sonic@ubuntu:~]$
 
-```
-
 [sonic@ubuntu:~]$ nvcc -V
 
 nvcc: NVIDIA (R) Cuda compiler driver
@@ -335,3 +331,5 @@ Built on Wed_Oct_23_19:24:38_PDT_2019
 Cuda compilation tools, release 10.2, V10.2.89
 
 [sonic@ubuntu:~]$
+
+```
