@@ -1,6 +1,6 @@
 # 0. Anaconda install 파일 다운로드
 
-![Anaconda](/Downloads/Anaconda-2020-08-10 16-28-18.jpg)
+![Anaconda](./git/image/Anaconda-2020-08-10 16-28-18.jpg)
 
 ```
 1. 빨간 박스 에 마우스 대기
