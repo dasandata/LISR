@@ -25,7 +25,7 @@ case $WORD in
         bash /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/software.sh
         ;;
     4 | centos8 | Centos8)
-        echo Centos7.
+        echo Centos8.
         bash /root/LISR/2_Workstation_Desktop/2-4_Centos8/software.sh
         ;;
     5 | exit | Exit)
