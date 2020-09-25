@@ -403,8 +403,6 @@ snap install pycharm-community --classic
 
 sleep 300
 
-echo ""
-echo ""
 
 echo "  rc.local 등록 "
 echo -e  "\033[1;34m${PROMPT} sed -i '14s/Dasan_Centos8-GPU-Package-install.sh/Dasan-dell-install.sh/g' /etc/rc.d/rc.local    \033[0m" >> /root/dasan_install_log.txt

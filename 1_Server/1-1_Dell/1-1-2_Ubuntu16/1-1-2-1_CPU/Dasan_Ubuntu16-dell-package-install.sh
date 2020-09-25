@@ -321,6 +321,55 @@ echo ""
 echo -e  "${PROMPT} apt-get install -y dkms linux-generic-hwe-16.04 xserver-xorg-hwe-16.04 " >> /root/dasan_install_log.txt
 apt-get install -y dkms linux-generic-hwe-16.04 xserver-xorg-hwe-16.04
 
+
+echo ""
+echo ""
+echo " ipmitool Fan speed Max "
+echo ""
+echo ""
+
+echo ""
+echo -e  "${PROMPT} Ipmitool sdr type fan  " >> /root/dasan_install_log.txt
+ipmitool sdr type fan
+
+echo ""
+echo -e  "${PROMPT} racadm set system.PCIeSlotLFM.1.lfmmode 0  " >> /root/dasan_install_log.txt
+racadm set system.PCIeSlotLFM.1.lfmmode 0
+
+sleep 5
+
+echo ""
+echo -e  "${PROMPT} racadm set system.PCIeSlotLFM.3.lfmmode 0  " >> /root/dasan_install_log.txt
+racadm set system.PCIeSlotLFM.3.lfmmode 0
+
+ sleep 5 
+
+echo ""
+echo -e  "${PROMPT} racadm set system.PCIeSlotLFM.6.lfmmode 0  " >> /root/dasan_install_log.txt
+racadm set system.PCIeSlotLFM.6.lfmmode 0
+
+ sleep 5 
+
+echo ""
+echo -e  "${PROMPT} racadm set system.PCIeSlotLFM.8.lfmmode 0  " >> /root/dasan_install_log.txt
+racadm set system.PCIeSlotLFM.8.lfmmode 0
+
+ sleep 5 
+
+echo ""
+echo -e  "${PROMPT} racadm set system.ThermalSettings.FanSpeedOffset 3  " >> /root/dasan_install_log.txt
+racadm set system.ThermalSettings.FanSpeedOffset 3
+
+sleep 5
+
+echo ""
+echo -e  "${PROMPT} Ipmitool sdr type fan  " >> /root/dasan_install_log.txt
+ipmitool sdr type fan
+
+echo ""
+echo ""
+
+
 echo "  rc.local 등록 "
 echo ""
 echo -e  "${PROMPT} sed -i '/root/d' /etc/rc.local  " >> /root/dasan_install_log.txt

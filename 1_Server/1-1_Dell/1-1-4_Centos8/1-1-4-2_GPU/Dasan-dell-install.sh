@@ -311,6 +311,49 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} racadm set iDRAC.NIC.DNSRacName ${HOSTNAME}-$(racadm getsysinfo | grep "Service Tag" | awk '{print $4}') \033[0m" >> /root/dasan_install_log.txt
 racadm set iDRAC.NIC.DNSRacName ${HOSTNAME}-$(racadm getsysinfo | grep "Service Tag" | awk '{print $4}')
 
+echo ""
+echo ""
+echo " ipmitool Fan speed Max "
+echo ""
+echo ""
+
+echo ""
+echo -e  "${PROMPT} Ipmitool sdr type fan  " >> /root/dasan_install_log.txt
+ipmitool sdr type fan
+
+echo ""
+echo -e  "${PROMPT} racadm set system.PCIeSlotLFM.1.lfmmode 0  " >> /root/dasan_install_log.txt
+racadm set system.PCIeSlotLFM.1.lfmmode 0
+
+sleep 5
+
+echo ""
+echo -e  "${PROMPT} racadm set system.PCIeSlotLFM.3.lfmmode 0  " >> /root/dasan_install_log.txt
+racadm set system.PCIeSlotLFM.3.lfmmode 0
+
+ sleep 5 
+
+echo ""
+echo -e  "${PROMPT} racadm set system.PCIeSlotLFM.6.lfmmode 0  " >> /root/dasan_install_log.txt
+racadm set system.PCIeSlotLFM.6.lfmmode 0
+
+ sleep 5 
+
+echo ""
+echo -e  "${PROMPT} racadm set system.PCIeSlotLFM.8.lfmmode 0  " >> /root/dasan_install_log.txt
+racadm set system.PCIeSlotLFM.8.lfmmode 0
+
+ sleep 5 
+
+echo ""
+echo -e  "${PROMPT} racadm set system.ThermalSettings.FanSpeedOffset 3  " >> /root/dasan_install_log.txt
+racadm set system.ThermalSettings.FanSpeedOffset 3
+
+sleep 5
+
+echo ""
+echo -e  "${PROMPT} Ipmitool sdr type fan  " >> /root/dasan_install_log.txt
+ipmitool sdr type fan
 
 echo ""
 echo ""
