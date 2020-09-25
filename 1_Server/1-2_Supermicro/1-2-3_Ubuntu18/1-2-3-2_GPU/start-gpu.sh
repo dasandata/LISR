@@ -57,8 +57,8 @@ tail -5 /root/log.txt
 echo ""
 echo ""
 
-echo -e  "${PROMPT} sed -i '1a bash /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-3_Ubuntu18/1-2-3-2_GPU/Dasan_Ubuntu18-Standard-install.sh >> /root/dasan_install_log.txt' /etc/rc.local   " >> /root/dasan_install_log.txt
-sed -i '1a bash /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-3_Ubuntu18/1-2-3-2_GPU/Dasan_Ubuntu18-Standard-install.sh >> /root/dasan_install_log.txt' /etc/rc.local
+echo -e  "${PROMPT} sed -i '1a bash /root/LISR/1_Server/1-2_Supermicro/1-2-3_Ubuntu18/1-2-3-2_GPU/Dasan_Ubuntu18-Standard-install.sh >> /root/dasan_install_log.txt' /etc/rc.local   " >> /root/dasan_install_log.txt
+sed -i '1a bash /root/LISR/1_Server/1-2_Supermicro/1-2-3_Ubuntu18/1-2-3-2_GPU/Dasan_Ubuntu18-Standard-install.sh >> /root/dasan_install_log.txt' /etc/rc.local
 
 echo ""
 echo ""

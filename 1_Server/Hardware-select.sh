@@ -20,8 +20,8 @@ case $WORD in
         bash /root/LISR/1_Server/1-2_Supermicro/Select_os.sh
         ;;
     3 | qct | QCT)
-        echo QCT.
-        bash /root/LISR/1_Server/1-3_QCT/Select_os.sh
+        echo Qct.
+        bash /root/LISR/1_Server/1-3_Qct/Select_os.sh
         ;;
     4 | exit | Exit)
         echo clear out.

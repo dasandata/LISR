@@ -80,12 +80,12 @@ echo ""
 echo ""
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} cat /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-1_Centos7/1-2-1-2_GPU/Install_MSM_CentOS7.sh  \033[0m" >> /root/dasan_install_log.txt
-cat /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-1_Centos7/1-2-1-2_GPU/Install_MSM_CentOS7.sh
+echo -e  "\033[1;34m${PROMPT} cat /root/LISR/1_Server/1-2_Supermicro/1-2-1_Centos7/1-2-1-2_GPU/Install_MSM_CentOS7.sh  \033[0m" >> /root/dasan_install_log.txt
+cat /root/LISR/1_Server/1-2_Supermicro/1-2-1_Centos7/1-2-1-2_GPU/Install_MSM_CentOS7.sh
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} bash /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-1_Centos7/1-2-1-2_GPU/Install_MSM_CentOS7.sh \033[0m" >> /root/dasan_install_log.txt
-bash /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-1_Centos7/1-2-1-2_GPU/Install_MSM_CentOS7.sh
+echo -e  "\033[1;34m${PROMPT} bash /root/LISR/1_Server/1-2_Supermicro/1-2-1_Centos7/1-2-1-2_GPU/Install_MSM_CentOS7.sh \033[0m" >> /root/dasan_install_log.txt
+bash /root/LISR/1_Server/1-2_Supermicro/1-2-1_Centos7/1-2-1-2_GPU/Install_MSM_CentOS7.sh
 
 sleep 10
 
