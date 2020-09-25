@@ -12,12 +12,12 @@ read WORD
 case $WORD in
     1 | cpu | CPU)
         echo start Ubuntu16 CPU software.
-        bash /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-2_Ubuntu16/1-2-2-1_CPU/start-cpu.sh
+        bash /root/LISR/1_Server/1-2_Supermicro/1-2-2_Ubuntu16/1-2-2-1_CPU/start-cpu.sh
         ;;
     2 | gpu | GPU)
         echo start Ubuntu16 GPU software.
         echo " Installed application test file "
-        echo " bash /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-2_Ubuntu16/1-2-2-2_GPU/Dasan_Ubuntu16-CUDA10_3-install.sh "
+        echo " bash /root/LISR/1_Server/1-2_Supermicro/1-2-2_Ubuntu16/1-2-2-2_GPU/Dasan_Ubuntu16-CUDA10_3-install.sh "
         bash /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-2_Ubuntu16/1-2-2-2_GPU/start-gpu.sh
         ;;
     3 | exit | Exit)
