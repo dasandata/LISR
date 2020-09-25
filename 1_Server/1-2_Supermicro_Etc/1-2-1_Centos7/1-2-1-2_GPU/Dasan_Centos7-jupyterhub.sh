@@ -174,6 +174,42 @@ echo ""
 echo -e  "${PROMPT} rm -rf cuda-repo-rhel7-10.0.130-1.x86_64.rpm rstudio-1.2.5033-x86_64.rpm rstudio-server-rhel-1.2.5033-x86_64.rpm r_jupyterhub.Rout dasan_log_install_* " >> /root/dasan_install_log.txt
 rm -rf cuda-repo-rhel7-10.0.130-1.x86_64.rpm rstudio-1.2.5033-x86_64.rpm rstudio-server-rhel-1.2.5033-x86_64.rpm r_jupyterhub.Rout dasan_log_install_* >> /root/log.txt
 
+echo " ipmitool Fan speed Max "
+echo ""
+echo ""
+echo -e  "\033[1;34m${PROMPT} ipmitool sdr type fan \033[0m" >> /root/dasan_install_log.txt
+ipmitool sdr type fan
+
+sleep 5
+
+echo -e  "\033[1;34m${PROMPT} ipmitool raw 0x30 0x45 0x00 \033[0m" >> /root/dasan_install_log.txt
+ipmitool raw 0x30 0x45 0x00
+
+sleep 5
+
+echo -e  "\033[1;34m${PROMPT} ipmitool raw 0x30 0x70 0x66 0x01 0x00 0x64 \033[0m" >> /root/dasan_install_log.txt
+ipmitool raw 0x30 0x70 0x66 0x01 0x00 0x64
+
+sleep 5
+
+echo -e  "\033[1;34m${PROMPT} ipmitool raw 0x30 0x70 0x66 0x01 0x01 0x64 \033[0m" >> /root/dasan_install_log.txt
+ipmitool raw 0x30 0x70 0x66 0x01 0x01 0x64
+
+sleep 5
+
+echo -e  "\033[1;34m${PROMPT} ipmitool raw 0x30 0x70 0x66 0x01 0x02 0x64 \033[0m" >> /root/dasan_install_log.txt
+ipmitool raw 0x30 0x70 0x66 0x01 0x02 0x64
+
+sleep 5
+
+echo -e  "\033[1;34m${PROMPT} ipmitool raw 0x30 0x70 0x66 0x01 0x03 0x64 \033[0m" >> /root/dasan_install_log.txt
+ipmitool raw 0x30 0x70 0x66 0x01 0x03 0x64
+
+sleep 5
+
+echo -e  "\033[1;34m${PROMPT} ipmitool sdr type fan \033[0m" >> /root/dasan_install_log.txt
+ipmitool sdr type fan
+
 echo ""
 echo ""
 

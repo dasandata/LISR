@@ -624,6 +624,43 @@ bash /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-1_Centos7/1-2-1-1_CPU/Install_MS
 
 sleep 10
 
+
+echo " ipmitool Fan speed Max "
+echo ""
+echo ""
+echo -e  "\033[1;34m${PROMPT} ipmitool sdr type fan \033[0m" >> /root/dasan_install_log.txt
+ipmitool sdr type fan
+
+sleep 5
+
+echo -e  "\033[1;34m${PROMPT} ipmitool raw 0x30 0x45 0x00 \033[0m" >> /root/dasan_install_log.txt
+ipmitool raw 0x30 0x45 0x00
+
+sleep 5
+
+echo -e  "\033[1;34m${PROMPT} ipmitool raw 0x30 0x70 0x66 0x01 0x00 0x64 \033[0m" >> /root/dasan_install_log.txt
+ipmitool raw 0x30 0x70 0x66 0x01 0x00 0x64
+
+sleep 5
+
+echo -e  "\033[1;34m${PROMPT} ipmitool raw 0x30 0x70 0x66 0x01 0x01 0x64 \033[0m" >> /root/dasan_install_log.txt
+ipmitool raw 0x30 0x70 0x66 0x01 0x01 0x64
+
+sleep 5
+
+echo -e  "\033[1;34m${PROMPT} ipmitool raw 0x30 0x70 0x66 0x01 0x02 0x64 \033[0m" >> /root/dasan_install_log.txt
+ipmitool raw 0x30 0x70 0x66 0x01 0x02 0x64
+
+sleep 5
+
+echo -e  "\033[1;34m${PROMPT} ipmitool raw 0x30 0x70 0x66 0x01 0x03 0x64 \033[0m" >> /root/dasan_install_log.txt
+ipmitool raw 0x30 0x70 0x66 0x01 0x03 0x64
+
+sleep 5
+
+echo -e  "\033[1;34m${PROMPT} ipmitool sdr type fan \033[0m" >> /root/dasan_install_log.txt
+ipmitool sdr type fan
+
 echo ""
 echo ""
 
