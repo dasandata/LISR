@@ -506,12 +506,12 @@ echo ""
 echo ""
 
 echo ""
-echo -e  "${PROMPT} cat /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-3_Ubuntu18/1-2-3-1_CPU/Install_MSM_Ubuntu.sh  " >> /root/dasan_install_log.txt
-cat /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-3_Ubuntu18/1-2-3-1_CPU/Install_MSM_Ubuntu.sh >> /root/log.txt
+echo -e  "${PROMPT} cat /root/LISR/1_Server/1-2_Supermicro/1-2-3_Ubuntu18/1-2-3-1_CPU/Install_MSM_Ubuntu.sh  " >> /root/dasan_install_log.txt
+cat /root/LISR/1_Server/1-2_Supermicro/1-2-3_Ubuntu18/1-2-3-1_CPU/Install_MSM_Ubuntu.sh >> /root/log.txt
 
 echo ""
-echo -e  "${PROMPT} bash /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-3_Ubuntu18/1-2-3-1_CPU/Install_MSM_Ubuntu.sh " >> /root/dasan_install_log.txt
-bash /root/LISR/1_Server/1-2_Supermicro_Etc/1-2-3_Ubuntu18/1-2-3-1_CPU/Install_MSM_Ubuntu.sh >> /root/log.txt
+echo -e  "${PROMPT} bash /root/LISR/1_Server/1-2_Supermicro/1-2-3_Ubuntu18/1-2-3-1_CPU/Install_MSM_Ubuntu.sh " >> /root/dasan_install_log.txt
+bash /root/LISR/1_Server/1-2_Supermicro/1-2-3_Ubuntu18/1-2-3-1_CPU/Install_MSM_Ubuntu.sh >> /root/log.txt
 
 sleep 10
 
