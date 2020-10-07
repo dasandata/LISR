@@ -222,19 +222,19 @@ echo -e  "${PROMPT} echo $HISTSIZE " >> /root/dasan_install_log.txt
 echo $HISTSIZE
 
 echo ""
-echo -e  "${PROMPT} source  .bashrc " >> /root/dasan_install_log.txt
-source  .bashrc
+echo -e  "${PROMPT} source  /root/.bashrc " >> /root/dasan_install_log.txt
+source  /root/.bashrc
 
 echo ""
 echo ""
 
 sleep 10
 
-echo -e  "==================== Hardware Spec ====================""
+echo -e  "==================== Hardware Spec ===================="
 
 echo ""
 
-echo -e "### Start to Check Hardware Spec.... ""
+echo -e "### Start to Check Hardware Spec.... "
 echo " "
 echo -e  "=== System ==="
 echo -e  "${PROMPT} dmidecode --type system | grep -v \"^$\|#\|SMBIOS\|Handle\|Not\""
@@ -309,7 +309,7 @@ echo -e "${PROMPT} dmidecode --type 39  \| grep \"System\|Name:\|Capacity\"  "
 dmidecode --type 39  | grep "System\|Name:\|Capacity"
 
 echo " "
-echo -e  "=== Disk "&" Partition ==="
+echo -e  "=== Disk & Partition ==="
 echo -e "${PROMPT} lsblk "
 lsblk
 
