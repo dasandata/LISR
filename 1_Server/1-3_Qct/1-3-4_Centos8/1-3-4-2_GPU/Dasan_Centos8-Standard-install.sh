@@ -227,8 +227,8 @@ echo -e  "\033[1;34m${PROMPT} echo $HISTSIZE \033[0m" >> /root/dasan_install_log
 echo $HISTSIZE
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} source  .bashrc \033[0m" >> /root/dasan_install_log.txt
-source  .bashrc
+echo -e  "\033[1;34m${PROMPT} source  /root/.bashrc \033[0m" >> /root/dasan_install_log.txt
+source  /root/.bashrc
 
 echo ""
 echo ""
@@ -314,7 +314,7 @@ echo -e "\033[1;34m"${PROMPT} dmidecode --type 39  \| grep \"System\|Name:\|Capa
 dmidecode --type 39  | grep "System\|Name:\|Capacity"
 
 echo " "
-echo -e  "\033[1;32m"=== Disk "&" Partition ==="\033[0m"
+echo -e  "\033[1;32m"=== Disk & Partition ==="\033[0m"
 echo -e "\033[1;34m"${PROMPT} lsblk "\033[0m"
 lsblk
 
