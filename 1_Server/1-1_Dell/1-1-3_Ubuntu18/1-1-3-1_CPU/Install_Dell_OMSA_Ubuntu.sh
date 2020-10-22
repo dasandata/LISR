@@ -7,7 +7,7 @@ echo "###
 ### dell linux repo 추가...
 ### "
 
-echo 'deb http://linux.dell.com/repo/community/ubuntu xenial openmanage'  >  \
+echo 'deb http://linux.dell.com/repo/community/ubuntu bionic openmanage'  >  \
  /etc/apt/sources.list.d/linux.dell.com.sources.list
 
  wget http://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc
