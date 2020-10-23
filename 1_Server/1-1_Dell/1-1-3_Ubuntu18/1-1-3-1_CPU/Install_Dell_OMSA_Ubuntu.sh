@@ -27,6 +27,13 @@ apt-get  -y update
 
 apt-get  -y  install srvadmin-all
 
+# SSL Link 추가
+cd /usr/lib/x86_64-linux-gnu/
+
+ln -s /usr/lib/x86_64-linux-gnu/libssl.so.1.1 libssl.so
+
+cd
+
 # 방화벽 설정 (web base 모니터링)
 echo "###
 ### 방화벽 설정 (firewall-cmd)...
