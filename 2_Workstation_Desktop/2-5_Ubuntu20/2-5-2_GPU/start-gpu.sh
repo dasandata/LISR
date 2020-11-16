@@ -39,12 +39,12 @@ echo ""
 echo ""
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} sed -i '1a bash /root/LISR/2_Workstation_Desktop/2-5_Ubuntu20/2-5-2_GPU/Dasan_Ubuntu20-Standard-install.sh >> /root/dasan_install_log.txt' /etc/rc.d/rc.local   \033[0m" >> /root/dasan_install_log.txt
-sed -i '1a bash /root/LISR/2_Workstation_Desktop/2-5_Ubuntu20/2-5-2_GPU/Dasan_Ubuntu20-Standard-install.sh >> /root/dasan_install_log.txt' /etc/rc.d/rc.local
+echo -e  "\033[1;34m${PROMPT} sed -i '1a bash /root/LISR/2_Workstation_Desktop/2-5_Ubuntu20/2-5-2_GPU/Dasan_Ubuntu20-Standard-install.sh >> /root/dasan_install_log.txt' /etc/rc.local   \033[0m" >> /root/dasan_install_log.txt
+sed -i '1a bash /root/LISR/2_Workstation_Desktop/2-5_Ubuntu20/2-5-2_GPU/Dasan_Ubuntu20-Standard-install.sh >> /root/dasan_install_log.txt' /etc/rc.local
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} cat /etc/rc.d/rc.local  | sed -n 2p \033[0m" >> /root/dasan_install_log.txt
-cat /etc/rc.d/rc.local  | sed -n 2p
+echo -e  "\033[1;34m${PROMPT} cat /etc/rc.local  | sed -n 2p \033[0m" >> /root/dasan_install_log.txt
+cat /etc/rc.local  | sed -n 2p
 
 echo "  재부팅 "
 echo -e  "\033[1;34m${PROMPT} reboot \033[0m" >> /root/dasan_install_log.txt
