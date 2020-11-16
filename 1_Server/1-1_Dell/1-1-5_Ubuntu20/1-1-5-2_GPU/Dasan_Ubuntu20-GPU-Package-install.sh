@@ -136,15 +136,15 @@ nvcc -V
 echo ""
 echo ""
 
-echo " Cuda 10.0 샘플 컴파일 "
+echo " Cuda 11.0 샘플 컴파일 "
 
 echo ""
-echo -e  "${PROMPT} cp -r  /usr/local/cuda-10.0/samples/   ~/NVIDIA_CUDA-10.0_Samples " >> /root/dasan_install_log.txt
-cp -r  /usr/local/cuda-10.0/samples/   ~/NVIDIA_CUDA-10.0_Samples
+echo -e  "${PROMPT} cp -r  /usr/local/cuda-11.0/samples/   ~/NVIDIA_CUDA-11.0_Samples " >> /root/dasan_install_log.txt
+cp -r  /usr/local/cuda-11.0/samples/   ~/NVIDIA_CUDA-11.0_Samples
 
 echo ""
-echo -e  "${PROMPT} cd ~/NVIDIA_CUDA-10.0_Samples " >> /root/dasan_install_log.txt
-cd ~/NVIDIA_CUDA-10.0_Samples
+echo -e  "${PROMPT} cd ~/NVIDIA_CUDA-11.0_Samples " >> /root/dasan_install_log.txt
+cd ~/NVIDIA_CUDA-11.0_Samples
 
 echo ""
 echo -e  "${PROMPT} time make -j$(grep process /proc/cpuinfo | wc -l) " >> /root/dasan_install_log.txt

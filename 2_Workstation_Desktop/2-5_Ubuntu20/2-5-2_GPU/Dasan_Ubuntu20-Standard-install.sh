@@ -46,12 +46,10 @@ sleep 10
 
 echo ""
 
-echo -e  "${PROMPT} apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux " >> /root/dasan_install_log.txt
-echo -e  "${PROMPT} apt-get install -y git wget ipmitool net-tools xfsprogs ntfs-3g aptitude " >> /root/dasan_install_log.txt
-echo -e  "${PROMPT} apt-get install -y lvm2 dstat curl smartmontools npm python " >> /root/dasan_install_log.txt
-apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux
-apt-get install -y git wget ipmitool net-tools xfsprogs ntfs-3g aptitude
-apt-get install -y lvm2 dstat curl smartmontools npm python
+echo -e  "${PROMPT} apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget " >> /root/dasan_install_log.txt
+echo -e  "${PROMPT} apt-get install -y net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools npm python " >> /root/dasan_install_log.txt
+apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget
+apt-get install -y net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools npm python
 
 sleep 10
 
@@ -59,6 +57,9 @@ echo -e  "${PROMPT} DEBIAN_FRONTEND=noninteractive apt-get install -y mailutils 
 DEBIAN_FRONTEND=noninteractive apt-get install -y mailutils smartmontools
 
 sleep 5
+
+echo -e  "${PROMPT} apt-get install python3-pip " >> /root/dasan_install_log.txt
+apt-get install python3-pip
 
 echo -e  "${PROMPT} add-apt-repository universe " >> /root/dasan_install_log.txt
 add-apt-repository universe
@@ -466,7 +467,7 @@ echo ""
 echo " sshd 설정. (기본 포트인 22번을 7777로 변경) "
 echo ""
 
-echo " Ubuntu18 sshd_config "
+echo " Ubuntu20 sshd_config "
 echo ""
 echo -e  "${PROMPT} grep 'Root\|Port' /etc/ssh/sshd_config " >> /root/dasan_install_log.txt
 grep 'Root\|Port' /etc/ssh/sshd_config
@@ -635,8 +636,8 @@ echo ""
 echo ""
 
 echo "  rc.local 등록 "
-echo -e  "${PROMPT} sed -i '2s/Dasan_Ubuntu18-Standard-install.sh/Dasan_Ubuntu18-nouveau.sh/g' /etc/rc.local  " >> /root/dasan_install_log.txt
-sed -i '2s/Dasan_Ubuntu18-Standard-install.sh/Dasan_Ubuntu18-nouveau.sh/g' /etc/rc.local
+echo -e  "${PROMPT} sed -i '2s/Dasan_Ubuntu20-Standard-install.sh/Dasan_Ubuntu20-GPU-Package-install.sh/g' /etc/rc.local  " >> /root/dasan_install_log.txt
+sed -i '2s/Dasan_Ubuntu20-Standard-install.sh/Dasan_Ubuntu20-GPU-Package-install.sh/g' /etc/rc.local
 
 echo -e  "${PROMPT} cat /etc/rc.local | sed -n 2p " >> /root/dasan_install_log.txt
 cat /etc/rc.local | sed -n 2p
