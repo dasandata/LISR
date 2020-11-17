@@ -61,6 +61,8 @@ sleep 5
 echo -e  "${PROMPT} apt-get install python3-pip " >> /root/dasan_install_log.txt
 apt-get install python3-pip
 
+sleep 5
+
 echo -e  "${PROMPT} add-apt-repository universe " >> /root/dasan_install_log.txt
 add-apt-repository universe
 
@@ -96,6 +98,9 @@ which pip
 
 echo -e  "${PROMPT} which pip3 " >> /root/dasan_install_log.txt
 which pip3
+
+echo -e  "${PROMPT} pip3 install --upgrade pip " >> /root/dasan_install_log.txt
+pip3 install --upgrade pip
 
 echo -e  "${PROMPT} perl -pi -e 's/python3/python/'   /usr/local/bin/pip " >> /root/dasan_install_log.txt
 perl -pi -e 's/python3/python/'   /usr/local/bin/pip
