@@ -58,8 +58,8 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y mailutils smartmontools
 
 sleep 5
 
-echo -e  "${PROMPT} apt-get install python3-pip " >> /root/dasan_install_log.txt
-apt-get install python3-pip
+echo -e  "${PROMPT} apt-get install -y python3-pip " >> /root/dasan_install_log.txt
+apt-get install -y python3-pip
 
 sleep 5
 
@@ -72,8 +72,8 @@ apt update
 echo -e  "${PROMPT} apt list --upgradeable " >> /root/dasan_install_log.txt
 apt list --upgradeable
 
-echo -e  "${PROMPT} apt install python2 " >> /root/dasan_install_log.txt
-apt install python2
+echo -e  "${PROMPT} apt install -y python2 " >> /root/dasan_install_log.txt
+apt install -y python2
 
 echo -e  "${PROMPT} curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py " >> /root/dasan_install_log.txt
 curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
