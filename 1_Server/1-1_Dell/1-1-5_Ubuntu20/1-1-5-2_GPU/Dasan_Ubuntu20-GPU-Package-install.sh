@@ -238,6 +238,9 @@ echo ""
 echo -e  "${PROMPT} pip install scipy==1.2.2 " >> /root/dasan_install_log.txt
 pip install scipy==1.2.2
 
+sleep 5
+
+
 echo ""
 echo -e  "${PROMPT} pip3 install --upgrade numpy scipy nose matplotlib pandas keras tensorflow-gpu " >> /root/dasan_install_log.txt
 pip3 install --upgrade numpy scipy nose matplotlib pandas keras tensorflow-gpu
@@ -246,9 +249,13 @@ echo ""
 echo -e  "${PROMPT} pip3 install numpy==1.16.0 scipy==1.4.1 " >> /root/dasan_install_log.txt
 pip3 install numpy==1.16.0 h5py==2.10.0
 
+sleep 5
+
 echo ""
 echo -e  "${PROMPT} pip install --upgrade torch torchvision " >> /root/dasan_install_log.txt
 pip install --upgrade torch torchvision
+
+sleep 5
 
 echo ""
 echo -e  "${PROMPT} pip3 install --upgrade torch torchvision " >> /root/dasan_install_log.txt
