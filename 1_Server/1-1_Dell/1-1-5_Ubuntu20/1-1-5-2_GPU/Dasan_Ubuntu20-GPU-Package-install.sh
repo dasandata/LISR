@@ -66,6 +66,9 @@ echo ""
 echo -e  "${PROMPT} nvidia-smi   " >> /root/dasan_install_log.txt
 nvidia-smi
 
+echo ""
+echo -e  "${PROMPT} systemctl enable nvidia-persistenced " >> /root/dasan_install_log.txt
+systemctl enable nvidia-persistenced
 
 echo ""
 echo ""
@@ -153,26 +156,74 @@ time make -j$(grep process /proc/cpuinfo | wc -l) >> /root/log.txt
 echo ""
 echo ""
 
-echo -e  "==================== Cudnn 7 install ===================="
+echo -e  "==================== Cudnn 8 install ===================="
 
 echo ""
 echo ""
 
 echo ""
-echo -e  "${PROMPT} apt-get install -y libcudnn7=7.6.5.32-1+cuda10.0 " >> /root/dasan_install_log.txt
-apt-get install -y libcudnn7=7.6.5.32-1+cuda10.0
+echo -e  "${PROMPT} mount -t nfs 192.168.0.5:/file /mnt " >> /root/dasan_install_log.txt
+mount -t nfs 192.168.0.5:/file /mnt
 
 echo ""
-echo -e  "${PROMPT} apt-get install -y libcudnn7-dev=7.6.5.32-1+cuda10.0  " >> /root/dasan_install_log.txt
-apt-get install -y libcudnn7-dev=7.6.5.32-1+cuda10.0
+echo -e  "${PROMPT} mkdir /root/cudnn " >> /root/dasan_install_log.txt
+mkdir /root/cudnn
 
 echo ""
-echo -e  "${PROMPT} apt-get update " >> /root/dasan_install_log.txt
-apt-get update >> /root/log.txt
+echo -e  "${PROMPT} cp /mnt/1_OS/2_Linux/cudnn/cudnn-11.0-linux-x64-v8.0.2.39.tgz /root/cudnn/ " >> /root/dasan_install_log.txt
+cp /mnt/1_OS/2_Linux/cudnn/cudnn-11.0-linux-x64-v8.0.2.39.tgz /root/cudnn/ >> /root/log.txt
 
 echo ""
-echo -e  "${PROMPT} apt-get install -y libcublas-dev " >> /root/dasan_install_log.txt
-apt-get install -y libcublas-dev >> /root/log.txt
+echo -e  "${PROMPT} umount /mnt " >> /root/dasan_install_log.txt
+umount /mnt >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} cd /root/cudnn/ " >> /root/dasan_install_log.txt
+cd /root/cudnn/ >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} pwd " >> /root/dasan_install_log.txt
+pwd >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} ls -al " >> /root/dasan_install_log.txt
+ls -al >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} tar xvzf cudnn-11.0-linux-x64-v8.0.2.39.tgz " >> /root/dasan_install_log.txt
+tar xvzf cudnn-11.0-linux-x64-v8.0.2.39.tgz >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} ls -l cuda/include/* " >> /root/dasan_install_log.txt
+ls -l cuda/include/* >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} ls -l cuda/lib64/* " >> /root/dasan_install_log.txt
+ls -l cuda/lib64/* >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} chmod a+r cuda/include/* " >> /root/dasan_install_log.txt
+chmod a+r cuda/include/* >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} chmod a+r cuda/lib64/* " >> /root/dasan_install_log.txt
+chmod a+r cuda/lib64/* >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} cp -rp cuda/include/cudnn.h /usr/local/cuda-11.0/include/ " >> /root/dasan_install_log.txt
+cp -rp cuda/include/cudnn.h /usr/local/cuda-11.0/include/ >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} cp -rp cuda/lib64/libcudnn* /usr/local/cuda-11.0/lib64/ " >> /root/dasan_install_log.txt
+cp -rp cuda/lib64/libcudnn* /usr/local/cuda-11.0/lib64/ >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} ls -l /usr/local/cuda-11.0/lib64/libcudnn* " >> /root/dasan_install_log.txt
+ls -l /usr/local/cuda-11.0/lib64/libcudnn* >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} cd " >> /root/dasan_install_log.txt
+cd >> /root/log.txt
 
 echo ""
 echo ""
@@ -180,69 +231,149 @@ echo ""
 echo -e  "==================== Deep Learning Package Install python-PIP, tensorflow ===================="
 
 echo ""
-echo -e  "${PROMPT} cd ~ " >> /root/dasan_install_log.txt
-cd ~
+echo -e  "${PROMPT} pip install --upgrade numpy scipy  nose  matplotlib  pandas  keras tensorflow-gpu " >> /root/dasan_install_log.txt
+pip install --upgrade numpy scipy  nose  matplotlib  pandas  keras tensorflow-gpu
 
 echo ""
-echo -e  "${PROMPT} python -V " >> /root/dasan_install_log.txt
-python -V
+echo -e  "${PROMPT} pip install scipy==1.2.2 " >> /root/dasan_install_log.txt
+pip install scipy==1.2.2
 
 echo ""
-echo -e  "${PROMPT} which  python " >> /root/dasan_install_log.txt
-which  python
+echo -e  "${PROMPT} pip3 install --upgrade numpy scipy nose matplotlib pandas keras tensorflow-gpu " >> /root/dasan_install_log.txt
+pip3 install --upgrade numpy scipy nose matplotlib pandas keras tensorflow-gpu
 
 echo ""
-echo -e  "${PROMPT} python3 -V " >> /root/dasan_install_log.txt
-python3 -V
+echo -e  "${PROMPT} pip3 install numpy==1.16.0 scipy==1.4.1 " >> /root/dasan_install_log.txt
+pip3 install numpy==1.16.0 h5py==2.10.0
 
 echo ""
-echo -e  "${PROMPT} which  python3 " >> /root/dasan_install_log.txt
-which  python3
+echo -e  "${PROMPT} pip install --upgrade torch torchvision " >> /root/dasan_install_log.txt
+pip install --upgrade torch torchvision
 
 echo ""
-echo -e  "${PROMPT} apt-get install -y  python-pip python3-pip python-tk python3-tk " >> /root/dasan_install_log.txt
-apt-get install -y  python-pip python3-pip python-tk python3-tk >> /root/log.txt
-
-echo ""
-echo ""
-
-echo " pip Check "
-
-echo ""
-echo -e  "${PROMPT} python -V " >> /root/dasan_install_log.txt
-python -V
-
-echo ""
-echo -e  "${PROMPT} which  python " >> /root/dasan_install_log.txt
-which  python
-
-echo ""
-echo -e  "${PROMPT} python3 -V " >> /root/dasan_install_log.txt
-python3 -V
-
-echo ""
-echo -e  "${PROMPT} which  python3 " >> /root/dasan_install_log.txt
-which  python3
+echo -e  "${PROMPT} pip3 install --upgrade torch torchvision " >> /root/dasan_install_log.txt
+pip3 install --upgrade torch torchvision
 
 echo ""
 echo ""
 
-echo " ADD package install "
+echo -e  "==================== R Server install ===================="
 
 echo ""
-echo -e  "${PROMPT} pip   install --upgrade pip " >> /root/dasan_install_log.txt
-pip   install --upgrade pip >> /root/log.txt
+echo -e  "${PROMPT} apt-get install -y r-base " >> /root/dasan_install_log.txt
+apt-get install -y r-base
 
 echo ""
-echo -e  "${PROMPT} pip3   install --upgrade pip " >> /root/dasan_install_log.txt
-pip3   install --upgrade pip >> /root/log.txt
+echo -e  "${PROMPT} apt-get install -y gdebi-core " >> /root/dasan_install_log.txt
+apt-get install -y gdebi-core
+
+echo ""
+echo -e  "${PROMPT} wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.3.1073-amd64.deb " >> /root/dasan_install_log.txt
+wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.3.1073-amd64.deb
+
+echo ""
+echo -e  "${PROMPT} yes | gdebi rstudio-server-1.3.1073-amd64.deb " >> /root/dasan_install_log.txt
+yes | gdebi rstudio-server-1.3.1073-amd64.deb
+
+echo ""
+echo -e  "${PROMPT} ufw allow 8787/tcp " >> /root/dasan_install_log.txt
+ufw allow 8787/tcp
+
+echo ""
+echo -e  "${PROMPT} ufw status " >> /root/dasan_install_log.txt
+ufw status
+
+echo ""
+echo ""
+
+echo -e  "==================== Jupyter hub install ===================="
+
+echo ""
+echo -e  "${PROMPT} curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - " >> /root/dasan_install_log.txt
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+
+echo ""
+echo -e  "${PROMPT} apt-get install -y nodejs " >> /root/dasan_install_log.txt
+apt-get install -y nodejs >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} apt-get install -y  default-jre " >> /root/dasan_install_log.txt
+apt-get install -y  default-jre >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} npm install -g configurable-http-proxy " >> /root/dasan_install_log.txt
+npm install -g configurable-http-proxy >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} pip3 install --upgrade jupyterhub notebook " >> /root/dasan_install_log.txt
+pip3 install --upgrade jupyterhub notebook >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} ufw allow 8000/tcp " >> /root/dasan_install_log.txt
+ufw allow 8000/tcp >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} ufw status " >> /root/dasan_install_log.txt
+ufw status >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} mv /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/jupyterhub /etc/init.d/ " >> /root/dasan_install_log.txt
+mv /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/jupyterhub /etc/init.d/ >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} chmod 755 /etc/init.d/jupyterhub " >> /root/dasan_install_log.txt
+chmod 755 /etc/init.d/jupyterhub >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} mv /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/jupyterhub.service /lib/systemd/system/ " >> /root/dasan_install_log.txt
+mv /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/jupyterhub.service /lib/systemd/system/ >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} chmod 777 /lib/systemd/system/jupyterhub.service " >> /root/dasan_install_log.txt
+chmod 777 /lib/systemd/system/jupyterhub.service >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} systemctl daemon-reload " >> /root/dasan_install_log.txt
+systemctl daemon-reload >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} systemctl enable jupyterhub.service " >> /root/dasan_install_log.txt
+systemctl enable jupyterhub.service >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} apt-get install -y libxml2-dev libzmq3-dev libcurl4-openssl-dev " >> /root/dasan_install_log.txt
+apt-get install -y libxml2-dev libzmq3-dev libcurl4-openssl-dev >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} R CMD BATCH /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/r_jupyterhub.R " >> /root/dasan_install_log.txt
+R CMD BATCH /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/r_jupyterhub.R >> /root/log.txt
+
+echo ""
+echo ""
+
+echo -e  "==================== Pycharm install ===================="
+
+echo ""
+echo -e  "${PROMPT} snap install pycharm-community --classic " >> /root/dasan_install_log.txt
+snap install pycharm-community --classic >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} systemctl set-default multi-user.target " >> /root/dasan_install_log.txt
+systemctl set-default multi-user.target >> /root/log.txt
+
+echo ""
+echo -e  "${PROMPT} systemctl get-default  " >> /root/dasan_install_log.txt
+systemctl get-default  >> /root/log.txt
 
 echo ""
 echo ""
 
 echo "  rc.local 등록 "
-echo -e  "${PROMPT} sed -i '2s/Dasan_Ubuntu18-CUDA10_1-install.sh/Dasan_Ubuntu18-CUDA10_2-install.sh/g' /etc/rc.local  " >> /root/dasan_install_log.txt
-sed -i '2s/Dasan_Ubuntu18-CUDA10_1-install.sh/Dasan_Ubuntu18-CUDA10_2-install.sh/g' /etc/rc.local
+echo -e  "${PROMPT} sed -i '2s/Dasan_Ubuntu20-GPU-Package-install.sh/Dasan_Ubuntu20-dell-package-Install.sh/g' /etc/rc.local  " >> /root/dasan_install_log.txt
+sed -i '2s/Dasan_Ubuntu20-GPU-Package-install.sh/Dasan_Ubuntu20-dell-package-Install.sh/g' /etc/rc.local
+
+echo ""
+echo ""
 
 echo -e  "${PROMPT} cat /etc/rc.local | sed -n 2p " >> /root/dasan_install_log.txt
 cat /etc/rc.local | sed -n 2p

@@ -46,17 +46,20 @@ sleep 10
 
 echo ""
 
-echo -e  "${PROMPT} apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux " >> /root/dasan_install_log.txt
-echo -e  "${PROMPT} apt-get install -y git wget ipmitool net-tools xfsprogs ntfs-3g aptitude " >> /root/dasan_install_log.txt
-echo -e  "${PROMPT} apt-get install -y lvm2 dstat curl smartmontools npm python " >> /root/dasan_install_log.txt
-apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux
-apt-get install -y git wget ipmitool net-tools xfsprogs ntfs-3g aptitude
-apt-get install -y lvm2 dstat curl smartmontools npm python
+echo -e  "${PROMPT} apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget ipmitool " >> /root/dasan_install_log.txt
+echo -e  "${PROMPT} apt-get install -y net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools npm python " >> /root/dasan_install_log.txt
+apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget ipmitool
+apt-get install -y net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools npm python
 
 sleep 10
 
 echo -e  "${PROMPT} DEBIAN_FRONTEND=noninteractive apt-get install -y mailutils smartmontools " >> /root/dasan_install_log.txt
 DEBIAN_FRONTEND=noninteractive apt-get install -y mailutils smartmontools
+
+sleep 5
+
+echo -e  "${PROMPT} apt-get install -y python3-pip " >> /root/dasan_install_log.txt
+apt-get install -y python3-pip
 
 sleep 5
 
@@ -69,8 +72,8 @@ apt update
 echo -e  "${PROMPT} apt list --upgradeable " >> /root/dasan_install_log.txt
 apt list --upgradeable
 
-echo -e  "${PROMPT} apt install python2 " >> /root/dasan_install_log.txt
-apt install python2
+echo -e  "${PROMPT} apt install -y python2 " >> /root/dasan_install_log.txt
+apt install -y python2
 
 echo -e  "${PROMPT} curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py " >> /root/dasan_install_log.txt
 curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
@@ -95,6 +98,9 @@ which pip
 
 echo -e  "${PROMPT} which pip3 " >> /root/dasan_install_log.txt
 which pip3
+
+echo -e  "${PROMPT} pip3 install --upgrade pip " >> /root/dasan_install_log.txt
+pip3 install --upgrade pip
 
 echo -e  "${PROMPT} perl -pi -e 's/python3/python/'   /usr/local/bin/pip " >> /root/dasan_install_log.txt
 perl -pi -e 's/python3/python/'   /usr/local/bin/pip
@@ -466,7 +472,7 @@ echo ""
 echo " sshd 설정. (기본 포트인 22번을 7777로 변경) "
 echo ""
 
-echo " Ubuntu18 sshd_config "
+echo " Ubuntu20 sshd_config "
 echo ""
 echo -e  "${PROMPT} grep 'Root\|Port' /etc/ssh/sshd_config " >> /root/dasan_install_log.txt
 grep 'Root\|Port' /etc/ssh/sshd_config
@@ -635,8 +641,8 @@ echo ""
 echo ""
 
 echo "  rc.local 등록 "
-echo -e  "${PROMPT} sed -i '2s/Dasan_Ubuntu18-Standard-install.sh/Dasan_Ubuntu18-nouveau.sh/g' /etc/rc.local  " >> /root/dasan_install_log.txt
-sed -i '2s/Dasan_Ubuntu18-Standard-install.sh/Dasan_Ubuntu18-nouveau.sh/g' /etc/rc.local
+echo -e  "${PROMPT} sed -i '2s/Dasan_Ubuntu20-Standard-install.sh/Dasan_Ubuntu20-GPU-Package-install.sh/g' /etc/rc.local  " >> /root/dasan_install_log.txt
+sed -i '2s/Dasan_Ubuntu20-Standard-install.sh/Dasan_Ubuntu20-GPU-Package-install.sh/g' /etc/rc.local
 
 echo -e  "${PROMPT} cat /etc/rc.local | sed -n 2p " >> /root/dasan_install_log.txt
 cat /etc/rc.local | sed -n 2p
