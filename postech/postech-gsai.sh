@@ -4,7 +4,10 @@ PROMPT="[${USER}@${HOSTNAME%%.*}]#"
 
 Date1=$(date "+%Y-%m-%d %H:%M:%S")
 
-date >> "/root/dasan_Maintenance_${Date1}.txt"
+# Log File
+export LOGFILE="/root/dasan_Maintenance_${Date1}.txt"
+
+date | tee -a "$LOGFILE"
 
 echo ""
 echo ""
@@ -16,7 +19,7 @@ echo " node list " >> "/root/dasan_Maintenance_${Date1}.txt"
 echo ""
 echo ""
 echo -e  "${PROMPT} wwsh node list " >> "/root/dasan_Maintenance_${Date1}.txt"
-wwsh node list >> "/root/dasan_Maintenance_${Date1}.txt"
+wwsh node list | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
@@ -26,7 +29,7 @@ echo "==================== Master Power ====================" >> "/root/dasan_Ma
 echo ""
 echo ""
 echo -e  "${PROMPT} dmidecode -t chassis | grep 'Power Supply State'  " >> "/root/dasan_Maintenance_${Date1}.txt"
-dmidecode -t chassis | grep "Power Supply State" >> "/root/dasan_Maintenance_${Date1}.txt"
+dmidecode -t chassis | grep "Power Supply State" | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
@@ -36,7 +39,7 @@ echo "==================== Master Fan information ====================" >> "/roo
 echo ""
 echo ""
 echo -e  "${PROMPT} ipmitool sdr type fan " >> "/root/dasan_Maintenance_${Date1}.txt"
-ipmitool sdr type fan >> "/root/dasan_Maintenance_${Date1}.txt"
+ipmitool sdr type fan | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
@@ -46,7 +49,7 @@ echo "==================== Node Power ====================" >> "/root/dasan_Main
 echo ""
 echo ""
 echo -e  "${PROMPT} pdsh -w n[1-9] dmidecode -t chassis | grep "Power Supply State" | sort -V " >> "/root/dasan_Maintenance_${Date1}.txt"
-pdsh -w n[1-9] dmidecode -t chassis | grep "Power Supply State" | sort -V >> "/root/dasan_Maintenance_${Date1}.txt"
+pdsh -w n[1-9] dmidecode -t chassis | grep "Power Supply State" | sort -V | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
@@ -56,7 +59,7 @@ echo "==================== Node Fan information ====================" >> "/root/
 echo ""
 echo ""
 echo -e  "${PROMPT} pdsh -w n[1-9] ipmitool sdr type fan | sort -V " >> "/root/dasan_Maintenance_${Date1}.txt"
-pdsh -w n[1-9] ipmitool sdr type fan | sort -V >> "/root/dasan_Maintenance_${Date1}.txt"
+pdsh -w n[1-9] ipmitool sdr type fan | sort -V | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
@@ -66,12 +69,12 @@ echo "==================== HDD Check ====================" >> "/root/dasan_Maint
 echo ""
 echo ""
 echo -e  "${PROMPT} lsblk " >> "/root/dasan_Maintenance_${Date1}.txt"
-lsblk >> "/root/dasan_Maintenance_${Date1}.txt"
+lsblk | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
 echo -e  "${PROMPT} df -h  | grep -v tmpfs | grep -v overlay " >> "/root/dasan_Maintenance_${Date1}.txt"
-df -h  | grep -v tmpfs | grep -v overlay >> "/root/dasan_Maintenance_${Date1}.txt"
+df -h  | grep -v tmpfs | grep -v overlay | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
@@ -81,7 +84,7 @@ echo "==================== Nic Check ====================" >> "/root/dasan_Maint
 echo ""
 echo ""
 echo -e  "${PROMPT} pdsh -w n[1-9] ifconfig  eth0 | grep 192.168.0 | sort -V " >> "/root/dasan_Maintenance_${Date1}.txt"
-pdsh -w n[1-9] ifconfig  eth0 | grep 192.168.0 | sort -V   >> "/root/dasan_Maintenance_${Date1}.txt"
+pdsh -w n[1-9] ifconfig  eth0 | grep 192.168.0 | sort -V   | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
@@ -91,12 +94,12 @@ echo "==================== Port Speed Check ====================" >> "/root/dasa
 echo ""
 echo ""
 echo -e  "${PROMPT} pdsh -w n[1-7] ethtool  eth0 | grep -i speed | sort -V " >> "/root/dasan_Maintenance_${Date1}.txt"
-pdsh -w n[1-7] ethtool  eth0 | grep -i speed | sort -V  >> "/root/dasan_Maintenance_${Date1}.txt"
+pdsh -w n[1-7] ethtool  eth0 | grep -i speed | sort -V  | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
 echo -e  "${PROMPT} pdsh -w n[8-9] ethtool  eth2 | grep -i speed | sort -V " >> "/root/dasan_Maintenance_${Date1}.txt"
-pdsh -w n[8-9] ethtool  eth2 | grep -i speed | sort -V  >> "/root/dasan_Maintenance_${Date1}.txt"
+pdsh -w n[8-9] ethtool  eth2 | grep -i speed | sort -V  | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
@@ -106,12 +109,12 @@ echo "==================== Port Check ====================" >> "/root/dasan_Main
 echo ""
 echo ""
 echo -e  "${PROMPT} pdsh -w n[1-7] ifconfig  eth0 | grep 192.168.0 | sort -V " >> "/root/dasan_Maintenance_${Date1}.txt"
-pdsh -w n[1-7] ifconfig  eth0 | grep 192.168.0 | sort -V >> "/root/dasan_Maintenance_${Date1}.txt"
+pdsh -w n[1-7] ifconfig  eth0 | grep 192.168.0 | sort -V | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
 echo -e  "${PROMPT} pdsh -w n[8-9] ifconfig  eth2 | grep 192.168.0 | sort -V " >> "/root/dasan_Maintenance_${Date1}.txt"
-pdsh -w n[8-9] ifconfig  eth2 | grep 192.168.0 | sort -V >> "/root/dasan_Maintenance_${Date1}.txt"
+pdsh -w n[8-9] ifconfig  eth2 | grep 192.168.0 | sort -V | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
@@ -121,7 +124,7 @@ echo "==================== Mount Point Check ====================" >> "/root/das
 echo ""
 echo ""
 echo -e  "${PROMPT} pdsh -w n[1-9] df -h | grep "gsai-master" | sort -V " >> "/root/dasan_Maintenance_${Date1}.txt"
-pdsh -w n[1-9] df -h | grep "gsai-master" | sort -V  >> "/root/dasan_Maintenance_${Date1}.txt"
+pdsh -w n[1-9] df -h | grep "gsai-master" | sort -V  | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
@@ -131,11 +134,11 @@ echo "==================== GPU Check ====================" >> "/root/dasan_Maint
 echo ""
 echo ""
 echo -e  "${PROMPT} pdsh -w n[1-9] nvidia-smi -L | sort -V " >> "/root/dasan_Maintenance_${Date1}.txt"
-pdsh -w n[1-9] nvidia-smi -L | sort -V  >> "/root/dasan_Maintenance_${Date1}.txt"
+pdsh -w n[1-9] nvidia-smi -L | sort -V  | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
 echo -e  "${PROMPT} pdsh -w n[1-9] nvidia-smi -L | sort -V | wc -l  " >> "/root/dasan_Maintenance_${Date1}.txt"
-pdsh -w n[1-9] nvidia-smi -L | sort -V | wc -l >> "/root/dasan_Maintenance_${Date1}.txt"
+pdsh -w n[1-9] nvidia-smi -L | sort -V | wc -l | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
