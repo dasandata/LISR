@@ -2,21 +2,25 @@
 
 PROMPT="[${USER}@${HOSTNAME%%.*}]#"
 
-echo ""
-echo ""
+date >> /root/dasan_Maintenance.txt
 
-echo -e  "==================== postech-gsai check ===================="
+echo ""
+echo ""
+echo -e  "==================== postech-gsai check ===================="  >> /root/dasan_Maintenance.txt
+echo ""
+echo ""
 
 echo " node list " >> /root/dasan_Maintenance.txt
 echo ""
 echo ""
-echo -e  "${PROMPT} wwsh node list && date " >> /root/dasan_Maintenance.txt
+echo -e  "${PROMPT} wwsh node list " >> /root/dasan_Maintenance.txt
 wwsh node list >> /root/dasan_Maintenance.txt
-date >> /root/dasan_Maintenance.txt
 
 echo -e  "${PROMPT}   " >> /root/dasan_Maintenance.txt
 
-echo " Master Power " >> /root/dasan_Maintenance.txt
+echo ""
+echo ""
+echo "==================== Master Power ====================" >> /root/dasan_Maintenance.txt
 echo ""
 echo ""
 echo -e  "${PROMPT} dmidecode -t chassis | grep 'Power Supply State'  " >> /root/dasan_Maintenance.txt
@@ -24,7 +28,9 @@ dmidecode -t chassis | grep "Power Supply State" >> /root/dasan_Maintenance.txt
 
 echo -e  "${PROMPT}   " >> /root/dasan_Maintenance.txt
 
-echo " Master Fan information " >> /root/dasan_Maintenance.txt
+echo ""
+echo ""
+echo "==================== Master Fan information " >> /root/dasan_Maintenance.txt
 echo ""
 echo ""
 echo -e  "${PROMPT} ipmitool sdr type fan " >> /root/dasan_Maintenance.txt
@@ -32,6 +38,8 @@ ipmitool sdr type fan >> /root/dasan_Maintenance.txt
 
 echo -e  "${PROMPT}   " >> /root/dasan_Maintenance.txt
 
+echo ""
+echo ""
 echo " Node Power " >> /root/dasan_Maintenance.txt
 echo ""
 echo ""
@@ -40,7 +48,8 @@ pdsh -w n[1-9] dmidecode -t chassis | grep "Power Supply State" | sort -V >> /ro
 
 echo -e  "${PROMPT}   " >> /root/dasan_Maintenance.txt
 
-
+echo ""
+echo ""
 echo " Node Fan information " >> /root/dasan_Maintenance.txt
 echo ""
 echo ""
@@ -49,6 +58,8 @@ pdsh -w n[1-9] ipmitool sdr type fan | sort -V >> /root/dasan_Maintenance.txt
 
 echo -e  "${PROMPT}   " >> /root/dasan_Maintenance.txt
 
+echo ""
+echo ""
 echo " HDD Check " >> /root/dasan_Maintenance.txt
 echo ""
 echo ""
@@ -62,6 +73,8 @@ df -h  | grep -v tmpfs | grep -v overlay >> /root/dasan_Maintenance.txt
 
 echo -e  "${PROMPT}   " >> /root/dasan_Maintenance.txt
 
+echo ""
+echo ""
 echo " Nic Check " >> /root/dasan_Maintenance.txt
 echo ""
 echo ""
@@ -70,6 +83,8 @@ pdsh -w n[1-9] ifconfig  eth0 | grep 192.168.0 | sort -V   >> /root/dasan_Mainte
 
 echo -e  "${PROMPT}   " >> /root/dasan_Maintenance.txt
 
+echo ""
+echo ""
 echo " Port Speed Check " >> /root/dasan_Maintenance.txt
 echo ""
 echo ""
@@ -83,6 +98,8 @@ pdsh -w n[8-9] ethtool  eth2 | grep -i speed | sort -V  >> /root/dasan_Maintenan
 
 echo -e  "${PROMPT}   " >> /root/dasan_Maintenance.txt
 
+echo ""
+echo ""
 echo " Port Check " >> /root/dasan_Maintenance.txt
 echo ""
 echo ""
@@ -96,6 +113,8 @@ pdsh -w n[8-9] ifconfig  eth2 | grep 192.168.0 | sort -V >> /root/dasan_Maintena
 
 echo -e  "${PROMPT}   " >> /root/dasan_Maintenance.txt
 
+echo ""
+echo ""
 echo " Mount Point Check " >> /root/dasan_Maintenance.txt
 echo ""
 echo ""
@@ -104,6 +123,8 @@ pdsh -w n[1-9] df -h | grep "gsai-master" | sort -V  >> /root/dasan_Maintenance.
 
 echo -e  "${PROMPT}   " >> /root/dasan_Maintenance.txt
 
+echo ""
+echo ""
 echo " GPU Check " >> /root/dasan_Maintenance.txt
 echo ""
 echo ""
