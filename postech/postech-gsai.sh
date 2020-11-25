@@ -9,6 +9,8 @@ export LOGFILE="/root/dasan_Maintenance_${Date1}.txt"
 
 date | tee -a "$LOGFILE"
 
+cat /root/banner.sample | tee -a "$LOGFILE"
+
 echo ""
 echo ""
 echo "==================== postech-gsai check ===================="
