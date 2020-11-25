@@ -19,8 +19,8 @@ echo ""
 echo " node list " >> "/root/dasan_Maintenance_${Date1}.txt"
 echo ""
 echo ""
-echo -e  "${PROMPT} wwsh node list " >> "/root/dasan_Maintenance_${Date1}.txt"
-wwsh node list | tee -a "$LOGFILE"
+echo -e  "${PROMPT} wwsh node list | sort -V " >> "/root/dasan_Maintenance_${Date1}.txt"
+wwsh node list | sort -V | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
