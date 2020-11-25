@@ -37,34 +37,12 @@ echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
 echo ""
 echo ""
-echo "==================== Master Fan information ===================="
-echo "==================== Master Fan information ====================" >> "/root/dasan_Maintenance_${Date1}.txt"
-echo ""
-echo ""
-echo -e  "${PROMPT} ipmitool sdr type fan " >> "/root/dasan_Maintenance_${Date1}.txt"
-ipmitool sdr type fan | tee -a "$LOGFILE"
-
-echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
-
-echo ""
-echo ""
 echo "==================== Node Power ===================="
 echo "==================== Node Power ====================" >> "/root/dasan_Maintenance_${Date1}.txt"
 echo ""
 echo ""
 echo -e  "${PROMPT} pdsh -w n[1-10] dmidecode -t chassis | grep "Power Supply State" | sort -V " >> "/root/dasan_Maintenance_${Date1}.txt"
 pdsh -w n[1-10] dmidecode -t chassis | grep "Power Supply State" | sort -V | tee -a "$LOGFILE"
-
-echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
-
-echo ""
-echo ""
-echo "==================== Node Fan information ===================="
-echo "==================== Node Fan information ====================" >> "/root/dasan_Maintenance_${Date1}.txt"
-echo ""
-echo ""
-echo -e  "${PROMPT} pdsh -w n[1-10] ipmitool sdr type fan | sort -V " >> "/root/dasan_Maintenance_${Date1}.txt"
-pdsh -w n[1-10] ipmitool sdr type fan | sort -V | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
