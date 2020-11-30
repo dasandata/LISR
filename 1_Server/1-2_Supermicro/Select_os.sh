@@ -8,7 +8,8 @@ echo "1) Centos7"
 echo "2) Ubuntu16"
 echo "3) Ubuntu18"
 echo "4) Centos8"
-echo "5) Exit"
+echo "5) Ubuntu20"
+echo "6) Exit"
 
 read WORD
 case $WORD in
@@ -27,6 +28,10 @@ case $WORD in
     4 | centos8 | Centos8)
         echo Centos8.
         bash /root/LISR/1_Server/1-2_Supermicro/1-2-4_Centos8/software.sh
+        ;;
+    5 | ubuntu20 | Ubuntu20)
+        echo Ubuntu20.
+        bash /root/LISR/1_Server/1-2_Supermicro/1-2-5_Ubuntu20/software.sh
         ;;
     5 | exit | Exit)
         echo clear out.
