@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+source "$BASE_DIR/framework.sh"
+
+uptime=$(uptime -p | cut -d ' ' -f 2-)
+downtime=$(uptime -s)
+
+print_columns "Uptime" "$uptime"
+print_columns "Downtime" "$downtime"

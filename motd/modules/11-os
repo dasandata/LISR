@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+source "$BASE_DIR/framework.sh"
+
+source "/etc/os-release"
+kernel=$(uname -r)
+
+print_columns "OS" "$NAME"
+print_columns "KernelVersion" "$kernel"

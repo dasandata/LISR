@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+source "$BASE_DIR/framework.sh"
+
+ips_v4="$(ip a | awk '/inet / && /global/ {split($2, arr, /\//); print arr[1]}')"
+IFS=$'\n' read -r -a ips <<< $ips_v4
+
+text="$(print_wrap $WIDTH "${ips[@]}")"
+publicIP=`wget http://ipecho.net/plain -O - -q ; echo 2> /dev/null`
+
+print_columns "Internal addresses" "$text"
+print_columns "External addresses" "$publicIP"

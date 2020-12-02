@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+source "$BASE_DIR/framework.sh"
+
+user=${USER:-$(id -un)}
+hostname=${HOSTNAME:-$(hostname)}
+
+print_columns "Logged as" "$user@$hostname"

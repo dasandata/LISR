@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+source "$BASE_DIR/framework.sh"
+
+declare -A services
+services["rstudio-server"]="rstudio-server"
+services["Docker"]="docker"
+services["SSH"]="sshd"
+services["Network-manager"]="network-manager"
+services["ufw"]="ufw"
+services["Jupyterhub"]="jupyterhub"
+
+statuses=()
+for key in "${!services[@]}"; do
+    # systemctl is-active returns non-zero code if service is inactive
+    set +e; status=$(systemctl is-active ${services[$key]}); set -e
+    statuses+=("$(print_status "$key" "$status")")
+done
+
+text="$(print_wrap $WIDTH "${statuses[@]}")"
+
+print_columns "Services" "$text"
