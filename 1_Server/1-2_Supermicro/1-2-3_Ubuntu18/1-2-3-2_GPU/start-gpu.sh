@@ -50,7 +50,7 @@ apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux 
 
 sleep 10
 
-apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl >> /root/log.txt
+apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl figlet >> /root/log.txt
 
 tail -5 /root/log.txt
 

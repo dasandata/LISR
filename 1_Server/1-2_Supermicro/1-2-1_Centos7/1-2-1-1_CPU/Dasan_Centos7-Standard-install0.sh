@@ -25,7 +25,7 @@ yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautil
 
 sleep 10
 
-yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ >> /root/dasan_install_log.txt 2>&1
+yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ figlet >> /root/dasan_install_log.txt 2>&1
 
 sleep 10
 

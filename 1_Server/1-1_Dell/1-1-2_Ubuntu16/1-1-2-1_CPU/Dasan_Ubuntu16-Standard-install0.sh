@@ -57,7 +57,7 @@ apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux 
 
 sleep 10
 
-apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools >> /root/log.txt
+apt-get install -y xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools figlet >> /root/log.txt
 
 sleep 5
 

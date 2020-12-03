@@ -48,7 +48,7 @@ echo ""
 
 echo -e  "${PROMPT} apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget ipmitool " >> /root/dasan_install_log.txt
 echo -e  "${PROMPT} apt-get install -y net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools npm python " >> /root/dasan_install_log.txt
-apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget ipmitool
+apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget ipmitool figlet
 apt-get install -y net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools npm python
 
 sleep 10
