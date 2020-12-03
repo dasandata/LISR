@@ -177,6 +177,29 @@ rm -rf cuda-repo-rhel7-10.0.130-1.x86_64.rpm rstudio-1.2.5033-x86_64.rpm rstudio
 echo ""
 echo ""
 
+echo -e  "\033[1;32m"==================== Motd View ===================="\033[0m"
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} mv /root/LISR/motd/ /opt/ \033[0m" >> /root/dasan_install_log.txt
+mv /root/LISR/motd/ /opt/
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} chmod -R 777 /opt/motd/ \033[0m" >> /root/dasan_install_log.txt
+chmod -R 777 /opt/motd/
+
+echo " " >> /etc/profile
+
+echo "#Motd add" >> /etc/profile
+
+echo "bash /opt/motd/motd.sh" >> /etc/profile
+
+echo ""
+echo -e  "\033[1;34m${PROMPT}  tail -2 /etc/profile \033[0m" >> /root/dasan_install_log.txt
+tail -2 /etc/profile
+
+echo ""
+echo ""
+
 echo "  rc.local 등록 "
 
 echo -e  "\033[1;34m${PROMPT} sed -i '/root/d' /etc/rc.d/rc.local   \033[0m" >> /root/dasan_install_log.txt
