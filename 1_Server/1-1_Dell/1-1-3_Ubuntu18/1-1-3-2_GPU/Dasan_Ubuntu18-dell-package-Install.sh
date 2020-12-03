@@ -365,7 +365,6 @@ ipmitool sdr type fan
 echo ""
 echo ""
 
-
 echo "  rc.local 등록 "
 echo ""
 echo ""

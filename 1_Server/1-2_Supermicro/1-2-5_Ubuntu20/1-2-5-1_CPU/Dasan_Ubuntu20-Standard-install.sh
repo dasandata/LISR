@@ -649,6 +649,31 @@ bash /root/LISR/1_Server/1-2_Supermicro/1-2-5_Ubuntu20/1-2-5-2_GPU/Install_Dell_
 echo ""
 echo ""
 
+echo -e  "\033[1;32m"==================== Motd View ===================="\033[0m"
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} mv /root/LISR/motd/ /opt/ \033[0m" >> /root/dasan_install_log.txt
+mv /root/LISR/motd/ /opt/
+
+echo ""
+echo -e  "\033[1;34m${PROMPT} chmod -R 777 /opt/motd/ \033[0m" >> /root/dasan_install_log.txt
+chmod -R 777 /opt/motd/
+
+echo " " >> /etc/profile
+
+echo "#Motd add" >> /etc/profile
+
+echo "bash /opt/motd/motd.sh" >> /etc/profile
+
+echo ""
+echo -e  "\033[1;34m${PROMPT}  tail -2 /etc/profile \033[0m" >> /root/dasan_install_log.txt
+tail -2 /etc/profile
+
+echo ""
+echo ""
+
+echo ""
+echo ""
 echo "  rc.local 등록 "
 echo ""
 echo -e  "${PROMPT} sed -i '/root/d' /etc/rc.local  " >> /root/dasan_install_log.txt
