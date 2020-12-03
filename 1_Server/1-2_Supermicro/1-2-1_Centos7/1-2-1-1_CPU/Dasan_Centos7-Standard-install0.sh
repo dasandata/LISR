@@ -21,6 +21,9 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig ipmitool \033[0m" >> /root/dasan_install_log.txt
 echo -e  "\033[1;34m${PROMPT} yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ \033[0m" >> /root/dasan_install_log.txt
 echo -e  "\033[1;34m${PROMPT} yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs \033[0m" >> /root/dasan_install_log.txt
+
+sleep 5
+
 yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig ipmitool >> /root/dasan_install_log.txt 2>&1
 
 sleep 10
