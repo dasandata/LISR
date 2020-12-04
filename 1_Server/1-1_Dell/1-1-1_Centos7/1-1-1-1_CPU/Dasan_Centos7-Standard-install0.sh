@@ -28,7 +28,7 @@ yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautil
 
 sleep 10
 
-yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ figlet >> /root/log.txt
+yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ >> /root/log.txt
 
 sleep 10
 
@@ -114,8 +114,8 @@ echo -e  "${PROMPT} rpm -qa | grep htop ntfs-3g 설치되었는지 확인 " >> /
 rpm -qa | grep htop
 
 echo ""
-echo -e  "${PROMPT} yum -y  install htop ntfs-3g " >> /root/dasan_install_log.txt
-yum -y  install htop ntfs-3g >> /root/log.txt
+echo -e  "${PROMPT} yum -y  install htop ntfs-3g figlet " >> /root/dasan_install_log.txt
+yum -y  install htop ntfs-3g figlet >> /root/log.txt
 
 echo ""
 echo ""

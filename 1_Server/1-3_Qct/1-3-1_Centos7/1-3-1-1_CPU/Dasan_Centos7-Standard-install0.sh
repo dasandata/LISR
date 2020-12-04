@@ -28,7 +28,7 @@ yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautil
 
 sleep 10
 
-yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ figlet >> /root/dasan_install_log.txt 2>&1
+yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ >> /root/dasan_install_log.txt 2>&1
 
 sleep 10
 
@@ -110,12 +110,12 @@ echo ""
 
 echo " epel 이 활성화 되어야 설치 되는 htop 을 설치하여 검증 "
 echo ""
-echo -e  "\033[1;34m${PROMPT} rpm -qa | grep htop ntfs-3g 설치되었는지 확인 \033[0m" >> /root/dasan_install_log.txt
+echo -e  "\033[1;34m${PROMPT} rpm -qa | grep htop ntfs-3g \033[0m" >> /root/dasan_install_log.txt
 rpm -qa | grep htop
 
 echo ""
-echo -e  "\033[1;34m${PROMPT} yum -y  install htop ntfs-3g \033[0m" >> /root/dasan_install_log.txt
-yum -y  install htop ntfs-3g >> dasan_log_install_htop,ntfs3g.txt  2>&1
+echo -e  "\033[1;34m${PROMPT} yum -y  install htop ntfs-3g figlet \033[0m" >> /root/dasan_install_log.txt
+yum -y  install htop ntfs-3g figlet >> dasan_log_install_htop,ntfs3g.txt  2>&1
 
 echo ""
 echo ""
