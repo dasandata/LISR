@@ -171,8 +171,8 @@ cd / >> /root/log.txt
 
 echo ""
 echo ""
-echo -e  "${PROMPT} rm -rf cuda-repo-rhel7-10.0.130-1.x86_64.rpm rstudio-1.2.5033-x86_64.rpm rstudio-server-rhel-1.2.5033-x86_64.rpm r_jupyterhub.Rout dasan_log_install_* " >> /root/dasan_install_log.txt
-rm -rf cuda-repo-rhel7-10.0.130-1.x86_64.rpm rstudio-1.2.5033-x86_64.rpm rstudio-server-rhel-1.2.5033-x86_64.rpm r_jupyterhub.Rout dasan_log_install_* >> /root/log.txt
+echo -e  "${PROMPT} mv cuda-repo-rhel7-10.0.130-1.x86_64.rpm rstudio-1.2.5033-x86_64.rpm rstudio-server-rhel-1.2.5033-x86_64.rpm r_jupyterhub.Rout dasan_log_install_* /root/ " >> /root/dasan_install_log.txt
+mv cuda-repo-rhel7-10.0.130-1.x86_64.rpm rstudio-1.2.5033-x86_64.rpm rstudio-server-rhel-1.2.5033-x86_64.rpm r_jupyterhub.Rout dasan_log_install_* /root/
 
 echo " ipmitool Fan speed Max "
 echo ""

@@ -8,6 +8,8 @@ echo ""
 echo -e  "\033[1;34m${PROMPT} lsmod | grep nouveau \033[0m" >> /root/dasan_install_log.txt
 lsmod | grep nouveau
 
+sleep 30
+
 echo ""
 echo ""
 
