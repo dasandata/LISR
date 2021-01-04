@@ -20,8 +20,9 @@
 [10. Banner // login wellcome message ](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-9-banner--login-wellcome-message-)  
 [11. VNC Server 설정](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-10-vnc-server-%EC%84%A4%EC%A0%95)  
 [12. TeamViewer 설치](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-11-teamviewer-%EC%84%A4%EC%B9%98)  
-[12. 부팅 되는 기본 커널 버젼 변경방법](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-12-%EB%B6%80%ED%8C%85-%EB%90%98%EB%8A%94-%EA%B8%B0%EB%B3%B8-%EC%BB%A4%EB%84%90-%EB%B2%84%EC%A0%BC-%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95)
-[13. Disk 속도 측정](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-13-disk-%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95)
+[13. 부팅 되는 기본 커널 버젼 변경방법](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-12-%EB%B6%80%ED%8C%85-%EB%90%98%EB%8A%94-%EA%B8%B0%EB%B3%B8-%EC%BB%A4%EB%84%90-%EB%B2%84%EC%A0%BC-%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95)
+
+[14. Disk 속도 측정](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-14-disk-%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95)
 
 
 
