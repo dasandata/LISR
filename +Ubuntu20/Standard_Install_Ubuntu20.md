@@ -231,7 +231,7 @@ which pip
 which pip3
 ```
 
-### # [2. profile 설정 - Console Color , alias](#목차)
+### # [3. profile 설정 - Console Color , alias](#목차)
 \# 사용 편의를 위한 alias를 설정, History Size 및 format 변경.  
 \# Console 의 가독성을 높이기 위하여 Prompt 색상변경.  
 \# Console Color Codes : http://bitmote.com/public/ansi_4bit_color_table.png  
@@ -286,7 +286,7 @@ source  .bashrc
 echo $HISTSIZE
 ```
 
-### # [3. 하드웨어 사양 / 기본 환경 확인 (os 버젼 등)](#목차)
+### # [4. 하드웨어 사양 / 기본 환경 확인 (os 버젼 등)](#목차)
 
 ```bash
 cd ~
@@ -297,7 +297,7 @@ git clone https://github.com/dasandata/LISR
 bash /root/LISR/common/dasan_check_to_hardware_spec.sh
 ```
 
-### # [4. ip 및 hostname 정보 / 인터넷 연결 확인](#목차)
+### # [5. ip 및 hostname 정보 / 인터넷 연결 확인](#목차)
 ```bash
 ip a
 
@@ -747,7 +747,7 @@ systemctl restart sshd
 dpkg --list | grep vnc  # 현재 설치된 vnc 패키지 확인
 
 # vnc server(tigervnc-server) 와 vnc viewer 를 설치 합니다.
-apt-get install -y vnc4server xfce4 xfce4-goodies  >>  dasan_log_install_vnc.txt 2>&1
+apt-get install -y tigervnc-standalone-server tigervnc-xorg-extension  >>  dasan_log_install_vnc.txt 2>&1
 
 tail dasan_log_install_vnc.txt
 ```
@@ -765,7 +765,7 @@ ufw status
 \# VNC 암호 설정 (일반 사용자 계정으로 전환한 후 진 )
 ```bash
 su - sonic
-vnc4server # vnc접속용 암호를 지정합니다. (8자)
+vncserver # vnc접속용 암호를 지정합니다. (8자)
 ```
 
 \# VNC 실행 및 연결
@@ -776,12 +776,16 @@ cat .vnc/xstartup
 
 mv .vnc/xstartup .vnc/xstartup.bak
 echo '#!/bin/bash  ' > .vnc/xstartup
-echo 'startxfce4 &  ' >> .vnc/xstartup
+echo '# Start Gnome 3 Desktop  ' >> .vnc/xstartup
+echo '[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup  ' > .vnc/xstartup
+echo '[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources ' > .vnc/xstartup
+echo 'vncconfig -iconic & ' >> .vnc/xstartup
+echo 'dbus-launch --exit-with-session gnome-session &  ' >> .vnc/xstartup
 
 cat .vnc/xstartup
 chmod +x .vnc/xstartup
 
-vnc4server
+vncserver
 ```
 
 \# vnc viewer program Download = https://www.realvnc.com/en/connect/download/viewer/
