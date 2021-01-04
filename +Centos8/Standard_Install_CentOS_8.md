@@ -1,5 +1,5 @@
-# 다산데이타 CentOS 7.4 설치 표준안 (2018.03)
-다산데이터 출고 장비에 설치되는 리눅스 (CenOS 7.4) 의 설치 표준안 입니다.  
+# 다산데이타 CentOS 8.2 설치 표준안 (2021.01)
+다산데이터 출고 장비에 설치되는 리눅스 (CenOS 8.2) 의 설치 표준안 입니다.  
 별도의 요청사항이 없는 경우 기본적으로 아래 절차에 따라 설치한 후 출고 하고 있습니다.  
 보완이 필요한 점이나 새로운 아이디어를 제보해 주시면 적극 반영하겠습니다 :)  
 
@@ -84,9 +84,15 @@ ssh <사용자 계정>@<IP 주소>
 
 ##### # kernel Update (yum update)
 ```bash
-yum -y update  >>  dasan_log_yum_update.txt 2>&1
+dnf -y update  >>  dasan_log_yum_update.txt 2>&1
 
 tail dasan_log_yum_update.txt
+
+dnf --refresh -y upgrade >>  dasan_log_yum_update.txt 2>&1
+
+tail dasan_log_yum_update.txt
+
+systemctl disable kdump.service
 ```
 
 ##### # 설정이 까다로운 SELINUX 를 disable 합니다.
@@ -105,7 +111,7 @@ grep 'SELINUX=' /etc/sysconfig/selinux
 ip a | grep inet6
 ```
 *output example>*
-```
+```bash
 [root@hostname:~]#
 [root@hostname:~]# ip a | grep inet6
     inet6 ::1/128 scope host
@@ -158,7 +164,7 @@ Disabled
 ```bash
 # 기본 유틸 설치.
 # 화면에 로그가 뿌려지지 않도록 하기 위해 파이프라인(>>) 처리를 합니다.
-yum -y install \
+dnf -y install \
 vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig \
 tcsh tree lshw tmux git kernel-headers kernel-devel ipmitool gcc make gcc-c++ \
 cmake python-devel dstat perl perl-CPAN perl-core net-tools openssl-devel smartmontools \
@@ -167,45 +173,53 @@ cmake python-devel dstat perl perl-CPAN perl-core net-tools openssl-devel smartm
 tail dasan_log_install_centos_default_util.txt # 설치 결과 확인.
 
 # Development Tools 설치
-yum grouplist
+dnf grouplist
 
-yum -y groups install "Development Tools" >> dasan_log_install_centos_developtoosl.txt
-yum -y install  glibc-static glibc-devel glibc-static libstdc++ libstdc++-devel \
+dnf -y groups install "Development Tools" >> dasan_log_install_centos_developtoosl.txt
+dnf -y install  glibc-static glibc-devel glibc-static libstdc++ libstdc++-devel \
  >> dasan_log_install_centos_developtoosl.txt 2>&1
 
 tail dasan_log_install_centos_developtoosl.txt
 
-yum grouplist
+dnf grouplist
 ```
 #### # 인터넷 시간에 맞추어 서버의 시간 조정
 ```bash
 # 서버 시간 동기화.
-rdate  -s  time.bora.net
-clock --systohc  
-date
-hwclock
+rpm -qa | grep chrony
+
+chronyc sources -v
+
+cat /etc/chrony.conf | sed -n 3p
+
+perl -pi -e 's/pool 2.centos.pool.ntp.org iburst/server time.bora.net iburst/g' /etc/chrony.conf
+
+cat /etc/chrony.conf | sed -n 3p
+
+service chronyd restart
+
+timedatectl set-ntp true
+
+timedatectl
+
+chronyc sources -v
+
 ```
 
 #### # Centos EPEL(Extra Packages for Enterprise Linux) 저장소(Repository) 설치.
 
 ```bash
-yum repolist # 현재 repolist 확인.
+dnf repolist # 현재 repolist 확인.
 
-yum -y  install epel-release   >>    dasan_log_install_epel.txt 2>&1
-tail -5   dasan_log_install_epel.txt  
-sed -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo  
+dnf install -y epel-release
 
-yum -y  install yum-plugin-priorities   >>   dasan_log_install_epel.txt 2>&1
-tail -5   dasan_log_install_epel.txt  
-sed -i -e "s/\]$/\]\npriority=1/g" /etc/yum.repos.d/CentOS-Base.repo
-
-yum repolist  # 설치된 repolist 확인.
+dnf repolist  # 설치된 repolist 확인.
 
 
 # epel 이 활성화 되어야 설치 되는 htop 을 설치하여 검증
 rpm -qa | grep htop # htop 이 설치 되어있는지 확인.
 
-yum -y  install htop ntfs-3g >> dasan_log_install_htop,ntfs3g.txt  2>&1
+dnf -y  install htop ntfs-3g >> dasan_log_install_htop,ntfs3g.txt  2>&1
 tail -5  dasan_log_install_htop,ntfs3g.txt
 ```
 
@@ -216,19 +230,6 @@ uname -r # 현재 실행중인 커널 버젼 확인
 # 실행중인 커널과 동일한 버젼의 커널 패키지 (headers,devel) 가 설치 되어 있는지 확인.
 rpm -qa | grep $(uname -r) | grep 'headers\|devel'
 ```
-*output example>*
-```
-[root@hostname ~]# # kernel / kernel-header / kernel-devel 버젼 일치 확인
-[root@hostname ~]# uname -r # 현재 실행중인 커널 버젼 확인
-3.10.0-693.17.1.el7.x86_64
-[root@hostname ~]#
-[root@hostname ~]# # 실행중인 커널과 동일한 버젼의 커널 패키지 (headers,devel) 가 설치 되어 있는지 확인.
-[root@hostname ~]# rpm -qa | grep $(uname -r) | grep 'headers\|devel'
-kernel-devel-3.10.0-693.17.1.el7.x86_64
-kernel-headers-3.10.0-693.17.1.el7.x86_64
-[root@hostname ~]#
-```
-
 
 
 ### # [2. profile 설정 - Console Color , alias](#목차)
@@ -332,7 +333,7 @@ systemctl get-default
 
 #### # GNOME Desktop 설치.
 ```bash
-yum -y  groups install "GNOME Desktop"  >> dasan_log_install_gnome-desktop.txt  2>&1
+dnf group install -y "Server with GUI"  >> dasan_log_install_gnome-desktop.txt  2>&1
 
 tail dasan_log_install_gnome-desktop.txt
 ```
@@ -344,6 +345,8 @@ tail dasan_log_install_gnome-desktop.txt
 \# http://egloos.zum.com/conniezzang/v/3313282  
 \# - CentOS 7.x 계열  
 \# https://www.server-world.info/en/note?os=CentOS_7&p=runlevel  
+\# - CentOS 8.x 계열
+\# https://www.server-world.info/en/note?os=CentOS_8&p=desktop&f=1
 
 #### # 불필요한 Daemon Disable 예.
 
@@ -1008,7 +1011,7 @@ vi /etc/yum.repos.d/CentOS-Base.repo
 # [base] 부분에 "exclude = libsmbios smbios-utils-bin" 추가
 ```
 
-```
+```bash
 [base]
 priority=1
 name=CentOS-$releasever - Base
@@ -1024,7 +1027,7 @@ cat /root/LISR/CentOS7/Install_Dell_OMSA_CentOS7.sh
 bash /root/LISR/CentOS7/Install_Dell_OMSA_CentOS7.sh
 ```
 *output example>*
-```
+```bash
 Executing /sbin/chkconfig dsm_om_connsvc on
 System Model            = PowerEdge R710
 Service Tag             = AAAAAAA
