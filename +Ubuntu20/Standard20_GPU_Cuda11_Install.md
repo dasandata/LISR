@@ -187,7 +187,7 @@ cd ~
 ### # [2. Deep Learning Package Install (tensorflow, pytorch)](#목차)
 
 ```bash
-### pip 와 pip3 버젼 확인 후 pip가 phyhon3 로 바뀌었으면 아래 명령 실행 . (Ubuntu18)
+### pip 와 pip3 버젼 확인 후 pip가 phyhon3 로 바뀌었으면 아래 명령 실행 . (Ubuntu20)
 ### perl -pi -e 's/python3/python/'   /usr/local/bin/pip
 ### cat /usr/local/bin/pip
 
