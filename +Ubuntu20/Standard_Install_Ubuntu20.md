@@ -108,7 +108,7 @@ tail -5 dasan_log_ubuntu_repo_update.txt
 ip a | grep inet6
 ```
 *output example>*
-```
+```bash
 [root@hostname:~]#
 [root@hostname:~]# ip a | grep inet6
     inet6 ::1/128 scope host
@@ -148,7 +148,7 @@ ip a | grep inet6
 # 아무 결과가 없는 것이  ipv6 disable 이 잘 적용 된것 입니다.
 ```
 *output example>*
-```
+```bash
 [root@hostname:~]#
 [root@hostname:~]# ip a | grep inet6
 [root@hostname:~]# # 아무 결과가 없는 것이  ipv6 disable 이 잘 적용 된것 입니다.
@@ -163,16 +163,6 @@ ip a | grep inet6
 apt-get install -y  \
 vim nfs-common rdate xauth firefox gcc make locate htop tmux git wget ipmitool net-tools \
 xfsprogs ntfs-3g aptitude lvm2 dstat curl smartmontools >> dasan_log_install_ubuntu_default_util.txt 2>&1
-```
-
-```bash
-tail -5 dasan_log_install_ubuntu_default_util.txt # 설치 결과 확인.
-
-apt-get install -y python-dev  >> dasan_log_ubuntu_python-dev_install.txt
-```
-
-```bash
-tail -5 dasan_log_ubuntu_python-dev_install.txt # 설치 결과 확인.
 ```
 
 #### # 인터넷 시간에 맞추어 서버의 시간 조정
