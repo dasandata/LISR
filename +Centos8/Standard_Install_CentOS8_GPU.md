@@ -1,5 +1,5 @@
-# 다산데이타 CentOS 7.6 설치 표준안 (2019.01)
-다산데이터 출고 장비에 설치되는 리눅스 (CenOS 7.6) 의 설치 표준안 입니다.  
+# 다산데이타 CentOS 8.2 설치 표준안 (2021.01)
+다산데이터 출고 장비에 설치되는 리눅스 (CenOS 8.2) 의 설치 표준안 입니다.  
 별도의 요청사항이 없는 경우 기본적으로 아래 절차에 따라 설치한 후 출고 하고 있습니다.  
 보완이 필요한 점이나 새로운 아이디어를 제보해 주시면 적극 반영하겠습니다 :)  
 
@@ -94,26 +94,26 @@ lsmod | grep nouveau
 
 ##### # cuda-repo (cuda 저장소)
 ```bash
-curl  -L -o  cuda-repo-rhel7-9.0.176-1.x86_64.rpm \
-  http://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-9.0.176-1.x86_64.rpm
+wget http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm
 
-yum -y install cuda-repo-rhel7-9.0.176-1.x86_64.rpm
+dnf install -y cuda-repo-rhel8-10.2.89-1.x86_64.rpm
+
 ```
 
 ##### # cuda repo 에서 설치가능한 패키지 목록 확인.
 ```bash
-yum --disablerepo="*" --enablerepo="cuda" list available
+dnf --disablerepo="*" --enablerepo="cuda" list available
 ```
 
 ##### # 쿠다 샘플 컴파일에 필요한 라이브러리 설치 ( libGLU.so libX11.so libXi.so libXmu.so 등)
 ```bash
-yum -y install  libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-devel libXm* \
+dnf -y install  libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-devel libXm* \
   openmotif*
 ```
 
-##### # cuda 9.0 설치 (드라이버도 함께 설치됨)
+##### # cuda 10.2 설치 (드라이버도 함께 설치됨)
 ```bash
-yum -y install cuda-9-0
+yum -y install cuda-10-2
 ```
 
 ##### # Nvidia Driver 동작 확인.
@@ -123,14 +123,14 @@ nvidia-smi -L
 nvidia-smi
 ```
 
-##### # Cuda 9.0 환경변수를 Profile 에 추가
+##### # Cuda 10.2 환경변수를 Profile 에 추가
 ```bash
 cat << EOF >> /etc/profile
-### ADD Cuda 9.0 PATH
-export PATH=/usr/local/cuda-9.0/bin:/usr/local/cuda-9.0/include:\$PATH
-export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH
-export CUDA_HOME=/usr/local/cuda-9.0
-export CUDA_INC_DIR=/usr/local/cuda-9.0/include
+### ADD Cuda 10.2 PATH
+export PATH=/usr/local/cuda-10.2/bin:/usr/local/cuda-10.2/include:\$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH
+export CUDA_HOME=/usr/local/cuda-10.2
+export CUDA_INC_DIR=/usr/local/cuda-10.2/include
 ### add end.
 EOF
 ```
@@ -147,63 +147,49 @@ source .bashrc
 nvcc -V
 ```
 
-##### # Cuda 9.0 샘플 컴파일
+##### # Cuda 10.2 샘플 컴파일
 ```bash
-cp -r  /usr/local/cuda-9.0/samples/   ~/NVIDIA_CUDA-9.0_Samples
-cd ~/NVIDIA_CUDA-9.0_Samples
+cp -r  /usr/local/cuda-10.2/samples/   ~/NVIDIA_CUDA-10.2_Samples
+cd ~/NVIDIA_CUDA-10.2_Samples
 
 make -j$(grep process /proc/cpuinfo | wc -l)
 ```
 
-##### # Cuda 9.0 샘플 테스트
+##### # Cuda 10.2 샘플 테스트
 ```bash
 cd ~
 
-./NVIDIA_CUDA-9.0_Samples/bin/x86_64/linux/release/deviceQuery
+./NVIDIA_CUDA-10.2_Samples/bin/x86_64/linux/release/deviceQuery
 
-./NVIDIA_CUDA-9.0_Samples/bin/x86_64/linux/release/p2pBandwidthLatencyTest
+./NVIDIA_CUDA-10.2_Samples/bin/x86_64/linux/release/p2pBandwidthLatencyTest
 
-./NVIDIA_CUDA-9.0_Samples/bin/x86_64/linux/release/nbody  --help
+./NVIDIA_CUDA-10.2_Samples/bin/x86_64/linux/release/nbody  --help
 
-./NVIDIA_CUDA-9.0_Samples/bin/x86_64/linux/release/nbody  -benchmark  -numdevices=2 or 3 or 4
+./NVIDIA_CUDA-10.2_Samples/bin/x86_64/linux/release/nbody  -benchmark  -numdevices=2 or 3 or 4
 ```
 
 ### # [2. Cudnn install](#목차)
 
-##### # https://developer.nvidia.com/rdp/cudnn-download # 위 사이트에서 다운로드 (로그인 필요) # Cuda9.0 용 7버전 다운 받습니다.
+##### # https://developer.download.nvidia.com/compute/machine-learning/repos/rhel8/x86_64/ # 위 사이트에서 다운로드 (로그인 필요) # Cuda10.2 용 8버전 다운 받습니다.
 
-##### # /root/cudnn7 폴더에 다운로드.
 ```bash
 
-mount -t nfs 192.168.0.5:file /mnt
+wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel8/x86_64/nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm
 
-mkdir /root/cudnn7
+dnf install -y nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm
 
-cp /mnt/2_windows\ 관련\ \(서울대\)/windows_cuda_file/cudnn-9.0-linux-x64-v7.* /root/cudnn7
+dnf install -y libcudnn8-8.0.2.39-1.cuda10.2
 
-cd  /root/cudnn7
+dnf install -y libcudnn8-devel-8.0.2.39-1.cuda10.2
 
-umount /mnt #마운트 해제
+dnf install -y libnccl-2.7.8-1+cuda10.2
 
-pwd
-ll
+dnf install -y libnccl-devel-2.7.8-1+cuda10.2
 
-tar xvzf cudnn-9.0-linux-x64-v7.tgz
-tar xvzf cudnn-9.0-linux-x64-v7.1.tgz
-tar xvzf cudnn-9.0-linux-x64-v7.3.1.20.tgz
-tar xvzf cudnn-9.0-linux-x64-v7.4.1.5.tgz
+dnf install -y libnccl-static-2.7.8-1+cuda10.2
 
-ls -l cuda/include/
-ls -l cuda/lib64/
+rpm -qa | grep libcudnn8
 
-chmod  a+r  cuda/include/*
-chmod  a+r  cuda/lib64/*
-
-cp  -rp  cuda/include/cudnn.h  /usr/local/cuda-9.0/include/
-cp  -rp  cuda/lib64/libcudnn*  /usr/local/cuda-9.0/lib64/
-ls -l /usr/local/cuda-9.0/lib64/libcudnn*
-
-cd
 ```
 
 ### # [3. Deep Learning Package Install (python-pip , tensorflow)](#목차)

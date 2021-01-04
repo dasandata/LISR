@@ -150,7 +150,7 @@ time make -j$(grep process /proc/cpuinfo | wc -l)
 echo ""
 echo ""
 
-echo -e  "\033[1;32m"==================== Cudnn 7 install ===================="\033[0m"
+echo -e  "\033[1;32m"==================== Cudnn 8 install ===================="\033[0m"
 
 echo ""
 echo ""
