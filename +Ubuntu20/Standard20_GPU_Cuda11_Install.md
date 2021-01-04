@@ -97,7 +97,7 @@ lsmod  | grep  nouveau
 ***
 
 
-## # Cuda 저장소 변수 선언 gpg key 등록 / 유틸 설치 / 저장소 업데이트
+## # Cuda 저장소 변수 선언 / gpg key 등록 / 유틸 설치 / 저장소 업데이트
 
 ```bash
 release="ubuntu"$(lsb_release -sr | sed -e "s/\.//g")
