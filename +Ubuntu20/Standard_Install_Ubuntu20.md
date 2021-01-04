@@ -316,7 +316,7 @@ cat /etc/resolv.conf
 ping -c 4 google.com
 ```
 
-### # [5. Desktop (X window) Install, not default](#목차)
+### # [6. Desktop (X window) Install, not default](#목차)
 \# Desktop 환경을 설치 하지만, 기본 부팅은 텍스트 모드로 설정해 놓습니다.  
 \# 필요한 경우에만 xwindow 를 실행하여 사용 합니다. (서버의 리소스 절약)  
 \# Desktop 을 설치하면 불필요한 데몬이 함께 깔립니다. 설치 후 정리가 필요 합니다.  
@@ -419,7 +419,7 @@ apt-get -y autoremove
 ```
 
 
-### # [6. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading](#목차)
+### # [7. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading](#목차)
 \# ssh port 를 7777로 변경하고, ssh를 통한 Root Login을 거부 한 후  
 \# 변경된 포트에 맞게 방화벽을 설정한 합니다.  
 \# X11 Forwading 에 필요한 설정을 추가 합니다.  
@@ -507,7 +507,7 @@ Last login: Tue Mar  6 13:13:31 2018 from 192.168.0.xx
 [dasan@hostname:~]$
 ```
 
-### # [7. 새로운 사용자 추가 / sudo 권한 부여](#목차)
+### # [8. 새로운 사용자 추가 / sudo 권한 부여](#목차)
 \# 새로운 사용자를 추가하고, sudo 권한을 부여 합니다.
 
 ```bash
@@ -611,7 +611,7 @@ dasan
 [dasan@hostname:~]#
 ```
 
-### # [8. 스토리지, 파티션 마운트 / lvm or Parted, UUID, LABEL](#목차)
+### # [9. 스토리지, 파티션 마운트 / lvm or Parted, UUID, LABEL](#목차)
 \# /home 디렉토리를 용량이 큰 디스크 or 스토리지 로 변경
 \# 또는 용량이 큰 디스크를 /data 로 마운트 합니다.
 
@@ -720,7 +720,7 @@ ls -l /home
 \#  
 
 
-### # [9. Banner // login wellcome message ](#목차)
+### # [10. Banner // login wellcome message ](#목차)
 \# /etc/ssh/sshd_config 파일의 Banner 옵션을 조정하면  
 \# 서버에 ssh 접속시 원하는 텍스트 이미지 를 표시할 수 있습니다.  
 \# 텍스트 이미지 는 아래 사이트에서 쉽게 만들 수 있습니다.  
@@ -740,7 +740,7 @@ systemctl restart sshd
 \# 재접속 확인
 
 
-### # [10. VNC Server 설정](#목차)
+### # [11. VNC Server 설정](#목차)
 \# 원격 접속을 위한 VNC Server를 구성 합니다.
 
 ```bash
@@ -798,7 +798,7 @@ logout
 
 
 ***
-### # [11. TeamViewer 설치](#목차)
+### # [12. TeamViewer 설치](#목차)
 \# https://www.teamviewer.com/ko/download/linux/
 
 #### # 설치.
@@ -832,7 +832,7 @@ teamviewer info
 
 
 ***
-### # [12. 부팅 되는 기본 커널 버젼 변경방법](#목차)
+### # [13. 부팅 되는 기본 커널 버젼 변경방법](#목차)
 \# 업데이트를 통해 커널이 많이 설치 되었을 경우   
 \# 이 방법으로 기본 부팅 커널 버젼을 변경할 수 있습니다.  
 
@@ -842,7 +842,7 @@ awk -F\' '$1=="menuentry " {print i++ " : " $2}' /boot/grub/grub.cfg
 ```
 
 *output example>*
-```
+```bash
 [root@hostname:~]# awk -F\' '$1=="menuentry " {print i++ " : " $2}' /boot/grub/grub.cfg
 0 : Ubuntu
 1 : Memory test (memtest86+)
@@ -867,11 +867,11 @@ grub-editenv list
 
 
 ***
-### # [13. Disk 속도 측정](#목차)
+### # [14. Disk 속도 측정](#목차)
 \# 읽기 전용 hdparm  
 \# 쓰기 전용 dd  
 
-\# 13-1 hdparm 읽기 전용
+\# 14-1 hdparm 읽기 전용
 ```bash
 lsblk
 df -hT | grep -v tmpfs
@@ -880,7 +880,7 @@ hdparm -tT /dev/sd*
 ```
 
 *output example>*
-```
+```bash
 [root@ubuntu:~]# lsblk
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
 sda      8:0    0   32G  0 disk
@@ -915,7 +915,7 @@ sr0     11:0    1 1024M  0 rom
 [root@ubuntu:~]#
 ```
 
-\# 13-2 dd 쓰기 전용
+\# 14-2 dd 쓰기 전용
 ```bash
 lsblk
 df -hT | grep -v tmpfs
