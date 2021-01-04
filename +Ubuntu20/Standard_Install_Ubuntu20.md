@@ -1,4 +1,4 @@
-# 다산데이타 Ubuntu 18.04  설치 표준안 (2018.09)
+# 다산데이타 Ubuntu 20.04  설치 표준안 (2021.01)
 다산데이터 출고 장비에 설치되는 리눅스 (Ubuntu) 의 설치 표준안 입니다.  
 별도의 요청사항이 없는 경우 기본적으로 아래 절차에 따라 설치한 후 출고 하고 있습니다.  
 보완이 필요한 점이나 새로운 아이디어를 제보해 주시면 적극 반영하겠습니다 :)  
@@ -9,18 +9,20 @@
 
 ## #목차
 [1. 기본 유틸 설치 / 시간 동기화](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-1-%EA%B8%B0%EB%B3%B8-%EC%9C%A0%ED%8B%B8-%EC%84%A4%EC%B9%98--%EC%8B%9C%EA%B0%84-%EB%8F%99%EA%B8%B0%ED%99%94)  
-[2. profile 설정 - Console Color , alias](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-2-profile-%EC%84%A4%EC%A0%95---console-color--alias)  
-[3. 하드웨어 사양 / 기본 환경 확인 (os 버젼 등)](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-3-%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4-%EC%82%AC%EC%96%91--%EA%B8%B0%EB%B3%B8-%ED%99%98%EA%B2%BD-%ED%99%95%EC%9D%B8-os-%EB%B2%84%EC%A0%BC-%EB%93%B1)  
-[4. ip 및 hostname 정보 / 인터넷 연결 확인](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-4-ip-%EB%B0%8F-hostname-%EC%A0%95%EB%B3%B4--%EC%9D%B8%ED%84%B0%EB%84%B7-%EC%97%B0%EA%B2%B0-%ED%99%95%EC%9D%B8)   
-[5. Desktop (X window) Install, not default](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-5-desktop-x-window-install-not-default)  
-[6. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-6-ssh-%EB%B0%8F-%EB%B0%A9%ED%99%94%EB%B2%BD-firewall%EC%84%A4%EC%A0%95--%EB%B3%B4%EC%95%88%EA%B0%95%ED%99%94--x11-forwading)  
-[7. 새로운 사용자 추가 / sudo 권한 부여](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-7-%EC%83%88%EB%A1%9C%EC%9A%B4-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%B6%94%EA%B0%80--sudo-%EA%B6%8C%ED%95%9C-%EB%B6%80%EC%97%AC)
-[8. 스토리지, 파티션 마운트 / lvm, UUID, LABEL](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-8-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%ED%8C%8C%ED%8B%B0%EC%85%98-%EB%A7%88%EC%9A%B4%ED%8A%B8--lvm-or-parted-uuid-label)  
-[9. Banner // login wellcome message ](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-9-banner--login-wellcome-message-)  
-[10. VNC Server 설정](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-10-vnc-server-%EC%84%A4%EC%A0%95)  
-[11. TeamViewer 설치](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-11-teamviewer-%EC%84%A4%EC%B9%98)  
-[12. 부팅 되는 기본 커널 버젼 변경방법](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-12-%EB%B6%80%ED%8C%85-%EB%90%98%EB%8A%94-%EA%B8%B0%EB%B3%B8-%EC%BB%A4%EB%84%90-%EB%B2%84%EC%A0%BC-%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95)  
+[2. python2,3 설치](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-1-%EA%B8%B0%EB%B3%B8-%EC%9C%A0%ED%8B%B8-%EC%84%A4%EC%B9%98--%EC%8B%9C%EA%B0%84-%EB%8F%99%EA%B8%B0%ED%99%94)  
+[3. profile 설정 - Console Color , alias](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-2-profile-%EC%84%A4%EC%A0%95---console-color--alias)  
+[4. 하드웨어 사양 / 기본 환경 확인 (os 버젼 등)](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-3-%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4-%EC%82%AC%EC%96%91--%EA%B8%B0%EB%B3%B8-%ED%99%98%EA%B2%BD-%ED%99%95%EC%9D%B8-os-%EB%B2%84%EC%A0%BC-%EB%93%B1)  
+[5. ip 및 hostname 정보 / 인터넷 연결 확인](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-4-ip-%EB%B0%8F-hostname-%EC%A0%95%EB%B3%B4--%EC%9D%B8%ED%84%B0%EB%84%B7-%EC%97%B0%EA%B2%B0-%ED%99%95%EC%9D%B8)   
+[6. Desktop (X window) Install, not default](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-5-desktop-x-window-install-not-default)  
+[7. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-6-ssh-%EB%B0%8F-%EB%B0%A9%ED%99%94%EB%B2%BD-firewall%EC%84%A4%EC%A0%95--%EB%B3%B4%EC%95%88%EA%B0%95%ED%99%94--x11-forwading)  
+[8. 새로운 사용자 추가 / sudo 권한 부여](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-7-%EC%83%88%EB%A1%9C%EC%9A%B4-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%B6%94%EA%B0%80--sudo-%EA%B6%8C%ED%95%9C-%EB%B6%80%EC%97%AC)
+[9. 스토리지, 파티션 마운트 / lvm, UUID, LABEL](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-8-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%ED%8C%8C%ED%8B%B0%EC%85%98-%EB%A7%88%EC%9A%B4%ED%8A%B8--lvm-or-parted-uuid-label)  
+[10. Banner // login wellcome message ](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-9-banner--login-wellcome-message-)  
+[11. VNC Server 설정](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-10-vnc-server-%EC%84%A4%EC%A0%95)  
+[12. TeamViewer 설치](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-11-teamviewer-%EC%84%A4%EC%B9%98)  
+[12. 부팅 되는 기본 커널 버젼 변경방법](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-12-%EB%B6%80%ED%8C%85-%EB%90%98%EB%8A%94-%EA%B8%B0%EB%B3%B8-%EC%BB%A4%EB%84%90-%EB%B2%84%EC%A0%BC-%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95)
 [13. Disk 속도 측정](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#-13-disk-%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95)
+
 
 
 [===== 장애 모니터링 =====](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#--%EC%9E%A5%EC%95%A0-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-)  
@@ -180,6 +182,53 @@ rdate  -s  time.bora.net
 hwclock --systohc  
 date
 hwclock
+```
+
+### # [2. python2,3 설치](#목차)
+
+#### # pip3 install  
+
+```bash
+apt-get install -y python3-pip
+
+pip3 install --upgrade pip
+```
+
+#### # pip2 저장소 설치 / pip2 install
+
+```bash
+add-apt-repository universe
+
+apt update
+
+apt list --upgradeable
+
+apt install -y python2
+
+curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
+
+python2 get-pip.py
+```
+
+#### # pip2 , pip3 version 확인
+
+```bash
+
+perl -pi -e 's/python3/python/'   /usr/local/bin/pip
+
+cat /usr/local/bin/pip
+
+pip -V
+
+pip3 -V
+
+python -V
+
+python3 -V
+
+which pip
+
+which pip3
 ```
 
 ### # [2. profile 설정 - Console Color , alias](#목차)
@@ -399,7 +448,7 @@ ufw status numbered
 #### # sshd 설정. (기본 포트인 22번을 7777로 변경)
 
 ```bash
-#Ubuntu18 sshd_config
+#Ubuntu20 sshd_config
 grep 'Root\|Port' /etc/ssh/sshd_config
 perl -pi -e "s/Port 22/Port 7777/g" /etc/ssh/sshd_config
 perl -pi -e "s/#PermitRootLogin prohibit-password/PermitRootLogin no/g" /etc/ssh/sshd_config
