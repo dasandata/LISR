@@ -345,7 +345,7 @@ tail dasan_log_install_gnome-desktop.txt
 \# http://egloos.zum.com/conniezzang/v/3313282  
 \# - CentOS 7.x 계열  
 \# https://www.server-world.info/en/note?os=CentOS_7&p=runlevel  
-\# - CentOS 8.x 계열
+\# - CentOS 8.x 계열   
 \# https://www.server-world.info/en/note?os=CentOS_8&p=desktop&f=1
 
 #### # 불필요한 Daemon Disable 예.
