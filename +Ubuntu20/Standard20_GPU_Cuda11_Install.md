@@ -1,4 +1,4 @@
-# 다산데이타 Ubuntu 18.04  설치 표준안 (2018.09)
+# 다산데이타 Ubuntu 20.04  설치 표준안 (2021.01)
 다산데이터 출고 장비에 설치되는 리눅스 (Ubuntu) 의 설치 표준안 입니다.  
 별도의 요청사항이 없는 경우 기본적으로 아래 절차에 따라 설치한 후 출고 하고 있습니다.  
 보완이 필요한 점이나 새로운 아이디어를 제보해 주시면 적극 반영하겠습니다 :)  
@@ -107,20 +107,29 @@ lsmod  | grep  nouveau
 ***
 
 
-##### # Cuda10 설치 및 쿠다 샘플 컴파일에 필요한 라이브러리
+##### # Cuda 저장소 변수 선언 gpg key 등록 / 유틸 설치 / 저장소 업데이트
 
 ```bash
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
+release="ubuntu"$(lsb_release -sr | sed -e "s/\.//g")
 
-dpkg -i cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
+apt-get install -y sudo gnupg
 
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+apt-key adv --fetch-keys "http://developer.download.nvidia.com/compute/cuda/repos/"$release"/x86_64/7fa2af80.pub"
 
-apt-key add 7fa2af80.pub
+sh -c 'echo "deb http://developer.download.nvidia.com/compute/cuda/repos/'$release'/x86_64 /" > /etc/apt/sources.list.d/nvidia-cuda.list'
 
 apt-get update
 
-apt-get install cuda-10-0       
+apt-cache  search   cuda
+
+```
+
+
+##### # Cuda11 설치 및 쿠다 샘플 컴파일에 필요한 라이브러리
+
+```bash
+
+apt-get install cuda-11-0       
 
 systemctl enable nvidia-persistenced      
 
@@ -133,15 +142,15 @@ nvidia-smi
 nvidia-smi -L
 ```
 
-##### # Cuda 10.0 환경변수 Profile 에 추가
+##### # Cuda 11.0 환경변수 Profile 에 추가
 
 ```bash
 cat << EOF >> /etc/profile
-### ADD Cuda 10.0 PATH
-export PATH=/usr/local/cuda-10.0/bin:/usr/local/cuda-10.0/include:\$PATH
-export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH
-export CUDA_HOME=/usr/local/cuda-10.0
-export CUDA_INC_DIR=/usr/local/cuda-10.0/include
+### ADD Cuda 11.0 PATH
+export PATH=/usr/local/cuda-11.0/bin:/usr/local/cuda-11.0/include:\$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-11.0/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH
+export CUDA_HOME=/usr/local/cuda-11.0
+export CUDA_INC_DIR=/usr/local/cuda-11.0/include
 ### add end.
 EOF
 ```
@@ -162,10 +171,10 @@ which nvcc
 
 nvcc -V
 ```
-#### # Cuda 10.0 샘플 컴파일
+#### # Cuda 11.0 샘플 컴파일
 ```bash
-cp -r /usr/local/cuda-10.0/samples/  ~/NVIDIA_CUDA-10.0_Samples
-cd ~/NVIDIA_CUDA-10.0_Samples
+cp -r /usr/local/cuda-11.0/samples/  ~/NVIDIA_CUDA-11.0_Samples
+cd ~/NVIDIA_CUDA-11.0_Samples
 
 time make -j$(grep process /proc/cpuinfo | wc -l)
 
@@ -173,136 +182,54 @@ time make -j$(grep process /proc/cpuinfo | wc -l)
 
 ```
 
-#### # Cuda 10.0 샘플 테스트
+#### # Cuda 11.0 샘플 테스트
 ```bash
 cd ~
 
-./NVIDIA_CUDA-10.0_Samples/bin/x86_64/linux/release/deviceQuery
+./NVIDIA_CUDA-11.0_Samples/bin/x86_64/linux/release/deviceQuery
 
-./NVIDIA_CUDA-10.0_Samples/bin/x86_64/linux/release/p2pBandwidthLatencyTest
+./NVIDIA_CUDA-11.0_Samples/bin/x86_64/linux/release/p2pBandwidthLatencyTest
 
-./NVIDIA_CUDA-10.0_Samples/bin/x86_64/linux/release/nbody  --help
+./NVIDIA_CUDA-11.0_Samples/bin/x86_64/linux/release/nbody  --help
 
-./NVIDIA_CUDA-10.0_Samples/bin/x86_64/linux/release/nbody  -benchmark  -numdevices=2 or 3 or 4
+./NVIDIA_CUDA-11.0_Samples/bin/x86_64/linux/release/nbody  -benchmark  -numdevices=2 or 3 or 4
 ```
 
-### # [2. Cudnn install](#목차)
-
-\# https://developer.nvidia.com/rdp/cudnn-download
-\# 위 사이트에서 다운로드 (로그인 필요)
-\# Cuda10.0 용 7버전 다운 받습니다.
+### # [2. Deep Learning Package Install (tensorflow, pytorch)](#목차)
 
 ```bash
-
-wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb
-
-wget https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/libcudnn7-dev_7.6.5.32-1+cuda10.0_amd64.deb
-
-dpkg -i libcudnn7_7.6.5.32-1+cuda10.0_amd64.deb
-
-dpkg -i libcudnn7-dev_7.6.5.32-1+cuda10.0_amd64.deb
-
-apt-get update
-
-apt-get install -y libcublas-dev
-
-```
-
-### # [3. Deep Learning Package Install (python-PIP, tensorflow)](#목차)
-```bash
-cd ~
-
-python -V
-which  python
-
-python3 -V
-which  python3
-
-apt-get install -y  python-pip python3-pip python-tk python3-tk
-```
-
-#### # pip Check
-
-```bash
-
-pip -V  
-which pip
-
-pip3   -V  
-which pip3
-```
-
-#### # ADD  package install
-
-```bash
-pip   install --upgrade pip
-pip3   install --upgrade pip
-
-
-pip -V  
-which pip
-
-pip3   -V  
-which pip3
-
 ### pip 와 pip3 버젼 확인 후 pip가 phyhon3 로 바뀌었으면 아래 명령 실행 . (Ubuntu18)
 ### perl -pi -e 's/python3/python/'   /usr/local/bin/pip
 ### cat /usr/local/bin/pip
 
-
 *** pip 설치전에 dns (/etc/resolv.conf) 값이 1.1.1.1 이 맞는지 확인 합니다. (속도 차이가 큽니다.)
 cat /etc/resolv.conf
 
-pip install  numpy   scipy  nose  matplotlib  pandas  keras
-pip3 install  numpy   scipy  nose  matplotlib  pandas  keras
+pip install --upgrade numpy scipy  nose  matplotlib  pandas  keras tensorflow-gpu
 
+pip install scipy==1.2.2
 
-# For CUDA 10.0
-pip install  --upgrade tensorflow-gpu==1.13.1
-pip3 install  --upgrade tensorflow-gpu==1.13.1
+pip3 install --upgrade numpy scipy nose matplotlib pandas keras tensorflow-gpu
 
-# tensorflow  test  package
-cd ~
-git clone https://github.com/aymericdamien/TensorFlow-Examples.git
-ll  TensorFlow-Examples/
+pip3 install numpy==1.16.0 h5py==2.10.0
 
+pip install --upgrade torch torchvision
 
-python        TensorFlow-Examples/examples/1_Introduction/helloworld.py  
-python        TensorFlow-Examples/examples/1_Introduction/basic_operations.py
-
-python3      TensorFlow-Examples/examples/1_Introduction/helloworld.py    
-python3      TensorFlow-Examples/examples/1_Introduction/basic_operations.py
-
-## 아래 항목도 테스트 필요 (문서에 기록은 남기지 않아도 됨)
-python3  TensorFlow-Examples/examples/3_NeuralNetworks/neural_network.py
-python3  TensorFlow-Examples/examples/3_NeuralNetworks/gan.py
-python3  TensorFlow-Examples/examples/3_NeuralNetworks/dcgan.py
-python3  TensorFlow-Examples/examples/5_DataManagement/tensorflow_dataset_api.py
-
+pip3 install --upgrade torch torchvision
 ```
 
-### # [4. Deep Learning Package Install 2 (python-PIP, PyTorch)](#목차)
-\# 홈페이지 주소 링크 http://pytorch.org/
+#### # pip pip3 Check
 
 ```bash
 
-pip install torch torchvision
+pip -V  
+which pip
 
-pip3 install torch torchvision
-
-# 테스트
-
-cd ~
-
-git clone https://github.com/pytorch/examples/
-
-python     examples/regression/main.py
-
-python3     examples/regression/main.py
-
+pip3   -V  
+which pip3
 ```
 
-### # [5. GPU Burning Test](#목차)
+### # [3. GPU Burning Test](#목차)
 
 ```bash
 cd
@@ -316,34 +243,27 @@ make
 ./gpu_burn $((60 * 1))   # 1min
 ```
 
-### # [6. R-Server , R-desktop , R install](#목차)
+### # [4. R-Server, R install](#목차)
 
 ```bash
 
 # R install
-apt-get install -y  r-base
+apt-get install -y r-base
 
-apt-get install -y  gdebi-core
+apt-get install -y gdebi-core
 
 # R-server install
-wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5019-amd64.deb
+wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.3.1073-amd64.deb
 
-yes | gdebi rstudio-server-1.2.5019-amd64.deb
+yes | gdebi rstudio-server-1.3.1073-amd64.deb
 
 ufw allow 8787/tcp
 
 ufw status
 
-# R-desktop install
-wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.2.5019-amd64.deb
-
-dpkg -i rstudio-1.2.5019-amd64.deb
-
-apt-get install -y  rdesktop
-
 ```
 
-### # [7. Jupyterhub install](#목차)
+### # [5. Jupyterhub install](#목차)
 
 ```bash
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
@@ -354,13 +274,7 @@ apt-get install -y  default-jre
 
 npm install -g configurable-http-proxy
 
-pip3 install --upgrade optimuspyspark
-
-pip3 install --upgrade testresources
-
-pip3 install --upgrade jupyterhub
-
-pip3 install --upgrade notebook
+pip3 install --upgrade jupyterhub notebook
 
 ufw allow 8000/tcp
 
@@ -387,13 +301,13 @@ R CMD BATCH /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/r_jupyterhub
 
 ```
 
-### # [8. pycharm install](#목차)
+### # [6. pycharm install](#목차)
 
 ```bash
 snap install pycharm-community --classic
 ```
 
-### # [9. history 저장 / 차후 설치기록 참고용](#목차)
+### # [7. history 저장 / 차후 설치기록 참고용](#목차)
 
 ```bash
 # 모든 root 사용자를 로그아웃 한 다음 다시 로그인 하여 작업
