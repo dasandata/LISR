@@ -8,23 +8,13 @@
 ![Dasandata Logo](http://dasandata.co.kr/wp-content/uploads/2019/05/%EB%8B%A4%EC%82%B0%EB%A1%9C%EA%B3%A0_%EC%88%98%EC%A0%951-300x109.jpg)
 
 ## #목차
-[1. NVIDIA Driver 설치전 사전 작업](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-1-nvidia-driver-%EC%84%A4%EC%B9%98%EC%A0%84-%EC%82%AC%EC%A0%84-%EC%9E%91%EC%97%85)  
-
-[2. Cudnn Install                         ](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-2-cudnn-install)
-
-[3. Deep Learning Package Install python-PIP, tensorflow](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-3-deep-learning-package-install-python-pip-tensorflow)  
-
-[4. Deep Learning Package Install 2 (python-PIP, PyTorch)](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-4-deep-learning-package-install-2-python-pip-pytorch)  
-
-[5. GPU Burning Test](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-5-gpu-burning-test)
-
-[6. R-Server , R-desktop , R install ](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-6-r-server--r-desktop--r-install)
-
-[7. Jupyterhub install ](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-7-jupyterhub-install)
-
-[8. pycharm install ](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-8-pycharm-install)
-
-[9. history 저장 차후 설치기록 참고용](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-9-history-%EC%A0%80%EC%9E%A5--%EC%B0%A8%ED%9B%84-%EC%84%A4%EC%B9%98%EA%B8%B0%EB%A1%9D-%EC%B0%B8%EA%B3%A0%EC%9A%A9)
+[1. Cuda 설치 사전 작업](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-1-nvidia-driver-%EC%84%A4%EC%B9%98%EC%A0%84-%EC%82%AC%EC%A0%84-%EC%9E%91%EC%97%85)  
+[2. Deep Learning Package Install (tensorflow, pytorch)                         ](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-2-cudnn-install)   
+[3. GPU Burning Test](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-3-deep-learning-package-install-python-pip-tensorflow)   
+[4. R-Server, R install](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-4-deep-learning-package-install-2-python-pip-pytorch)   
+[5. Jupyterhub install](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-5-gpu-burning-test)   
+[6. pycharm install ](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-6-r-server--r-desktop--r-install)   
+[7. history 저장 / 차후 설치기록 참고용 ](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard18_GPU_Cuda10_Install.md#-7-jupyterhub-install)
 
 
 ***
@@ -74,7 +64,7 @@ ssh <사용자 계정>@<IP 주소>
 
 ***
 
-### # [1. NVIDIA Driver 설치전 사전 작업](#목차)
+### # [1. Cuda 설치 사전 작업](#목차)
 
 ##### # nouveau disable
 ```bash
@@ -124,8 +114,7 @@ apt-cache  search   cuda
 
 ```
 
-
-##### # Cuda11 설치 및 쿠다 샘플 컴파일에 필요한 라이브러리
+##### # Cuda11 설치 / nvidia-persistenced 서비스 활성
 
 ```bash
 
