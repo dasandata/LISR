@@ -15,12 +15,12 @@
 [5. ip 및 hostname 정보 / 인터넷 연결 확인](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-5-ip-%EB%B0%8F-hostname-%EC%A0%95%EB%B3%B4--%EC%9D%B8%ED%84%B0%EB%84%B7-%EC%97%B0%EA%B2%B0-%ED%99%95%EC%9D%B8)   
 [6. Desktop (X window) Install, not default](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-6-desktop-x-window-install-not-default)  
 [7. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-7-ssh-%EB%B0%8F-%EB%B0%A9%ED%99%94%EB%B2%BD-firewall%EC%84%A4%EC%A0%95--%EB%B3%B4%EC%95%88%EA%B0%95%ED%99%94--x11-forwading)  
-[8. 새로운 사용자 추가 / sudo 권한 부여](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-8-%EC%83%88%EB%A1%9C%EC%9A%B4-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%B6%94%EA%B0%80--sudo-%EA%B6%8C%ED%95%9C-%EB%B6%80%EC%97%AC)\n
+[8. 새로운 사용자 추가 / sudo 권한 부여](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-8-%EC%83%88%EB%A1%9C%EC%9A%B4-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%B6%94%EA%B0%80--sudo-%EA%B6%8C%ED%95%9C-%EB%B6%80%EC%97%AC)   
 [9. 스토리지, 파티션 마운트 / lvm, UUID, LABEL](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-9-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%ED%8C%8C%ED%8B%B0%EC%85%98-%EB%A7%88%EC%9A%B4%ED%8A%B8--lvm-or-parted-uuid-label)  
 [10. Banner // login wellcome message ](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-10-banner--login-wellcome-message-)  
 [11. VNC Server 설정](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-11-vnc-server-%EC%84%A4%EC%A0%95)  
 [12. TeamViewer 설치](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-12-teamviewer-%EC%84%A4%EC%B9%98)  
-[13. 부팅 되는 기본 커널 버젼 변경방법](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-13-%EB%B6%80%ED%8C%85-%EB%90%98%EB%8A%94-%EA%B8%B0%EB%B3%B8-%EC%BB%A4%EB%84%90-%EB%B2%84%EC%A0%BC-%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95)\n
+[13. 부팅 되는 기본 커널 버젼 변경방법](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-13-%EB%B6%80%ED%8C%85-%EB%90%98%EB%8A%94-%EA%B8%B0%EB%B3%B8-%EC%BB%A4%EB%84%90-%EB%B2%84%EC%A0%BC-%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95)   
 [14. Disk 속도 측정](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard_Install_Ubuntu20.md#-14-disk-%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95)
 
 
