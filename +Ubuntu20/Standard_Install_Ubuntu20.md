@@ -311,7 +311,7 @@ ping -c 4 google.com
 \# 필요한 경우에만 xwindow 를 실행하여 사용 합니다. (서버의 리소스 절약)  
 \# Desktop 을 설치하면 불필요한 데몬이 함께 깔립니다. 설치 후 정리가 필요 합니다.  
 
-#### # (Ubuntu16,18)기본 부팅 모드 확인.
+#### # (Ubuntu)기본 부팅 모드 확인.
 \# multi-user.target -> 텍스트환경  
 \# graphical.target -> GUI 환경  
 \# 기본 모드 변경시 -> systemctl set-default multi-user.target  
