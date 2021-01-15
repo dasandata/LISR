@@ -113,7 +113,7 @@ dnf -y install  libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut
 
 ##### # cuda 10.2 설치 (드라이버도 함께 설치됨)
 ```bash
-yum -y install cuda-10-2
+dnf -y install cuda-10-2
 ```
 
 ##### # Nvidia Driver 동작 확인.
@@ -195,99 +195,50 @@ rpm -qa | grep libcudnn8
 ### # [3. Deep Learning Package Install (python-pip , tensorflow)](#목차)
 
 ```bash
-which  python
-rpm -qa  |  grep ^python-2.7
-python -V
+dnf install -y python2 python2-devel python3 python3-devel
 
-rpm -ql  python-2.7.5
-
-easy_install pip
-
-rpm -qa | grep  setuptools
-
-pip -V
-
-yum -y install  python36  python36-devel
-
-yum search  all  python36-setuptools
-
-yum -y install  python36-setuptools
-
-easy_install-3.6   pip
-
-yum -y install   openblas*
-```
-
-##### # * pip 와 pip3 사용하기 위해 수정 *
-
-```bash
-[root@Technology:~]# cat /bin/pip
-#!/usr/bin/python3.6
-# EASY-INSTALL-ENTRY-SCRIPT: 'pip==18.0','console_scripts','pip'
-__requires__ = 'pip==18.0'
-import sys
-from pkg_resources import load_entry_point
-
-if __name__ == '__main__':
-    sys.exit(
-        load_entry_point('pip==18.0', 'console_scripts', 'pip')()
-    )
-
-[root@Technology:~]# vi /bin/pip
-
-[root@Technology:~]# cat /bin/pip
-#!/usr/bin/python
-# EASY-INSTALL-ENTRY-SCRIPT: 'pip==18.0','console_scripts','pip'
-__requires__ = 'pip==18.0'
-import sys
-from pkg_resources import load_entry_point
-
-if __name__ == '__main__':
-    sys.exit(
-        load_entry_point('pip==18.0', 'console_scripts', 'pip')()
-    )
-```
-
-##### # pip , pip3 버전 확인 및 패키지 설치 .
-
-```bash
-python -V
-pip -V
+python2 -V
 
 python3 -V
+
+which pip2
+
+which pip3
+
+pip2 -V
+
 pip3 -V
 
-cat /etc/resolv.conf
+pip2 install --upgrade pip
 
-pip install  numpy   scipy  nose  matplotlib  pandas  keras
+pip3 install --upgrade pip
 
-pip3 install  numpy   scipy  nose  matplotlib  pandas  keras
+pip2 install --upgrade numpy scipy nose matplotlib pandas keras tensorflow-gpu
 
-rm -rf /usr/lib/python2.7/site-packages/enum*
-rm -rf /usr/share/doc/python-enum34-1.0.4/*
+pip2 install --upgrade setuptools
 
-yum erase pyparsing
+pip3 install --upgrade numpy scipy nose matplotlib pandas keras tensorflow-gpu
 
-pip install  --upgrade tensorflow-gpu==1.11
-pip3 install  --upgrade tensorflow-gpu==1.11
+pip3 install --upgrade python-dateutil
 
-# tensorflow  test  package
-cd ~
-git clone https://github.com/aymericdamien/TensorFlow-Examples.git
-ll  TensorFlow-Examples/
+pip3 list | grep -i ten
 
+perl -pi -e 's/python3.6/python2.7/'   /usr/local/bin/pip
 
-python        TensorFlow-Examples/examples/1_Introduction/helloworld.py  
-python        TensorFlow-Examples/examples/1_Introduction/basic_operations.py
+```
 
-python3      TensorFlow-Examples/examples/1_Introduction/helloworld.py    
-python3      TensorFlow-Examples/examples/1_Introduction/basic_operations.py
+##### # Python3 setuptools upgrade install bug firewall-cmd command error
 
-## 아래 항목도 테스트 필요 (문서에 기록은 남기지 않아도 됨)
-python3  TensorFlow-Examples/examples/3_NeuralNetworks/neural_network.py
-python3  TensorFlow-Examples/examples/3_NeuralNetworks/gan.py
-python3  TensorFlow-Examples/examples/3_NeuralNetworks/dcgan.py
-python3  TensorFlow-Examples/examples/5_DataManagement/tensorflow_dataset_api.py
+```bash
+cp /usr/local/lib/python3.6/site-packages/six.py /usr/lib/python3.6/site-packages/
+
+firewall-cmd --list-all
+
+firewall-cmd --add-port=8787/tcp --permanent
+
+firewall-cmd --reload
+
+firewall-cmd --list-all
 ```
 
 ### # [4. GPU Burning Test](#목차)
@@ -304,7 +255,74 @@ make
 ./gpu_burn $((60 * 1))   # 1min
 ```
 
-### # [5. history 저장 (차후 설치기록 참고용)](#목차)
+
+### # [5. R-Studio Server install](#목차)
+
+```bash
+wget https://download2.rstudio.org/server/centos8/x86_64/rstudio-server-rhel-1.3.959-x86_64.rpm
+
+dnf install -y rstudio-server-rhel-1.3.959-x86_64.rpm
+
+dnf install -y libRmath-devel R-rpm-macros java-devel libRmath libgfortran.so.5 libopenblas.so.0 libquadmath.so.0 libtcl8.6.so libtk8.6.so
+
+dnf config-manager --set-enabled PowerTools
+
+dnf install -y R
+
+systemctl restart rstudio-server.service
+```
+
+### # [6. Jupyterhub install](#목차)
+
+dnf install -y nodejs
+
+npm install -g configurable-http-proxy
+
+pip3 install --upgrade jupyterhub notebook flask
+
+pip3 list | grep -i jupyterhub
+
+firewall-cmd --list-all
+
+firewall-cmd --add-port=8000/tcp --permanent
+
+firewall-cmd --reload
+
+firewall-cmd --list-all
+
+mv /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/jupyterhub.service /lib/systemd/system/
+
+chmod 777 /lib/systemd/system/jupyterhub.service
+
+mv /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/jupyterhub /etc/init.d/
+
+chmod 755 /etc/init.d/jupyterhub
+
+systemctl daemon-reload
+
+systemctl enable jupyterhub.service
+
+systemctl restart jupyterhub.service
+
+R CMD BATCH /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/r_jupyterhub.R
+
+
+### # [7. Pycharm install](#목차)
+
+```bash
+dnf install -y snapd
+
+systemctl enable --now snapd.socket
+
+ln -s /var/lib/snapd/snap /snap
+
+systemctl restart snapd.socket
+
+snap install pycharm-community --classic
+```
+
+
+### # [8. history 저장 (차후 설치기록 참고용)](#목차)
 
 ```bash
 # 모든 root 사용자를 로그아웃 한 다음 다시 로그인 하여 작업
