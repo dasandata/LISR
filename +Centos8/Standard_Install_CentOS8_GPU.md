@@ -305,7 +305,7 @@ systemctl enable jupyterhub.service
 systemctl restart jupyterhub.service
 
 R CMD BATCH /root/LISR/2_Workstation_Desktop/2-3_Ubuntu18/2-3-2_GPU/r_jupyterhub.R
-```
+
 
 ### # [7. Pycharm install](#목차)
 
