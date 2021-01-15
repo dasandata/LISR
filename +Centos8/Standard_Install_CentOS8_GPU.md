@@ -11,7 +11,10 @@
 [1. Cuda install 사전 작업](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_GPU.md#-1-cuda-install-%EC%82%AC%EC%A0%84-%EC%9E%91%EC%97%85)  
 [2. Cudnn Install ](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_GPU.md#-2-cudnn-install)  
 [3. Deep Learning Package Install (python-pip , tensorflow)](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_GPU.md#-3-deep-learning-package-install-python-pip--tensorflow)  
-[4. GPU Burning Test](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_GPU.md#-4-gpu-burning-test) [5. R-Studio Server install](https://github.com/dasandata/LISR/blob/master/%2BCentos8/Standard_Install_CentOS8_GPU.md#-5-r-studio-server-install) [6. Jupyterhub install](https://github.com/dasandata/LISR/blob/master/%2BCentos8/Standard_Install_CentOS8_GPU.md#-6-jupyterhub-install) [7. Pycharm install](https://github.com/dasandata/LISR/blob/master/%2BCentos8/Standard_Install_CentOS8_GPU.md#-7-pycharm-install)   
+[4. GPU Burning Test](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_GPU.md#-4-gpu-burning-test)
+[5. R-Studio Server install](https://github.com/dasandata/LISR/blob/master/%2BCentos8/Standard_Install_CentOS8_GPU.md#-5-r-studio-server-install)
+[6. Jupyterhub install](https://github.com/dasandata/LISR/blob/master/%2BCentos8/Standard_Install_CentOS8_GPU.md#-6-jupyterhub-install)
+[7. Pycharm install](https://github.com/dasandata/LISR/blob/master/%2BCentos8/Standard_Install_CentOS8_GPU.md#-7-pycharm-install)   
 [8. history 저장 (차후 설치기록 참고용)](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_GPU.md#-5-history-%EC%A0%80%EC%9E%A5-%EC%B0%A8%ED%9B%84-%EC%84%A4%EC%B9%98%EA%B8%B0%EB%A1%9D-%EC%B0%B8%EA%B3%A0%EC%9A%A9)  
 
 ***
