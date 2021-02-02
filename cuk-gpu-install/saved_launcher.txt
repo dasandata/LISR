@@ -1,1 +1,0 @@
-['application://org.gnome.Nautilus.desktop', 'application://firefox.desktop', 'application://unity-control-center.desktop', 'application://nvidia-settings.desktop', 'application://rstudio.desktop', 'application://R.desktop', 'application://gnome-terminal.desktop']
