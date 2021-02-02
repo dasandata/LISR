@@ -7,9 +7,9 @@
 
 ### Admin User
 
-### root      / rmadbdtngkr2018 (금융수학2018)
-### mathadmin / rmadbdtngkr2018 (금융수학2018)
-### sonic     / 123456qwer!
+### root      
+### mathadmin 
+### sonic     
 
 ========================================================
 
