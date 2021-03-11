@@ -65,8 +65,8 @@ echo "==================== Node Fan information ===================="
 echo "==================== Node Fan information ====================" >> "/root/dasan_Maintenance_${Date1}.txt"
 echo ""
 echo ""
-echo -e  "${PROMPT} pdsh -w n[1-9] ipmitool sdr type fan | sort -V " >> "/root/dasan_Maintenance_${Date1}.txt"
-pdsh -w n[1-9] ipmitool sdr type fan | sort -V | tee -a "$LOGFILE"
+echo -e  "${PROMPT} pdsh -w n[1-11] ipmitool sdr type fan | sort -V " >> "/root/dasan_Maintenance_${Date1}.txt"
+pdsh -w n[1-11] ipmitool sdr type fan | sort -V | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
@@ -92,8 +92,8 @@ echo "==================== Nic Check ===================="
 echo "==================== Nic Check ====================" >> "/root/dasan_Maintenance_${Date1}.txt"
 echo ""
 echo ""
-echo -e  "${PROMPT} pdsh -w n[1-9] ifconfig  eth0 | grep 192.168.0 | sort -V " >> "/root/dasan_Maintenance_${Date1}.txt"
-pdsh -w n[1-9] ifconfig  eth0 | grep 192.168.0 | sort -V   | tee -a "$LOGFILE"
+echo -e  "${PROMPT} pdsh -w n[1-11] ifconfig  eth0 | grep 192.168.0 | sort -V " >> "/root/dasan_Maintenance_${Date1}.txt"
+pdsh -w n[1-11] ifconfig  eth0 | grep 192.168.0 | sort -V   | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
@@ -113,6 +113,11 @@ pdsh -w n[8-9] ethtool  eth2 | grep -i speed | sort -V  | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
 
+echo -e  "${PROMPT} pdsh -w n[10-11] ethtool  eth0 | grep -i speed | sort -V " >> "/root/dasan_Maintenance/dasan_Maintenance_${Date1}.txt"
+pdsh -w n[10-11] ethtool  eth0 | grep -i speed | sort -V  | tee -a "$LOGFILE"
+
+echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance/dasan_Maintenance_${Date1}.txt"
+
 echo ""
 echo ""
 echo "==================== Port Check ===================="
@@ -128,6 +133,11 @@ echo -e  "${PROMPT} pdsh -w n[8-9] ifconfig  eth2 | grep 192.168.0 | sort -V " >
 pdsh -w n[8-9] ifconfig  eth2 | grep 192.168.0 | sort -V | tee -a "$LOGFILE"
 
 echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${Date1}.txt"
+
+echo -e  "${PROMPT} pdsh -w n[10-11] ifconfig  eth0 | grep 192.168.0 | sort -V " >> "/root/dasan_Maintenance/dasan_Maintenance_${Date1}.txt"
+pdsh -w n[10-11] ifconfig  eth0 | grep 192.168.0 | sort -V | tee -a "$LOGFILE"
+
+echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance/dasan_Maintenance_${Date1}.txt"
 
 echo ""
 echo ""
