@@ -139,7 +139,6 @@ echo "==================== Node GPU Check ===================="
 echo "==================== Node GPU Check ====================" >> "/root/dasan_Maintenance_${date1}.txt"
 echo ""
 echo ""
-echo $date1
 echo -e  "${PROMPT} ${date1} " >> "/root/dasan_Maintenance_${date1}.txt"
 echo -e  "${PROMPT} pdsh -w node[01-33] gpustat --no-color -c -u -p -F -P | sort -V " >> "/root/dasan_Maintenance_${date1}.txt"
 pdsh -w node[01-33] gpustat --no-color -c -u -p -F -P | sort -V | tee -a "$LOGFILE"
@@ -284,8 +283,8 @@ echo -e  "${PROMPT}   " >> "/root/dasan_Maintenance_${date1}.txt"
 
 echo ""
 echo ""
-echo "==================== Node Time Sync Check ===================="
-echo "==================== Node Time Sync Check ====================" >> "/root/dasan_Maintenance_${date1}.txt"
+echo "==================== Master & Node Time Sync Check ===================="
+echo "==================== Master & Node Time Sync Check ====================" >> "/root/dasan_Maintenance_${date1}.txt"
 echo ""
 echo ""
 echo $date1
