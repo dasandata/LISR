@@ -26,8 +26,8 @@ sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 
 echo ""
 
-echo -e  "\033[1;34m${PROMPT} grep 'SELINUX=' /etc/sysconfig/selinux  \033[0m" >> /root/dasan_install_log.txt
-grep 'SELINUX=' /etc/sysconfig/selinux
+echo -e  "\033[1;34m${PROMPT} grep 'SELINUX=' /etc/selinux/config \033[0m" >> /root/dasan_install_log.txt
+grep 'SELINUX=' /etc/selinux/config
 
 echo ""
 
