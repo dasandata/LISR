@@ -95,7 +95,7 @@ setenforce 0
 getenforce
 
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
-grep 'SELINUX=' /etc/sysconfig/selinux  
+grep 'SELINUX=' /etc/selinux/config 
 ```
 
 ##### # grub 수정.
