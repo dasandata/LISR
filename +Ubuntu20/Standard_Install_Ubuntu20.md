@@ -195,9 +195,9 @@ apt list --upgradeable
 
 apt install -y python2
 
-curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py
 
-python2 get-pip.py
+python2.7 get-pip.py --force-reinstall
 ```
 
 #### # pip2 , pip3 version 확인

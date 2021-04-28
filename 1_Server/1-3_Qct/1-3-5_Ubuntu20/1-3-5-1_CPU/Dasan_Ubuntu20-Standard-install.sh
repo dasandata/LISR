@@ -75,11 +75,11 @@ apt list --upgradeable
 echo -e  "${PROMPT} apt install -y python2 " >> /root/dasan_install_log.txt
 apt install -y python2
 
-echo -e  "${PROMPT} curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py " >> /root/dasan_install_log.txt
-curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
+echo -e  "${PROMPT} curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py " >> /root/dasan_install_log.txt
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py
 
-echo -e  "${PROMPT} python2 get-pip.py " >> /root/dasan_install_log.txt
-python2 get-pip.py
+echo -e  "${PROMPT} python2.7 get-pip.py --force-reinstall " >> /root/dasan_install_log.txt
+python2.7 get-pip.py --force-reinstall
 
 echo -e  "${PROMPT} pip -V " >> /root/dasan_install_log.txt
 pip -V
