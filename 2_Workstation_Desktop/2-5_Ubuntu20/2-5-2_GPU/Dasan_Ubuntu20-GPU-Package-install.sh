@@ -162,68 +162,12 @@ echo ""
 echo ""
 
 echo ""
-echo -e  "${PROMPT} mount -t nfs 192.168.0.5:/file /mnt " >> /root/dasan_install_log.txt
-mount -t nfs 192.168.0.5:/file /mnt
+echo -e  "${PROMPT} apt-get install -y libcudnn8=8.0.5.39-1+cuda11.0 " >> /root/dasan_install_log.txt
+apt-get install -y libcudnn8=8.0.5.39-1+cuda11.0 >> /root/log.txt
 
 echo ""
-echo -e  "${PROMPT} mkdir /root/cudnn " >> /root/dasan_install_log.txt
-mkdir /root/cudnn
-
-echo ""
-echo -e  "${PROMPT} cp /mnt/1_OS/2_Linux/cudnn/cudnn-11.0-linux-x64-v8.0.2.39.tgz /root/cudnn/ " >> /root/dasan_install_log.txt
-cp /mnt/1_OS/2_Linux/cudnn/cudnn-11.0-linux-x64-v8.0.2.39.tgz /root/cudnn/ >> /root/log.txt
-
-echo ""
-echo -e  "${PROMPT} umount /mnt " >> /root/dasan_install_log.txt
-umount /mnt >> /root/log.txt
-
-echo ""
-echo -e  "${PROMPT} cd /root/cudnn/ " >> /root/dasan_install_log.txt
-cd /root/cudnn/ >> /root/log.txt
-
-echo ""
-echo -e  "${PROMPT} pwd " >> /root/dasan_install_log.txt
-pwd >> /root/log.txt
-
-echo ""
-echo -e  "${PROMPT} ls -al " >> /root/dasan_install_log.txt
-ls -al >> /root/log.txt
-
-echo ""
-echo -e  "${PROMPT} tar xvzf cudnn-11.0-linux-x64-v8.0.2.39.tgz " >> /root/dasan_install_log.txt
-tar xvzf cudnn-11.0-linux-x64-v8.0.2.39.tgz >> /root/log.txt
-
-echo ""
-echo -e  "${PROMPT} ls -l cuda/include/* " >> /root/dasan_install_log.txt
-ls -l cuda/include/* >> /root/log.txt
-
-echo ""
-echo -e  "${PROMPT} ls -l cuda/lib64/* " >> /root/dasan_install_log.txt
-ls -l cuda/lib64/* >> /root/log.txt
-
-echo ""
-echo -e  "${PROMPT} chmod a+r cuda/include/* " >> /root/dasan_install_log.txt
-chmod a+r cuda/include/* >> /root/log.txt
-
-echo ""
-echo -e  "${PROMPT} chmod a+r cuda/lib64/* " >> /root/dasan_install_log.txt
-chmod a+r cuda/lib64/* >> /root/log.txt
-
-echo ""
-echo -e  "${PROMPT} cp -rp cuda/include/cudnn.h /usr/local/cuda-11.0/include/ " >> /root/dasan_install_log.txt
-cp -rp cuda/include/cudnn.h /usr/local/cuda-11.0/include/ >> /root/log.txt
-
-echo ""
-echo -e  "${PROMPT} cp -rp cuda/lib64/libcudnn* /usr/local/cuda-11.0/lib64/ " >> /root/dasan_install_log.txt
-cp -rp cuda/lib64/libcudnn* /usr/local/cuda-11.0/lib64/ >> /root/log.txt
-
-echo ""
-echo -e  "${PROMPT} ls -l /usr/local/cuda-11.0/lib64/libcudnn* " >> /root/dasan_install_log.txt
-ls -l /usr/local/cuda-11.0/lib64/libcudnn* >> /root/log.txt
-
-echo ""
-echo -e  "${PROMPT} cd " >> /root/dasan_install_log.txt
-cd >> /root/log.txt
+echo -e  "${PROMPT} apt-get install -y libcudnn8-dev=8.0.5.39-1+cuda11.0 " >> /root/dasan_install_log.txt
+apt-get install -y libcudnn8-dev=8.0.5.39-1+cuda11.0 >> /root/log.txt
 
 echo ""
 echo ""
