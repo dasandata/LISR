@@ -45,11 +45,11 @@ apt-cache  search   cuda
 echo ""
 echo ""
 
-echo -e  "==================== Cuda 10.0 설치 ===================="
+echo -e  "==================== Cuda 10.1 설치 ===================="
 
 echo ""
-echo -e  "${PROMPT} apt-get install -y cuda-10-0 " >> /root/dasan_install_log.txt
-apt-get install -y cuda-10-0  >> /root/log.txt
+echo -e  "${PROMPT} apt-get install -y cuda-10-1 " >> /root/dasan_install_log.txt
+apt-get install -y cuda-10-1  >> /root/log.txt
 
 echo ""
 echo ""
@@ -72,31 +72,31 @@ nvidia-smi
 echo ""
 echo ""
 
-echo " Cuda 10.0 환경변수 Profile 에 추가 "
+echo " Cuda 10.1 환경변수 Profile 에 추가 "
 
 echo ""
 echo -e  "${PROMPT} echo " "  >> /etc/profile " >> /root/dasan_install_log.txt
 echo " "  >> /etc/profile
 
 echo ""
-echo -e  "${PROMPT} echo " ADD Cuda 10.0 PATH "  >> /etc/profile " >> /root/dasan_install_log.txt
-echo " ### ADD Cuda 10.0 PATH "  >> /etc/profile
+echo -e  "${PROMPT} echo " ADD Cuda 10.1 PATH "  >> /etc/profile " >> /root/dasan_install_log.txt
+echo " ### ADD Cuda 10.1 PATH "  >> /etc/profile
 
 echo ""
-echo -e  "${PROMPT} echo " export PATH=/usr/local/cuda-10.0/bin:/usr/local/cuda-10.0/include:\$PATH " >> /etc/profile " >> /root/dasan_install_log.txt
-echo " export PATH=/usr/local/cuda-10.0/bin:/usr/local/cuda-10.0/include:\$PATH " >> /etc/profile
+echo -e  "${PROMPT} echo " export PATH=/usr/local/cuda-10.1/bin:/usr/local/cuda-10.1/include:\$PATH " >> /etc/profile " >> /root/dasan_install_log.txt
+echo " export PATH=/usr/local/cuda-10.1/bin:/usr/local/cuda-10.1/include:\$PATH " >> /etc/profile
 
 echo ""
-echo -e  "${PROMPT} echo " export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile " >> /root/dasan_install_log.txt
-echo " export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
+echo -e  "${PROMPT} echo " export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile " >> /root/dasan_install_log.txt
+echo " export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
 
 echo ""
-echo -e  "${PROMPT} echo " export CUDA_HOME=/usr/local/cuda-10.0 " >> /etc/profile " >> /root/dasan_install_log.txt
-echo " export CUDA_HOME=/usr/local/cuda-10.0 " >> /etc/profile
+echo -e  "${PROMPT} echo " export CUDA_HOME=/usr/local/cuda-10.1 " >> /etc/profile " >> /root/dasan_install_log.txt
+echo " export CUDA_HOME=/usr/local/cuda-10.1 " >> /etc/profile
 
 echo ""
-echo -e  "${PROMPT} echo " export CUDA_INC_DIR=/usr/local/cuda-10.0/include " >> /etc/profile " >> /root/dasan_install_log.txt
-echo " export CUDA_INC_DIR=/usr/local/cuda-10.0/include " >> /etc/profile
+echo -e  "${PROMPT} echo " export CUDA_INC_DIR=/usr/local/cuda-10.1/include " >> /etc/profile " >> /root/dasan_install_log.txt
+echo " export CUDA_INC_DIR=/usr/local/cuda-10.1/include " >> /etc/profile
 
 echo ""
 echo ""
@@ -138,15 +138,15 @@ nvcc -V
 echo ""
 echo ""
 
-echo " Cuda 10.0 샘플 컴파일 "
+echo " Cuda 10.1 샘플 컴파일 "
 
 echo ""
-echo -e  "${PROMPT} cp -r  /usr/local/cuda-10.0/samples/   ~/NVIDIA_CUDA-10.0_Samples " >> /root/dasan_install_log.txt
-cp -r  /usr/local/cuda-10.0/samples/   ~/NVIDIA_CUDA-10.0_Samples
+echo -e  "${PROMPT} cp -r  /usr/local/cuda-10.1/samples/   ~/NVIDIA_CUDA-10.1_Samples " >> /root/dasan_install_log.txt
+cp -r  /usr/local/cuda-10.1/samples/   ~/NVIDIA_CUDA-10.1_Samples
 
 echo ""
-echo -e  "${PROMPT} cd ~/NVIDIA_CUDA-10.0_Samples " >> /root/dasan_install_log.txt
-cd ~/NVIDIA_CUDA-10.0_Samples
+echo -e  "${PROMPT} cd ~/NVIDIA_CUDA-10.1_Samples " >> /root/dasan_install_log.txt
+cd ~/NVIDIA_CUDA-10.1_Samples
 
 echo ""
 echo -e  "${PROMPT} time make -j$(grep process /proc/cpuinfo | wc -l) " >> /root/dasan_install_log.txt
@@ -161,12 +161,12 @@ echo ""
 echo ""
 
 echo ""
-echo -e  "${PROMPT} apt-get install -y libcudnn7=7.6.5.32-1+cuda10.0 " >> /root/dasan_install_log.txt
-apt-get install -y libcudnn7=7.6.5.32-1+cuda10.0
+echo -e  "${PROMPT} apt-get install -y libcudnn7=7.6.5.32-1+cuda10.1 " >> /root/dasan_install_log.txt
+apt-get install -y libcudnn7=7.6.5.32-1+cuda10.1
 
 echo ""
-echo -e  "${PROMPT} apt-get install -y libcudnn7-dev=7.6.5.32-1+cuda10.0  " >> /root/dasan_install_log.txt
-apt-get install -y libcudnn7-dev=7.6.5.32-1+cuda10.0
+echo -e  "${PROMPT} apt-get install -y libcudnn7-dev=7.6.5.32-1+cuda10.1  " >> /root/dasan_install_log.txt
+apt-get install -y libcudnn7-dev=7.6.5.32-1+cuda10.1
 
 echo ""
 echo -e  "${PROMPT} apt-get update " >> /root/dasan_install_log.txt
