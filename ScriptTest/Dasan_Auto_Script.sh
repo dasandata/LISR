@@ -1075,10 +1075,8 @@ echo ""
 ll /usr/local/sbin/dasan_variable.sh &> /dev/null
 if [ $? != 0]
 then
+cp /root/LISR/common/usr-local-sbin/dasan_export_global_variable.sh  /usr/local/sbin/dasan_export_global_variable.sh
 # 메일 발송을 위한 변수 설정
-
-
-
   case $OS in
     centos7 | centos8 )
     grep inet_protocols   /etc/postfix/main.cf
