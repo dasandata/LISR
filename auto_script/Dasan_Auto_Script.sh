@@ -1002,7 +1002,7 @@ if [ $? != 0 ]
           dpkg -i rstudio-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
           apt-get install -y  rdesktop >> /root/log.txt 2> /root/log_err.txt
           ## JupyterHub install
-          curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - 
+          curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -  >> /root/log.txt 2> /root/log_err.txt
           apt-get install -y  nodejs default-jre >> /root/log.txt 2> /root/log_err.txt
           npm install -g configurable-http-proxy >> /root/log.txt 2> /root/log_err.txt
           mkdir /etc/jupyterhub
@@ -1047,7 +1047,7 @@ echo ""
 
 ## JupyterHub 설정파일 복사 (파일 코드가 길어서 복사로 진행)
 ls /lib/systemd/system/jupyterhub.service  &> /dev/null
-if [ $? != 0]
+if [ $? != 0 ]
 then
   ## jupyter hub service 설정 파일 복사
   mv /root/LISR/auto_script/jupyterhub.service /lib/systemd/system/
@@ -1086,7 +1086,7 @@ echo ""
 
 ### 6. Mailutils 설정
 ls /usr/local/sbin/export_global_variable.sh &> /dev/null
-if [ $? != 0]
+if [ $? != 0 ]
 then
 cp /root/LISR/auto_script/export_global_variable.sh  /usr/local/sbin/export_global_variable.sh
 customer=$(cat /root/customername.txt)
