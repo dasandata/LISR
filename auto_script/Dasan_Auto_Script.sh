@@ -24,8 +24,9 @@ VENDOR=$(dmidecode | grep -i manufacturer | awk '{print$2}' | head -1)
 NIC=$(ip a | grep 'state UP' | cut -d ":" -f 2 | tr -d ' ')
 ## OS release 를 사용하여 OS 확인
 check=$(cat /etc/os-release | head -1 | cut -d "=" -f 2 | tr -d "\"" | awk '{print$1}' | tr '[A-Z]' '[a-z]')
+
 ## 고객사 정보 입력 받고 파일에 저장 하고 변수 사용 후 삭제하기
-ll /root/customername.txt &> /dev/null
+ls /root/customername.txt &> /dev/null
 if [ $? != 0 ]
 then
   echo "Customer Name?."
@@ -41,11 +42,11 @@ sleep 3
 echo ""
 
 ## CUDA 버전 선택
-ll /root/cudaversion.txt &> /dev/null
+ls /root/cudaversion.txt &> /dev/null
 if [ $? != 0 ]
 then
   echo "CUDA Version Select"
-  select cudav in 10-0 10-1 10-2 11-0; do echo "$cudav" ; break; done
+  select cudav in 10-0 10-1 10-2 11-0; do echo "CUDA Version : $cudav" ; break; done
   echo $cudav >> /root/cudaversion.txt
 else
   echo ""
@@ -342,7 +343,7 @@ sleep 3
 echo ""
 
 ## MOTD 진행 (CentOS7,Ubuntu16.04 제외)
-ll /opt/motd &> /dev/null
+ls /opt/motd &> /dev/null
 if [ $? != 0 ]
 then
   case $OS in
@@ -877,11 +878,11 @@ if [ $? != 0 ]
         echo ""
         echo libcudnn Install Start
         case $cudav
-          "10.0" | "10.1" | "10.2" )
+          '10.0' | '10.1' | '10.2' )
             yum -y install libcudnn7* >> /root/log.txt 2> /root/log_err.txt
             yum -y upgrade >> /root/log.txt 2> /root/log_err.txt
           ;;
-          "11.0" )
+          '11.0' )
             yum -y install libcudnn8* >> /root/log.txt 2> /root/log_err.txt
             yum -y upgrade >> /root/log.txt 2> /root/log_err.txt
           ;;
@@ -1057,7 +1058,7 @@ sleep 3
 echo ""
 
 ## JupyterHub 설정파일 복사 (파일 코드가 길어서 복사로 진행)
-ll /lib/systemd/system/jupyterhub.service  &> /dev/null
+ls /lib/systemd/system/jupyterhub.service  &> /dev/null
 if [ $? != 0]
 then
   ## jupyter hub service 설정 파일 복사
@@ -1096,7 +1097,7 @@ sleep 3
 echo ""
 
 ### 6. Mailutils 설정
-ll /usr/local/sbin/export_global_variable.sh &> /dev/null
+ls /usr/local/sbin/export_global_variable.sh &> /dev/null
 if [ $? != 0]
 then
 cp /root/LISR/auto_script/export_global_variable.sh  /usr/local/sbin/export_global_variable.sh
