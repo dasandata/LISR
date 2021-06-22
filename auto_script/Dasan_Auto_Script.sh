@@ -877,21 +877,14 @@ if [ $? != 0 ]
       centos7 )
         echo ""
         echo libcudnn Install Start
-        cudav="${cudav/./0}"
-        case $cudav
-          1000 | 1001 | 1002 )
-            yum -y install libcudnn7* >> /root/log.txt 2> /root/log_err.txt
-            yum -y upgrade >> /root/log.txt 2> /root/log_err.txt
-          ;;
-          1100 )
-            yum -y install libcudnn8* >> /root/log.txt 2> /root/log_err.txt
-            yum -y upgrade >> /root/log.txt 2> /root/log_err.txt
-          ;;
-          *)
-            echo ""
-            echo CUDA version is not correct
-          ;;
-        esac
+        if [ $cudav == "11.0" ]
+        then
+          yum -y install libcudnn8* >> /root/log.txt 2> /root/log_err.txt
+          yum -y upgrade >> /root/log.txt 2> /root/log_err.txt
+        else
+          yum -y install libcudnn7* >> /root/log.txt 2> /root/log_err.txt
+          yum -y upgrade >> /root/log.txt 2> /root/log_err.txt
+        fi
       ;;
       centos8 )
         ## CentOS8 은 저장소에 libcudnn8만 존재함
@@ -903,7 +896,7 @@ if [ $? != 0 ]
       ubuntu1604 | ubuntu1804 )
         echo ""
         echo libcudnn Install Start
-        cudav="${cudav/./0}"
+        cudav="${cudav/-/0}"
         case $cudav
           1000 | 1001 | 1002 )
             apt-get -y install libcudnn7* >> /root/log.txt 2> /root/log_err.txt
