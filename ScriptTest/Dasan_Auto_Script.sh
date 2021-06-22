@@ -1,26 +1,30 @@
 #!/bin/sh
-### 기본 버전 설치 진행 순서
-### 1. 변수 선언
-### 2. rc.local 생성 및 변경
-### 3. nouveau 끄기 및 grub 설정
-### 4. selinux 제거 및 저장소 변경
-### 5. 기본 패키지 설치
-### 6. 프로필 설정
-### 7. 서버 시간 동기화
-### 8. 파이썬 설치
-### 9. 파이썬 패키지 설치
-### 10. 방화벽 설정
-### 11. 사용자 생성 테스트
-### 12. H/W 사양 체크
+# Copyright by Dasandata.co.ltd
+# http://www.dasandata.co.kr
 
-### 1. 변수 선언 ###
-# Dell or Supermicro 확인
+# 기본 버전 설치 진행 순서
+# 1. 변수 선언
+# 2. rc.local 생성 및 변경
+# 3. nouveau 끄기 및 grub 설정
+# 4. selinux 제거 및 저장소 변경
+# 5. 기본 패키지 설치
+# 6. 프로필 설정
+# 7. 서버 시간 동기화
+# 8. 파이썬 설치
+# 9. 파이썬 패키지 설치
+# 10. 방화벽 설정
+# 11. 사용자 생성 테스트
+# 12. H/W 사양 체크
+
+# 1. 변수 선언
+
+## Dell or Supermicro 확인
 VENDOR=$(dmidecode | grep -i manufacturer | awk '{print$2}' | head -1)
-# Network Interface
+## Network Interface
 NIC=$(ip a | grep 'state UP' | cut -d ":" -f 2 | tr -d ' ')
-# OS release 를 사용하여 OS 확인
+## OS release 를 사용하여 OS 확인
 check=$(cat /etc/os-release | head -1 | cut -d "=" -f 2 | tr -d "\"" | awk '{print$1}' | tr '[A-Z]' '[a-z]')
-# 고객사 정보 입력 받고 파일에 저장 하고 변수 사용 후 삭제하기
+## 고객사 정보 입력 받고 파일에 저장 하고 변수 사용 후 삭제하기
 ll /root/customername.txt &> /dev/null
 if [ $? != 0 ]
 then
@@ -36,36 +40,36 @@ echo ""
 sleep 3
 echo ""
 
-### 2. rc.local 생성 및 변경 ###
+# 2. rc.local 생성 및 변경
 cat /etc/rc.local | grep -i root &> /dev/null
 if [ $? != 0 ]
   then
-    # 출력과 에러를 저장할 파일 생성
+    ## 출력과 에러를 저장할 파일 생성
     touch /root/log.txt 
     touch /root/log_err.txt
     echo ""
     echo rc.local Setting
     case $check in
       centos )
-        # centos는 이미 rc.local이 존재하여 실행될 파일값만 넣어준다.
+        ## centos는 이미 rc.local이 존재하여 실행될 파일값만 넣어준다.
         chmod +x /etc/rc.d/rc.local
-        sed -i '12a bash /root/Server.sh' /etc/rc.d/rc.local
+        sed -i '12a bash /root/LISR/ScriptTest/Dasan_Auto_Script.sh' /etc/rc.d/rc.local
         echo ""
         echo rc.local setting complete
       ;;
       ubuntu )
         OS=$(lsb_release -isr |  tr -d "." | sed -e '{N;s/\n//}' | tr '[A-Z]' '[a-z]')
         sleep 3
-        # Ubuntu16만 이미 rc.local이 존재하여 나눠서 작업
+        ## Ubuntu16만 이미 rc.local이 존재하여 나눠서 작업
         if [ $OS == "ubuntu1604" ]
           then
-            sed -i '13a bash /root/Server.sh' /etc/rc.local
+            sed -i '13a bash /root/LISR/ScriptTest/Dasan_Auto_Script.sh' /etc/rc.local
           else
             echo -e  '#!/bin/sh -e \nexit 0' | tee -a /etc/rc.local
             chmod +x /etc/rc.local
             systemctl restart rc-local.service
             systemctl status rc-local.service
-            sed -i '1a bash /root/Server.sh' /etc/rc.local
+            sed -i '1a bash /root/LISR/ScriptTest/Dasan_Auto_Script.sh' /etc/rc.local
             echo ""
             echo rc.local setting complete
         fi
@@ -83,7 +87,7 @@ echo ""
 sleep 3
 echo ""
 
-### 3. nouveau 끄기 및 grub 설정 ###
+# 3. nouveau 끄기 및 grub 설정
 cat /etc/default/grub | grep quiet &> /dev/null
 if [ $? == 0 ]
   then
@@ -132,13 +136,13 @@ echo ""
 sleep 3
 echo ""
 
-### 4. selinux 제거 및 저장소 변경 ###
+# 4. selinux 제거 및 저장소 변경
 case $check in
   centos )
     OS=$(cat /etc/redhat-release | awk '{print$1,$4}' | cut -d "." -f 1 | tr -d " " | tr '[A-Z]' '[a-z]')
     echo ""
     echo OS is $OS
-    #SELINUX Disabled 작업
+    ## SELINUX Disabled 작업
     SELINUX=$(getenforce)
     if [ $SELINUX == "Disabled" ]
       then
@@ -156,7 +160,7 @@ case $check in
     OS=$(lsb_release -isr |  tr -d "." | sed -e '{N;s/\n//}' | tr '[A-Z]' '[a-z]')
     echo ""
     echo OS is $OS
-    # Repository를 mirror.kakao.com으로 변경
+    ## Repository를 mirror.kakao.com으로 변경
     REPO=$(awk 'NR == 8 {print$2}' /etc/apt/sources.list)
     if [ $REPO == "http://mirror.kakao.com/ubuntu/" ]
       then
@@ -179,7 +183,7 @@ echo ""
 sleep 3
 echo ""
 
-### 5. 기본 패키지 설치 ###
+# 5. 기본 패키지 설치
 case $OS in
   centos7 )
     echo ""
@@ -293,7 +297,7 @@ echo ""
 sleep 3
 echo ""
 
-### 6. 프로필 설정 ###
+# 6. 프로필 설정 
 cat /root/.bashrc | grep -i "export PS1" &> /dev/null
 if [ $? != 0 ]
   then
@@ -346,7 +350,7 @@ echo ""
 sleep 3
 echo ""
 
-### 7. 서버 시간 동기화 ###
+# 7. 서버 시간 동기화
 if [ $OS == "centos8" ]
   then
     chronyc sources -v
@@ -366,7 +370,7 @@ echo ""
 sleep 3
 echo ""
 
-### 8. 파이썬 설치 ###
+# 8. 파이썬 설치
 pip -V &> /dev/null
 if [ $? != 0 ]
   then
@@ -430,7 +434,7 @@ echo ""
 sleep 3
 echo ""
 
-### 9. 파이썬 패키지 설치 ###
+# 9. 파이썬 패키지 설치
 pip3 list | grep tensor &> /dev/null
 if [ $? != 0 ]
 then
@@ -513,7 +517,7 @@ echo ""
 sleep 3
 echo ""
 
-### 10. 방화벽 설정 ###
+# 10. 방화벽 설정
 case $OS in
   centos7 | centos8 )
     systemctl status firewalld | grep inactive &> /dev/null
@@ -528,11 +532,11 @@ case $OS in
               firewall-cmd --set-default-zone=external >> /root/log.txt 2> /root/log_err.txt
               firewall-cmd --reload >> /root/log.txt 2> /root/log_err.txt
               firewall-cmd --add-port=7777/tcp  --permanent >> /root/log.txt 2> /root/log_err.txt
-              # R Server Port
+              ## R Server Port
               firewall-cmd --add-port=8787/tcp --permanent >> /root/log.txt 2> /root/log_err.txt
-              # jupyterHub Port
+              ## jupyterHub Port
               firewall-cmd --add-port=8000/tcp --permanent >> /root/log.txt 2> /root/log_err.txt
-              # OMSA Port
+              ## OMSA Port
               firewall-cmd   --add-port=1311/tcp  --zone=external   --permanent >> /root/log.txt 2> /root/log_err.txt
               firewall-cmd --remove-service=ssh  --permanent >> /root/log.txt 2> /root/log_err.txt
               firewall-cmd --reload >> /root/log.txt 2> /root/log_err.txt
@@ -558,13 +562,13 @@ case $OS in
           ufw default deny >> /root/log.txt 2> /root/log_err.txt
           ufw allow 22/tcp  >> /root/log.txt 2> /root/log_err.txt
           ufw allow 7777/tcp  >> /root/log.txt 2> /root/log_err.txt
-          # R Server port
+          ## R Server port
           ufw allow 8787/tcp  >> /root/log.txt 2> /root/log_err.txt
-          # JupyterHub port
+          ## JupyterHub port
           ufw allow 8000/tcp >> /root/log.txt 2> /root/log_err.txt
-          # Pycharm port
+          ## Pycharm port
           ufw allow 5900/tcp >> /root/log.txt 2> /root/log_err.txt
-          # OMSA port
+          ## OMSA port
           ufw allow 1311/tcp >> /root/log.txt 2> /root/log_err.txt
           if [ $OS == "ubuntu1604" ]
           then
@@ -590,7 +594,7 @@ echo ""
 sleep 3
 echo ""
 
-### 11. 사용자 생성 테스트 ###
+# 11. 사용자 생성 테스트
 ls /home/ | grep -i dasan &> /dev/null
 if [ $? != 0 ]
 then
@@ -619,7 +623,7 @@ echo ""
 sleep 3
 echo ""
 
-### 12. H/W 사양 체크
+# 12. H/W 사양 체크
 cat /root/hwcheck.txt &> /dev/null
 if [ $? != 0 ]
 then
@@ -660,7 +664,6 @@ echo ""
 lspci | grep -i nvidia &> /dev/null
 if [ $? != 0 ]
 then
-# rc.local 기본 값으로 변경
   echo ""
   echo "Complete basic setup"
   sed -i '/root/d' /etc/rc.local
@@ -672,17 +675,17 @@ else
 fi
 
 ########################GPU 버전 진행########################
-### 1. CUDA,CUDNN Repo 설치
-### 2. CUDA 설치 및 PATH 설정
-### 3. CUDNN 설치 및 PATH 설정
-### 4. 딥러닝 패키지 설치
-### 5. R-server, Jupyter-hub, pytorch, pycharm 설치
-### 6. Mailutils 설정
-### 7. Dell 전용 OMSA설치
-### 8. 서버 전용 MSM 설치
-### 9. 서버 온도 기록 수집
+# 1. CUDA,CUDNN Repo 설치
+# 2. CUDA 설치 및 PATH 설정
+# 3. CUDNN 설치 및 PATH 설정
+# 4. 딥러닝 패키지 설치
+# 5. R-server, Jupyter-hub, pytorch, pycharm 설치
+# 6. Mailutils 설정
+# 7. Dell 전용 OMSA설치
+# 8. 서버 전용 MSM 설치
+# 9. 서버 온도 기록 수집
 
-### 1. CUDA,CUDNN Repo 설치
+# 1. CUDA,CUDNN Repo 설치
 cat /etc/profile | grep cuda &> /dev/null
 if [ $? != 0 ]
   then
@@ -730,8 +733,8 @@ echo ""
 sleep 3
 echo ""
 
-### 2. CUDA 설치 및 PATH 설정
-#### 저장소에 CentOS8 , Ubuntu20 2가지는 CUDA 11.0 버전만 파일이 있어 나머지 버전 추후 추가 예정
+# 2. CUDA 설치 및 PATH 설정
+## 저장소에 CentOS8 , Ubuntu20 2가지는 CUDA 11.0 버전만 파일이 있어 나머지 버전 추후 추가 예정
 cat /etc/profile | grep cuda &> /dev/null
 if [ $? != 0 ]
   then
@@ -850,7 +853,7 @@ echo ""
 sleep 3
 echo ""
 
-### 3. CUDNN 설치 및 PATH 설정
+# 3. CUDNN 설치 및 PATH 설정
 updatedb
 locate libcudnn  &> /dev/null
 if [ $? != 0 ]
@@ -917,8 +920,7 @@ echo ""
 sleep 3
 echo ""
 
-### 4. 딥러닝 패키지 설치(R,R Server, JupyterHub, Pycharm)
-
+# 4. 딥러닝 패키지 설치(R,R Server, JupyterHub, Pycharm)
 updatedb
 locate rstudio  &> /dev/null
 if [ $? != 0 ]
@@ -927,13 +929,13 @@ if [ $? != 0 ]
       centos7 | centos8 )
         echo ""
         echo Deep Learnig Package Install Start
-          # R,R-sutdio install
+          ## R,R-sutdio install
           wget https://download1.rstudio.org/desktop/centos7/x86_64/rstudio-1.2.5033-x86_64.rpm >> /root/log.txt 2> /root/log_err.txt
           rpm -ivh rstudio-1.2.5033-x86_64.rpm >> /root/log.txt 2> /root/log_err.txt
           wget https://download2.rstudio.org/server/centos6/x86_64/rstudio-server-rhel-1.2.5033-x86_64.rpm >> /root/log.txt 2> /root/log_err.txt
           rpm -ivh rstudio-server-rhel-1.2.5033-x86_64.rpm >> /root/log.txt 2> /root/log_err.txt
           yum install -y R >> /root/log.txt 2> /root/log_err.txt
-          # JupyterHub install
+          ## JupyterHub install
           curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash - >> /root/log.txt 2> /root/log_err.txt
           yum install -y nodejs >> /root/log.txt 2> /root/log_err.txt
           npm install -g configurable-http-proxy >> /root/log.txt 2> /root/log_err.txt
@@ -948,20 +950,20 @@ if [ $? != 0 ]
           rm -rf cuda-repo-rhel7-10.0.130-1.x86_64.rpm rstudio-1.2.5033-x86_64.rpm rstudio-server-rhel-1.2.5033-x86_64.rpm r_jupyterhub.Rout
       ;;
       centos8 )
-          # Pycharm install
+          ## Pycharm install
           systemctl enable --now snapd.socket >> /root/log.txt 2> /root/log_err.txt
           ln -s /var/lib/snapd/snap /snap
           systemctl restart snapd.socket >> /root/log.txt 2> /root/log_err.txt
           sleep 2
           snap install pycharm-community --classic >> /root/log.txt 2> /root/log_err.txt
-          # R,R-studio Install
+          ## R,R-studio Install
           wget https://download2.rstudio.org/server/centos8/x86_64/rstudio-server-rhel-1.3.959-x86_64.rpm >> /root/log.txt 2> /root/log_err.txt
           dnf install -y rstudio-server-rhel-1.3.959-x86_64.rpm >> /root/log.txt 2> /root/log_err.txt
           dnf install -y libRmath-devel R-rpm-macros java-devel libRmath libgfortran.so.5 libopenblas.so.0 libquadmath.so.0 libtcl8.6.so libtk8.6.so >> /root/log.txt 2> /root/log_err.txt
           dnf config-manager --set-enabled PowerTools >> /root/log.txt 2> /root/log_err.txt
           dnf install -y R >> /root/log.txt 2> /root/log_err.txt
           systemctl restart rstudio-server.service >> /root/log.txt 2> /root/log_err.txt
-          # JupyterHub Install
+          ## JupyterHub Install
           dnf install -y nodejs >> /root/log.txt 2> /root/log_err.txt
           npm install -g configurable-http-proxy >> /root/log.txt 2> /root/log_err.txt
       ;;
@@ -969,18 +971,18 @@ if [ $? != 0 ]
         echo ""
         echo Deep Learnig Package Install Start
         apt-get install -y dkms linux-generic-hwe-16.04 xserver-xorg-hwe-16.04 >> /root/log.txt 2> /root/log_err.txt
-        # R server install
+        ## R server install
         apt-get install -y  r-base gdebi-core >> /root/log.txt 2> /root/log_err.txt
         wget https://download2.rstudio.org/server/trusty/amd64/rstudio-server-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
         yes | gdebi rstudio-server-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
         wget https://download1.rstudio.org/desktop/xenial/amd64/rstudio-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
         dpkg -i rstudio-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
         apt-get install -y  rdesktop >> /root/log.txt 2> /root/log_err.txt
-        # JupyterHub install
+        ## JupyterHub install
         curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -  >> /root/log.txt 2> /root/log_err.txt
         apt-get install -y  nodejs default-jre >> /root/log.txt 2> /root/log_err.txt
         npm install -g configurable-http-proxy >> /root/log.txt 2> /root/log_err.txt
-        # Pycharm install
+        ## Pycharm install
         snap install pycharm-community --classic >> /root/log.txt 2> /root/log_err.txt
         rm -rf 7fa2af80.pub cuda-repo-ubuntu1604_10.0.130-1_amd64.deb rstudio-1.2.5019-amd64.deb rstudio-server-1.2.5019-amd64.deb
 
@@ -989,14 +991,14 @@ if [ $? != 0 ]
         echo ""
         echo Deep Learnig Package Install Start
           apt-get install -y dkms linux-generic-hwe-18.04 xserver-xorg-hwe-18.04 >> /root/log.txt 2> /root/log_err.txt
-          # R Server install
+          ## R Server install
           apt-get install -y  r-base gdebi-core >> /root/log.txt 2> /root/log_err.txt
           wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
           yes | gdebi rstudio-server-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
           wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
           dpkg -i rstudio-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
           apt-get install -y  rdesktop >> /root/log.txt 2> /root/log_err.txt
-          # JupyterHub install
+          ## JupyterHub install
           curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - 
           apt-get install -y  nodejs default-jre >> /root/log.txt 2> /root/log_err.txt
           npm install -g configurable-http-proxy >> /root/log.txt 2> /root/log_err.txt
@@ -1007,7 +1009,7 @@ if [ $? != 0 ]
           sed -i '359a c.Authenticator.add_user_cmd = ['adduser', '--force-badname', '-q', '--gecos', '""', '--disabled-password']' /etc/jupyterhub/jupyterhub_config.py
           sed -i '384a c.JupyterHub.proxy_class = 'jupyterhub.proxy.ConfigurableHTTPProxy'' /etc/jupyterhub/jupyterhub_config.py
           sed -i '824a c.Authenticator.admin_users = {"sonic"}' /etc/jupyterhub/jupyterhub_config.py
-          # pycharm install
+          ## pycharm install
           snap install pycharm-community --classic >> /root/log.txt 2> /root/log_err.txt
           sed -i "5s/networkd/NetworkManager/" /etc/netplan/01-netcfg.yaml
           systemctl enable network-manager.service >> /root/log.txt 2> /root/log_err.txt
@@ -1016,16 +1018,16 @@ if [ $? != 0 ]
       ubuntu2004 )
         echo ""
         echo Deep Learnig Package Install Start
-        # R Server install
+        ## R Server install
         apt-get install -y r-base >> /root/log.txt 2> /root/log_err.txt
         apt-get install -y gdebi-core >> /root/log.txt 2> /root/log_err.txt
         wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.3.1073-amd64.deb >> /root/log.txt 2> /root/log_err.txt
         yes | gdebi rstudio-server-1.3.1073-amd64.deb >> /root/log.txt 2> /root/log_err.txt
-        # JupyterHub install
+        ## JupyterHub install
         curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
         apt-get install -y nodejs default-jre >> /root/log.txt 2> /root/log_err.txt
         npm install -g configurable-http-proxy >> /root/log.txt 2> /root/log_err.txt
-        # Pycharm install
+        ## Pycharm install
         snap install pycharm-community --classic >> /root/log.txt 2> /root/log_err.txt
       ;;
       *)
@@ -1040,19 +1042,19 @@ echo ""
 sleep 3
 echo ""
 
-# JupyterHub 설정파일 복사 (파일 코드가 길어서 복사로 진행)
+## JupyterHub 설정파일 복사 (파일 코드가 길어서 복사로 진행)
 ll /lib/systemd/system/jupyterhub.service  &> /dev/null
 if [ $? != 0]
 then
   ## jupyter hub service 설정 파일 복사
-  mv /root/LISR/jupyterhub.service /lib/systemd/system/
-  mv /root/LISR/jupyterhub /etc/init.d/
+  mv /root/LISR/ScriptTest/jupyterhub.service /lib/systemd/system/
+  mv /root/LISR/ScriptTest/jupyterhub /etc/init.d/
   chmod 777 /lib/systemd/system/jupyterhub.service
   chmod 755 /etc/init.d/jupyterhub
   systemctl daemon-reload >> /root/log.txt 2> /root/log_err.txt
   systemctl enable jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
   systemctl restart jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
-  R CMD BATCH /root/LISR/r_jupyterhub.R >> /root/log.txt 2> /root/log_err.txt
+  R CMD BATCH /root/LISR/ScriptTest/r_jupyterhub.R >> /root/log.txt 2> /root/log_err.txt
 else
   echo ""
 fi
@@ -1080,7 +1082,7 @@ sleep 3
 echo ""
 
 ### 6. Mailutils 설정
-ll /usr/local/sbin/dasan_variable.sh &> /dev/null
+ll /usr/local/sbin/export_global_variable.sh &> /dev/null
 if [ $? != 0]
 then
 cp /root/LISR/ScriptTest/export_global_variable.sh  /usr/local/sbin/export_global_variable.sh
