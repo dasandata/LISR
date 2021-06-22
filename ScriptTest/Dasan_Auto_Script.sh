@@ -20,6 +20,21 @@ VENDOR=$(dmidecode | grep -i manufacturer | awk '{print$2}' | head -1)
 NIC=$(ip a | grep 'state UP' | cut -d ":" -f 2 | tr -d ' ')
 # OS release 를 사용하여 OS 확인
 check=$(cat /etc/os-release | head -1 | cut -d "=" -f 2 | tr -d "\"" | awk '{print$1}' | tr '[A-Z]' '[a-z]')
+# 고객사 정보 입력 받고 파일에 저장 하고 변수 사용 후 삭제하기
+ll /root/customername.txt &> /dev/null
+if [ $? != 0 ]
+then
+  echo "고객사 이름을 영어로 작성해 주세요."
+  read customername
+  echo "Customer Name : $customername "
+  echo $customername >> /root/customername.txt
+else
+  echo "Customer Name is already"
+fi
+
+echo ""
+sleep 3
+echo ""
 
 ### 2. rc.local 생성 및 변경 ###
 cat /etc/rc.local | grep -i root &> /dev/null
@@ -179,7 +194,7 @@ case $OS in
         yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ mailx >> /root/log.txt 2> /root/log_err.txt
         yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs >> /root/log.txt 2> /root/log_err.txt
         sleep 5
-        dmidecode | grep -i ipmi
+        dmidecode | grep -i ipmi &> /dev/null
           if [ $? == 0 ]
             then
               yum install -y ipmitool >> /root/log.txt 2> /root/log_err.txt
@@ -298,15 +313,33 @@ if [ $? != 0 ]
     source  /etc/profile
     source  /root/.bashrc
     echo $HISTSIZE
-    ### motd settings
-#   mv /root/LISR/motd/ /opt/
-#   chmod -R 777 /opt/motd/
-#   echo " " >> /etc/profile
-#   echo "#Motd add" >> /etc/profile
-#   echo "bash /opt/motd/motd.sh" >> /etc/profile
   else
     echo ""
     echo Profile settings are already set up.
+fi
+
+echo ""
+sleep 3
+echo ""
+
+## MOTD 진행 (CentOS7,Ubuntu16.04 제외)
+ll /opt/motd &> /dev/null
+if [ $? != 0]
+then
+  case $OS in
+    ubuntu1804 | ubuntu2004 | centos8 )
+    mv /root/LISR/motd/ /opt/
+    chmod -R 777 /opt/motd/
+    echo "#Motd add" >> /etc/profile
+    echo "bash /opt/motd/motd.sh" >> /etc/profile
+    ;;
+    *)
+      echo ""
+      echo $OS is not supported
+    ;;
+  esac
+else
+  echo ""
 fi
 
 echo ""
@@ -318,15 +351,15 @@ if [ $OS == "centos8" ]
   then
     chronyc sources -v
     perl -pi -e 's/pool 2.centos.pool.ntp.org iburst/server time.bora.net iburst/g' /etc/chrony.conf
-    service chronyd restart
-    timedatectl set-ntp true
-    timedatectl
-    chronyc sources -v
+    service chronyd restart >> /root/log.txt 2> /root/log_err.txt
+    timedatectl set-ntp true >> /root/log.txt 2> /root/log_err.txt
+    timedatectl >> /root/log.txt 2> /root/log_err.txt
+    chronyc sources -v >> /root/log.txt 2> /root/log_err.txt
   else
-    rdate  -s  time.bora.net
-    hwclock --systohc
-    date
-    hwclock
+    rdate  -s  time.bora.net >> /root/log.txt 2> /root/log_err.txt
+    hwclock --systohc >> /root/log.txt 2> /root/log_err.txt
+    date >> /root/log.txt 2> /root/log_err.txt
+    hwclock >> /root/log.txt 2> /root/log_err.txt
 fi
 
 echo ""
@@ -343,7 +376,7 @@ if [ $? != 0 ]
         echo Python Install
           yum install -y python-devel python-setuptools python-setuptools-devel >> /root/log.txt 2> /root/log_err.txt
           curl -O https://bootstrap.pypa.io/pip/2.7/get-pip.py >> /root/log.txt 2> /root/log_err.txt
-          python get-pip.py
+          python get-pip.py >> /root/log.txt 2> /root/log_err.txt
           yum -y install  python36  python36-devel python36-pip python36-setuptools >> /root/log.txt 2> /root/log_err.txt
           easy_install-3.6   pip >> /root/log.txt 2> /root/log_err.txt
           yum -y install   openblas* >> /root/log.txt 2> /root/log_err.txt
@@ -418,10 +451,10 @@ then
         pip3 install --upgrade setuptools >> /root/log.txt 2> /root/log_err.txt
         pip install torch torchvision >> /root/log.txt 2> /root/log_err.txt
         pip3 install torch torchvision >> /root/log.txt 2> /root/log_err.txt
-        pip3 install --upgrade optimuspyspark
-        pip3 uninstall --yes tensorflow
-        pip3 install --upgrade jupyterhub
-        pip3 install --upgrade notebook
+        pip3 install --upgrade optimuspyspark >> /root/log.txt 2> /root/log_err.txt
+        pip3 uninstall --yes tensorflow >> /root/log.txt 2> /root/log_err.txt
+        pip3 install --upgrade jupyterhub >> /root/log.txt 2> /root/log_err.txt
+        pip3 install --upgrade notebook >> /root/log.txt 2> /root/log_err.txt
     ;;
     centos8 )
       echo ""
@@ -432,8 +465,8 @@ then
         pip2 install --upgrade setuptools >> /root/log.txt 2> /root/log_err.txt
         pip3 install --upgrade numpy scipy nose matplotlib pandas keras tensorflow-gpu >> /root/log.txt 2> /root/log_err.txt
         pip3 install --upgrade python-dateutil >> /root/log.txt 2> /root/log_err.txt
-        pip3 install --upgrade jupyterhub notebook flask
-        perl -pi -e 's/python3.6/python2.7/'   /usr/local/bin/pip
+        pip3 install --upgrade jupyterhub notebook flask >> /root/log.txt 2> /root/log_err.txt
+        perl -pi -e 's/python3.6/python2.7/'   /usr/local/bin/pip 
         cp /usr/local/lib/python3.6/site-packages/six.py /usr/lib/python3.6/site-packages/ >> /root/log.txt 2> /root/log_err.txt
     ;;
     ubuntu1604 | ubuntu1804 )
@@ -450,10 +483,10 @@ then
         else
           echo ""
         fi
-        pip3 install --upgrade optimuspyspark 
-        pip3 install --upgrade testresources
-        pip3 install --upgrade jupyterhub
-        pip3 install --upgrade notebook
+        pip3 install --upgrade optimuspyspark  >> /root/log.txt 2> /root/log_err.txt
+        pip3 install --upgrade testresources >> /root/log.txt 2> /root/log_err.txt
+        pip3 install --upgrade jupyterhub >> /root/log.txt 2> /root/log_err.txt
+        pip3 install --upgrade notebook >> /root/log.txt 2> /root/log_err.txt
         pip install torch torchvision >> /root/log.txt 2> /root/log_err.txt
         pip3 install torch torchvision >> /root/log.txt 2> /root/log_err.txt
     ;;
@@ -466,7 +499,7 @@ then
         pip3 install numpy==1.16.0 h5py==2.10.0 >> /root/log.txt 2> /root/log_err.txt
         pip install --upgrade torch torchvision  >> /root/log.txt 2> /root/log_err.txt
         pip3 install --upgrade torch torchvision >> /root/log.txt 2> /root/log_err.txt
-        pip3 install --upgrade jupyterhub notebook
+        pip3 install --upgrade jupyterhub notebook >> /root/log.txt 2> /root/log_err.txt
     ;;
     *)
     ;;
@@ -488,25 +521,25 @@ case $OS in
       then
         echo ""
         echo Firewall Settings
-              firewall-cmd --get-zones
-              firewall-cmd --list-all
-              firewall-cmd --get-default-zone
-              firewall-cmd --change-interface=${NIC} --zone=external --permanent
-              firewall-cmd --set-default-zone=external
-              firewall-cmd --reload
-              firewall-cmd --add-port=7777/tcp  --permanent
+              firewall-cmd --get-zones >> /root/log.txt 2> /root/log_err.txt
+              firewall-cmd --list-all >> /root/log.txt 2> /root/log_err.txt
+              firewall-cmd --get-default-zone >> /root/log.txt 2> /root/log_err.txt
+              firewall-cmd --change-interface=${NIC} --zone=external --permanent >> /root/log.txt 2> /root/log_err.txt
+              firewall-cmd --set-default-zone=external >> /root/log.txt 2> /root/log_err.txt
+              firewall-cmd --reload >> /root/log.txt 2> /root/log_err.txt
+              firewall-cmd --add-port=7777/tcp  --permanent >> /root/log.txt 2> /root/log_err.txt
               # R Server Port
-              firewall-cmd --add-port=8787/tcp --permanent
+              firewall-cmd --add-port=8787/tcp --permanent >> /root/log.txt 2> /root/log_err.txt
               # jupyterHub Port
-              firewall-cmd --add-port=8000/tcp --permanent
+              firewall-cmd --add-port=8000/tcp --permanent >> /root/log.txt 2> /root/log_err.txt
               # OMSA Port
-              firewall-cmd   --add-port=1311/tcp  --zone=external   --permanent
-              firewall-cmd --remove-service=ssh  --permanent
-              firewall-cmd --reload
+              firewall-cmd   --add-port=1311/tcp  --zone=external   --permanent >> /root/log.txt 2> /root/log_err.txt
+              firewall-cmd --remove-service=ssh  --permanent >> /root/log.txt 2> /root/log_err.txt
+              firewall-cmd --reload >> /root/log.txt 2> /root/log_err.txt
               sed -i  "s/#Port 22/Port 7777/g" /etc/ssh/sshd_config
               sed -i  "s/#PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config
               echo "AddressFamily inet" >> /etc/ssh/sshd_config
-              systemctl restart sshd
+              systemctl restart sshd >> /root/log.txt 2> /root/log_err.txt
       else
         echo ""
         echo The Firewall has already been started.
@@ -518,21 +551,21 @@ case $OS in
       then
         echo ""
         echo Firewall Settings
-          systemctl start ufw
-          systemctl enable ufw
-          yes | ufw enable
+          systemctl start ufw >> /root/log.txt 2> /root/log_err.txt
+          systemctl enable ufw >> /root/log.txt 2> /root/log_err.txt
+          yes | ufw enable >> /root/log.txt 2> /root/log_err.txt
           echo ""
-          ufw default deny
-          ufw allow 22/tcp 
-          ufw allow 7777/tcp 
+          ufw default deny >> /root/log.txt 2> /root/log_err.txt
+          ufw allow 22/tcp  >> /root/log.txt 2> /root/log_err.txt
+          ufw allow 7777/tcp  >> /root/log.txt 2> /root/log_err.txt
           # R Server port
-          ufw allow 8787/tcp 
+          ufw allow 8787/tcp  >> /root/log.txt 2> /root/log_err.txt
           # JupyterHub port
-          ufw allow 8000/tcp
+          ufw allow 8000/tcp >> /root/log.txt 2> /root/log_err.txt
           # Pycharm port
-          ufw allow 5900/tcp
+          ufw allow 5900/tcp >> /root/log.txt 2> /root/log_err.txt
           # OMSA port
-          ufw allow 1311/tcp
+          ufw allow 1311/tcp >> /root/log.txt 2> /root/log_err.txt
           if [ $OS == "ubuntu1604" ]
           then
           perl -pi -e "s/Port 22/Port 7777/g" /etc/ssh/sshd_config
@@ -542,7 +575,7 @@ case $OS in
           perl -pi -e "s/#Port 22/Port 7777/g" /etc/ssh/sshd_config
           perl -pi -e "s/PermitRootLogin prohibit-password/PermitRootLogin no/g" /etc/ssh/sshd_config
           echo "AddressFamily inet" >> /etc/ssh/sshd_config
-          systemctl restart sshd
+          systemctl restart sshd >> /root/log.txt 2> /root/log_err.txt
       else
         echo ""
         echo The Firewall has already been started.
@@ -565,14 +598,14 @@ then
     centos7 | centos8 )
       echo ""
       echo User Add Start
-        useradd dasan
-        usermod -aG wheel dasan
+        useradd dasan >> /root/log.txt 2> /root/log_err.txt
+        usermod -aG wheel dasan >> /root/log.txt 2> /root/log_err.txt
     ;;
     ubuntu1604 | ubuntu1804 | ubuntu2004 )
       echo ""
       echo User add Start
-        adduser --disabled-login --gecos "" dasan
-        usermod -G sudo dasan
+        adduser --disabled-login --gecos "" dasan >> /root/log.txt 2> /root/log_err.txt
+        usermod -G sudo dasan >> /root/log.txt 2> /root/log_err.txt
     ;;
   *)
   ;;
@@ -624,7 +657,7 @@ echo ""
 sleep 3
 echo ""
 
-lspci | grep -i nvidia
+lspci | grep -i nvidia &> /dev/null
 if [ $? != 0 ]
 then
 # rc.local 기본 값으로 변경
@@ -647,6 +680,7 @@ fi
 ### 6. Mailutils 설정
 ### 7. Dell 전용 OMSA설치
 ### 8. 서버 전용 MSM 설치
+### 9. 서버 온도 기록 수집
 
 ### 1. CUDA,CUDNN Repo 설치
 cat /etc/profile | grep cuda &> /dev/null
@@ -853,11 +887,11 @@ if [ $? != 0 ]
         case $cudav
           10.0 | 10.1 | 10.2 )
             apt-get -y install libcudnn7* >> /root/log.txt 2> /root/log_err.txt
-            apt-get install -y libcublas-dev
+            apt-get install -y libcublas-dev >> /root/log.txt 2> /root/log_err.txt
           ;;
           11.0 )
             apt-get -y install libcudnn8* >> /root/log.txt 2> /root/log_err.txt
-            apt-get install -y libcublas-dev
+            apt-get install -y libcublas-dev >> /root/log.txt 2> /root/log_err.txt
           ;;
           *)
             echo ""
@@ -894,17 +928,17 @@ if [ $? != 0 ]
         echo ""
         echo Deep Learnig Package Install Start
           # R,R-sutdio install
-          wget https://download1.rstudio.org/desktop/centos7/x86_64/rstudio-1.2.5033-x86_64.rpm
-          rpm -ivh rstudio-1.2.5033-x86_64.rpm
-          wget https://download2.rstudio.org/server/centos6/x86_64/rstudio-server-rhel-1.2.5033-x86_64.rpm
-          rpm -ivh rstudio-server-rhel-1.2.5033-x86_64.rpm
-          yum install -y R
+          wget https://download1.rstudio.org/desktop/centos7/x86_64/rstudio-1.2.5033-x86_64.rpm >> /root/log.txt 2> /root/log_err.txt
+          rpm -ivh rstudio-1.2.5033-x86_64.rpm >> /root/log.txt 2> /root/log_err.txt
+          wget https://download2.rstudio.org/server/centos6/x86_64/rstudio-server-rhel-1.2.5033-x86_64.rpm >> /root/log.txt 2> /root/log_err.txt
+          rpm -ivh rstudio-server-rhel-1.2.5033-x86_64.rpm >> /root/log.txt 2> /root/log_err.txt
+          yum install -y R >> /root/log.txt 2> /root/log_err.txt
           # JupyterHub install
-          curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash -
-          yum install -y nodejs
-          npm install -g configurable-http-proxy
+          curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash - >> /root/log.txt 2> /root/log_err.txt
+          yum install -y nodejs >> /root/log.txt 2> /root/log_err.txt
+          npm install -g configurable-http-proxy >> /root/log.txt 2> /root/log_err.txt
           mkdir /etc/jupyterhub
-          jupyterhub --generate-config
+          jupyterhub --generate-config >> /root/log.txt 2> /root/log_err.txt
           mv jupyterhub_config.py /etc/jupyterhub/
           sed -i '356a c.JupyterHub.port = 8000' /etc/jupyterhub/jupyterhub_config.py
           sed -i '358a c.LocalAuthenticator.create_system_users = True' /etc/jupyterhub/jupyterhub_config.py
@@ -915,57 +949,57 @@ if [ $? != 0 ]
       ;;
       centos8 )
           # Pycharm install
-          systemctl enable --now snapd.socket
+          systemctl enable --now snapd.socket >> /root/log.txt 2> /root/log_err.txt
           ln -s /var/lib/snapd/snap /snap
-          systemctl restart snapd.socket
+          systemctl restart snapd.socket >> /root/log.txt 2> /root/log_err.txt
           sleep 2
-          snap install pycharm-community --classic
+          snap install pycharm-community --classic >> /root/log.txt 2> /root/log_err.txt
           # R,R-studio Install
-          wget https://download2.rstudio.org/server/centos8/x86_64/rstudio-server-rhel-1.3.959-x86_64.rpm
-          dnf install -y rstudio-server-rhel-1.3.959-x86_64.rpm
-          dnf install -y libRmath-devel R-rpm-macros java-devel libRmath libgfortran.so.5 libopenblas.so.0 libquadmath.so.0 libtcl8.6.so libtk8.6.so
-          dnf config-manager --set-enabled PowerTools
-          dnf install -y R
-          systemctl restart rstudio-server.service
+          wget https://download2.rstudio.org/server/centos8/x86_64/rstudio-server-rhel-1.3.959-x86_64.rpm >> /root/log.txt 2> /root/log_err.txt
+          dnf install -y rstudio-server-rhel-1.3.959-x86_64.rpm >> /root/log.txt 2> /root/log_err.txt
+          dnf install -y libRmath-devel R-rpm-macros java-devel libRmath libgfortran.so.5 libopenblas.so.0 libquadmath.so.0 libtcl8.6.so libtk8.6.so >> /root/log.txt 2> /root/log_err.txt
+          dnf config-manager --set-enabled PowerTools >> /root/log.txt 2> /root/log_err.txt
+          dnf install -y R >> /root/log.txt 2> /root/log_err.txt
+          systemctl restart rstudio-server.service >> /root/log.txt 2> /root/log_err.txt
           # JupyterHub Install
-          dnf install -y nodejs
-          npm install -g configurable-http-proxy
+          dnf install -y nodejs >> /root/log.txt 2> /root/log_err.txt
+          npm install -g configurable-http-proxy >> /root/log.txt 2> /root/log_err.txt
       ;;
       ubuntu1604 )
         echo ""
         echo Deep Learnig Package Install Start
-        apt-get install -y dkms linux-generic-hwe-16.04 xserver-xorg-hwe-16.04
+        apt-get install -y dkms linux-generic-hwe-16.04 xserver-xorg-hwe-16.04 >> /root/log.txt 2> /root/log_err.txt
         # R server install
-        apt-get install -y  r-base gdebi-core
-        wget https://download2.rstudio.org/server/trusty/amd64/rstudio-server-1.2.5019-amd64.deb
-        yes | gdebi rstudio-server-1.2.5019-amd64.deb
-        wget https://download1.rstudio.org/desktop/xenial/amd64/rstudio-1.2.5019-amd64.deb
-        dpkg -i rstudio-1.2.5019-amd64.deb
-        apt-get install -y  rdesktop
+        apt-get install -y  r-base gdebi-core >> /root/log.txt 2> /root/log_err.txt
+        wget https://download2.rstudio.org/server/trusty/amd64/rstudio-server-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
+        yes | gdebi rstudio-server-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
+        wget https://download1.rstudio.org/desktop/xenial/amd64/rstudio-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
+        dpkg -i rstudio-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
+        apt-get install -y  rdesktop >> /root/log.txt 2> /root/log_err.txt
         # JupyterHub install
-        curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - 
-        apt-get install -y  nodejs default-jre
-        npm install -g configurable-http-proxy
+        curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -  >> /root/log.txt 2> /root/log_err.txt
+        apt-get install -y  nodejs default-jre >> /root/log.txt 2> /root/log_err.txt
+        npm install -g configurable-http-proxy >> /root/log.txt 2> /root/log_err.txt
         # Pycharm install
-        snap install pycharm-community --classic
+        snap install pycharm-community --classic >> /root/log.txt 2> /root/log_err.txt
         rm -rf 7fa2af80.pub cuda-repo-ubuntu1604_10.0.130-1_amd64.deb rstudio-1.2.5019-amd64.deb rstudio-server-1.2.5019-amd64.deb
 
       ;;
       ubuntu1804 )
         echo ""
         echo Deep Learnig Package Install Start
-          apt-get install -y dkms linux-generic-hwe-18.04 xserver-xorg-hwe-18.04
+          apt-get install -y dkms linux-generic-hwe-18.04 xserver-xorg-hwe-18.04 >> /root/log.txt 2> /root/log_err.txt
           # R Server install
-          apt-get install -y  r-base gdebi-core
-          wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5019-amd64.deb
-          yes | gdebi rstudio-server-1.2.5019-amd64.deb
-          wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.2.5019-amd64.deb
-          dpkg -i rstudio-1.2.5019-amd64.deb
-          apt-get install -y  rdesktop
+          apt-get install -y  r-base gdebi-core >> /root/log.txt 2> /root/log_err.txt
+          wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
+          yes | gdebi rstudio-server-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
+          wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
+          dpkg -i rstudio-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
+          apt-get install -y  rdesktop >> /root/log.txt 2> /root/log_err.txt
           # JupyterHub install
-          curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-          apt-get install -y  nodejs default-jre
-          npm install -g configurable-http-proxy
+          curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - 
+          apt-get install -y  nodejs default-jre >> /root/log.txt 2> /root/log_err.txt
+          npm install -g configurable-http-proxy >> /root/log.txt 2> /root/log_err.txt
           mkdir /etc/jupyterhub
           jupyterhub --generate-config -f /etc/jupyterhub/jupyterhub_config.py
           sed -i '356a c.JupyterHub.port = 8000' /etc/jupyterhub/jupyterhub_config.py
@@ -974,25 +1008,25 @@ if [ $? != 0 ]
           sed -i '384a c.JupyterHub.proxy_class = 'jupyterhub.proxy.ConfigurableHTTPProxy'' /etc/jupyterhub/jupyterhub_config.py
           sed -i '824a c.Authenticator.admin_users = {"sonic"}' /etc/jupyterhub/jupyterhub_config.py
           # pycharm install
-          snap install pycharm-community --classic
+          snap install pycharm-community --classic >> /root/log.txt 2> /root/log_err.txt
           sed -i "5s/networkd/NetworkManager/" /etc/netplan/01-netcfg.yaml
-          systemctl enable network-manager.service
+          systemctl enable network-manager.service >> /root/log.txt 2> /root/log_err.txt
           rm -rf 7fa2af80.pub cuda-repo-ubuntu1804_10.0.130-1_amd64.deb rstudio-1.2.5019-amd64.deb rstudio-server-1.2.5019-amd64.deb
       ;;
       ubuntu2004 )
         echo ""
         echo Deep Learnig Package Install Start
         # R Server install
-        apt-get install -y r-base
-        apt-get install -y gdebi-core
-        wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.3.1073-amd64.deb
-        yes | gdebi rstudio-server-1.3.1073-amd64.deb
+        apt-get install -y r-base >> /root/log.txt 2> /root/log_err.txt
+        apt-get install -y gdebi-core >> /root/log.txt 2> /root/log_err.txt
+        wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.3.1073-amd64.deb >> /root/log.txt 2> /root/log_err.txt
+        yes | gdebi rstudio-server-1.3.1073-amd64.deb >> /root/log.txt 2> /root/log_err.txt
         # JupyterHub install
         curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-        apt-get install -y nodejs default-jre
-        npm install -g configurable-http-proxy
+        apt-get install -y nodejs default-jre >> /root/log.txt 2> /root/log_err.txt
+        npm install -g configurable-http-proxy >> /root/log.txt 2> /root/log_err.txt
         # Pycharm install
-        snap install pycharm-community --classic
+        snap install pycharm-community --classic >> /root/log.txt 2> /root/log_err.txt
       ;;
       *)
     ;;
@@ -1015,35 +1049,10 @@ then
   mv /root/LISR/jupyterhub /etc/init.d/
   chmod 777 /lib/systemd/system/jupyterhub.service
   chmod 755 /etc/init.d/jupyterhub
-  systemctl daemon-reload
-  systemctl enable jupyterhub.service
-  systemctl restart jupyterhub.service
-  R CMD BATCH /root/LISR/r_jupyterhub.R
-else
-  echo ""
-fi
-
-echo ""
-sleep 3
-echo ""
-
-## MOTD 진행 (CentOS7,Ubuntu16.04 제외)
-
-ll /opt/motd &> /dev/null
-if [ $? != 0]
-then
-  case $OS in
-    ubuntu1804 | ubuntu2004 | centos8 )
-    mv /root/LISR/motd/ /opt/
-    chmod -R 777 /opt/motd/
-    echo "#Motd add" >> /etc/profile
-    echo "bash /opt/motd/motd.sh" >> /etc/profile
-    ;;
-    *)
-      echo ""
-      echo $OS is not supported
-    ;;
-  esac
+  systemctl daemon-reload >> /root/log.txt 2> /root/log_err.txt
+  systemctl enable jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
+  systemctl restart jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
+  R CMD BATCH /root/LISR/r_jupyterhub.R >> /root/log.txt 2> /root/log_err.txt
 else
   echo ""
 fi
@@ -1058,7 +1067,7 @@ if [ $? != 0 ]
 then
 # rc.local 기본 값으로 변경
   echo ""
-  echo "Complete basic setup"
+  echo "Complete auto-script setup"
   sed -i '/root/d' /etc/rc.local
   reboot
 else
@@ -1071,28 +1080,35 @@ sleep 3
 echo ""
 
 ### 6. Mailutils 설정
-
 ll /usr/local/sbin/dasan_variable.sh &> /dev/null
 if [ $? != 0]
 then
-cp /root/LISR/common/usr-local-sbin/dasan_export_global_variable.sh  /usr/local/sbin/dasan_export_global_variable.sh
-# 메일 발송을 위한 변수 설정
+cp /root/LISR/ScriptTest/export_global_variable.sh  /usr/local/sbin/export_global_variable.sh
+customer=$(cat /root/customername.txt)
+sed -i  "s/ABCDEFG/${customer}/" /usr/local/sbin/export_global_variable.sh
+source /usr/local/sbin/export_global_variable.sh
+# 메일 발송을 위한 설정값 변경
   case $OS in
     centos7 | centos8 )
-    grep inet_protocols   /etc/postfix/main.cf
+    grep inet_protocols   /etc/postfix/main.cf >> /root/log.txt 2> /root/log_err.txt
     sed -i  's/inet_protocols = all/inet_protocols = ipv4/' /etc/postfix/main.cf
-    grep inet_protocols   /etc/postfix/main.cf
-    systemctl restart postfix
-    echo "Test of SMTP... OK." | mail -s $TITLE_TAIL $ADMIN_LOG_EMAIL
+    grep inet_protocols   /etc/postfix/main.cf >> /root/log.txt 2> /root/log_err.txt
+    systemctl restart postfix >> /root/log.txt 2> /root/log_err.txt
+    echo "Test of SMTP... OK." | mail -s $TITLE_TAIL $ADMIN_LOG_EMAIL >> /root/log.txt 2> /root/log_err.txt
+    systemctl status postfix | grep Active: >> /root/log.txt 2> /root/log_err.txt
+    grep 'inet_interfaces =' /etc/postfix/main.cf >> /root/log.txt 2> /root/log_err.txt
+    sed -i  "s/inet_interfaces = localhost/#inet_interfaces = localhost/" /etc/postfix/main.cf
+    sed -i  "s/#inet_interfaces = all/inet_interfaces = all/" /etc/postfix/main.cf
+    systemctl  restart postfix >> /root/log.txt 2> /root/log_err.txt
     ;;
     ubuntu1604 | ubuntu1804 | ubuntu2004 )
-    grep "inet_interfaces\|inet_protocols" /etc/postfix/main.cf
+    grep "inet_interfaces\|inet_protocols" /etc/postfix/main.cf >> /root/log.txt 2> /root/log_err.txt
     perl -pi -e 's/^inet_protocols = all/inet_protocols = ipv4/'  /etc/postfix/main.cf
-    grep inet_protocols  /etc/postfix/main.cf
-    grep 'mynetworks = '   /etc/postfix/main.cf
+    grep inet_protocols  /etc/postfix/main.cf >> /root/log.txt 2> /root/log_err.txt
+    grep 'mynetworks = '   /etc/postfix/main.cf >> /root/log.txt 2> /root/log_err.txt
     perl -pi -e 's/^mynetworks/#mynetworks/'   /etc/postfix/main.cf
-    grep  'mynetworks = '   /etc/postfix/main.cf
-    systemctl restart postfix
+    grep  'mynetworks = '   /etc/postfix/main.cf >> /root/log.txt 2> /root/log_err.txt
+    systemctl restart postfix >> /root/log.txt 2> /root/log_err.txt
     ;;
     *)
     ;;
@@ -1113,48 +1129,48 @@ then
   case $OS in
     centos7 | centos8 )
       perl -p -i -e '$.==20 and print "exclude = libsmbios smbios-utils-bin\n"' /etc/yum.repos.d/CentOS-Base.repo
-      wget http://linux.dell.com/repo/hardware/dsu/bootstrap.cgi -O  ./dellomsainstall.sh
-      sed -i -e "s/enabled=1/enabled=0/g" ./dellomsainstall.sh
-      bash ./dellomsainstall.sh
-      rm -f ./dellomsainstall.sh
-      yum -y erase  tog-pegasus-libs
-      yum -y install --enablerepo=dell-system-update_dependent -y  srvadmin-all openssl-devel
+      wget http://linux.dell.com/repo/hardware/dsu/bootstrap.cgi -O  ./dellomsainstall.sh >> /root/log.txt 2> /root/log_err.txt
+      sed -i -e "s/enabled=1/enabled=0/g" ./dellomsainstall.sh 
+      bash ./dellomsainstall.sh >> /root/log.txt 2> /root/log_err.txt
+      rm -f ./dellomsainstall.sh >> /root/log.txt 2> /root/log_err.txt
+      yum -y erase  tog-pegasus-libs >> /root/log.txt 2> /root/log_err.txt
+      yum -y install --enablerepo=dell-system-update_dependent -y  srvadmin-all openssl-devel >> /root/log.txt 2> /root/log_err.txt
     ;;
-    ubuntu1604)
+    ubuntu1604 )
       echo 'deb http://linux.dell.com/repo/community/openmanage/911/xenial xenial main'  >  /etc/apt/sources.list.d/linux.dell.com.sources.list
-      wget http://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc
-      apt-key add 0x1285491434D8786F.asc
-      apt-get  -y update
-      apt-get  -y  install srvadmin-all
+      wget http://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc >> /root/log.txt 2> /root/log_err.txt
+      apt-key add 0x1285491434D8786F.asc >> /root/log.txt 2> /root/log_err.txt
+      apt-get  -y update >> /root/log.txt 2> /root/log_err.txt
+      apt-get  -y  install srvadmin-all >> /root/log.txt 2> /root/log_err.txt
     ;;
     ubuntu1804 )
       echo 'deb http://linux.dell.com/repo/community/openmanage/940/bionic bionic main'  > /etc/apt/sources.list.d/linux.dell.com.sources.list
       wget http://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc
-      apt-key add 0x1285491434D8786F.asc
-      apt-get  -y update
-      apt-get  -y  install srvadmin-all
-      cd /usr/lib/x86_64-linux-gnu/
-      ln -s /usr/lib/x86_64-linux-gnu/libssl.so.1.1 libssl.so
+      apt-key add 0x1285491434D8786F.asc >> /root/log.txt 2> /root/log_err.txt
+      apt-get  -y update >> /root/log.txt 2> /root/log_err.txt
+      apt-get  -y  install srvadmin-all >> /root/log.txt 2> /root/log_err.txt
+      cd /usr/lib/x86_64-linux-gnu/ >> /root/log.txt 2> /root/log_err.txt
+      ln -s /usr/lib/x86_64-linux-gnu/libssl.so.1.1 libssl.so >> /root/log.txt 2> /root/log_err.txt
       cd
     ;;
     ubuntu2004 )
       echo 'deb http://linux.dell.com/repo/community/openmanage/950/focal focal main'  > /etc/apt/sources.list.d/linux.dell.com.sources.list
       wget http://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc
-      apt-key add 0x1285491434D8786F.asc
-      apt-get  -y update
-      apt-get  -y  install srvadmin-all
-      cd /usr/lib/x86_64-linux-gnu/
-      ln -s /usr/lib/x86_64-linux-gnu/libssl.so.1.1 libssl.so
+      apt-key add 0x1285491434D8786F.asc >> /root/log.txt 2> /root/log_err.txt
+      apt-get  -y update >> /root/log.txt 2> /root/log_err.txt
+      apt-get  -y  install srvadmin-all >> /root/log.txt 2> /root/log_err.txt
+      cd /usr/lib/x86_64-linux-gnu/ >> /root/log.txt 2> /root/log_err.txt
+      ln -s /usr/lib/x86_64-linux-gnu/libssl.so.1.1 libssl.so >> /root/log.txt 2> /root/log_err.txt
       cd
     ;;
     *)
     ;;
   esac
   ### 시스템이 시작될 때 관련 서비스가 실행 되도록 설정 (systemctl enable) ###
-  systemctl enable dataeng
-  systemctl enable dsm_om_connsvc
-  systemctl start dataeng
-  systemctl start dsm_om_connsvc
+  systemctl enable dataeng >> /root/log.txt 2> /root/log_err.txt
+  systemctl enable dsm_om_connsvc >> /root/log.txt 2> /root/log_err.txt
+  systemctl start dataeng >> /root/log.txt 2> /root/log_err.txt
+  systemctl start dsm_om_connsvc >> /root/log.txt 2> /root/log_err.txt
 else
 fi
 
@@ -1162,8 +1178,125 @@ echo ""
 sleep 3
 echo ""
 
-## OMSA 메일발송 sh 작성
+### OMSA E-mail Alert
+cat /etc/crontab | grep -i dasan &> /dev/null
+if [ $? != 0 ]
+then
+  TITLE='Dell_OMSA_Alert_by_'$TITLE_TAIL
+  OMSA_REPORT='./OMSA_REPORT.log'
+  OMSA_EMAIL_LOG='./OMSA_EMAIL.log'
+  OMREPORT_EXEC='/opt/dell/srvadmin/bin/omreport'
+  OMSA_CHECK_LEVEL='Critical'
+  echo  "
+##################################################
+# This Message from ${TITLE_TAIL}
+# Using Dell Opne Mangement Server Administrator
+# The location of the configuration file is below.
+# /usr/local/sbin/export_global_variable.sh
+# /usr/local/sbin/alert_omsa.sh
+# $(date +%Y"-"%m"-"%d" "%r)
+################################################## " >> ${OMSA_EMAIL_LOG}
+  ${OMREPORT_EXEC} system alertlog | head -500 > ${OMSA_REPORT}
+  MAX_LINE=$(grep 'Severity' ${OMSA_REPORT} | grep ${OMSA_CHECK_LEVEL} | wc -l)
+  LINE_NUM=($(cat -n ${OMSA_REPORT} | grep 'Severity' | grep ${OMSA_CHECK_LEVEL} | cut -f 1) )
+  LINE_SEL=0
+  while [ ${MAX_LINE} -ne 0 ]
+        do
 
+        AAA=${LINE_NUM[${LINE_SEL}]}
+        BBB=$(( ${AAA} + 20))
+        CCC='./OMSA_TMP_DATA'
 
+        sed -n ${AAA},${BBB}p ${OMSA_REPORT} > ${CCC}
+        ENDL=$(cat ${CCC} | grep -n '^$'| head -1 | cut -d ":" -f 1)
+
+        sed -n 1,${ENDL}p ${CCC} >> ${OMSA_EMAIL_LOG}
+        echo "==================================== " >> ${OMSA_EMAIL_LOG}
+
+        rm ${CCC}
+        LINE_SEL=$(( ${LINE_SEL} + 1 ))
+        MAX_LINE=$(( ${MAX_LINE} - 1 ))
+done
+  case $OS in
+    centos7 | centos8 )
+      cat ${OMSA_EMAIL_LOG} | /usr/bin/mail -s $TITLE $ADMIN_LOG_EMAIL
+      rm ${OMSA_REPORT}
+      rm ${OMSA_EMAIL_LOG}
+      
+    ;;
+    ubuntu1604 | ubuntu1804 | ubuntu2004 )
+      /usr/bin/mail -s $TITLE -t $ADMIN_LOG_EMAIL < ${OMSA_EMAIL_LOG}
+      rm ${OMSA_REPORT}
+      rm ${OMSA_EMAIL_LOG}
+    ;;
+    *)
+    ;;
+  esac
+  bash  /root/LISR/ScriptTest/omconfig_set.sh
+else
+  echo ""
+fi
+
+echo ""
+sleep 3
+echo ""
 
 ### 8. 서버 전용 MSM 설치
+cat /etc/crontab | grep -i dasan &> /dev/null
+if [ $? != 0 ]
+then
+  case $OS in
+    centos7 | centos8 )
+      mkdir /tmp/raid_manager && cd /tmp/raid_manager
+      wget https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/17.05.00.02_Linux-64_MSM.gz >> /root/log.txt 2> /root/log_err.txt
+      tar xvzf 17.05.00.02_Linux-64_MSM.gz >> /root/log.txt 2> /root/log_err.txt
+      cd /tmp/raid_manager/disk/ && ./install.csh -a >> /root/log.txt 2> /root/log_err.txt
+      /usr/local/MegaRAID\ Storage\ Manager/startupui.sh  & >> /root/log.txt 2> /root/log_err.txt
+    ;;
+    ubuntu1604 | ubuntu1804 | ubuntu2004 )
+      mkdir /tmp/raid_manager && cd /tmp/raid_manager
+      wget https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/17.05.00.02_Linux-64_MSM.gz >> /root/log.txt 2> /root/log_err.txt
+      tar xvzf 17.05.00.02_Linux-64_MSM.gz >> /root/log.txt 2> /root/log_err.txt
+      cd disk/
+      apt-get -y install alien >> /root/log.txt 2> /root/log_err.txt
+      alien --scripts *.rpm >> /root/log.txt 2> /root/log_err.txt
+      dpkg --install lib-utils2_1.00-9_all.deb >> /root/log.txt 2> /root/log_err.txt
+      dpkg --install megaraid-storage-manager_17.05.00-3_all.deb >> /root/log.txt 2> /root/log_err.txt
+      systemctl start vivaldiframeworkd.service >> /root/log.txt 2> /root/log_err.txt
+      systemctl enable vivaldiframeworkd.service >> /root/log.txt 2> /root/log_err.txt
+      /usr/local/MegaRAID\ Storage\ Manager/startupui.sh  & >> /root/log.txt 2> /root/log_err.txt
+    ;;
+    *)
+    ;;
+  esac
+else
+  echo ""
+fi
+
+echo ""
+sleep 3
+echo ""
+
+### 9. 서버 온도 기록 수집
+
+cat /etc/crontab | grep -i dasan &> /dev/null
+if [ $? != 0 ]
+then
+cp /root/LISR/ScriptTest/temperature_check_to_log.sh /usr/local/sbin/
+cp /root/LISR/ScriptTest/temperature_log_to_mail.sh  /usr/local/sbin/
+echo "
+# add by dasandata
+# 매시 30분에 온도체크 로그생성
+30 * * * * root /usr/local/sbin/temperature_check_to_log.sh
+# 매일 오전 8시에 온도체크 로그 발송
+0  8 * * * root /usr/local/sbin/temperature_log_to_mail.sh
+" >>  /etc/crontab
+else
+echo ""
+fi
+echo ""
+sleep 3
+echo ""
+
+### 스크립트 완료 후 필요없는 파일 삭제 작업 진행 (테스트 하면서 추가예정)
+rm -f /root/customername.txt

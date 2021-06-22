@@ -24,8 +24,8 @@ echo  "
 # This Message from ${TITLE_TAIL}
 # Using Dell Opne Mangement Server Administrator
 # The location of the configuration file is below.
-# /usr/local/sbin/dasan_export_global_variable.sh
-# /usr/local/sbin/dasan_alert_omsa.sh
+# /usr/local/sbin/export_global_variable.sh
+# /usr/local/sbin/alert_omsa.sh
 # $(date +%Y"-"%m"-"%d" "%r)
 ################################################## " >> ${OMSA_EMAIL_LOG}
 
