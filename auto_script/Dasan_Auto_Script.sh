@@ -49,7 +49,7 @@ then
   select cudav in 10-0 10-1 10-2 11-0; do echo "CUDA Version : $cudav" ; break; done
   echo $cudav >> /root/cudaversion.txt
 else
-  echo ""
+  echo "CUDA Version is already"
 fi
 
 echo ""
@@ -343,7 +343,7 @@ sleep 3
 echo ""
 
 ## MOTD 진행 (CentOS7,Ubuntu16.04 제외)
-ls /opt/motd &> /dev/null
+cat /etc/profile | grep motd &> /dev/null
 if [ $? != 0 ]
 then
   case $OS in
@@ -355,7 +355,7 @@ then
     ;;
     *)
       echo ""
-      echo $OS is not supported
+      echo MOTD is already
     ;;
   esac
 else
@@ -877,12 +877,13 @@ if [ $? != 0 ]
       centos7 )
         echo ""
         echo libcudnn Install Start
+        cudav="${cudav/./0}"
         case $cudav
-          '10.0' | '10.1' | '10.2' )
+          1000 | 1001 | 1002 )
             yum -y install libcudnn7* >> /root/log.txt 2> /root/log_err.txt
             yum -y upgrade >> /root/log.txt 2> /root/log_err.txt
           ;;
-          '11.0' )
+          1100 )
             yum -y install libcudnn8* >> /root/log.txt 2> /root/log_err.txt
             yum -y upgrade >> /root/log.txt 2> /root/log_err.txt
           ;;
@@ -902,12 +903,13 @@ if [ $? != 0 ]
       ubuntu1604 | ubuntu1804 )
         echo ""
         echo libcudnn Install Start
+        cudav="${cudav/./0}"
         case $cudav
-          "10.0" | "10.1" | "10.2")
+          1000 | 1001 | 1002 )
             apt-get -y install libcudnn7* >> /root/log.txt 2> /root/log_err.txt
             apt-get install -y libcublas-dev >> /root/log.txt 2> /root/log_err.txt
           ;;
-          "11.0" )
+          1100 )
             apt-get -y install libcudnn8* >> /root/log.txt 2> /root/log_err.txt
             apt-get install -y libcublas-dev >> /root/log.txt 2> /root/log_err.txt
           ;;
