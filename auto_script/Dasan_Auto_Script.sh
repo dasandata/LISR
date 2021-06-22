@@ -53,7 +53,7 @@ if [ $? != 0 ]
       centos )
         ## centos는 이미 rc.local이 존재하여 실행될 파일값만 넣어준다.
         chmod +x /etc/rc.d/rc.local
-        sed -i '12a bash /root/LISR/ScriptTest/Dasan_Auto_Script.sh' /etc/rc.d/rc.local
+        sed -i '12a bash /root/LISR/auto_script/Dasan_Auto_Script.sh' /etc/rc.d/rc.local
         echo ""
         echo rc.local setting complete
       ;;
@@ -63,13 +63,13 @@ if [ $? != 0 ]
         ## Ubuntu16만 이미 rc.local이 존재하여 나눠서 작업
         if [ $OS == "ubuntu1604" ]
           then
-            sed -i '13a bash /root/LISR/ScriptTest/Dasan_Auto_Script.sh' /etc/rc.local
+            sed -i '13a bash /root/LISR/auto_script/Dasan_Auto_Script.sh' /etc/rc.local
           else
             echo -e  '#!/bin/sh -e \nexit 0' | tee -a /etc/rc.local
             chmod +x /etc/rc.local
             systemctl restart rc-local.service
             systemctl status rc-local.service
-            sed -i '1a bash /root/LISR/ScriptTest/Dasan_Auto_Script.sh' /etc/rc.local
+            sed -i '1a bash /root/LISR/auto_script/Dasan_Auto_Script.sh' /etc/rc.local
             echo ""
             echo rc.local setting complete
         fi
@@ -328,7 +328,7 @@ echo ""
 
 ## MOTD 진행 (CentOS7,Ubuntu16.04 제외)
 ll /opt/motd &> /dev/null
-if [ $? != 0]
+if [ $? != 0 ]
 then
   case $OS in
     ubuntu1804 | ubuntu2004 | centos8 )
@@ -671,7 +671,15 @@ then
 else
   echo ""
   echo GPU Settings Start.
-  reboot
+  cat /root/nvidia.txt &> /dev/null
+  if [ $? != 0 ]
+  then
+    touch /root/nvidia.txt
+    reboot
+  else
+    echo ""
+  fi
+  
 fi
 
 ########################GPU 버전 진행########################
@@ -863,11 +871,11 @@ if [ $? != 0 ]
         echo ""
         echo libcudnn Install Start
         case $cudav
-          10.0 | 10.1 | 10.2 )
+          "10.0" | "10.1" | "10.2" )
             yum -y install libcudnn7* >> /root/log.txt 2> /root/log_err.txt
             yum -y upgrade >> /root/log.txt 2> /root/log_err.txt
           ;;
-          11.0 )
+          "11.0" )
             yum -y install libcudnn8* >> /root/log.txt 2> /root/log_err.txt
             yum -y upgrade >> /root/log.txt 2> /root/log_err.txt
           ;;
@@ -888,11 +896,11 @@ if [ $? != 0 ]
         echo ""
         echo libcudnn Install Start
         case $cudav
-          10.0 | 10.1 | 10.2 )
+          "10.0" | "10.1" | "10.2")
             apt-get -y install libcudnn7* >> /root/log.txt 2> /root/log_err.txt
             apt-get install -y libcublas-dev >> /root/log.txt 2> /root/log_err.txt
           ;;
-          11.0 )
+          "11.0" )
             apt-get -y install libcudnn8* >> /root/log.txt 2> /root/log_err.txt
             apt-get install -y libcublas-dev >> /root/log.txt 2> /root/log_err.txt
           ;;
@@ -1047,14 +1055,14 @@ ll /lib/systemd/system/jupyterhub.service  &> /dev/null
 if [ $? != 0]
 then
   ## jupyter hub service 설정 파일 복사
-  mv /root/LISR/ScriptTest/jupyterhub.service /lib/systemd/system/
-  mv /root/LISR/ScriptTest/jupyterhub /etc/init.d/
+  mv /root/LISR/auto_script/jupyterhub.service /lib/systemd/system/
+  mv /root/LISR/auto_script/jupyterhub /etc/init.d/
   chmod 777 /lib/systemd/system/jupyterhub.service
   chmod 755 /etc/init.d/jupyterhub
   systemctl daemon-reload >> /root/log.txt 2> /root/log_err.txt
   systemctl enable jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
   systemctl restart jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
-  R CMD BATCH /root/LISR/ScriptTest/r_jupyterhub.R >> /root/log.txt 2> /root/log_err.txt
+  R CMD BATCH /root/LISR/auto_script/r_jupyterhub.R >> /root/log.txt 2> /root/log_err.txt
 else
   echo ""
 fi
@@ -1085,7 +1093,7 @@ echo ""
 ll /usr/local/sbin/export_global_variable.sh &> /dev/null
 if [ $? != 0]
 then
-cp /root/LISR/ScriptTest/export_global_variable.sh  /usr/local/sbin/export_global_variable.sh
+cp /root/LISR/auto_script/export_global_variable.sh  /usr/local/sbin/export_global_variable.sh
 customer=$(cat /root/customername.txt)
 sed -i  "s/ABCDEFG/${customer}/" /usr/local/sbin/export_global_variable.sh
 source /usr/local/sbin/export_global_variable.sh
@@ -1234,7 +1242,7 @@ done
     *)
     ;;
   esac
-  bash  /root/LISR/ScriptTest/omconfig_set.sh
+  bash  /root/LISR/auto_script/omconfig_set.sh
 else
   echo ""
 fi
@@ -1284,8 +1292,8 @@ echo ""
 cat /etc/crontab | grep -i dasan &> /dev/null
 if [ $? != 0 ]
 then
-cp /root/LISR/ScriptTest/temperature_check_to_log.sh /usr/local/sbin/
-cp /root/LISR/ScriptTest/temperature_log_to_mail.sh  /usr/local/sbin/
+cp /root/LISR/auto_script/temperature_check_to_log.sh /usr/local/sbin/
+cp /root/LISR/auto_script/temperature_log_to_mail.sh  /usr/local/sbin/
 echo "
 # add by dasandata
 # 매시 30분에 온도체크 로그생성
