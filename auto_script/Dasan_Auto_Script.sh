@@ -28,12 +28,27 @@ check=$(cat /etc/os-release | head -1 | cut -d "=" -f 2 | tr -d "\"" | awk '{pri
 ll /root/customername.txt &> /dev/null
 if [ $? != 0 ]
 then
-  echo "고객사 이름을 영어로 작성해 주세요."
+  echo "Customer Name?."
   read customername
   echo "Customer Name : $customername "
   echo $customername >> /root/customername.txt
 else
   echo "Customer Name is already"
+fi
+
+echo ""
+sleep 3
+echo ""
+
+## CUDA 버전 선택
+ll /root/cudaversion.txt &> /dev/null
+if [ $? != 0 ]
+then
+  echo "CUDA Version Select"
+  select cudav in 10-0 10-1 10-2 11-0; do echo "$cudav" ; break; done
+  echo $cudav >> /root/cudaversion.txt
+else
+  echo ""
 fi
 
 echo ""
@@ -435,7 +450,7 @@ sleep 3
 echo ""
 
 # 9. 파이썬 패키지 설치
-pip3 list | grep tensor &> /dev/null
+pip3 list | grep tensor &> /dev/null 
 if [ $? != 0 ]
 then
   case $OS in
@@ -746,11 +761,9 @@ echo ""
 cat /etc/profile | grep cuda &> /dev/null
 if [ $? != 0 ]
   then
+    cudav=$(cat /root/cudaversion.txt)
     case $OS in
       centos7 )
-        echo "CUDA 버전을 선택해 주세요"
-        select cudav in 10-0 10-1 10-2 11-0; do echo "$cudav" ; break; done
-        echo ""
         echo CUDA $cudav install Start 
           yum -y install cuda-$cudav >> /root/log.txt 2> /root/log_err.txt
           cudav="${cudav/-/.}"
@@ -774,9 +787,7 @@ if [ $? != 0 ]
           time make -j$(grep process /proc/cpuinfo | wc -l) >> /root/log.txt 2> /root/log_err.txt
       ;;
       centos8 )
-        echo "CUDA 버전을 선택해 주세요"
-        select cudav in 11-0; do echo "$cudav" ; break; done
-        echo ""
+        cudav="11-0"
         echo CUDA $cudav install Start
         dnf -y install cuda-$cudav
         cudav="${cudav/-/.}"
@@ -800,9 +811,6 @@ if [ $? != 0 ]
         time make -j$(grep process /proc/cpuinfo | wc -l) >> /root/log.txt 2> /root/log_err.txt
       ;;
       ubuntu1604 | ubuntu1804 )
-        echo "CUDA 버전을 선택해 주세요"
-        select cudav in 10-0 10-1 10-2 11-0; do echo "$cudav" ; break; done
-        echo ""
         echo CUDA $cudav install Start
         apt-get -y install cuda-$cudav 
         cudav="${cudav/-/.}"
@@ -825,9 +833,7 @@ if [ $? != 0 ]
         time make -j$(grep process /proc/cpuinfo | wc -l) >> /root/log.txt 2> /root/log_err.txt
       ;;
       ubuntu2004 )
-        echo "CUDA 버전을 선택해 주세요"
-        select cudav in 11-0; do echo "$cudav" ; break; done
-        echo ""
+        cudav="11-0"
         echo CUDA $cudav install Start
         apt-get -y install cuda-$cudav 
         cudav="${cudav/-/.}"
@@ -1309,4 +1315,3 @@ sleep 3
 echo ""
 
 ### 스크립트 완료 후 필요없는 파일 삭제 작업 진행 (테스트 하면서 추가예정)
-rm -f /root/customername.txt
