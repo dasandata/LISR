@@ -786,7 +786,7 @@ if [ $? != 0 ]
           echo "export CUDA_INC_DIR=/usr/local/cuda-$cudav/include " >> /etc/profile
           cat /etc/profile | tail -6 >> /root/log.txt 2> /root/log_err.txt
           source /etc/profile
-          source .bashrc
+          source /root/.bashrc
           ls /usr/local/ | grep cuda >> /root/log.txt 2> /root/log_err.txt
           nvidia-smi -L >> /root/log.txt 2> /root/log_err.txt
           nvidia-smi >> /root/log.txt 2> /root/log_err.txt
@@ -811,7 +811,7 @@ if [ $? != 0 ]
         echo "export CUDA_INC_DIR=/usr/local/cuda-$cudav/include " >> /etc/profile
         cat /etc/profile | tail -6 >> /root/log.txt 2> /root/log_err.txt
         source /etc/profile
-        source .bashrc
+        source /root/.bashrc
         ls /usr/local/ | grep cuda >> /root/log.txt 2> /root/log_err.txt
         nvidia-smi -L >> /root/log.txt 2> /root/log_err.txt
         nvidia-smi >> /root/log.txt 2> /root/log_err.txt
@@ -833,7 +833,7 @@ if [ $? != 0 ]
         echo "export CUDA_INC_DIR=/usr/local/cuda-$cudav/include " >> /etc/profile
         cat /etc/profile | tail -6 >> /root/log.txt 2> /root/log_err.txt
         source /etc/profile
-        source .bashrc
+        source /root/.bashrc
         ls /usr/local/ | grep cuda >> /root/log.txt 2> /root/log_err.txt
         nvidia-smi -L >> /root/log.txt 2> /root/log_err.txt
         nvidia-smi >> /root/log.txt 2> /root/log_err.txt
@@ -856,7 +856,7 @@ if [ $? != 0 ]
         echo "export CUDA_INC_DIR=/usr/local/cuda-$cudav/include " >> /etc/profile
         cat /etc/profile | tail -6 >> /root/log.txt 2> /root/log_err.txt
         source /etc/profile
-        source .bashrc
+        source /root/.bashrc
         ls /usr/local/ | grep cuda >> /root/log.txt 2> /root/log_err.txt
         nvidia-smi -L >> /root/log.txt 2> /root/log_err.txt
         nvidia-smi >> /root/log.txt 2> /root/log_err.txt
