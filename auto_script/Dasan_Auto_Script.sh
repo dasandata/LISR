@@ -355,7 +355,7 @@ then
     ;;
     *)
       echo ""
-      echo MOTD is already (Ubuntu16, CentOS7 is Exclude.)
+      echo "MOTD is already (Ubuntu16, CentOS7 is Exclude.)"
     ;;
   esac
 else
@@ -369,17 +369,23 @@ echo ""
 # 7. 서버 시간 동기화
 if [ $OS == "centos8" ]
   then
+    echo "Start time setting "
     chronyc sources -v >> /root/log.txt 2> /root/log_err.txt
     perl -pi -e 's/pool 2.centos.pool.ntp.org iburst/server time.bora.net iburst/g' /etc/chrony.conf >> /root/log.txt 2> /root/log_err.txt
     service chronyd restart >> /root/log.txt 2> /root/log_err.txt
     timedatectl set-ntp true >> /root/log.txt 2> /root/log_err.txt
     timedatectl >> /root/log.txt 2> /root/log_err.txt
     chronyc sources -v >> /root/log.txt 2> /root/log_err.txt
+    echo ""
+    echo "Time setting completed"
   else
+    echo "Start time setting"
     rdate  -s  time.bora.net >> /root/log.txt 2> /root/log_err.txt
     hwclock --systohc >> /root/log.txt 2> /root/log_err.txt
     date >> /root/log.txt 2> /root/log_err.txt
     hwclock >> /root/log.txt 2> /root/log_err.txt
+    echo ""
+    echo "Time setting completed"
 fi
 
 echo ""
@@ -685,9 +691,23 @@ then
   case $OS in
     centos7 | centos8 )
       sed -i '/root/d' /etc/rc.d/rc.local
+      dmidecode | grep -i ipmi &> /dev/null
+      if [ $? != 0 ]
+      then
+        systemctl set-default graphical.target >> /root/log.txt 2> /root/log_err.txt
+      else
+        systemctl set-default multi-user.target >> /root/log.txt 2> /root/log_err.txt
+      fi
     ;;
     ubuntu1604 | ubuntu1804 | ubuntu2004 )
       sed -i '/root/d' /etc/rc.local
+      dmidecode | grep -i ipmi &> /dev/null
+      if [ $? != 0 ]
+      then
+        systemctl set-default graphical.target >> /root/log.txt 2> /root/log_err.txt
+      else
+        systemctl set-default multi-user.target >> /root/log.txt 2> /root/log_err.txt
+      fi
     ;;
     *)
     ;;
@@ -711,12 +731,11 @@ fi
 # 1. CUDA,CUDNN Repo 설치
 # 2. CUDA 설치 및 PATH 설정
 # 3. CUDNN 설치 및 PATH 설정
-# 4. 딥러닝 패키지 설치
-# 5. R-server, Jupyter-hub, pytorch, pycharm 설치
-# 6. Mailutils 설정
+# 4. 딥러닝 패키지 설치(R,R Server, JupyterHub, Pycharm)
+# 5. 설정 서버 전용 MSM 설치
+# 6. Mailutils
 # 7. Dell 전용 OMSA설치
-# 8. 서버 전용 MSM 설치
-# 9. 서버 온도 기록 수집
+# 8. 서버 온도 기록 수집
 
 # 1. CUDA,CUDNN Repo 설치
 cat /etc/profile | grep cuda &> /dev/null
@@ -799,7 +818,7 @@ if [ $? != 0 ]
       centos8 )
         cudav="11-0"
         echo CUDA $cudav install Start
-        dnf -y install cuda-$cudav
+        dnf -y install cuda-$cudav >> /root/log.txt 2> /root/log_err.txt
         cudav="${cudav/-/.}"
         systemctl enable nvidia-persistenced.service >> /root/log.txt 2> /root/log_err.txt
         systemctl start nvidia-persistenced.service >> /root/log.txt 2> /root/log_err.txt
@@ -822,7 +841,7 @@ if [ $? != 0 ]
       ;;
       ubuntu1604 | ubuntu1804 )
         echo CUDA $cudav install Start
-        apt-get -y install cuda-$cudav 
+        apt-get -y install cuda-$cudav  >> /root/log.txt 2> /root/log_err.txt
         cudav="${cudav/-/.}"
         systemctl enable nvidia-persistenced >> /root/log.txt 2> /root/log_err.txt
         echo " "  >> /etc/profile
@@ -845,7 +864,7 @@ if [ $? != 0 ]
       ubuntu2004 )
         cudav="11-0"
         echo CUDA $cudav install Start
-        apt-get -y install cuda-$cudav 
+        apt-get -y install cuda-$cudav >> /root/log.txt 2> /root/log_err.txt
         cudav="${cudav/-/.}"
         systemctl enable nvidia-persistenced >> /root/log.txt 2> /root/log_err.txt
         echo " "  >> /etc/profile
@@ -1086,10 +1105,11 @@ then
     case $OS in
       centos7 | centos8 )
         sed -i '/root/d' /etc/rc.d/rc.local
+        systemctl set-default graphical.target >> /root/log.txt 2> /root/log_err.txt
       ;;
       ubuntu1604 | ubuntu1804 | ubuntu2004 )
         sed -i '/root/d' /etc/rc.local
-        systemctl set-default graphical.target   >> /root/log.txt 2> /root/log_err.txt
+        systemctl set-default graphical.target >> /root/log.txt 2> /root/log_err.txt
       ;;
       *)
       ;;
@@ -1104,7 +1124,7 @@ echo ""
 sleep 3
 echo ""
 
-### 6. 서버 전용 MSM 설치
+# 5. 서버 전용 MSM 설치
 ls /tmp/raid_manager &> /dev/null
 if [ $? != 0 ]
 then
@@ -1141,7 +1161,7 @@ echo ""
 sleep 3
 echo ""
 
-## Dell Server를 제외한 PC,Server는 여기까지 실행
+## Dell Server를 제외한 Server는 여기까지 실행
 echo $VENDOR | grep -i dell &> /dev/null
 if [ $? != 0 ]
 then
@@ -1151,9 +1171,11 @@ then
     case $OS in
       centos7 | centos8 )
         sed -i '/root/d' /etc/rc.d/rc.local
+        systemctl  set-default  multi-user.target
       ;;
       ubuntu1604 | ubuntu1804 | ubuntu2004 )
         sed -i '/root/d' /etc/rc.local
+        systemctl  set-default  multi-user.target
       ;;
       *)
       ;;
@@ -1168,7 +1190,7 @@ echo ""
 sleep 3
 echo ""
 
-### 7. Mailutils 설정 (Dell Server만 진행)
+# 6. Mailutils 설정 (Dell Server만 진행)
 ls /usr/local/sbin/export_global_variable.sh &> /dev/null
 if [ $? != 0 ]
 then
@@ -1211,7 +1233,7 @@ echo ""
 sleep 3
 echo ""
 
-### 8. Dell 전용 OMSA설치
+### 7. Dell 전용 OMSA설치
 systemctl status dataeng &> /dev/null
 if [ $? != 0 ]
 then
@@ -1335,7 +1357,7 @@ echo ""
 sleep 3
 echo ""
 
-### 9. 서버 온도 기록 수집
+### 8. 서버 온도 기록 수집
 
 cat /etc/crontab | grep -i dasan &> /dev/null
 if [ $? != 0 ]
@@ -1366,9 +1388,11 @@ then
     case $OS in
     centos7 | centos8 )
       sed -i '/root/d' /etc/rc.d/rc.local
+      systemctl  set-default  multi-user.target
     ;;
     ubuntu1604 | ubuntu1804 | ubuntu2004 )
       sed -i '/root/d' /etc/rc.local
+      systemctl  set-default  multi-user.target
     ;;
     *)
     ;;
