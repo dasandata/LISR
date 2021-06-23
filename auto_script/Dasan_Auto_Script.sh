@@ -237,7 +237,7 @@ case $OS in
     echo ""
     echo $OS Package Install
     ## Package 설치를 ipmi 여부로 Server와 PC를 나눠서 진행 - Python도 여기서 설치됨 -
-    rpm -qa | grep -i net-tools &> /dev/null
+    rpm -qa | grep -i epel &> /dev/null
     if [ $? != 0 ]
       then
         dnf -y update >> /root/log.txt 2> /root/log_err.txt
@@ -536,6 +536,7 @@ echo ""
 # 10. 방화벽 설정
 case $OS in
   centos7 | centos8 )
+    kill -TERM 1
     systemctl status firewalld | grep inactive &> /dev/null
       if [ $? != 0 ]
       then
@@ -1084,16 +1085,15 @@ then
   echo ""
   echo "Complete auto-script setup"
     case $OS in
-    centos7 | centos8 )
-      sed -i '/root/d' /etc/rc.d/rc.local
-      systemctl set-default graphical.target   >> /root/log.txt 2> /root/log_err.txt
-    ;;
-    ubuntu1604 | ubuntu1804 | ubuntu2004 )
-      sed -i '/root/d' /etc/rc.local
-      systemctl set-default graphical.target   >> /root/log.txt 2> /root/log_err.txt
-    ;;
-    *)
-    ;;
+      centos7 | centos8 )
+        sed -i '/root/d' /etc/rc.d/rc.local
+      ;;
+      ubuntu1604 | ubuntu1804 | ubuntu2004 )
+        sed -i '/root/d' /etc/rc.local
+        systemctl set-default graphical.target   >> /root/log.txt 2> /root/log_err.txt
+      ;;
+      *)
+      ;;
   esac
   reboot
 else
