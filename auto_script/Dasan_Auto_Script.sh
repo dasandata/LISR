@@ -205,7 +205,7 @@ case $OS in
     echo ""
     echo $OS Package Install
     ## Package 설치를 ipmi 여부로 Server와 PC를 나눠서 진행
-    rpm -qa | grep -i net-tools &> /dev/null
+    rpm -qa | grep -i epel &> /dev/null
     if [ $? != 0 ]
       then
         yum -y update >> /root/log.txt 2> /root/log_err.txt
