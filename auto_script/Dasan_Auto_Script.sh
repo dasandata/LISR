@@ -682,7 +682,16 @@ if [ $? != 0 ]
 then
   echo ""
   echo "Complete basic setup"
-  sed -i '/root/d' /etc/rc.local
+  case $OS in
+    centos7 | centos8 )
+      sed -i '/root/d' /etc/rc.d/rc.local
+    ;;
+    ubuntu1604 | ubuntu1804 | ubuntu2004 )
+      sed -i '/root/d' /etc/rc.local
+    ;;
+    *)
+    ;;
+  esac
   reboot
 else
   echo ""
@@ -962,8 +971,9 @@ if [ $? != 0 ]
           ## R,R-studio Install
           wget https://download2.rstudio.org/server/centos8/x86_64/rstudio-server-rhel-1.3.959-x86_64.rpm >> /root/log.txt 2> /root/log_err.txt
           dnf install -y rstudio-server-rhel-1.3.959-x86_64.rpm >> /root/log.txt 2> /root/log_err.txt
-          dnf install -y libRmath-devel R-rpm-macros java-devel libRmath libgfortran.so.5 libopenblas.so.0 libquadmath.so.0 libtcl8.6.so libtk8.6.so >> /root/log.txt 2> /root/log_err.txt
-          dnf config-manager --set-enabled PowerTools >> /root/log.txt 2> /root/log_err.txt
+          dnf install -y java-devel  libgfortran.so.5 libopenblas.so.0 libquadmath.so.0 libtcl8.6.so libtk8.6.so >> /root/log.txt 2> /root/log_err.txt
+          # libRmath-devel R-rpm-macros  libRmath 패키지 존재하지 않아 설치 불가
+          dnf config-manager --set-enabled powertools >> /root/log.txt 2> /root/log_err.txt
           dnf install -y R >> /root/log.txt 2> /root/log_err.txt
           systemctl restart rstudio-server.service >> /root/log.txt 2> /root/log_err.txt
           ## JupyterHub Install
@@ -1073,8 +1083,18 @@ then
 # rc.local 기본 값으로 변경
   echo ""
   echo "Complete auto-script setup"
-  systemctl set-default graphical.target   >> /root/log.txt 2> /root/log_err.txt
-  sed -i '/root/d' /etc/rc.local
+    case $OS in
+    centos7 | centos8 )
+      sed -i '/root/d' /etc/rc.d/rc.local
+      systemctl set-default graphical.target   >> /root/log.txt 2> /root/log_err.txt
+    ;;
+    ubuntu1604 | ubuntu1804 | ubuntu2004 )
+      sed -i '/root/d' /etc/rc.local
+      systemctl set-default graphical.target   >> /root/log.txt 2> /root/log_err.txt
+    ;;
+    *)
+    ;;
+  esac
   reboot
 else
   echo ""
@@ -1300,8 +1320,31 @@ echo "
 else
 echo ""
 fi
+
 echo ""
 sleep 3
 echo ""
+
+cat /etc/crontab | grep dasan &> /dev/null
+if [ $? == 0 ]
+then
+# rc.local 기본 값으로 변경
+  echo ""
+  echo "Complete auto-script setup"
+    case $OS in
+    centos7 | centos8 )
+      sed -i '/root/d' /etc/rc.d/rc.local
+    ;;
+    ubuntu1604 | ubuntu1804 | ubuntu2004 )
+      sed -i '/root/d' /etc/rc.local
+    ;;
+    *)
+    ;;
+  esac
+  reboot
+else
+  echo ""
+  echo Server Package Install Start.
+fi
 
 ### 스크립트 완료 후 필요없는 파일 삭제 작업 진행 (테스트 하면서 추가예정)
