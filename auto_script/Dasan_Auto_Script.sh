@@ -369,8 +369,8 @@ echo ""
 # 7. 서버 시간 동기화
 if [ $OS == "centos8" ]
   then
-    chronyc sources -v
-    perl -pi -e 's/pool 2.centos.pool.ntp.org iburst/server time.bora.net iburst/g' /etc/chrony.conf
+    chronyc sources -v >> /root/log.txt 2> /root/log_err.txt
+    perl -pi -e 's/pool 2.centos.pool.ntp.org iburst/server time.bora.net iburst/g' /etc/chrony.conf >> /root/log.txt 2> /root/log_err.txt
     service chronyd restart >> /root/log.txt 2> /root/log_err.txt
     timedatectl set-ntp true >> /root/log.txt 2> /root/log_err.txt
     timedatectl >> /root/log.txt 2> /root/log_err.txt
