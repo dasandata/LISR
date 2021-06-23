@@ -554,8 +554,6 @@ case $OS in
               firewall-cmd --add-port=8787/tcp --zone=external --permanent >> /root/log.txt 2> /root/log_err.txt
               ## jupyterHub Port
               firewall-cmd --add-port=8000/tcp --zone=external --permanent >> /root/log.txt 2> /root/log_err.txt
-              ## OMSA Port
-              firewall-cmd --add-port=1311/tcp --zone=external --permanent >> /root/log.txt 2> /root/log_err.txt
               firewall-cmd --remove-service=ssh --zone=external --permanent >> /root/log.txt 2> /root/log_err.txt
               firewall-cmd --reload >> /root/log.txt 2> /root/log_err.txt
               sed -i  "s/#Port 22/Port 7777/g" /etc/ssh/sshd_config
@@ -1217,6 +1215,9 @@ echo ""
 systemctl status dataeng &> /dev/null
 if [ $? != 0 ]
 then
+  ## OMSA Port
+  firewall-cmd --add-port=1311/tcp --zone=external --permanent >> /root/log.txt 2> /root/log_err.txt
+  firewall-cmd --reload >> /root/log.txt 2> /root/log_err.txt
   case $OS in
     centos7 | centos8 )
       perl -p -i -e '$.==20 and print "exclude = libsmbios smbios-utils-bin\n"' /etc/yum.repos.d/CentOS-Base.repo
@@ -1334,11 +1335,6 @@ echo ""
 sleep 3
 echo ""
 
-
-echo ""
-sleep 3
-echo ""
-
 ### 9. 서버 온도 기록 수집
 
 cat /etc/crontab | grep -i dasan &> /dev/null
@@ -1384,3 +1380,11 @@ else
 fi
 
 ### 스크립트 완료 후 필요없는 파일 삭제 작업 진행 (테스트 하면서 추가예정)
+## customername.txt
+## cudaversion.txt
+## log.txt
+## log_err.txt
+## nvidia.txt
+## hwcheck.txt
+## cuda-repo-rhel8-10.2.89-1.x86_64.rpm
+## nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm
