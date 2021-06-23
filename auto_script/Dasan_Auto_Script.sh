@@ -488,6 +488,8 @@ then
         pip3 install --upgrade jupyterhub notebook flask >> /root/log.txt 2> /root/log_err.txt
         perl -pi -e 's/python3.6/python2.7/'   /usr/local/bin/pip 
         cp /usr/local/lib/python3.6/site-packages/six.py /usr/lib/python3.6/site-packages/ >> /root/log.txt 2> /root/log_err.txt
+        # systemctl daemon이 다시 켜지지 않는 원인으로 아래 명령어 실행
+        kill -TERM 1
     ;;
     ubuntu1604 | ubuntu1804 )
       echo ""
@@ -536,7 +538,6 @@ echo ""
 # 10. 방화벽 설정
 case $OS in
   centos7 | centos8 )
-    kill -TERM 1
     systemctl status firewalld | grep inactive &> /dev/null
       if [ $? != 0 ]
       then
@@ -548,14 +549,14 @@ case $OS in
               firewall-cmd --change-interface=${NIC} --zone=external --permanent >> /root/log.txt 2> /root/log_err.txt
               firewall-cmd --set-default-zone=external >> /root/log.txt 2> /root/log_err.txt
               firewall-cmd --reload >> /root/log.txt 2> /root/log_err.txt
-              firewall-cmd --add-port=7777/tcp  --permanent >> /root/log.txt 2> /root/log_err.txt
+              firewall-cmd --add-port=7777/tcp --zone=external --permanent >> /root/log.txt 2> /root/log_err.txt
               ## R Server Port
-              firewall-cmd --add-port=8787/tcp --permanent >> /root/log.txt 2> /root/log_err.txt
+              firewall-cmd --add-port=8787/tcp --zone=external --permanent >> /root/log.txt 2> /root/log_err.txt
               ## jupyterHub Port
-              firewall-cmd --add-port=8000/tcp --permanent >> /root/log.txt 2> /root/log_err.txt
+              firewall-cmd --add-port=8000/tcp --zone=external --permanent >> /root/log.txt 2> /root/log_err.txt
               ## OMSA Port
-              firewall-cmd   --add-port=1311/tcp  --zone=external   --permanent >> /root/log.txt 2> /root/log_err.txt
-              firewall-cmd --remove-service=ssh  --permanent >> /root/log.txt 2> /root/log_err.txt
+              firewall-cmd --add-port=1311/tcp --zone=external --permanent >> /root/log.txt 2> /root/log_err.txt
+              firewall-cmd --remove-service=ssh --zone=external --permanent >> /root/log.txt 2> /root/log_err.txt
               firewall-cmd --reload >> /root/log.txt 2> /root/log_err.txt
               sed -i  "s/#Port 22/Port 7777/g" /etc/ssh/sshd_config
               sed -i  "s/#PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config
@@ -1049,7 +1050,7 @@ if [ $? != 0 ]
     esac
   else
     echo ""
-    echo The CUDNN has already been installed.
+    echo The Deep Learnig Package has already been installed.
 fi
 
 echo ""
@@ -1105,7 +1106,71 @@ echo ""
 sleep 3
 echo ""
 
-### 6. Mailutils 설정
+### 6. 서버 전용 MSM 설치
+ls /tmp/raid_manager &> /dev/null
+if [ $? != 0 ]
+then
+  case $OS in
+    centos7 | centos8 )
+      mkdir /tmp/raid_manager && cd /tmp/raid_manager
+      wget https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/17.05.00.02_Linux-64_MSM.gz >> /root/log.txt 2> /root/log_err.txt
+      tar xvzf 17.05.00.02_Linux-64_MSM.gz >> /root/log.txt 2> /root/log_err.txt
+      cd /tmp/raid_manager/disk/ && ./install.csh -a >> /root/log.txt 2> /root/log_err.txt
+      /usr/local/MegaRAID\ Storage\ Manager/startupui.sh  & >> /root/log.txt 2> /root/log_err.txt
+    ;;
+    ubuntu1604 | ubuntu1804 | ubuntu2004 )
+      mkdir /tmp/raid_manager && cd /tmp/raid_manager
+      wget https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/17.05.00.02_Linux-64_MSM.gz >> /root/log.txt 2> /root/log_err.txt
+      tar xvzf 17.05.00.02_Linux-64_MSM.gz >> /root/log.txt 2> /root/log_err.txt
+      cd disk/
+      apt-get -y install alien >> /root/log.txt 2> /root/log_err.txt
+      alien --scripts *.rpm >> /root/log.txt 2> /root/log_err.txt
+      dpkg --install lib-utils2_1.00-9_all.deb >> /root/log.txt 2> /root/log_err.txt
+      dpkg --install megaraid-storage-manager_17.05.00-3_all.deb >> /root/log.txt 2> /root/log_err.txt
+      systemctl start vivaldiframeworkd.service >> /root/log.txt 2> /root/log_err.txt
+      systemctl enable vivaldiframeworkd.service >> /root/log.txt 2> /root/log_err.txt
+      /usr/local/MegaRAID\ Storage\ Manager/startupui.sh  & >> /root/log.txt 2> /root/log_err.txt
+    ;;
+    *)
+    ;;
+  esac
+else
+  echo ""
+  echo The MSM has already been installed.
+fi
+
+echo ""
+sleep 3
+echo ""
+
+## Dell Server를 제외한 PC,Server는 여기까지 실행
+echo $VENDOR | grep -i dell &> /dev/null
+if [ $? != 0 ]
+then
+# rc.local 기본 값으로 변경
+  echo ""
+  echo "Complete auto-script setup"
+    case $OS in
+      centos7 | centos8 )
+        sed -i '/root/d' /etc/rc.d/rc.local
+      ;;
+      ubuntu1604 | ubuntu1804 | ubuntu2004 )
+        sed -i '/root/d' /etc/rc.local
+      ;;
+      *)
+      ;;
+  esac
+  reboot
+else
+  echo ""
+  echo The Dell server-only alert mailing setup begins.
+fi
+
+echo ""
+sleep 3
+echo ""
+
+### 7. Mailutils 설정 (Dell Server만 진행)
 ls /usr/local/sbin/export_global_variable.sh &> /dev/null
 if [ $? != 0 ]
 then
@@ -1141,15 +1206,15 @@ source /usr/local/sbin/export_global_variable.sh
   esac
 else
 echo ""
+echo The Mailutils has already been setting.
 fi
 
 echo ""
 sleep 3
 echo ""
 
-### 7. Dell 전용 OMSA설치
-
-cat /etc/yum.repos.d/CentOS-Base.repo | grep libsmbios  &> /dev/null
+### 8. Dell 전용 OMSA설치
+systemctl status dataeng &> /dev/null
 if [ $? != 0 ]
 then
   case $OS in
@@ -1166,8 +1231,8 @@ then
       echo 'deb http://linux.dell.com/repo/community/openmanage/911/xenial xenial main'  >  /etc/apt/sources.list.d/linux.dell.com.sources.list
       wget http://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc >> /root/log.txt 2> /root/log_err.txt
       apt-key add 0x1285491434D8786F.asc >> /root/log.txt 2> /root/log_err.txt
-      apt-get  -y update >> /root/log.txt 2> /root/log_err.txt
-      apt-get  -y  install srvadmin-all >> /root/log.txt 2> /root/log_err.txt
+      apt-get -y update >> /root/log.txt 2> /root/log_err.txt
+      apt-get -y install srvadmin-all >> /root/log.txt 2> /root/log_err.txt
     ;;
     ubuntu1804 )
       echo 'deb http://linux.dell.com/repo/community/openmanage/940/bionic bionic main'  > /etc/apt/sources.list.d/linux.dell.com.sources.list
@@ -1198,6 +1263,8 @@ then
   systemctl start dataeng >> /root/log.txt 2> /root/log_err.txt
   systemctl start dsm_om_connsvc >> /root/log.txt 2> /root/log_err.txt
 else
+echo ""
+echo The OMSA has already been setting
 fi
 
 echo ""
@@ -1267,37 +1334,6 @@ echo ""
 sleep 3
 echo ""
 
-### 8. 서버 전용 MSM 설치
-cat /etc/crontab | grep -i dasan &> /dev/null
-if [ $? != 0 ]
-then
-  case $OS in
-    centos7 | centos8 )
-      mkdir /tmp/raid_manager && cd /tmp/raid_manager
-      wget https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/17.05.00.02_Linux-64_MSM.gz >> /root/log.txt 2> /root/log_err.txt
-      tar xvzf 17.05.00.02_Linux-64_MSM.gz >> /root/log.txt 2> /root/log_err.txt
-      cd /tmp/raid_manager/disk/ && ./install.csh -a >> /root/log.txt 2> /root/log_err.txt
-      /usr/local/MegaRAID\ Storage\ Manager/startupui.sh  & >> /root/log.txt 2> /root/log_err.txt
-    ;;
-    ubuntu1604 | ubuntu1804 | ubuntu2004 )
-      mkdir /tmp/raid_manager && cd /tmp/raid_manager
-      wget https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/17.05.00.02_Linux-64_MSM.gz >> /root/log.txt 2> /root/log_err.txt
-      tar xvzf 17.05.00.02_Linux-64_MSM.gz >> /root/log.txt 2> /root/log_err.txt
-      cd disk/
-      apt-get -y install alien >> /root/log.txt 2> /root/log_err.txt
-      alien --scripts *.rpm >> /root/log.txt 2> /root/log_err.txt
-      dpkg --install lib-utils2_1.00-9_all.deb >> /root/log.txt 2> /root/log_err.txt
-      dpkg --install megaraid-storage-manager_17.05.00-3_all.deb >> /root/log.txt 2> /root/log_err.txt
-      systemctl start vivaldiframeworkd.service >> /root/log.txt 2> /root/log_err.txt
-      systemctl enable vivaldiframeworkd.service >> /root/log.txt 2> /root/log_err.txt
-      /usr/local/MegaRAID\ Storage\ Manager/startupui.sh  & >> /root/log.txt 2> /root/log_err.txt
-    ;;
-    *)
-    ;;
-  esac
-else
-  echo ""
-fi
 
 echo ""
 sleep 3
@@ -1344,7 +1380,7 @@ then
   reboot
 else
   echo ""
-  echo Server Package Install Start.
+  echo Automatic script has not been qualified normally.
 fi
 
 ### 스크립트 완료 후 필요없는 파일 삭제 작업 진행 (테스트 하면서 추가예정)
