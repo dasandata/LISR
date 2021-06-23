@@ -1052,8 +1052,8 @@ then
   ## jupyter hub service 설정 파일 복사
   mv /root/LISR/auto_script/jupyterhub.service /lib/systemd/system/
   mv /root/LISR/auto_script/jupyterhub /etc/init.d/
-  chmod 777 /lib/systemd/system/jupyterhub.service
-  chmod 755 /etc/init.d/jupyterhub
+  chmod 777 /lib/systemd/system/jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
+  chmod 755 /etc/init.d/jupyterhub >> /root/log.txt 2> /root/log_err.txt
   systemctl daemon-reload >> /root/log.txt 2> /root/log_err.txt
   systemctl enable jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
   systemctl restart jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
@@ -1073,6 +1073,7 @@ then
 # rc.local 기본 값으로 변경
   echo ""
   echo "Complete auto-script setup"
+  systemctl set-default graphical.target   >> /root/log.txt 2> /root/log_err.txt
   sed -i '/root/d' /etc/rc.local
   reboot
 else
@@ -1237,7 +1238,7 @@ done
     *)
     ;;
   esac
-  bash  /root/LISR/auto_script/omconfig_set.sh
+  bash  /root/LISR/auto_script/omconfig_set.sh  >> /root/log.txt 2> /root/log_err.txt
 else
   echo ""
 fi
