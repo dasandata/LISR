@@ -355,7 +355,7 @@ then
     ;;
     *)
       echo ""
-      echo MOTD is already
+      echo MOTD is already (Ubuntu16, CentOS7 is Exclude.)
     ;;
   esac
 else
