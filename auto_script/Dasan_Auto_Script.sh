@@ -22,10 +22,10 @@
 VENDOR=$(dmidecode | grep -i manufacturer | awk '{print$2}' | head -1)
 ## Network Interface
 NIC=$(ip a | grep 'state UP' | cut -d ":" -f 2 | tr -d ' ')
-## OS release 를 사용하여 OS 확인
-check=$(cat /etc/os-release | head -1 | cut -d "=" -f 2 | tr -d "\"" | awk '{print$1}' | tr '[A-Z]' '[a-z]')
+## centos, ubuntu 구별 변수 선언
+OSCHECK=$(cat /etc/os-release | head -1 | cut -d "=" -f 2 | tr -d "\"" | awk '{print$1}' | tr '[A-Z]' '[a-z]')
 
-## 고객사 정보 입력 받고 파일에 저장 하고 변수 사용 후 삭제하기
+## 고객사 정보 입력 후 파일에 저장
 ls /root/customername.txt &> /dev/null
 if [ $? != 0 ]
 then
@@ -38,26 +38,49 @@ else
 fi
 
 echo ""
-sleep 3
-echo ""
 
-## CUDA 버전 선택
+## CUDA 버전 선택 후 파일에 저장
 ls /root/cudaversion.txt &> /dev/null
 if [ $? != 0 ]
 then
   echo "CUDA Version Select"
-  select cudav in 10-0 10-1 10-2 11-0; do echo "CUDA Version : $cudav" ; break; done
-  echo $cudav >> /root/cudaversion.txt
+  case $OSCHECK in 
+    centos )
+      OS=$(cat /etc/redhat-release | awk '{print$1,$4}' | cut -d "." -f 1 | tr -d " " | tr '[A-Z]' '[a-z]')
+      if [ $OS = "centos8" ]
+      then
+        select cudav in 10-2 11-0 11-1; do echo "Select CUDA Version : $cudav" ; break; done
+        echo $cudav >> /root/cudaversion.txt
+      else
+        select cudav in 10-0 10-1 10-2 11-0; do echo "Select CUDA Version : $cudav" ; break; done
+        echo $cudav >> /root/cudaversion.txt
+      fi
+    ;;
+    ubuntu )
+      OS=$(lsb_release -isr |  tr -d "." | sed -e '{N;s/\n//}' | tr '[A-Z]' '[a-z]')
+      if [ $OS = "ubuntu2004" ]
+      then
+        select cudav in 11-0 11-1 11-2; do echo "Select CUDA Version : $cudav" ; break; done
+        echo $cudav >> /root/cudaversion.txt
+      else
+        select cudav in 10-0 10-1 10-2 11-0; do echo "Select CUDA Version : $cudav" ; break; done
+        echo $cudav >> /root/cudaversion.txt
+      fi
+    ;;
+    *)
+    ;;
+  esac
 else
+  echo ""
   echo "CUDA Version is already"
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 # 2. rc.local 생성 및 변경
-cat /etc/rc.local | grep -i root &> /dev/null
+ls /root/log.txt &> /dev/null
 if [ $? != 0 ]
   then
     ## 출력과 에러를 저장할 파일 생성
@@ -65,7 +88,7 @@ if [ $? != 0 ]
     touch /root/log_err.txt
     echo ""
     echo rc.local Setting
-    case $check in
+    case $OSCHECK in
       centos )
         ## centos는 이미 rc.local이 존재하여 실행될 파일값만 넣어준다.
         chmod +x /etc/rc.d/rc.local
@@ -75,7 +98,7 @@ if [ $? != 0 ]
       ;;
       ubuntu )
         OS=$(lsb_release -isr |  tr -d "." | sed -e '{N;s/\n//}' | tr '[A-Z]' '[a-z]')
-        sleep 3
+        sleep 2
         ## Ubuntu16만 이미 rc.local이 존재하여 나눠서 작업
         if [ $OS == "ubuntu1604" ]
           then
@@ -100,7 +123,7 @@ fi
 
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 # 3. nouveau 끄기 및 grub 설정
@@ -109,7 +132,7 @@ if [ $? == 0 ]
   then
     echo ""
     echo Nouveau Disable and Grub Settings Start.
-    case $check in
+    case $OSCHECK in
       centos )
         echo ""
         echo CentOS Grub Setting Start.
@@ -149,11 +172,11 @@ if [ $? == 0 ]
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 # 4. selinux 제거 및 저장소 변경
-case $check in
+case $OSCHECK in
   centos )
     OS=$(cat /etc/redhat-release | awk '{print$1,$4}' | cut -d "." -f 1 | tr -d " " | tr '[A-Z]' '[a-z]')
     echo ""
@@ -196,7 +219,7 @@ case $check in
 esac
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 # 5. 기본 패키지 설치
@@ -241,7 +264,7 @@ case $OS in
     if [ $? != 0 ]
       then
         dnf -y update >> /root/log.txt 2> /root/log_err.txt
-        sleep 3
+        sleep 2
         dnf --refresh -y upgrade >> /root/log.txt 2> /root/log_err.txt
         systemctl disable kdump.service >> /root/log.txt 2> /root/log_err.txt
         dnf install -y epel-release >> /root/log.txt 2> /root/log_err.txt
@@ -310,7 +333,7 @@ case $OS in
 esac
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 # 6. 프로필 설정 
@@ -339,7 +362,7 @@ if [ $? != 0 ]
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 ## MOTD 진행 (CentOS7,Ubuntu16.04 제외)
@@ -363,7 +386,7 @@ else
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 # 7. 서버 시간 동기화
@@ -389,7 +412,7 @@ if [ $OS == "centos8" ]
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 # 8. 파이썬 설치
@@ -453,7 +476,7 @@ if [ $? != 0 ]
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 # 9. 파이썬 패키지 설치
@@ -538,7 +561,7 @@ else
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 # 10. 방화벽 설정
@@ -613,7 +636,7 @@ case $OS in
 esac
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 # 11. 사용자 생성 테스트
@@ -642,7 +665,7 @@ else
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 # 12. H/W 사양 체크
@@ -680,7 +703,7 @@ fi
 
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 lspci | grep -i nvidia &> /dev/null
@@ -782,7 +805,7 @@ if [ $? != 0 ]
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 # 2. CUDA 설치 및 PATH 설정
@@ -816,7 +839,6 @@ if [ $? != 0 ]
           time make -j$(grep process /proc/cpuinfo | wc -l) >> /root/log.txt 2> /root/log_err.txt
       ;;
       centos8 )
-        cudav="11-0"
         echo CUDA $cudav install Start
         dnf -y install cuda-$cudav >> /root/log.txt 2> /root/log_err.txt
         cudav="${cudav/-/.}"
@@ -862,7 +884,6 @@ if [ $? != 0 ]
         time make -j$(grep process /proc/cpuinfo | wc -l) >> /root/log.txt 2> /root/log_err.txt
       ;;
       ubuntu2004 )
-        cudav="11-0"
         echo CUDA $cudav install Start
         apt-get -y install cuda-$cudav >> /root/log.txt 2> /root/log_err.txt
         cudav="${cudav/-/.}"
@@ -893,7 +914,7 @@ if [ $? != 0 ]
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 # 3. CUDNN 설치 및 PATH 설정
@@ -948,7 +969,7 @@ if [ $? != 0 ]
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 # 4. 딥러닝 패키지 설치(R,R Server, JupyterHub, Pycharm)
@@ -1071,7 +1092,7 @@ if [ $? != 0 ]
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 ## JupyterHub 설정파일 복사 (파일 코드가 길어서 복사로 진행)
@@ -1092,7 +1113,7 @@ else
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 #### Server만 아래 스크립트 진행 #####
@@ -1121,7 +1142,7 @@ else
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 # 5. 서버 전용 MSM 설치
@@ -1158,7 +1179,7 @@ else
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 ## Dell Server를 제외한 Server는 여기까지 실행
@@ -1187,7 +1208,7 @@ else
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 # 6. Mailutils 설정 (Dell Server만 진행)
@@ -1230,7 +1251,7 @@ echo The Mailutils has already been setting.
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 ### 7. Dell 전용 OMSA설치
@@ -1291,7 +1312,7 @@ echo The OMSA has already been setting
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 ### OMSA E-mail Alert
@@ -1354,7 +1375,7 @@ else
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 ### 8. 서버 온도 기록 수집
@@ -1376,7 +1397,7 @@ echo ""
 fi
 
 echo ""
-sleep 3
+sleep 2
 echo ""
 
 cat /etc/crontab | grep dasan &> /dev/null
