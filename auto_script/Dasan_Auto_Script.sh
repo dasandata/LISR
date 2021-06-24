@@ -61,10 +61,10 @@ then
       OS=$(cat /etc/redhat-release | awk '{print$1,$4}' | cut -d "." -f 1 | tr -d " " | tr '[A-Z]' '[a-z]')
       if [ $OS = "centos8" ]
       then
-        select cudav in 10-2 11-0 11-1; do echo "Select CUDA Version : $cudav" ; break; done
+        select cudav in 10-2 11-0 11-1 No-GPU; do echo "Select CUDA Version : $cudav" ; break; done
         echo $cudav >> /root/cudaversion.txt
       else
-        select cudav in 10-0 10-1 10-2 11-0; do echo "Select CUDA Version : $cudav" ; break; done
+        select cudav in 10-0 10-1 10-2 11-0 No-GPU; do echo "Select CUDA Version : $cudav" ; break; done
         echo $cudav >> /root/cudaversion.txt
       fi
     ;;
@@ -72,10 +72,10 @@ then
       OS=$(lsb_release -isr |  tr -d "." | sed -e '{N;s/\n//}' | tr '[A-Z]' '[a-z]')
       if [ $OS = "ubuntu2004" ]
       then
-        select cudav in 11-0 11-1 11-2; do echo "Select CUDA Version : $cudav" ; break; done
+        select cudav in 11-0 11-1 11-2 No-GPU; do echo "Select CUDA Version : $cudav" ; break; done
         echo $cudav >> /root/cudaversion.txt
       else
-        select cudav in 10-0 10-1 10-2 11-0; do echo "Select CUDA Version : $cudav" ; break; done
+        select cudav in 10-0 10-1 10-2 11-0 No-GPU; do echo "Select CUDA Version : $cudav" ; break; done
         echo $cudav >> /root/cudaversion.txt
       fi
     ;;
