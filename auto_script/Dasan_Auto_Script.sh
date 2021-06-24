@@ -88,7 +88,7 @@ else
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 # 2. rc.local 생성 및 변경
@@ -110,7 +110,7 @@ if [ $? != 0 ]
       ;;
       ubuntu )
         OS=$(lsb_release -isr |  tr -d "." | sed -e '{N;s/\n//}' | tr '[A-Z]' '[a-z]')
-        sleep 2
+        sleep 3
         ## Ubuntu16만 이미 rc.local이 존재하여 나눠서 작업
         if [ $OS = "ubuntu1604" ]
           then
@@ -135,7 +135,7 @@ fi
 
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 # 3. nouveau 끄기 및 grub 설정
@@ -184,7 +184,7 @@ if [ $? = 0 ]
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 # 4. selinux 제거 및 저장소 변경
@@ -231,7 +231,7 @@ case $OSCHECK in
 esac
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 # 5. 기본 패키지 설치
@@ -248,7 +248,7 @@ case $OS in
         yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig >> /root/log.txt 2> /root/log_err.txt
         yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ mailx >> /root/log.txt 2> /root/log_err.txt
         yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs >> /root/log.txt 2> /root/log_err.txt
-        sleep 5
+        sleep 3
         dmidecode | grep -i ipmi &> /dev/null
           if [ $? = 0 ]
             then
@@ -259,7 +259,7 @@ case $OS in
           fi
         yum -y groups install "Development Tools" >> /root/log.txt 2> /root/log_err.txt
         yum -y install  glibc-static glibc-devel libstdc++ libstdc++-devel >> /root/log.txt 2> /root/log_err.txt
-        sleep 5
+        sleep 3
         sed -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo >> /root/log.txt 2> /root/log_err.txt
         yum -y  install yum-plugin-priorities >> /root/log.txt 2> /root/log_err.txt
         yum -y  install htop ntfs-3g figlet >> /root/log.txt 2> /root/log_err.txt
@@ -276,14 +276,14 @@ case $OS in
     if [ $? != 0 ]
       then
         dnf -y update >> /root/log.txt 2> /root/log_err.txt
-        sleep 2
+        sleep 3
         dnf --refresh -y upgrade >> /root/log.txt 2> /root/log_err.txt
         systemctl disable kdump.service >> /root/log.txt 2> /root/log_err.txt
         dnf install -y epel-release >> /root/log.txt 2> /root/log_err.txt
         dnf install -y vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget >> /root/log.txt 2> /root/log_err.txt
         dnf install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ cmake smartmontools >> /root/log.txt 2> /root/log_err.txt
         dnf install -y dstat perl perl-CPAN perl-core net-tools openssl-devel snapd mailx postfix >> /root/log.txt 2> /root/log_err.txt
-        sleep 5
+        sleep 3
         dmidecode | grep -i ipmi &> /dev/null
           if [ $? = 0 ]
             then
@@ -294,7 +294,7 @@ case $OS in
           fi
         dnf -y groups install "Development Tools" >> /root/log.txt 2> /root/log_err.txt
         dnf install -y glibc-devel libstdc++ libstdc++-devel >> /root/log.txt 2> /root/log_err.txt
-        sleep 5
+        sleep 3
         dnf install -y htop ntfs-3g figlet >> /root/log.txt 2> /root/log_err.txt
       else
         echo "" | tee -a /root/log.txt
@@ -306,7 +306,7 @@ case $OS in
     echo $OS Package Install | tee -a /root/log.txt
     apt-get update >> /root/log.txt 2> /root/log_err.txt
     ## Package 설치를 ipmi 여부로 Server와 PC를 나눠서 진행
-    dpkg -l | grep -i lvm2 &> /dev/null
+    dpkg -l | grep -i ethtool &> /dev/null
       if [ $? != 0 ]
         then
           apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux wget figlet >> /root/log.txt 2> /root/log_err.txt
@@ -314,7 +314,7 @@ case $OS in
           DEBIAN_FRONTEND=noninteractive apt-get install -y mailutils smartmontools >> /root/log.txt 2> /root/log_err.txt
           apt-get -y install ubuntu-desktop dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> /root/log.txt 2> /root/log_err.txt
           apt-get -y install libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd postfix >> /root/log.txt 2> /root/log_err.txt
-          sleep 5
+          sleep 3
           systemctl disable cups-browsed.service >> /root/log.txt 2> /root/log_err.txt
           systemctl disable cups.service >> /root/log.txt 2> /root/log_err.txt
           systemctl disable iscsi.service >> /root/log.txt 2> /root/log_err.txt
@@ -325,7 +325,7 @@ case $OS in
           systemctl disable spice-vdagentd.service >> /root/log.txt 2> /root/log_err.txt
           systemctl disable vmtoolsd.service >> /root/log.txt 2> /root/log_err.txt
           systemctl disable ModemManager.service >> /root/log.txt 2> /root/log_err.txt
-          sleep 5
+          sleep 3
           ## ipmi 여부로 PC, Server 판단
           dmidecode | grep -i ipmi &> /dev/null
             if [ $? = 0 ]
@@ -345,7 +345,7 @@ case $OS in
 esac
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 # 6. 프로필 설정 
@@ -374,7 +374,7 @@ if [ $? != 0 ]
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 ## MOTD 진행 (CentOS7,Ubuntu16.04 제외)
@@ -400,7 +400,7 @@ else
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 # 7. 서버 시간 동기화
@@ -426,7 +426,7 @@ if [ $OS = "centos8" ]
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 # 8. 파이썬 설치
@@ -490,7 +490,7 @@ if [ $? != 0 ]
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 # 9. 파이썬 패키지 설치
@@ -575,7 +575,7 @@ else
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 # 10. 방화벽 설정
@@ -649,7 +649,7 @@ case $OS in
 esac
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 # 11. 사용자 생성 테스트
@@ -678,7 +678,7 @@ else
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 # 12. H/W 사양 체크
@@ -719,7 +719,7 @@ fi
 
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 ## CPU 버전 PC, Server 여기까지 (Dell 서버만 뒤에 메일 설정 진행)
@@ -845,7 +845,7 @@ if [ $? != 0 ]
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 # 14. CUDA 설치 및 PATH 설정
@@ -956,7 +956,7 @@ if [ $? != 0 ]
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 # 15. CUDNN 설치 및 PATH 설정
@@ -1013,7 +1013,7 @@ if [ $? != 0 ]
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 # 16. 딥러닝 패키지 설치(R,R Server, JupyterHub, Pycharm)
@@ -1054,7 +1054,7 @@ if [ $? != 0 ]
         systemctl enable --now snapd.socket >> /root/log.txt 2> /root/log_err.txt
         ln -s /var/lib/snapd/snap /snap
         systemctl restart snapd.socket >> /root/log.txt 2> /root/log_err.txt
-        sleep 2
+        sleep 3
         snap install pycharm-community --classic >> /root/log.txt 2> /root/log_err.txt
         ## R,R-studio Install
         wget https://download2.rstudio.org/server/centos8/x86_64/rstudio-server-rhel-1.3.959-x86_64.rpm >> /root/log.txt 2> /root/log_err.txt
@@ -1143,7 +1143,7 @@ if [ $? != 0 ]
         echo $OS | tee -a /root/log.txt
       ;;
     esac
-    sleep 2
+    sleep 3
     echo "" | tee -a /root/log.txt
     echo "JupyterHub Setting Files Copy" | tee -a /root/log.txt
     ## jupyter hub service 설정 파일 복사
@@ -1163,7 +1163,7 @@ if [ $? != 0 ]
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 #### Server만 아래 스크립트 진행 #####
@@ -1192,7 +1192,7 @@ else
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 ## GPU 없는 서버가 여기까지 건너뛰기 위해 제거했던 OS 변수 입력
@@ -1245,7 +1245,7 @@ else
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 ## Dell Server를 제외한 Server는 여기까지 실행
@@ -1274,7 +1274,7 @@ else
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 # 18. Mailutils 설정 (Dell Server만 진행)
@@ -1325,7 +1325,7 @@ echo The Mailutils has already been setting. | tee -a /root/log.txt
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 ### 19. Dell 전용 OMSA설치
@@ -1409,7 +1409,7 @@ echo The OMSA has already been setting | tee -a /root/log.txt
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 ### OMSA E-mail Alert
@@ -1476,7 +1476,7 @@ else
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 # 20. 서버 온도 기록 수집
@@ -1500,7 +1500,7 @@ else
 fi
 
 echo "" | tee -a /root/log.txt
-sleep 2
+sleep 3
 echo "" | tee -a /root/log.txt
 
 ## 스크립트 완료 정리 후 재부팅
