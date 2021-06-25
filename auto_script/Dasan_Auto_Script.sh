@@ -92,14 +92,14 @@ sleep 3
 echo "" | tee -a /root/log.txt
 
 # 2. rc.local 생성 및 변경
-ls /root/log.txt &> /dev/null
+ls /root/log_err.txt &> /dev/null
 if [ $? != 0 ]
   then
     ## 출력과 에러를 저장할 파일 생성
     touch /root/log.txt 
     touch /root/log_err.txt
     echo "" | tee -a /root/log.txt
-    echo rc.local Setting | tee -a /root/log.txt
+    echo "rc.local Setting" | tee -a /root/log.txt
     case $OSCHECK in
       centos )
         ## centos는 이미 rc.local이 존재하여 실행될 파일값만 넣어준다.
@@ -325,6 +325,11 @@ case $OS in
           systemctl disable spice-vdagentd.service >> /root/log.txt 2> /root/log_err.txt
           systemctl disable vmtoolsd.service >> /root/log.txt 2> /root/log_err.txt
           systemctl disable ModemManager.service >> /root/log.txt 2> /root/log_err.txt
+          systemctl disable bluetooth.service >> /root/log.txt 2> /root/log_err.txt
+          systemctl disable NetworkManager.service >> /root/log.txt 2> /root/log_err.txt
+          systemctl stop    NetworkManager.service >> /root/log.txt 2> /root/log_err.txt
+          systemctl disable NetworkManager-dispatcher.service >> /root/log.txt 2> /root/log_err.txt
+          systemctl disable NetworkManager-wait-online.service >> /root/log.txt 2> /root/log_err.txt
           sleep 3
           ## ipmi 여부로 PC, Server 판단
           dmidecode | grep -i ipmi &> /dev/null
@@ -389,6 +394,8 @@ then
     chmod -R 777 /opt/motd/
     echo "#Motd add" >> /etc/profile
     echo "bash /opt/motd/motd.sh" >> /etc/profile
+    echo "" | tee -a /root/log.txt
+    echo "MOTD setting complete" | tee -a /root/log.txt
     ;;
     *)
       echo "" | tee -a /root/log.txt
@@ -717,7 +724,6 @@ else
   echo H/W check has already been completed. | tee -a /root/log.txt
 fi
 
-
 echo "" | tee -a /root/log.txt
 sleep 3
 echo "" | tee -a /root/log.txt
@@ -836,7 +842,7 @@ if [ $? != 0 ]
       ;;
       *)
         echo "" | tee -a /root/log.txt
-        echo $OS | tee -a /root/log.txt
+        echo "CUDA,CUDNN repo install:$OS" | tee -a /root/log.txt
       ;;
     esac
   else
@@ -947,7 +953,7 @@ if [ $? != 0 ]
       ;;
       *)
       echo "" | tee -a /root/log.txt
-      echo $OS | tee -a /root/log.txt
+      echo "CUDA install:$OS" | tee -a /root/log.txt
       ;;
     esac
   else
@@ -1004,7 +1010,7 @@ if [ $? != 0 ]
       ;;
       *)
       echo "" | tee -a /root/log.txt
-      echo $OS | tee -a /root/log.txt
+      echo "CUDNN, PATH Setting:$OS" | tee -a /root/log.txt
       ;;
     esac
   else
@@ -1140,26 +1146,33 @@ if [ $? != 0 ]
       ;;
       *)
         echo "" | tee -a /root/log.txt
-        echo $OS | tee -a /root/log.txt
+        echo "Deep Learnig package install:$OS"   | tee -a /root/log.txt
       ;;
     esac
     sleep 3
-    echo "" | tee -a /root/log.txt
-    echo "JupyterHub Setting Files Copy" | tee -a /root/log.txt
-    ## jupyter hub service 설정 파일 복사
-    mv /root/LISR/auto_script/jupyterhub.service /lib/systemd/system/
-    mv /root/LISR/auto_script/jupyterhub /etc/init.d/
-    chmod 777 /lib/systemd/system/jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
-    chmod 755 /etc/init.d/jupyterhub >> /root/log.txt 2> /root/log_err.txt
-    systemctl daemon-reload >> /root/log.txt 2> /root/log_err.txt
-    systemctl enable jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
-    systemctl restart jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
-    R CMD BATCH /root/LISR/auto_script/r_jupyterhub.R >> /root/log.txt 2> /root/log_err.txt
-    echo "" | tee -a /root/log.txt
-    echo "JupyterHub Setting Files Copy Complete" | tee -a /root/log.txt
   else
     echo "" | tee -a /root/log.txt
     echo The Deep Learnig Package has already been installed. | tee -a /root/log.txt
+fi
+
+## jupyterhub 마무리 설정
+if [  $OS != "Skip this server as it has no GPU." ]
+then
+  echo "" | tee -a /root/log.txt
+  echo "JupyterHub Setting Files Copy" | tee -a /root/log.txt
+  ## jupyter hub service 설정 파일 복사
+  mv /root/LISR/auto_script/jupyterhub.service /lib/systemd/system/
+  mv /root/LISR/auto_script/jupyterhub /etc/init.d/
+  chmod 777 /lib/systemd/system/jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
+  chmod 755 /etc/init.d/jupyterhub >> /root/log.txt 2> /root/log_err.txt
+  systemctl daemon-reload >> /root/log.txt 2> /root/log_err.txt
+  systemctl enable jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
+  systemctl restart jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
+  R CMD BATCH /root/LISR/auto_script/r_jupyterhub.R >> /root/log.txt 2> /root/log_err.txt
+  echo "" | tee -a /root/log.txt
+  echo "JupyterHub Setting Files Copy Complete" | tee -a /root/log.txt
+else
+  echo ""
 fi
 
 echo "" | tee -a /root/log.txt
