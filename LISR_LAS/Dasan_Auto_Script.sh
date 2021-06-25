@@ -104,7 +104,7 @@ if [ $? != 0 ]
       centos )
         ## centos는 이미 rc.local이 존재하여 실행될 파일값만 넣어준다.
         chmod +x /etc/rc.d/rc.local
-        sed -i '12a bash /root/LISR/auto_script/Dasan_Auto_Script.sh' /etc/rc.d/rc.local
+        sed -i '12a bash /root/LISR/LISR_LAS/Dasan_Auto_Script.sh' /etc/rc.d/rc.local
         echo "" | tee -a /root/log.txt
         echo rc.local setting complete | tee -a /root/log.txt
       ;;
@@ -114,13 +114,13 @@ if [ $? != 0 ]
         ## Ubuntu16만 이미 rc.local이 존재하여 나눠서 작업
         if [ $OS = "ubuntu1604" ]
           then
-            sed -i '13a bash /root/LISR/auto_script/Dasan_Auto_Script.sh' /etc/rc.local
+            sed -i '13a bash /root/LISR/LISR_LAS/Dasan_Auto_Script.sh' /etc/rc.local
           else
             echo -e  '#!/bin/sh -e \nexit 0' | tee -a /etc/rc.local
             chmod +x /etc/rc.local
             systemctl restart rc-local.service 
             systemctl status rc-local.service
-            sed -i '1a bash /root/LISR/auto_script/Dasan_Auto_Script.sh' /etc/rc.local
+            sed -i '1a bash /root/LISR/LISR_LAS/Dasan_Auto_Script.sh' /etc/rc.local
             echo "" | tee -a /root/log.txt
             echo rc.local setting complete | tee -a /root/log.txt
         fi
@@ -1161,14 +1161,14 @@ then
   echo "" | tee -a /root/log.txt
   echo "JupyterHub Setting Files Copy" | tee -a /root/log.txt
   ## jupyter hub service 설정 파일 복사
-  mv /root/LISR/auto_script/jupyterhub.service /lib/systemd/system/
-  mv /root/LISR/auto_script/jupyterhub /etc/init.d/
+  mv /root/LISR/LISR_LAS/jupyterhub.service /lib/systemd/system/
+  mv /root/LISR/LISR_LAS/jupyterhub /etc/init.d/
   chmod 777 /lib/systemd/system/jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
   chmod 755 /etc/init.d/jupyterhub >> /root/log.txt 2> /root/log_err.txt
   systemctl daemon-reload >> /root/log.txt 2> /root/log_err.txt
   systemctl enable jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
   systemctl restart jupyterhub.service >> /root/log.txt 2> /root/log_err.txt
-  R CMD BATCH /root/LISR/auto_script/r_jupyterhub.R >> /root/log.txt 2> /root/log_err.txt
+  R CMD BATCH /root/LISR/LISR_LAS/r_jupyterhub.R >> /root/log.txt 2> /root/log_err.txt
   echo "" | tee -a /root/log.txt
   echo "JupyterHub Setting Files Copy Complete" | tee -a /root/log.txt
 else
@@ -1296,7 +1296,7 @@ if [ $? != 0 ]
 then
   echo "" | tee -a /root/log.txt
   echo "Mailutils setting start" | tee -a /root/log.txt
-  cp /root/LISR/auto_script/export_global_variable.sh  /usr/local/sbin/export_global_variable.sh
+  cp /root/LISR/LISR_LAS/export_global_variable.sh  /usr/local/sbin/export_global_variable.sh
   customer=$(cat /root/customername.txt)
   sed -i  "s/ABCDEFG/${customer}/" /usr/local/sbin/export_global_variable.sh
   source /usr/local/sbin/export_global_variable.sh
@@ -1481,7 +1481,7 @@ done
     *)
     ;;
   esac
-  bash  /root/LISR/auto_script/omconfig_set.sh  >> /root/log.txt 2> /root/log_err.txt
+  bash  /root/LISR/LISR_LAS/omconfig_set.sh  >> /root/log.txt 2> /root/log_err.txt
   echo "" | tee -a /root/log.txt
   echo "OMSA E-Mail Alert setting complete" | tee -a /root/log.txt
 else
@@ -1498,8 +1498,8 @@ if [ $? != 0 ]
 then
   echo "" | tee -a /root/log.txt
   echo "Server Temperature setting complete" | tee -a /root/log.txt
-  cp /root/LISR/auto_script/temperature_check_to_log.sh /usr/local/sbin/
-  cp /root/LISR/auto_script/temperature_log_to_mail.sh  /usr/local/sbin/
+  cp /root/LISR/LISR_LAS/temperature_check_to_log.sh /usr/local/sbin/
+  cp /root/LISR/LISR_LAS/temperature_log_to_mail.sh  /usr/local/sbin/
 echo "
 # add by dasandata
 # 매시 30분에 온도체크 로그생성
