@@ -40,7 +40,7 @@ OSCHECK=$(cat /etc/os-release | head -1 | cut -d "=" -f 2 | tr -d "\"" | awk '{p
 ls /root/customername.txt &> /dev/null
 if [ $? != 0 ]
 then
-  echo "Customer Name?." | tee -a /root/log.txt
+  echo "Customer Name?" | tee -a /root/log.txt
   read customername
   echo "Customer Name : $customername " | tee -a /root/log.txt
   echo $customername >> /root/customername.txt
@@ -95,8 +95,7 @@ echo "" | tee -a /root/log.txt
 ls /root/log_err.txt &> /dev/null
 if [ $? != 0 ]
   then
-    ## 출력과 에러를 저장할 파일 생성
-    touch /root/log.txt 
+    ## 에러를 저장할 파일 생성
     touch /root/log_err.txt
     echo "" | tee -a /root/log.txt
     echo "rc.local Setting" | tee -a /root/log.txt
@@ -1038,7 +1037,7 @@ if [ $? != 0 ]
         rpm -ivh rstudio-server-rhel-1.2.5033-x86_64.rpm >> /root/log.txt 2> /root/log_err.txt
         yum install -y R >> /root/log.txt 2> /root/log_err.txt
         ## JupyterHub install
-        curl --silent --location https://rpm.nodesource.com/setup_10.x | sudo bash - >> /root/log.txt 2> /root/log_err.txt
+        curl --silent --location https://rpm.nodesource.com/setup_14.x | sudo bash - >> /root/log.txt 2> /root/log_err.txt
         yum install -y nodejs >> /root/log.txt 2> /root/log_err.txt
         npm install -g configurable-http-proxy >> /root/log.txt 2> /root/log_err.txt
         mkdir /etc/jupyterhub
@@ -1088,7 +1087,7 @@ if [ $? != 0 ]
         dpkg -i rstudio-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
         apt-get install -y  rdesktop >> /root/log.txt 2> /root/log_err.txt
         ## JupyterHub install
-        curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -  >> /root/log.txt 2> /root/log_err.txt
+        curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -  >> /root/log.txt 2> /root/log_err.txt
         apt-get install -y  nodejs default-jre >> /root/log.txt 2> /root/log_err.txt
         npm install -g configurable-http-proxy >> /root/log.txt 2> /root/log_err.txt
         ## Pycharm install
@@ -1109,7 +1108,7 @@ if [ $? != 0 ]
         dpkg -i rstudio-1.2.5019-amd64.deb >> /root/log.txt 2> /root/log_err.txt
         apt-get install -y  rdesktop >> /root/log.txt 2> /root/log_err.txt
         ## JupyterHub install
-        curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -  >> /root/log.txt 2> /root/log_err.txt
+        curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -  >> /root/log.txt 2> /root/log_err.txt
         apt-get install -y  nodejs default-jre >> /root/log.txt 2> /root/log_err.txt
         npm install -g configurable-http-proxy >> /root/log.txt 2> /root/log_err.txt
         mkdir /etc/jupyterhub
@@ -1136,7 +1135,7 @@ if [ $? != 0 ]
         wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.3.1073-amd64.deb >> /root/log.txt 2> /root/log_err.txt
         yes | gdebi rstudio-server-1.3.1073-amd64.deb >> /root/log.txt 2> /root/log_err.txt
         ## JupyterHub install
-        curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+        curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
         apt-get install -y nodejs default-jre >> /root/log.txt 2> /root/log_err.txt
         npm install -g configurable-http-proxy >> /root/log.txt 2> /root/log_err.txt
         ## Pycharm install
