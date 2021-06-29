@@ -268,6 +268,8 @@ case $OS in
         echo "" | tee -a /root/install_log.txt
         echo The package has already been installed. | tee -a /root/install_log.txt
     fi
+    echo "" | tee -a /root/install_log.txt
+    echo "The package install complete" | tee -a /root/install_log.txt
   ;;
   centos8 )
     echo "" | tee -a /root/install_log.txt
@@ -301,6 +303,8 @@ case $OS in
         echo "" | tee -a /root/install_log.txt
         echo The package has already been installed. | tee -a /root/install_log.txt
     fi
+    echo "" | tee -a /root/install_log.txt
+    echo "The package install complete" | tee -a /root/install_log.txt
   ;;
   ubuntu1604 | ubuntu1804 | ubuntu2004 )
     echo "" | tee -a /root/install_log.txt
@@ -345,6 +349,8 @@ case $OS in
           echo "" | tee -a /root/install_log.txt
           echo The package has already been installed. | tee -a /root/install_log.txt
       fi
+      echo "" | tee -a /root/install_log.txt
+      echo "The package install complete" | tee -a /root/install_log.txt
   ;;
   *)
   ;;
@@ -634,8 +640,6 @@ case $OS in
           ufw allow 8000/tcp >> /root/install_log.txt 2> /root/log_err.txt
           ## Pycharm port
           ufw allow 5900/tcp >> /root/install_log.txt 2> /root/log_err.txt
-          ## OMSA port
-          ufw allow 1311/tcp >> /root/install_log.txt 2> /root/log_err.txt
           if [ $OS = "ubuntu1604" ]
           then
           perl -pi -e "s/Port 22/Port 7777/g" /etc/ssh/sshd_config
@@ -1368,6 +1372,8 @@ then
       echo "OMSA install complete" | tee -a /root/install_log.txt
     ;;
     ubuntu1604 )
+      ## OMSA port
+      ufw allow 1311/tcp >> /root/install_log.txt 2> /root/log_err.txt
       echo 'deb http://linux.dell.com/repo/community/openmanage/911/xenial xenial main'  >  /etc/apt/sources.list.d/linux.dell.com.sources.list
       wget http://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc >> /root/install_log.txt 2> /root/log_err.txt
       apt-key add 0x1285491434D8786F.asc >> /root/install_log.txt 2> /root/log_err.txt
@@ -1381,6 +1387,8 @@ then
       echo "OMSA install complete" | tee -a /root/install_log.txt
     ;;
     ubuntu1804 )
+      ## OMSA port
+      ufw allow 1311/tcp >> /root/install_log.txt 2> /root/log_err.txt
       echo 'deb http://linux.dell.com/repo/community/openmanage/940/bionic bionic main'  > /etc/apt/sources.list.d/linux.dell.com.sources.list
       wget http://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc
       apt-key add 0x1285491434D8786F.asc >> /root/install_log.txt 2> /root/log_err.txt
@@ -1397,6 +1405,8 @@ then
       echo "OMSA install complete" | tee -a /root/install_log.txt
     ;;
     ubuntu2004 )
+      ## OMSA port
+      ufw allow 1311/tcp >> /root/install_log.txt 2> /root/log_err.txt
       echo 'deb http://linux.dell.com/repo/community/openmanage/950/focal focal main'  > /etc/apt/sources.list.d/linux.dell.com.sources.list
       wget http://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc
       apt-key add 0x1285491434D8786F.asc >> /root/install_log.txt 2> /root/log_err.txt
@@ -1532,6 +1542,7 @@ then
     ubuntu1604 | ubuntu1804 | ubuntu2004 )
       sed -i '/root/d' /etc/rc.local
       systemctl set-default  multi-user.target | tee -a /root/install_log.txt
+      cat/dev/null > /var/spool/mail/root
     ;;
     *)
     ;;
