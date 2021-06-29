@@ -568,6 +568,7 @@ then
         pip3 install --upgrade notebook >> /root/install_log.txt 2> /root/log_err.txt
         pip install torch torchvision >> /root/install_log.txt 2> /root/log_err.txt
         pip3 install torch torchvision >> /root/install_log.txt 2> /root/log_err.txt
+        pip3 install --upgrade cryptography==3.3.2 >> /root/install_log.txt 2> /root/log_err.txt
     ;;
     ubuntu2004 )
       echo "" | tee -a /root/install_log.txt
@@ -575,7 +576,7 @@ then
         pip install --upgrade numpy scipy  nose  matplotlib  pandas  keras tensorflow-gpu >> /root/install_log.txt 2> /root/log_err.txt
         pip install scipy==1.2.2 >> /root/install_log.txt 2> /root/log_err.txt
         pip3 install --upgrade numpy scipy nose matplotlib pandas keras tensorflow-gpu >> /root/install_log.txt 2> /root/log_err.txt
-        pip3 install numpy==1.16.0 h5py==2.10.0 >> /root/install_log.txt 2> /root/log_err.txt
+        pip3 install numpy==1.16.0 h5py==2.10.0 cryptography==3.3.2 >> /root/install_log.txt 2> /root/log_err.txt
         pip install --upgrade torch torchvision  >> /root/install_log.txt 2> /root/log_err.txt
         pip3 install --upgrade torch torchvision >> /root/install_log.txt 2> /root/log_err.txt
         pip3 install --upgrade jupyterhub notebook >> /root/install_log.txt 2> /root/log_err.txt
@@ -1542,7 +1543,7 @@ then
     ubuntu1604 | ubuntu1804 | ubuntu2004 )
       sed -i '/root/d' /etc/rc.local
       systemctl set-default  multi-user.target | tee -a /root/install_log.txt
-      cat/dev/null > /var/spool/mail/root
+      cat /dev/null > /var/spool/mail/root
     ;;
     *)
     ;;
