@@ -353,6 +353,8 @@ case $OS in
       echo "The package install complete" | tee -a /root/install_log.txt
   ;;
   *)
+  echo "" | tee -a /root/install_log.txt
+  echo "Package install has already been complete" | tee -a /root/install_log.txt
   ;;
 esac
 
@@ -561,6 +563,7 @@ then
           pip3 install  --upgrade setuptools >> /root/install_log.txt 2> /root/log_err.txt
         else
           echo "" | tee -a /root/install_log.txt
+          pip3 install --upgrade cryptography==3.3.2 >> /root/install_log.txt 2> /root/log_err.txt
         fi
         pip3 install --upgrade optimuspyspark  >> /root/install_log.txt 2> /root/log_err.txt
         pip3 install --upgrade testresources >> /root/install_log.txt 2> /root/log_err.txt
@@ -568,7 +571,6 @@ then
         pip3 install --upgrade notebook >> /root/install_log.txt 2> /root/log_err.txt
         pip install torch torchvision >> /root/install_log.txt 2> /root/log_err.txt
         pip3 install torch torchvision >> /root/install_log.txt 2> /root/log_err.txt
-        pip3 install --upgrade cryptography==3.3.2 >> /root/install_log.txt 2> /root/log_err.txt
     ;;
     ubuntu2004 )
       echo "" | tee -a /root/install_log.txt
