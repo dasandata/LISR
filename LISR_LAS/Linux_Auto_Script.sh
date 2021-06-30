@@ -100,43 +100,43 @@ echo "" | tee -a /root/install_log.txt
 # 2. rc.local 생성 및 변경
 ls /root/log_err.txt &> /dev/null
 if [ $? != 0 ]
-  then
-    ## 에러를 저장할 파일 생성
-    touch /root/log.txt
-    touch /root/log_err.txt
-    echo "" | tee -a /root/install_log.txt
-    echo "rc.local Setting start" | tee -a /root/install_log.txt
-    case $OSCHECK in
-      centos )
-        ## centos는 이미 rc.local이 존재하여 실행될 파일값만 넣어준다.
-        chmod +x /etc/rc.d/rc.local
-        sed -i '12a bash /root/LISR/LISR_LAS/Dasan_Auto_Script.sh' /etc/rc.d/rc.local
+then
+  ## 에러를 저장할 파일 생성
+  touch /root/log.txt
+  touch /root/log_err.txt
+  echo "" | tee -a /root/install_log.txt
+  echo "rc.local Setting start" | tee -a /root/install_log.txt
+  case $OSCHECK in
+    centos )
+      ## centos는 이미 rc.local이 존재하여 실행될 파일값만 넣어준다.
+      chmod +x /etc/rc.d/rc.local
+      sed -i '12a bash /root/LISR/LISR_LAS/Dasan_Auto_Script.sh' /etc/rc.d/rc.local
+      echo "" | tee -a /root/install_log.txt
+      echo "rc.local setting complete" | tee -a /root/install_log.txt
+    ;;
+    ubuntu )
+      OS=$(lsb_release -isr |  tr -d "." | sed -e '{N;s/\n//}' | tr '[A-Z]' '[a-z]')
+      sleep 3
+      ## Ubuntu16만 이미 rc.local이 존재하여 나눠서 작업
+      if [ $OS = "ubuntu1604" ]
+      then
+        sed -i '13a bash /root/LISR/LISR_LAS/Dasan_Auto_Script.sh' /etc/rc.local
+      else
+        echo -e  '#!/bin/sh -e \nexit 0' | tee -a /etc/rc.local
+        chmod +x /etc/rc.local
+        systemctl restart rc-local.service >> /root/log.txt 2> /root/log_err.txt
+        systemctl status rc-local.service >> /root/log.txt 2> /root/log_err.txt
+        sed -i '1a bash /root/LISR/LISR_LAS/Dasan_Auto_Script.sh' /etc/rc.local
         echo "" | tee -a /root/install_log.txt
         echo "rc.local setting complete" | tee -a /root/install_log.txt
-      ;;
-      ubuntu )
-        OS=$(lsb_release -isr |  tr -d "." | sed -e '{N;s/\n//}' | tr '[A-Z]' '[a-z]')
-        sleep 3
-        ## Ubuntu16만 이미 rc.local이 존재하여 나눠서 작업
-        if [ $OS = "ubuntu1604" ]
-          then
-            sed -i '13a bash /root/LISR/LISR_LAS/Dasan_Auto_Script.sh' /etc/rc.local
-          else
-            echo -e  '#!/bin/sh -e \nexit 0' | tee -a /etc/rc.local
-            chmod +x /etc/rc.local
-            systemctl restart rc-local.service >> /root/log.txt 2> /root/log_err.txt
-            systemctl status rc-local.service >> /root/log.txt 2> /root/log_err.txt
-            sed -i '1a bash /root/LISR/LISR_LAS/Dasan_Auto_Script.sh' /etc/rc.local
-            echo "" | tee -a /root/install_log.txt
-            echo "rc.local setting complete" | tee -a /root/install_log.txt
-        fi
-      ;;
-      *)
-      ;;
-    esac
-  else
-    echo "" | tee -a /root/install_log.txt
-    echo "The rc.local file already exists." | tee -a /root/install_log.txt
+      fi
+    ;;
+    *)
+    ;;
+  esac
+else
+  echo "" | tee -a /root/install_log.txt
+  echo "The rc.local file already exists." | tee -a /root/install_log.txt
 fi
 
 
@@ -147,46 +147,46 @@ echo "" | tee -a /root/install_log.txt
 # 3. nouveau 끄기 및 grub 설정
 cat /etc/default/grub | grep quiet &> /dev/null
 if [ $? = 0 ]
-  then
-    echo "" | tee -a /root/install_log.txt
-    echo "Nouveau Disable and Grub Settings Start." | tee -a /root/install_log.txt
-    case $OSCHECK in
-      centos )
-        echo "" | tee -a /root/install_log.txt
-        echo "CentOS Grub Setting Start." | tee -a /root/install_log.txt
-        sed -i  's/rhgb//'   /etc/default/grub
-        sed -i  's/quiet//'  /etc/default/grub
-        sed -i  's/GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="ipv6.disable=1 /' /etc/default/grub
-        echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
-        echo "options nouveau modeset=0" >> /etc/modprobe.d/blacklist.conf
-        dracut  -f >> /root/log.txt 2> /root/log_err.txt
-        grub2-mkconfig -o /boot/grub2/grub.cfg >> /root/log.txt 2> /root/log_err.txt
-        grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg >> /root/log.txt 2> /root/log_err.txt
-        echo "" | tee -a /root/install_log.txt
-        echo "Nouveau and Grub Setting complete" | tee -a /root/install_log.txt
-      ;;
-      ubuntu )
-        OS=$(lsb_release -isr |  tr -d "." | sed -e '{N;s/\n//}' | tr '[A-Z]' '[a-z]')
-        echo "" | tee -a /root/install_log.txt
-        echo "$OS Grub Setting Start." | tee -a /root/install_log.txt
-        systemctl set-default  multi-user.target >> /root/log.txt 2> /root/log_err.txt
-        echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
-        echo "options nouveau modeset=0" >> /etc/modprobe.d/blacklist.conf
-        perl -pi -e 's/splash//' /etc/default/grub
-        perl -pi -e 's/quiet//'  /etc/default/grub
-        perl -pi -e  's/^GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="ipv6.disable=1 /'  /etc/default/grub
-        perl -pi -e  's/^GRUB_HIDDEN_TIMEOUT=/#GRUB_HIDDEN_TIMEOUT=/'  /etc/default/grub
-        update-initramfs -u && update-grub2 >> /root/log.txt 2> /root/log_err.txt
-        echo "" | tee -a /root/install_log.txt
-        echo "Nouveau and Grub Setting complete" | tee -a /root/install_log.txt
-      ;;
-      *)
-        echo "" | tee -a /root/install_log.txt
-      ;;
-    esac
-  else
-    echo "" | tee -a /root/install_log.txt
-    echo "Nouveau Disable and Grub Settings has already been complete." | tee -a /root/install_log.txt
+then
+  echo "" | tee -a /root/install_log.txt
+  echo "Nouveau Disable and Grub Settings Start." | tee -a /root/install_log.txt
+  case $OSCHECK in
+    centos )
+      echo "" | tee -a /root/install_log.txt
+      echo "CentOS Grub Setting Start." | tee -a /root/install_log.txt
+      sed -i  's/rhgb//'   /etc/default/grub
+      sed -i  's/quiet//'  /etc/default/grub
+      sed -i  's/GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="ipv6.disable=1 /' /etc/default/grub
+      echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
+      echo "options nouveau modeset=0" >> /etc/modprobe.d/blacklist.conf
+      dracut  -f >> /root/log.txt 2> /root/log_err.txt
+      grub2-mkconfig -o /boot/grub2/grub.cfg >> /root/log.txt 2> /root/log_err.txt
+      grub2-mkconfig -o /boot/efi/EFI/centos/grub.cfg >> /root/log.txt 2> /root/log_err.txt
+      echo "" | tee -a /root/install_log.txt
+      echo "Nouveau and Grub Setting complete" | tee -a /root/install_log.txt
+    ;;
+    ubuntu )
+      OS=$(lsb_release -isr |  tr -d "." | sed -e '{N;s/\n//}' | tr '[A-Z]' '[a-z]')
+      echo "" | tee -a /root/install_log.txt
+      echo "$OS Grub Setting Start." | tee -a /root/install_log.txt
+      systemctl set-default  multi-user.target >> /root/log.txt 2> /root/log_err.txt
+      echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
+      echo "options nouveau modeset=0" >> /etc/modprobe.d/blacklist.conf
+      perl -pi -e 's/splash//' /etc/default/grub
+      perl -pi -e 's/quiet//'  /etc/default/grub
+      perl -pi -e  's/^GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="ipv6.disable=1 /'  /etc/default/grub
+      perl -pi -e  's/^GRUB_HIDDEN_TIMEOUT=/#GRUB_HIDDEN_TIMEOUT=/'  /etc/default/grub
+      update-initramfs -u && update-grub2 >> /root/log.txt 2> /root/log_err.txt
+      echo "" | tee -a /root/install_log.txt
+      echo "Nouveau and Grub Setting complete" | tee -a /root/install_log.txt
+    ;;
+    *)
+      echo "" | tee -a /root/install_log.txt
+    ;;
+  esac
+else
+  echo "" | tee -a /root/install_log.txt
+  echo "Nouveau Disable and Grub Settings has already been complete." | tee -a /root/install_log.txt
 fi
 
 echo "" | tee -a /root/install_log.txt
@@ -202,15 +202,15 @@ case $OSCHECK in
     ## SELINUX Disabled 작업
     SELINUX=$(getenforce)
     if [ $SELINUX = "Disabled" ]
-      then
-        echo "" | tee -a /root/install_log.txt
-        echo "SELINUX is already turned off." | tee -a /root/install_log.txt
-      else
-        echo "" | tee -a /root/install_log.txt
-        echo "Changed SELINUX to disabled." | tee -a /root/install_log.txt
-        setenforce 0
-        sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
-        sed -i '/IPV6/d' /etc/sysconfig/network-scripts/ifcfg-${NIC}
+    then
+      echo "" | tee -a /root/install_log.txt
+      echo "SELINUX is already turned off." | tee -a /root/install_log.txt
+    else
+      echo "" | tee -a /root/install_log.txt
+      echo "Changed SELINUX to disabled." | tee -a /root/install_log.txt
+      setenforce 0
+      sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
+      sed -i '/IPV6/d' /etc/sysconfig/network-scripts/ifcfg-${NIC}
     fi
   ;;
   ubuntu )
@@ -220,14 +220,14 @@ case $OSCHECK in
     ## Repository를 mirror.kakao.com으로 변경
     REPO=$(awk 'NR == 8 {print$2}' /etc/apt/sources.list)
     if [ $REPO = "http://mirror.kakao.com/ubuntu/" ]
-      then
-        echo "" | tee -a /root/install_log.txt
-        echo "The Repository has been changed." | tee -a /root/install_log.txt
-      else
-        echo "" | tee -a /root/install_log.txt
-        echo "Repository Change" | tee -a /root/install_log.txt
-        perl -pi -e 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-        perl -pi -e 's//security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+    then
+      echo "" | tee -a /root/install_log.txt
+      echo "The Repository has been changed." | tee -a /root/install_log.txt
+    else
+      echo "" | tee -a /root/install_log.txt
+      echo "Repository Change" | tee -a /root/install_log.txt
+      perl -pi -e 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+      perl -pi -e 's//security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
     fi
   ;;
   *)
