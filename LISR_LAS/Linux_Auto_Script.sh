@@ -388,7 +388,7 @@ if [ $? != 0 ]
     echo "export PS1='\[\e[1;47;30m\][\u@\h:\W]\\$\[\e[m\] '"  >> /home/sonic/.bashrc
     source  /etc/profile
     source  /root/.bashrc
-    echo $HISTSIZE
+    echo $HISTSIZE >> /root/log.txt 2> /root/log_err.txt
     echo "" | tee -a /root/install_log.txt
     echo "Profile Settings complete" | tee -a /root/install_log.txt
   else
