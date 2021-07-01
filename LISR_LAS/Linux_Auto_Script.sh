@@ -110,7 +110,7 @@ then
     centos )
       ## centos는 이미 rc.local이 존재하여 실행될 파일값만 넣어준다.
       chmod +x /etc/rc.d/rc.local
-      sed -i '12a bash /root/LISR/LISR_LAS/Dasan_Auto_Script.sh' /etc/rc.d/rc.local
+      sed -i '12a bash /root/LISR/LISR_LAS/Linux_Auto_Script.sh' /etc/rc.d/rc.local
       echo "" | tee -a /root/install_log.txt
       echo "rc.local setting complete" | tee -a /root/install_log.txt
     ;;
@@ -120,13 +120,13 @@ then
       ## Ubuntu16만 이미 rc.local이 존재하여 나눠서 작업
       if [ $OS = "ubuntu1604" ]
       then
-        sed -i '13a bash /root/LISR/LISR_LAS/Dasan_Auto_Script.sh' /etc/rc.local
+        sed -i '13a bash /root/LISR/LISR_LAS/Linux_Auto_Script.sh' /etc/rc.local
       else
         echo -e  '#!/bin/sh -e \nexit 0' | tee -a /etc/rc.local
         chmod +x /etc/rc.local
         systemctl restart rc-local.service >> /root/log.txt 2> /root/log_err.txt
         systemctl status rc-local.service >> /root/log.txt 2> /root/log_err.txt
-        sed -i '1a bash /root/LISR/LISR_LAS/Dasan_Auto_Script.sh' /etc/rc.local
+        sed -i '1a bash /root/LISR/LISR_LAS/Linux_Auto_Script.sh' /etc/rc.local
         echo "" | tee -a /root/install_log.txt
         echo "rc.local setting complete" | tee -a /root/install_log.txt
       fi
