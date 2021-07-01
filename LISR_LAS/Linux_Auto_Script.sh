@@ -3,32 +3,32 @@
 # http://www.dasandata.co.kr
 
 # 기본 버전 설치 진행 순서
-# 1. 변수 선언
-# 2. rc.local 생성 및 변경
-# 3. nouveau 끄기 및 grub 설정
-# 4. selinux 제거 및 저장소 변경
-# 5. 기본 패키지 설치
-# 6. 프로필 설정
-# 7. 서버 시간 동기화
-# 8. 파이썬 설치
-# 9. 파이썬 패키지 설치
-# 10. 방화벽 설정
-# 11. 사용자 생성 테스트
-# 12. H/W 사양 체크
+## 1. 변수 선언
+## 2. rc.local 생성 및 변경
+## 3. nouveau 끄기 및 grub 설정
+## 4. selinux 제거 및 저장소 변경
+## 5. 기본 패키지 설치
+## 6. 프로필 설정
+## 7. 서버 시간 동기화
+## 8. 파이썬 설치
+## 9. 파이썬 패키지 설치
+## 10. 방화벽 설정
+## 11. 사용자 생성 테스트
+## 12. H/W 사양 체크
 
-# GPU 버전 설치 진행 순서
-# 13. CUDA,CUDNN Repo 설치
-# 14. CUDA 설치 및 PATH 설정
-# 15. CUDNN 설치 및 PATH 설정
-# 16. 딥러닝 패키지 설치(R,R Server, JupyterHub, Pycharm)
+# GPU 버전 설치 진행 순서 
+## 13. CUDA,CUDNN Repo 설치
+## 14. CUDA 설치 및 PATH 설정
+## 15. CUDNN 설치 및 PATH 설정
+## 16. 딥러닝 패키지 설치(R,R Server, JupyterHub, Pycharm)
 
 # 서버 전용 설치 진행 순서 
-# 17. 서버 전용 MSM 설치
+## 17. 서버 전용 MSM 설치
 
 # Dell 서버 전용 설치 순서
-# 18. Mailutils
-# 19. Dell 전용 OMSA설치
-# 20. 서버 온도 기록 수집
+## 18. Mailutils
+## 19. Dell 전용 OMSA설치
+## 20. 서버 온도 기록 수집
 
 # 1. 변수 선언
 ## Dell or Supermicro 확인
