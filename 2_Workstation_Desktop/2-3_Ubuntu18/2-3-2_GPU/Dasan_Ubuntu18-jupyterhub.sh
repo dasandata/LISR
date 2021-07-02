@@ -8,8 +8,8 @@ echo " Jupyterhub install "
 
 echo ""
 echo ""
-echo -e  "${PROMPT} curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - " >> /root/dasan_install_log.txt
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -  >> /root/log.txt
+echo -e  "${PROMPT} curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash - " >> /root/dasan_install_log.txt
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -  >> /root/log.txt
 
 echo ""
 echo ""
