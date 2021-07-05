@@ -47,9 +47,9 @@ then
   if [ $VENDOR = "Dell" ]
   then
     echo "Customer Name?" | tee -a /root/install_log.txt
-    read customer
-    echo "Customer Name : $customer " | tee -a /root/install_log.txt
-    echo $customer >> /root/customer.txt
+    read CUSTOMER
+    echo "Customer Name : $CUSTOMER " | tee -a /root/install_log.txt
+    echo $CUSTOMER >> /root/customer.txt
   else
     echo "" | tee -a /root/install_log.txt
   fi
@@ -70,11 +70,11 @@ then
       OS=$(cat /etc/redhat-release | awk '{print$1,$4}' | cut -d "." -f 1 | tr -d " " | tr '[A-Z]' '[a-z]')
       if [ $OS = "centos8" ]
       then
-        select cudav in 10-2 11-0 11-1 No-GPU; do echo "Select CUDA Version : $cudav" ; break; done
-        echo $cudav >> /root/cudaversion.txt
+        select CUDAV in 10-2 11-0 11-1 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
+        echo $CUDAV >> /root/cudaversion.txt
       else
-        select cudav in 10-0 10-1 10-2 11-0 No-GPU; do echo "Select CUDA Version : $cudav" ; break; done
-        echo $cudav >> /root/cudaversion.txt
+        select CUDAV in 10-0 10-1 10-2 11-0 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
+        echo $CUDAV >> /root/cudaversion.txt
       fi
       echo "" | tee -a /root/install_log.txt
       echo "Cuda Version Select complete" | tee -a /root/install_log.txt
@@ -83,11 +83,11 @@ then
       OS=$(lsb_release -isr |  tr -d "." | sed -e '{N;s/\n//}' | tr '[A-Z]' '[a-z]')
       if [ $OS = "ubuntu2004" ]
       then
-        select cudav in 11-0 11-1 11-2 No-GPU; do echo "Select CUDA Version : $cudav" ; break; done
-        echo $cudav >> /root/cudaversion.txt
+        select CUDAV in 11-0 11-1 11-2 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
+        echo $CUDAV >> /root/cudaversion.txt
       else
-        select cudav in 10-0 10-1 10-2 11-0 No-GPU; do echo "Select CUDA Version : $cudav" ; break; done
-        echo $cudav >> /root/cudaversion.txt
+        select CUDAV in 10-0 10-1 10-2 11-0 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
+        echo $CUDAV >> /root/cudaversion.txt
       fi
       echo "" | tee -a /root/install_log.txt
       echo "Cuda Version Select complete" | tee -a /root/install_log.txt
@@ -144,7 +144,6 @@ else
   echo "" | tee -a /root/install_log.txt
   echo "The rc.local file already exists." | tee -a /root/install_log.txt
 fi
-
 
 echo "" | tee -a /root/install_log.txt
 sleep 3
@@ -258,7 +257,7 @@ case $OS in
       yum -y update >> /root/install_log.txt 2> /root/log_err.txt
       yum -y  install epel-release >> /root/install_log.txt 2> /root/log_err.txt
       yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig >> /root/install_log.txt 2> /root/log_err.txt
-      yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ mailx >> /root/install_log.txt 2> /root/log_err.txt
+      yum install -y tcsh ethtool tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ mailx >> /root/install_log.txt 2> /root/log_err.txt
       yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       dmidecode | grep -i ipmi &> /dev/null
@@ -294,7 +293,7 @@ case $OS in
       dnf --refresh -y upgrade >> /root/install_log.txt 2> /root/log_err.txt
       systemctl disable kdump.service >> /root/install_log.txt 2> /root/log_err.txt
       dnf install -y epel-release >> /root/install_log.txt 2> /root/log_err.txt
-      dnf install -y vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget >> /root/install_log.txt 2> /root/log_err.txt
+      dnf install -y vim pciutils ethtool openssh mlocate nfs-utils xauth firefox nautilus wget >> /root/install_log.txt 2> /root/log_err.txt
       dnf install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ cmake smartmontools >> /root/install_log.txt 2> /root/log_err.txt
       dnf install -y dstat perl perl-CPAN perl-core net-tools openssl-devel snapd mailx postfix >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
@@ -908,19 +907,19 @@ echo "" | tee -a /root/install_log.txt
 cat /etc/profile | grep cuda &> /dev/null
 if [ $? != 0 ]
 then
-  cudav=$(cat /root/cudaversion.txt)
+  CUDAV=$(cat /root/cudaversion.txt)
   case $OS in
     centos7 )
-      echo "CUDA $cudav install Start" | tee -a /root/install_log.txt
-      yum -y install cuda-$cudav >> /root/install_log.txt 2> /root/log_err.txt
-      cudav="${cudav/-/.}"
+      echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
+      yum -y install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
+      CUDAV="${CUDAV/-/.}"
       systemctl enable nvidia-persistenced >> /root/install_log.txt 2> /root/log_err.txt
       echo " "  >> /etc/profile
-      echo "### ADD Cuda $cudav PATH"  >> /etc/profile
-      echo "export PATH=/usr/local/cuda-$cudav/bin:/usr/local/cuda-$cudav/include:\$PATH " >> /etc/profile
-      echo "export LD_LIBRARY_PATH=/usr/local/cuda-$cudav/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
-      echo "export CUDA_HOME=/usr/local/cuda-$cudav " >> /etc/profile
-      echo "export CUDA_INC_DIR=/usr/local/cuda-$cudav/include " >> /etc/profile
+      echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
+      echo "export PATH=/usr/local/cuda-$CUDAV/bin:/usr/local/cuda-$CUDAV/include:\$PATH " >> /etc/profile
+      echo "export LD_LIBRARY_PATH=/usr/local/cuda-$CUDAV/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
+      echo "export CUDA_HOME=/usr/local/cuda-$CUDAV " >> /etc/profile
+      echo "export CUDA_INC_DIR=/usr/local/cuda-$CUDAV/include " >> /etc/profile
       cat /etc/profile | tail -6 >> /root/install_log.txt 2> /root/log_err.txt
       source /etc/profile
       source /root/.bashrc
@@ -929,24 +928,24 @@ then
       nvidia-smi >> /root/install_log.txt 2> /root/log_err.txt
       which nvcc >> /root/install_log.txt 2> /root/log_err.txt
       nvcc -V >> /root/install_log.txt 2> /root/log_err.txt
-      cp -r  /usr/local/cuda-$cudav/samples/   ~/NVIDIA_CUDA-"$cudav"_Samples >> /root/install_log.txt 2> /root/log_err.txt
-      cd ~/NVIDIA_CUDA-"$cudav"_Samples >> /root/install_log.txt 2> /root/log_err.txt
+      cp -r  /usr/local/cuda-$CUDAV/samples/   ~/NVIDIA_CUDA-"$CUDAV"_Samples >> /root/install_log.txt 2> /root/log_err.txt
+      cd ~/NVIDIA_CUDA-"$CUDAV"_Samples >> /root/install_log.txt 2> /root/log_err.txt
       time make -j$(grep process /proc/cpuinfo | wc -l) >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
-      echo "CUDA $cudav install Start complete" | tee -a /root/install_log.txt
+      echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
     ;;
     centos8 )
-      echo "CUDA $cudav install Start" | tee -a /root/install_log.txt
-      dnf -y install cuda-$cudav >> /root/install_log.txt 2> /root/log_err.txt
-      cudav="${cudav/-/.}"
+      echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
+      dnf -y install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
+      CUDAV="${CUDAV/-/.}"
       systemctl enable nvidia-persistenced.service >> /root/install_log.txt 2> /root/log_err.txt
       systemctl start nvidia-persistenced.service >> /root/install_log.txt 2> /root/log_err.txt
       echo " "  >> /etc/profile
-      echo "### ADD Cuda $cudav PATH"  >> /etc/profile
-      echo "export PATH=/usr/local/cuda-$cudav/bin:/usr/local/cuda-$cudav/include:\$PATH " >> /etc/profile
-      echo "export LD_LIBRARY_PATH=/usr/local/cuda-$cudav/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
-      echo "export CUDA_HOME=/usr/local/cuda-$cudav " >> /etc/profile
-      echo "export CUDA_INC_DIR=/usr/local/cuda-$cudav/include " >> /etc/profile
+      echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
+      echo "export PATH=/usr/local/cuda-$CUDAV/bin:/usr/local/cuda-$CUDAV/include:\$PATH " >> /etc/profile
+      echo "export LD_LIBRARY_PATH=/usr/local/cuda-$CUDAV/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
+      echo "export CUDA_HOME=/usr/local/cuda-$CUDAV " >> /etc/profile
+      echo "export CUDA_INC_DIR=/usr/local/cuda-$CUDAV/include " >> /etc/profile
       cat /etc/profile | tail -6 >> /root/install_log.txt 2> /root/log_err.txt
       source /etc/profile
       source /root/.bashrc
@@ -954,23 +953,23 @@ then
       nvidia-smi -L >> /root/install_log.txt 2> /root/log_err.txt
       nvidia-smi >> /root/install_log.txt 2> /root/log_err.txt
       nvcc -V >> /root/install_log.txt 2> /root/log_err.txt
-      cp -r  /usr/local/cuda-$cudav/samples/   ~/NVIDIA_CUDA-"$cudav"_Samples >> /root/install_log.txt 2> /root/log_err.txt
-      cd ~/NVIDIA_CUDA-"$cudav"_Samples >> /root/install_log.txt 2> /root/log_err.txt
+      cp -r  /usr/local/cuda-$CUDAV/samples/   ~/NVIDIA_CUDA-"$CUDAV"_Samples >> /root/install_log.txt 2> /root/log_err.txt
+      cd ~/NVIDIA_CUDA-"$CUDAV"_Samples >> /root/install_log.txt 2> /root/log_err.txt
       time make -j$(grep process /proc/cpuinfo | wc -l) >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
-      echo "CUDA $cudav install Start complete" | tee -a /root/install_log.txt
+      echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
     ;;
     ubuntu1604 | ubuntu1804 )
-      echo "CUDA $cudav install Start" | tee -a /root/install_log.txt
-      apt-get -y install cuda-$cudav  >> /root/install_log.txt 2> /root/log_err.txt
-      cudav="${cudav/-/.}"
+      echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
+      apt-get -y install cuda-$CUDAV  >> /root/install_log.txt 2> /root/log_err.txt
+      CUDAV="${CUDAV/-/.}"
       systemctl enable nvidia-persistenced >> /root/install_log.txt 2> /root/log_err.txt
       echo " "  >> /etc/profile
-      echo "### ADD Cuda $cudav PATH"  >> /etc/profile
-      echo "export PATH=/usr/local/cuda-$cudav/bin:/usr/local/cuda-$cudav/include:\$PATH " >> /etc/profile
-      echo "export LD_LIBRARY_PATH=/usr/local/cuda-$cudav/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
-      echo "export CUDA_HOME=/usr/local/cuda-$cudav " >> /etc/profile
-      echo "export CUDA_INC_DIR=/usr/local/cuda-$cudav/include " >> /etc/profile
+      echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
+      echo "export PATH=/usr/local/cuda-$CUDAV/bin:/usr/local/cuda-$CUDAV/include:\$PATH " >> /etc/profile
+      echo "export LD_LIBRARY_PATH=/usr/local/cuda-$CUDAV/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
+      echo "export CUDA_HOME=/usr/local/cuda-$CUDAV " >> /etc/profile
+      echo "export CUDA_INC_DIR=/usr/local/cuda-$CUDAV/include " >> /etc/profile
       cat /etc/profile | tail -6 >> /root/install_log.txt 2> /root/log_err.txt
       source /etc/profile
       source /root/.bashrc
@@ -978,23 +977,23 @@ then
       nvidia-smi -L >> /root/install_log.txt 2> /root/log_err.txt
       nvidia-smi >> /root/install_log.txt 2> /root/log_err.txt
       nvcc -V >> /root/install_log.txt 2> /root/log_err.txt
-      cp -r  /usr/local/cuda-$cudav/samples/   ~/NVIDIA_CUDA-"$cudav"_Samples >> /root/install_log.txt 2> /root/log_err.txt
-      cd ~/NVIDIA_CUDA-"$cudav"_Samples >> /root/install_log.txt 2> /root/log_err.txt
+      cp -r  /usr/local/cuda-$CUDAV/samples/   ~/NVIDIA_CUDA-"$CUDAV"_Samples >> /root/install_log.txt 2> /root/log_err.txt
+      cd ~/NVIDIA_CUDA-"$CUDAV"_Samples >> /root/install_log.txt 2> /root/log_err.txt
       time make -j$(grep process /proc/cpuinfo | wc -l) >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
-      echo "CUDA $cudav install Start complete" | tee -a /root/install_log.txt
+      echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
     ;;
     ubuntu2004 )
-      echo "CUDA $cudav install Start" | tee -a /root/install_log.txt
-      apt-get -y install cuda-$cudav >> /root/install_log.txt 2> /root/log_err.txt
+      echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
+      apt-get -y install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
       cudav="${cudav/-/.}"
       systemctl enable nvidia-persistenced >> /root/install_log.txt 2> /root/log_err.txt
       echo " "  >> /etc/profile
-      echo "### ADD Cuda $cudav PATH"  >> /etc/profile
-      echo "export PATH=/usr/local/cuda-$cudav/bin:/usr/local/cuda-$cudav/include:\$PATH " >> /etc/profile
-      echo "export LD_LIBRARY_PATH=/usr/local/cuda-$cudav/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
-      echo "export CUDA_HOME=/usr/local/cuda-$cudav " >> /etc/profile
-      echo "export CUDA_INC_DIR=/usr/local/cuda-$cudav/include " >> /etc/profile
+      echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
+      echo "export PATH=/usr/local/cuda-$CUDAV/bin:/usr/local/cuda-$CUDAV/include:\$PATH " >> /etc/profile
+      echo "export LD_LIBRARY_PATH=/usr/local/cuda-$CUDAV/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
+      echo "export CUDA_HOME=/usr/local/cuda-$CUDAV " >> /etc/profile
+      echo "export CUDA_INC_DIR=/usr/local/cuda-$CUDAV/include " >> /etc/profile
       cat /etc/profile | tail -6 >> /root/install_log.txt 2> /root/log_err.txt
       source /etc/profile
       source /root/.bashrc
@@ -1002,11 +1001,11 @@ then
       nvidia-smi -L >> /root/install_log.txt 2> /root/log_err.txt
       nvidia-smi >> /root/install_log.txt 2> /root/log_err.txt
       nvcc -V >> /root/install_log.txt 2> /root/log_err.txt
-      cp -r  /usr/local/cuda-$cudav/samples/   ~/NVIDIA_CUDA-"$cudav"_Samples >> /root/install_log.txt 2> /root/log_err.txt
-      cd ~/NVIDIA_CUDA-"$cudav"_Samples >> /root/install_log.txt 2> /root/log_err.txt
+      cp -r  /usr/local/cuda-$CUDAV/samples/   ~/NVIDIA_CUDA-"$CUDAV"_Samples >> /root/install_log.txt 2> /root/log_err.txt
+      cd ~/NVIDIA_CUDA-"$CUDAV"_Samples >> /root/install_log.txt 2> /root/log_err.txt
       time make -j$(grep process /proc/cpuinfo | wc -l) >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
-      echo "CUDA $cudav install Start complete" | tee -a /root/install_log.txt
+      echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
     ;;
     *)
       echo "" | tee -a /root/install_log.txt
@@ -1031,7 +1030,7 @@ then
     centos7 )
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install Start" | tee -a /root/install_log.txt
-      if [ $cudav = "11.0" ]
+      if [ $CUDAV = "11.0" ]
       then
         yum -y install libcudnn8* >> /root/install_log.txt 2> /root/log_err.txt
         yum -y upgrade >> /root/install_log.txt 2> /root/log_err.txt
@@ -1054,7 +1053,7 @@ then
     ubuntu1604 | ubuntu1804 )
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install Start" | tee -a /root/install_log.txt
-      if [ $cudav = "11.0" ]
+      if [ $CUDAV = "11.0" ]
       then
         apt-get -y install libcudnn8* >> /root/install_log.txt 2> /root/log_err.txt
         apt-get install -y libcublas-dev >> /root/install_log.txt 2> /root/log_err.txt
@@ -1362,8 +1361,8 @@ then
   echo "" | tee -a /root/install_log.txt
   echo "Mailutils setting start" | tee -a /root/install_log.txt
   cp /root/LISR/LISR_LAS/export_global_variable.sh  /usr/local/sbin/export_global_variable.sh
-  customer=$(cat /root/customer.txt)
-  sed -i  "s/ABCDEFG/${customer}/" /usr/local/sbin/export_global_variable.sh
+  CUSTOMER=$(cat /root/customer.txt)
+  sed -i  "s/ABCDEFG/${CUSTOMER}/" /usr/local/sbin/export_global_variable.sh
   source /usr/local/sbin/export_global_variable.sh
   # 메일 발송을 위한 설정값 변경
   case $OS in
