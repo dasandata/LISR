@@ -171,7 +171,21 @@ if [ $? != 0 ]
 then
     echo "" >> /root/LAS_Install_Log.txt
     echo "Check List Complete" >> /root/LAS_Install_Log.txt
-    exit 5
+    case $OSCHECK in 
+        centos )
+            sed -i '/root/d' /etc/rc.d/rc.local
+            rm -f customer.txt cudaversion.txt nvidia.txt
+            rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
+            exit 5
+        ;;
+        ubuntu )
+            sed -i '/root/d' /etc/rc.local
+            rm -f customer.txt cudaversion.txt nvidia.txt
+            exit 5
+        ;;
+        *)
+        ;;
+    esac
 else
     echo "" >> /root/LAS_Install_Log.txt
     echo "GPU Check List Start" >> /root/LAS_Install_Log.txt
@@ -260,7 +274,18 @@ if [ $? != 0 ]
 then
     echo "" >> /root/LAS_Install_Log.txt
     echo "Check List Complete" >> /root/LAS_Install_Log.txt
-    exit 10
+    case $OSCHECK in 
+        centos )
+            sed -i '/root/d' /etc/rc.d/rc.local
+            exit 10
+        ;;
+        ubuntu )
+            sed -i '/root/d' /etc/rc.local
+            exit 10
+        ;;
+        *)
+        ;;
+    esac
 else
     echo "" >> /root/LAS_Install_Log.txt
     echo "Server Check List Start" >> /root/LAS_Install_Log.txt
@@ -283,7 +308,18 @@ if [ $VENDOR != "Dell" ]
 then
     echo "" >> /root/LAS_Install_Log.txt
     echo "$VENDOR Server Check List Complete" >> /root/LAS_Install_Log.txt
-    exit 15
+        case $OSCHECK in 
+        centos )
+            sed -i '/root/d' /etc/rc.d/rc.local
+            exit 15
+        ;;
+        ubuntu )
+            sed -i '/root/d' /etc/rc.local
+            exit 15
+        ;;
+        *)
+        ;;
+    esac
 else
     echo "" >> /root/LAS_Install_Log.txt
     echo "$VENDOR Server Check List Start" >> /root/LAS_Install_Log.txt
@@ -323,4 +359,15 @@ sleep 1
 
 echo ""
 echo "Check List Complete"
-exit 20
+case $OSCHECK in 
+    centos )
+        sed -i '/root/d' /etc/rc.d/rc.local
+        exit 20
+    ;;
+    ubuntu )
+        sed -i '/root/d' /etc/rc.local
+        exit 20
+    ;;
+    *)
+    ;;
+esac
