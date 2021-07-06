@@ -191,6 +191,7 @@ else
     echo "GPU Check List Start" >> /root/LAS_Install_Log.txt
 fi
 
+
 sleep 1
 
 # CUDA,CUDNN Repo 설치
@@ -277,10 +278,13 @@ then
     case $OSCHECK in 
         centos )
             sed -i '/root/d' /etc/rc.d/rc.local
+            rm -f customer.txt cudaversion.txt nvidia.txt
+            rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
             exit 10
         ;;
         ubuntu )
             sed -i '/root/d' /etc/rc.local
+            rm -f customer.txt cudaversion.txt nvidia.txt
             exit 10
         ;;
         *)
@@ -311,10 +315,13 @@ then
         case $OSCHECK in 
         centos )
             sed -i '/root/d' /etc/rc.d/rc.local
+            rm -f customer.txt cudaversion.txt nvidia.txt
+            rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
             exit 15
         ;;
         ubuntu )
             sed -i '/root/d' /etc/rc.local
+            rm -f customer.txt cudaversion.txt nvidia.txt
             exit 15
         ;;
         *)
@@ -324,16 +331,6 @@ else
     echo "" >> /root/LAS_Install_Log.txt
     echo "$VENDOR Server Check List Start" >> /root/LAS_Install_Log.txt
 fi
-
-sleep 1
-
-# Mailutils
-echo "" >> /root/LAS_Install_Log.txt
-echo "Mailutils Install Check Start" >> /root/LAS_Install_Log.txt
-echo "" >> /root/LAS_Install_Log.txt
-systemctl status postfix >> /root/LAS_Install_Log.txt
-echo "" >> /root/LAS_Install_Log.txt
-echo "Mailutils Check Complete" >> /root/LAS_Install_Log.txt
 
 sleep 1
 
@@ -347,27 +344,19 @@ echo "OMSA Check Complete" >> /root/LAS_Install_Log.txt
 
 sleep 1
 
-# 서버 온도 기록 수집
-echo "" >> /root/LAS_Install_Log.txt
-echo "Temperature Check Start" >> /root/LAS_Install_Log.txt
-echo "" >> /root/LAS_Install_Log.txt
-cat /etc/crontab >> /root/LAS_Install_Log.txt
-echo "" >> /root/LAS_Install_Log.txt
-echo "Temperature Check Complete" >> /root/LAS_Install_Log.txt
-
-sleep 1
-
 echo ""
 echo "Check List Complete"
 case $OSCHECK in 
     centos )
         sed -i '/root/d' /etc/rc.d/rc.local
-        exit 20
+        rm -f customer.txt cudaversion.txt nvidia.txt
+        rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
     ;;
     ubuntu )
         sed -i '/root/d' /etc/rc.local
-        exit 20
+        rm -f customer.txt cudaversion.txt nvidia.txt
     ;;
     *)
     ;;
 esac
+exit 20
