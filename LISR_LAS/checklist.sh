@@ -92,7 +92,6 @@ echo "Time Check Complete" >> /root/CheckList.txt
 echo "" >> /root/CheckList.txt
 echo "Python Install Check" >> /root/CheckList.txt
 echo "" >> /root/CheckList.txt
-python -V >> /root/CheckList.txt
 python3 -V >> /root/CheckList.txt
 echo "" >> /root/CheckList.txt
 echo "Python Install Check Complete" >> /root/CheckList.txt
@@ -115,10 +114,12 @@ echo "" >> /root/CheckList.txt
 case $OSCHECK in 
     centos )
         systemctl status firewalld >> /root/CheckList.txt
+        echo "" >> /root/CheckList.txt
         firewall-cmd --list-all >> /root/CheckList.txt
     ;;
     ubuntu )
         systemctl status ufw >> /root/CheckList.txt
+        echo "" >> /root/CheckList.txt
         ufw status >> /root/CheckList.txt
     ;;
     *)
