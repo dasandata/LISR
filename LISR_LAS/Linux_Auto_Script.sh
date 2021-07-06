@@ -675,8 +675,6 @@ case $OS in
       ufw allow 8787/tcp  >> /root/install_log.txt 2> /root/log_err.txt
       ## JupyterHub port
       ufw allow 8000/tcp >> /root/install_log.txt 2> /root/log_err.txt
-      ## Pycharm port
-      ufw allow 5900/tcp >> /root/install_log.txt 2> /root/log_err.txt
       if [ $OS = "ubuntu1604" ]
       then
         perl -pi -e "s/Port 22/Port 7777/g" /etc/ssh/sshd_config
