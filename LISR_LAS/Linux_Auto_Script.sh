@@ -36,32 +36,16 @@ NIC=$(ip a | grep 'state UP' | cut -d ":" -f 2 | tr -d ' ')
 ## centos, ubuntu 구별 변수 선언
 OSCHECK=$(cat /etc/os-release | head -1 | cut -d "=" -f 2 | tr -d "\"" | awk '{print$1}' | tr '[A-Z]' '[a-z]')
 
-## 고객사 정보 입력 후 파일에 저장
-cat /root/customer.txt &> /dev/null
-if [ $? != 0 ]
-then
-  echo "Linux-Auto-Script Start" | tee -a /root/install_log.txt
-  echo "" | tee -a /root/install_log.txt
-  if [ $VENDOR = "Dell" ]
-  then
-    echo "Customer Name?" | tee -a /root/install_log.txt
-    read CUSTOMER
-    echo "Customer Name : $CUSTOMER " | tee -a /root/install_log.txt
-    echo $CUSTOMER >> /root/customer.txt
-  else
-    echo "" | tee -a /root/install_log.txt
-  fi
-else
-  echo "" | tee -a /root/install_log.txt
-  echo "Linux-Auto-Script GPU Version Start" | tee -a /root/install_log.txt
-fi
-
-echo ""
-
 ## CUDA 버전 선택 후 파일에 저장
 ls /root/cudaversion.txt &> /dev/null
 if [ $? != 0 ]
 then
+  echo "You have run Linux_Automatic_Script" | tee -a /root/install_log.txt
+  echo "Copyright by Dasandata.co.ltd" | tee -a /root/install_log.txt
+  echo "http://www.dasandata.co.kr" | tee -a /root/install_log.txt
+  echo "" | tee -a /root/install_log.txt
+  echo "Linux_Automatic_Script Install Start" | tee -a /root/install_log.txt
+  echo "" | tee -a /root/install_log.txt
   echo "CUDA Version Select" | tee -a /root/install_log.txt
   case $OSCHECK in 
     centos )
@@ -1468,13 +1452,12 @@ fi
 
 ############################################################
 ## 스크립트 완료 후 생성되는 파일 목록
-## rm -f customer.txt cudaversion.txt nvidia.txt
+## rm -f cudaversion.txt nvidia.txt
 ## rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm  cuda-repo-rhel8-10.2.89-1.x86_64.rpm
 ## centos는 추가로 삭제 nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm
 ## centos는 추가로 삭제 cuda-repo-rhel8-10.2.89-1.x86_64.rpm
 ## install_log / 스크립트 실행 부분 표시하는 파일
 ## log_err.txt / 출력 도중 에러 저장되는 파일
-## customer.txt / 고객사 이름 변수 저장 파일
 ## cudaversion.txt / 쿠다 버전 선택 변수 저장 파일
 ## nvidia.txt / GPU 존재 여부 확인 변수 저장 파일
 ## hwcheck.txt / 하드웨어 정보 파일
