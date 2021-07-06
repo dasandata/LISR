@@ -32,9 +32,9 @@ mailutils 설정 중 테스트 메일로 가득차서 초기화 진행
 ```
 PC, Workstation (No GPU) = 1 ~ 12 진행
 PC, Workstation (GPU) = 1 ~ 16 진행
-Dell Server (No GPU) = 1 ~ 12, 17 ~ 20 진행
+Dell Server (No GPU) = 1 ~ 12, 17,18 진행
 Etc  Server (No GPU) = 1 ~ 12, 17 진행
-Dell Server (GPU) = 1 ~ 20 진행
+Dell Server (GPU) = 1 ~ 18 진행
 Etc  Server (GPU) =  1 ~ 17 진행
 ```
 ## Feedback
@@ -78,8 +78,5 @@ Etc  Server (GPU) =  1 ~ 17 진행
 
 ### 17. 서버 전용 MSM 설치
 
-### 18. Mailutils
+### 18. Dell 전용 OMSA설치
 
-### 19. Dell 전용 OMSA설치
-
-### 20. 서버 온도 기록 수집
