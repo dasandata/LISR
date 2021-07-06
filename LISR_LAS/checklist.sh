@@ -20,6 +20,7 @@ case $OSCHECK in
     centos )
         echo "" >> /root/CheckList.txt
         echo "SELINUX Repository Check" >> /root/CheckList.txt
+        echo "" >> /root/CheckList.txt
         cat /root/install_log.txt | grep "SELINUX is already turned off." >> /root/CheckList.txt
         echo "getenforce" >> /root/CheckList.txt
         getenforce >> /root/CheckList.txt
@@ -30,6 +31,7 @@ case $OSCHECK in
     ubuntu )
         echo "" >> /root/CheckList.txt
         echo "Repository Check" >> /root/CheckList.txt
+        echo "" >> /root/CheckList.txt
         cat /etc/apt/sources.list | grep -v "#\|^$" | head -3 >> /root/CheckList.txt
         echo "" >> /root/CheckList.txt
         echo "SELINUX Repository Check Complete" >> /root/CheckList.txt
@@ -40,6 +42,7 @@ esac
 # 기본 패키지 설치
 echo "" >> /root/CheckList.txt
 echo "Pacakage Install Check" >> /root/CheckList.txt
+echo "" >> /root/CheckList.txt
 case $OSCHECK in 
     centos )
         uname -r >> /root/CheckList.txt
@@ -62,6 +65,7 @@ echo "Pacakage Check Complete" >> /root/CheckList.txt
 # 프로필 설정
 echo "" >> /root/CheckList.txt
 echo "Profile Check" >> /root/CheckList.txt
+echo "" >> /root/CheckList.txt
 case $OSCHECK in 
     centos )
         sed -n "77,\$p"  /etc/profile >> /root/CheckList.txt
@@ -78,6 +82,7 @@ echo "Profile Check Complete" >> /root/CheckList.txt
 # 서버 시간 동기화
 echo "" >> /root/CheckList.txt
 echo "Time Check" >> /root/CheckList.txt
+echo "" >> /root/CheckList.txt
 date >> /root/CheckList.txt
 hwclock >> /root/CheckList.txt
 echo "" >> /root/CheckList.txt
@@ -86,6 +91,7 @@ echo "Time Check Complete" >> /root/CheckList.txt
 # 파이썬 설치
 echo "" >> /root/CheckList.txt
 echo "Python Install Check" >> /root/CheckList.txt
+echo "" >> /root/CheckList.txt
 python -V >> /root/CheckList.txt
 python3 -V >> /root/CheckList.txt
 echo "" >> /root/CheckList.txt
@@ -94,6 +100,7 @@ echo "Python Install Check Complete" >> /root/CheckList.txt
 # 파이썬 패키지 설치
 echo "" >> /root/CheckList.txt
 echo "Python Pacakage Install Check" >> /root/CheckList.txt
+echo "" >> /root/CheckList.txt
 pip list | grep scipy >> /root/CheckList.txt
 pip list | grep nose >> /root/CheckList.txt
 pip3 list | grep scipy >> /root/CheckList.txt
@@ -104,6 +111,7 @@ echo "Python Pacakage Check Complete" >> /root/CheckList.txt
 # 방화벽 설정
 echo "" >> /root/CheckList.txt
 echo "Firewall Check" >> /root/CheckList.txt
+echo "" >> /root/CheckList.txt
 case $OSCHECK in 
     centos )
         systemctl status firewalld >> /root/CheckList.txt
@@ -122,6 +130,7 @@ echo "Firewall Check Complete" >> /root/CheckList.txt
 # 사용자 생성 테스트
 echo "" >> /root/CheckList.txt
 echo "User Add Check Start" >> /root/CheckList.txt
+echo "" >> /root/CheckList.txt
 cat /etc/passwd | grep dasan >> /root/CheckList.txt
 cat /etc/shadow | grep dasan >> /root/CheckList.txt
 echo "" >> /root/CheckList.txt
@@ -130,6 +139,7 @@ echo "User Add Check Complete" >> /root/CheckList.txt
 # H/W 사양 체크
 echo "" >> /root/CheckList.txt
 echo "H/W Check Start" >> /root/CheckList.txt
+echo "" >> /root/CheckList.txt
 cat /root/hwcheck.txt >> /root/CheckList.txt
 echo "" >> /root/CheckList.txt
 echo "H/W Check Complete" >> /root/CheckList.txt
@@ -140,7 +150,7 @@ if [ $? != 0 ]
 then
     echo "" >> /root/CheckList.txt
     echo "No GPU Check List Complete" >> /root/CheckList.txt
-    exit 143
+    exit 5
 else
     echo "" >> /root/CheckList.txt
     echo "GPU Check List Start" >> /root/CheckList.txt
@@ -149,6 +159,7 @@ fi
 # CUDA,CUDNN Repo 설치
 echo "" >> /root/CheckList.txt
 echo "CUDA, CUDNN Repo Check Start" >> /root/CheckList.txt
+echo "" >> /root/CheckList.txt
 case $OSCHECK in 
     centos )
         rpm -qa | grep nvidia >> /root/CheckList.txt
@@ -166,6 +177,7 @@ echo "CUDA, CUDNN Repo Complete" >> /root/CheckList.txt
 # CUDA 설치 및 PATH 설정
 echo "" >> /root/CheckList.txt
 echo "CUDA Install Check Start" >> /root/CheckList.txt
+echo "" >> /root/CheckList.txt
 nvidia-smi >> /root/CheckList.txt
 nvidia-smi -L >> /root/CheckList.txt
 which nvcc >> /root/CheckList.txt
@@ -176,6 +188,7 @@ echo "CUDA Check Complete" >> /root/CheckList.txt
 # CUDNN 설치 및 PATH 설정
 echo "" >> /root/CheckList.txt
 echo "CUDNN Install Check Start" >> /root/CheckList.txt
+echo "" >> /root/CheckList.txt
 case $OSCHECK in 
     centos )
         rpm -qa | grep libcudnn* >> /root/CheckList.txt
@@ -192,6 +205,7 @@ echo "CUDNN Check Complete" >> /root/CheckList.txt
 # 딥러닝 패키지 설치(R,R Server, JupyterHub, Pycharm)
 echo "" >> /root/CheckList.txt
 echo "Deep Learning Install Check Start" >> /root/CheckList.txt
+echo "" >> /root/CheckList.txt
 case $OSCHECK in 
     centos )
         rpm -qa | grep rstudio >> /root/CheckList.txt
@@ -215,7 +229,7 @@ if [ $? != 0 ]
 then
     echo "" >> /root/CheckList.txt
     echo "PC,Workstation Check List Complete" >> /root/CheckList.txt
-    exit 218
+    exit 10
 else
     echo "" >> /root/CheckList.txt
     echo "Server Check List Start" >> /root/CheckList.txt
@@ -224,6 +238,7 @@ fi
 # MegaRaid Storage Manager 설치
 echo "" >> /root/CheckList.txt
 echo "MSM Install Check Start" >> /root/CheckList.txt
+echo "" >> /root/CheckList.txt
 ls /usr/local/MegaRAID\ Storage\ Manager/ >> /root/CheckList.txt
 echo "" >> /root/CheckList.txt
 echo "MSM Check Complete" >> /root/CheckList.txt
@@ -234,7 +249,7 @@ if [ $VENDOR != "Dell" ]
 then
     echo "" >> /root/CheckList.txt
     echo "$VENDOR Server Check List Complete" >> /root/CheckList.txt
-    exit 237
+    exit 15
 else
     echo "" >> /root/CheckList.txt
     echo "$VENDOR Server Check List Start" >> /root/CheckList.txt
@@ -243,6 +258,7 @@ fi
 # Mailutils
 echo "" >> /root/CheckList.txt
 echo "Mailutils Install Check Start" >> /root/CheckList.txt
+echo "" >> /root/CheckList.txt
 systemctl status postfix >> /root/CheckList.txt
 echo "" >> /root/CheckList.txt
 echo "Mailutils Check Complete" >> /root/CheckList.txt
@@ -250,6 +266,7 @@ echo "Mailutils Check Complete" >> /root/CheckList.txt
 # Dell OMSA 설치
 echo "" >> /root/CheckList.txt
 echo "OMSA Install Check Start" >> /root/CheckList.txt
+echo "" >> /root/CheckList.txt
 systemctl status dataeng >> /root/CheckList.txt
 echo "" >> /root/CheckList.txt
 echo "OMSA Check Complete" >> /root/CheckList.txt
@@ -257,10 +274,11 @@ echo "OMSA Check Complete" >> /root/CheckList.txt
 # 서버 온도 기록 수집
 echo "" >> /root/CheckList.txt
 echo "Temperature Check Start" >> /root/CheckList.txt
+echo "" >> /root/CheckList.txt
 cat /etc/crontab >> /root/CheckList.txt
 echo "" >> /root/CheckList.txt
 echo "Temperature Check Complete" >> /root/CheckList.txt
 
 echo ""
 echo "Check List Complete"
-exit 254
+exit 20
