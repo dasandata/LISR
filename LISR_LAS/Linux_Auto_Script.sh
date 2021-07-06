@@ -1352,57 +1352,6 @@ echo "" | tee -a /root/install_log.txt
 sleep 3
 echo "" | tee -a /root/install_log.txt
 
-# 18. Mailutils 설정 (Dell Server만 진행)
-ls /usr/local/sbin/export_global_variable.sh &> /dev/null
-if [ $? != 0 ]
-then
-  echo "" | tee -a /root/install_log.txt
-  echo "Mailutils setting start" | tee -a /root/install_log.txt
-  cp /root/LISR/LISR_LAS/export_global_variable.sh  /usr/local/sbin/export_global_variable.sh
-  CUSTOMER=$(cat /root/customer.txt)
-  sed -i  "s/ABCDEFG/${CUSTOMER}/" /usr/local/sbin/export_global_variable.sh
-  source /usr/local/sbin/export_global_variable.sh
-  # 메일 발송을 위한 설정값 변경
-  case $OS in
-    centos7 | centos8 )
-      grep inet_protocols   /etc/postfix/main.cf >> /root/install_log.txt 2> /root/log_err.txt
-      sed -i  's/inet_protocols = all/inet_protocols = ipv4/' /etc/postfix/main.cf
-      grep inet_protocols   /etc/postfix/main.cf >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl restart postfix >> /root/install_log.txt 2> /root/log_err.txt
-      echo "Test of SMTP... OK." | mail -s $TITLE_TAIL $ADMIN_LOG_EMAIL >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl status postfix | grep Active: >> /root/install_log.txt 2> /root/log_err.txt
-      grep 'inet_interfaces =' /etc/postfix/main.cf >> /root/install_log.txt 2> /root/log_err.txt
-      sed -i  "s/inet_interfaces = localhost/#inet_interfaces = localhost/" /etc/postfix/main.cf
-      sed -i  "s/#inet_interfaces = all/inet_interfaces = all/" /etc/postfix/main.cf
-      systemctl  restart postfix >> /root/install_log.txt 2> /root/log_err.txt
-      echo "" | tee -a /root/install_log.txt
-      echo "Mailutils setting start" | tee -a /root/install_log.txt
-    ;;
-    ubuntu1604 | ubuntu1804 | ubuntu2004 )
-      grep "inet_interfaces\|inet_protocols" /etc/postfix/main.cf >> /root/install_log.txt 2> /root/log_err.txt
-      perl -pi -e 's/^inet_protocols = all/inet_protocols = ipv4/'  /etc/postfix/main.cf
-      grep inet_protocols  /etc/postfix/main.cf >> /root/install_log.txt 2> /root/log_err.txt
-      grep 'mynetworks = '   /etc/postfix/main.cf >> /root/install_log.txt 2> /root/log_err.txt
-      perl -pi -e 's/^mynetworks/#mynetworks/'   /etc/postfix/main.cf
-      grep  'mynetworks = '   /etc/postfix/main.cf >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl restart postfix >> /root/install_log.txt 2> /root/log_err.txt
-      echo "" | tee -a /root/install_log.txt
-      echo "Mailutils setting start" | tee -a /root/install_log.txt
-    ;;
-    *)
-      echo "" | tee -a /root/install_log.txt
-      echo "Mailutils setting error" | tee -a /root/install_log.txt
-    ;;
-  esac
-else
-  echo "" | tee -a /root/install_log.txt
-  echo "The Mailutils has already been setting." | tee -a /root/install_log.txt
-fi
-
-echo "" | tee -a /root/install_log.txt
-sleep 3
-echo "" | tee -a /root/install_log.txt
-
 ### 19. Dell 전용 OMSA설치
 systemctl status dsm_om_connsvc &> /dev/null
 if [ $? != 0 ]
@@ -1493,98 +1442,6 @@ echo "" | tee -a /root/install_log.txt
 sleep 3
 echo "" | tee -a /root/install_log.txt
 
-### OMSA E-mail Alert
-cat /etc/crontab | grep -i dasan &> /dev/null
-if [ $? != 0 ]
-then
-  echo "" | tee -a /root/install_log.txt
-  echo "OMSA E-Mail Alert setting start" | tee -a /root/install_log.txt
-  TITLE='Dell_OMSA_Alert_by_'$TITLE_TAIL
-  OMSA_REPORT='./OMSA_REPORT.log'
-  OMSA_EMAIL_LOG='./OMSA_EMAIL.log'
-  OMREPORT_EXEC='/opt/dell/srvadmin/bin/omreport'
-  OMSA_CHECK_LEVEL='Critical'
-  echo  "
-##################################################
-# This Message from ${TITLE_TAIL}
-# Using Dell Opne Mangement Server Administrator
-# The location of the configuration file is below.
-# /usr/local/sbin/export_global_variable.sh
-# /usr/local/sbin/alert_omsa.sh
-# $(date +%Y"-"%m"-"%d" "%r)
-################################################## " >> ${OMSA_EMAIL_LOG}
-  ${OMREPORT_EXEC} system alertlog | head -500 > ${OMSA_REPORT}
-  MAX_LINE=$(grep 'Severity' ${OMSA_REPORT} | grep ${OMSA_CHECK_LEVEL} | wc -l)
-  LINE_NUM=($(cat -n ${OMSA_REPORT} | grep 'Severity' | grep ${OMSA_CHECK_LEVEL} | cut -f 1) )
-  LINE_SEL=0
-  while [ ${MAX_LINE} -ne 0 ]
-  do
-    AAA=${LINE_NUM[${LINE_SEL}]}
-    BBB=$(( ${AAA} + 20))
-    CCC='./OMSA_TMP_DATA'
-
-    sed -n ${AAA},${BBB}p ${OMSA_REPORT} > ${CCC}
-    ENDL=$(cat ${CCC} | grep -n '^$'| head -1 | cut -d ":" -f 1)
-
-    sed -n 1,${ENDL}p ${CCC} >> ${OMSA_EMAIL_LOG}
-    echo "==================================== " >> ${OMSA_EMAIL_LOG}
-
-    rm ${CCC}
-    LINE_SEL=$(( ${LINE_SEL} + 1 ))
-    MAX_LINE=$(( ${MAX_LINE} - 1 ))
-  done
-  case $OS in
-    centos7 | centos8 )
-      cat ${OMSA_EMAIL_LOG} | /usr/bin/mail -s $TITLE $ADMIN_LOG_EMAIL
-      rm ${OMSA_REPORT}
-      rm ${OMSA_EMAIL_LOG}
-    ;;
-    ubuntu1604 | ubuntu1804 | ubuntu2004 )
-      /usr/bin/mail -s $TITLE -t $ADMIN_LOG_EMAIL < ${OMSA_EMAIL_LOG}
-      rm ${OMSA_REPORT}
-      rm ${OMSA_EMAIL_LOG}
-    ;;
-    *)
-    ;;
-  esac
-  bash  /root/LISR/LISR_LAS/omconfig_set.sh  >> /root/install_log.txt 2> /root/log_err.txt
-  echo "" | tee -a /root/install_log.txt
-  echo "OMSA E-Mail Alert setting complete" | tee -a /root/install_log.txt
-else
-  echo "" | tee -a /root/install_log.txt
-  echo "The E-mail alert has already been setting" | tee -a /root/install_log.txt
-fi
-
-echo "" | tee -a /root/install_log.txt
-sleep 3
-echo "" | tee -a /root/install_log.txt
-
-# 20. 서버 온도 기록 수집
-cat /etc/crontab | grep -i dasan &> /dev/null
-if [ $? != 0 ]
-then
-  echo "" | tee -a /root/install_log.txt
-  echo "Server Temperature setting start" | tee -a /root/install_log.txt
-  cp /root/LISR/LISR_LAS/temperature_check_to_log.sh /usr/local/sbin/
-  cp /root/LISR/LISR_LAS/temperature_log_to_mail.sh  /usr/local/sbin/
-echo "
-# add by dasandata
-# 매시 30분에 온도체크 로그생성
-30 * * * * root /usr/local/sbin/temperature_check_to_log.sh
-# 매일 오전 8시에 온도체크 로그 발송
-0  8 * * * root /usr/local/sbin/temperature_log_to_mail.sh
-" >>  /etc/crontab
-  echo "" | tee -a /root/install_log.txt
-  echo "Server Temperature setting complete" | tee -a /root/install_log.txt
-else
-  echo "" | tee -a /root/install_log.txt
-  echo "The server temperature has already been setting" | tee -a /root/install_log.txt
-fi
-
-echo "" | tee -a /root/install_log.txt
-sleep 3
-echo "" | tee -a /root/install_log.txt
-
 ## 스크립트 완료 정리 후 재부팅
 cat /etc/crontab | grep dasan &> /dev/null
 if [ $? = 0 ]
@@ -1618,7 +1475,6 @@ fi
 ## centos는 추가로 삭제 nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm
 ## centos는 추가로 삭제 cuda-repo-rhel8-10.2.89-1.x86_64.rpm
 ## install_log / 스크립트 실행 부분 표시하는 파일
-## log,txt / 명령어에 따른 출력 저장한 파일
 ## log_err.txt / 출력 도중 에러 저장되는 파일
 ## customer.txt / 고객사 이름 변수 저장 파일
 ## cudaversion.txt / 쿠다 버전 선택 변수 저장 파일
