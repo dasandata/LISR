@@ -26,9 +26,7 @@
 # 17. 서버 전용 MSM 설치
 
 # Dell 서버 전용 설치 순서
-# 18. Mailutils
-# 19. Dell 전용 OMSA설치
-# 20. 서버 온도 기록 수집
+# 18. Dell 전용 OMSA설치
 
 # 1. 변수 선언
 ## Dell or Supermicro 확인
