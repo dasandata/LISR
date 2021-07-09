@@ -239,7 +239,7 @@ case $OS in
       yum -y update >> /root/install_log.txt 2> /root/log_err.txt
       yum -y  install epel-release >> /root/install_log.txt 2> /root/log_err.txt
       yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig >> /root/install_log.txt 2> /root/log_err.txt
-      yum install -y tcsh ethtool tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ mailx >> /root/install_log.txt 2> /root/log_err.txt
+      yum install -y tcsh ethtool tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ mailx snapd >> /root/install_log.txt 2> /root/log_err.txt
       yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       dmidecode | grep -i ipmi &> /dev/null
@@ -262,6 +262,22 @@ case $OS in
       echo "" | tee -a /root/install_log.txt
       echo "The package has already been installed." | tee -a /root/install_log.txt
     fi
+    #불필요한 서비스 disable
+    systemctl disable bluetooth.service
+    systemctl disable iscsi.service
+    systemctl disable ksm.service
+    systemctl disable ksmtuned.service
+    systemctl disable libstoragemgmt.service
+    systemctl disable libvirtd.service
+    systemctl disable NetworkManager.service
+    systemctl stop    NetworkManager.service
+    systemctl disable NetworkManager-dispatcher.service
+    systemctl disable NetworkManager-wait-online.service
+    systemctl disable spice-vdagentd.service
+    systemctl disable vmtoolsd.service
+    systemctl disable ModemManager.service
+    systemctl disable cups.service
+    systemctl disable cups-browsed.service
   ;;
   centos8 )
     echo "" | tee -a /root/install_log.txt
@@ -297,6 +313,20 @@ case $OS in
       echo "" | tee -a /root/install_log.txt
       echo "The package has already been installed." | tee -a /root/install_log.txt
     fi
+    # 불필요한 서비스 disable
+    systemctl disable bluetooth.service
+    systemctl disable iscsi.service
+    systemctl disable ksm.service
+    systemctl disable ksmtuned.service
+    systemctl disable libstoragemgmt.service
+    systemctl disable libvirtd.service
+    systemctl disable spice-vdagentd.service
+    systemctl disable vmtoolsd.service
+    systemctl disable ModemManager.service
+    systemctl disable cups.service
+    systemctl disable cups-browsed.service
+    systemctl disable cups.path
+    systemctl disable cups.socket
   ;;
   ubuntu1604 | ubuntu1804 | ubuntu2004 )
     echo "" | tee -a /root/install_log.txt
@@ -307,27 +337,23 @@ case $OS in
     if [ $? != 0 ]
     then
       apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux wget figlet >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get install -y net-tools ethtool xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python >> /root/install_log.txt 2> /root/log_err.txt
-      DEBIAN_FRONTEND=noninteractive apt-get install -y mailutils smartmontools >> /root/install_log.txt 2> /root/log_err.txt
+      apt-get install -y net-tools ethtool xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python mlocate >> /root/install_log.txt 2> /root/log_err.txt
+      DEBIAN_FRONTEND=noninteractive apt-get install -y smartmontools >> /root/install_log.txt 2> /root/log_err.txt
       apt-get -y install ubuntu-desktop dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> /root/install_log.txt 2> /root/log_err.txt
       apt-get -y install libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd postfix >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
-      # 불필요한 서비스 disable
-      systemctl disable cups-browsed.service >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl disable cups.service >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl disable iscsi.service >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl disable ksm.service >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl disable ksmtuned.service >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl disable libstoragemgmt.service >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl disable libvirtd.service >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl disable spice-vdagentd.service >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl disable vmtoolsd.service >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl disable ModemManager.service >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl disable bluetooth.service >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl disable NetworkManager.service >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl stop    NetworkManager.service >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl disable NetworkManager-dispatcher.service >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl disable NetworkManager-wait-online.service >> /root/install_log.txt 2> /root/log_err.txt
+      #불필요한 서비스 disable
+      systemctl disable bluetooth.service
+      systemctl disable iscsi.service
+      systemctl disable ksm.service
+      systemctl disable ksmtuned.service
+      systemctl disable libstoragemgmt.service
+      systemctl disable libvirtd.service
+      systemctl disable spice-vdagentd.service
+      systemctl disable vmtoolsd.service
+      systemctl disable ModemManager.service
+      systemctl disable cups.service
+      systemctl disable cups-browsed.service
       sleep 3
       ## ipmi 여부로 PC, Server 판단
       dmidecode | grep -i ipmi &> /dev/null
@@ -785,7 +811,12 @@ then
       then
         echo "" | tee -a /root/install_log.txt
         echo "End of CPU version LAS" | tee -a /root/install_log.txt
-        sed -i '13a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
+        if [ $OS = "ubuntu1604" ]
+        then
+          sed -i '13a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
+        else
+          sed -i '1a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
+        fi
         systemctl set-default graphical.target >> /root/install_log.txt 2> /root/log_err.txt
         reboot
       else
@@ -1072,7 +1103,7 @@ locate rstudio  &> /dev/null
 if [ $? != 0 ]
 then
   case $OS in
-    centos7 | centos8 )
+    centos7 )
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package Install Start" | tee -a /root/install_log.txt
       ## R,R-sutdio install
@@ -1100,12 +1131,6 @@ then
     centos8 )
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package Install Start" | tee -a /root/install_log.txt
-      ## Pycharm install
-      systemctl enable --now snapd.socket >> /root/install_log.txt 2> /root/log_err.txt
-      ln -s /var/lib/snapd/snap /snap
-      systemctl restart snapd.socket >> /root/install_log.txt 2> /root/log_err.txt
-      sleep 3
-      snap install pycharm-community --classic >> /root/install_log.txt 2> /root/log_err.txt
       ## R,R-studio Install
       wget https://download2.rstudio.org/server/centos8/x86_64/rstudio-server-rhel-1.3.959-x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
       dnf install -y rstudio-server-rhel-1.3.959-x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
@@ -1119,12 +1144,18 @@ then
       npm install -g configurable-http-proxy >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package install complete" | tee -a /root/install_log.txt
+      ## Pycharm install
+      systemctl enable --now snapd.socket >> /root/install_log.txt 2> /root/log_err.txt
+      ln -s /var/lib/snapd/snap /snap
+      systemctl restart snapd.socket >> /root/install_log.txt 2> /root/log_err.txt
+      sleep 3
+      snap install pycharm-community --classic >> /root/install_log.txt 2> /root/log_err.txt
     ;;
     ubuntu1604 )
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package Install Start" | tee -a /root/install_log.txt
       apt-get install -y dkms linux-generic-hwe-16.04 xserver-xorg-hwe-16.04 >> /root/install_log.txt 2> /root/log_err.txt
-      ## R server install
+      ## R,R-studio Install
       apt-get install -y  r-base gdebi-core >> /root/install_log.txt 2> /root/log_err.txt
       wget https://download2.rstudio.org/server/trusty/amd64/rstudio-server-1.2.5019-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
       yes | gdebi rstudio-server-1.2.5019-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
@@ -1145,7 +1176,7 @@ then
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package Install Start" | tee -a /root/install_log.txt
       apt-get install -y dkms linux-generic-hwe-18.04 xserver-xorg-hwe-18.04 >> /root/install_log.txt 2> /root/log_err.txt
-      ## R Server install
+      ## R,R-studio Install
       apt-get install -y  r-base gdebi-core >> /root/install_log.txt 2> /root/log_err.txt
       wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5019-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
       yes | gdebi rstudio-server-1.2.5019-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
@@ -1174,7 +1205,7 @@ then
     ubuntu2004 )
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package Install Start" | tee -a /root/install_log.txt
-      ## R Server install
+      ## R,R-studio Install
       apt-get install -y r-base >> /root/install_log.txt 2> /root/log_err.txt
       apt-get install -y gdebi-core >> /root/install_log.txt 2> /root/log_err.txt
       wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.3.1073-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
@@ -1235,8 +1266,12 @@ then
       sed -i '12a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.d/rc.local
       systemctl set-default graphical.target >> /root/install_log.txt 2> /root/log_err.txt
     ;;
-    ubuntu1604 | ubuntu1804 | ubuntu2004 )
+    ubuntu1604 )
       sed -i '13a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
+      systemctl set-default graphical.target >> /root/install_log.txt 2> /root/log_err.txt
+    ;;
+    ubuntu1804 | ubuntu2004 )
+      sed -i '1a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
       systemctl set-default graphical.target >> /root/install_log.txt 2> /root/log_err.txt
     ;;
     *)
@@ -1317,8 +1352,12 @@ then
         sed -i '12a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.d/rc.local
         systemctl set-default  multi-user.target
       ;;
-      ubuntu1604 | ubuntu1804 | ubuntu2004 )
+      ubuntu1604 )
         sed -i '13a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
+        systemctl set-default  multi-user.target
+      ;;
+      ubuntu1804 | ubuntu2004 )
+        sed -i '1a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
         systemctl set-default  multi-user.target
       ;;
       *)
@@ -1436,10 +1475,13 @@ then
       sed -i '12a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.d/rc.local
       systemctl set-default  multi-user.target | tee -a /root/install_log.txt
     ;;
-    ubuntu1604 | ubuntu1804 | ubuntu2004 )
+    ubuntu1604 )
       sed -i '13a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
       systemctl set-default  multi-user.target | tee -a /root/install_log.txt
-      cat /dev/null > /var/spool/mail/root
+    ;;
+    ubuntu1804 | ubuntu2004 )
+      sed -i '1a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
+      systemctl set-default  multi-user.target | tee -a /root/install_log.txt
     ;;
     *)
     ;;
