@@ -382,7 +382,7 @@ sleep 3
 echo "" | tee -a /root/install_log.txt
 
 # 6. 프로필 설정 
-cat /root/.bashrc | grep -i "export PS1" &> /dev/null
+cat /etc/profile | grep Dasandata &> /dev/null
 if [ $? != 0 ]
   then
     echo "" | tee -a /root/install_log.txt
@@ -414,7 +414,7 @@ sleep 3
 echo "" | tee -a /root/install_log.txt
 
 ## MOTD 진행 (CentOS7,Ubuntu16.04 제외)
-cat /etc/profile | grep motd &> /dev/null
+cat /etc/profile | grep MOTD &> /dev/null
 if [ $? != 0 ]
 then
   case $OS in
@@ -687,9 +687,8 @@ case $OS in
       then
         perl -pi -e "s/Port 22/Port 7777/g" /etc/ssh/sshd_config
       else
-        echo "" | tee -a /root/install_log.txt
+        perl -pi -e "s/#Port 22/Port 7777/g" /etc/ssh/sshd_config
       fi
-      perl -pi -e "s/#Port 22/Port 7777/g" /etc/ssh/sshd_config
       perl -pi -e "s/PermitRootLogin prohibit-password/PermitRootLogin no/g" /etc/ssh/sshd_config
       echo "AddressFamily inet" >> /etc/ssh/sshd_config
       systemctl restart sshd >> /root/install_log.txt 2> /root/log_err.txt
@@ -740,33 +739,32 @@ echo "" | tee -a /root/install_log.txt
 cat /root/hwcheck.txt &> /dev/null
 if [ $? != 0 ]
 then
-  echo "H/W Check Start" | tee -a /root/install_log.txt
+  echo "===== H/W Check Start =====" | tee -a /root/install_log.txt
   touch /root/hwcheck.txt
-  echo "========== H/W Check Start =============" >> /root/hwcheck.txt
-  echo === System === >> /root/hwcheck.txt
+  echo "=====  H/W Check Start =====" >> /root/hwcheck.txt
+  echo "=====  System =====" >> /root/hwcheck.txt
   dmidecode --type system | grep -v "^$\|#\|SMBIOS\|Handle\|Not" >> /root/hwcheck.txt
-  echo === CPU === >> /root/hwcheck.txt
+  echo "===== CPU =====" >> /root/hwcheck.txt
   lscpu | grep -v "Flags\|NUMA" >> /root/hwcheck.txt
-  echo === Memory Devices === >> /root/hwcheck.txt
+  echo "===== Memory Devices =====" >> /root/hwcheck.txt
   dmidecode --type 16 | grep -v "dmidecode\|SMBIOS\|Handle" >> /root/hwcheck.txt
   dmidecode --type memory | grep "Number Of Devices\|Size\|Locator\|Clock\|DDR\|Rank" | grep -v "No\|Unknown" >> /root/hwcheck.txt
   cat /proc/meminfo | grep MemTotal >> /root/hwcheck.txt
   free -h >> /root/hwcheck.txt
-  echo === PCIe === >> /root/hwcheck.txt
+  echo "===== PCIe =====" >> /root/hwcheck.txt
   lspci | grep -i vga >> /root/hwcheck.txt
   lspci | grep -i nvidia >> /root/hwcheck.txt
   dmidecode | grep NIC >> /root/hwcheck.txt
   lspci | grep -i communication >> /root/hwcheck.txt
   dmesg | grep NIC >> /root/hwcheck.txt
-  echo === Power Supply === >> /root/hwcheck.txt
+  echo "===== Power Supply =====" >> /root/hwcheck.txt
   dmidecode --type 39  | grep "System\|Name:\|Capacity" >> /root/hwcheck.txt
-  echo "=== Disk & Partition ===" >> /root/hwcheck.txt
+  echo "===== Disk & Partition =====" >> /root/hwcheck.txt
   blkid >> /root/hwcheck.txt
-  echo "=== OS release & kernel ===" >> /root/hwcheck.txt
+  echo "===== OS release & kernel =====" >> /root/hwcheck.txt
   uname -a >> /root/hwcheck.txt
-  echo "========== H/W Check Complete =============" >> /root/hwcheck.txt
   echo "" | tee -a /root/install_log.txt
-  echo "H/W Check Complete" | tee -a /root/install_log.txt
+  echo "=====  H/W Check Complete ===== " | tee -a /root/install_log.txt
 else
   echo "" | tee -a /root/install_log.txt
   echo "H/W check has already been completed." | tee -a /root/install_log.txt
@@ -1464,7 +1462,7 @@ sleep 3
 echo "" | tee -a /root/install_log.txt
 
 ## 스크립트 완료 정리 후 재부팅
-cat /etc/crontab | grep dasan &> /dev/null
+which racadm &> /dev/null
 if [ $? = 0 ]
 then
 # rc.local 기본 값으로 변경
@@ -1488,8 +1486,8 @@ then
   esac
   reboot
 else
-  echo "" | tee -a /root/install_log.txt
-  echo "Mail setting Error". | tee -a /root/install_log.txt
+  echo "Script Error Check PLZ" | tee -a /root/install_log.txt
+  exit 111
 fi
 
 ############################################################
