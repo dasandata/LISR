@@ -52,7 +52,7 @@ then
       OS=$(cat /etc/redhat-release | awk '{print$1,$4}' | cut -d "." -f 1 | tr -d " " | tr '[A-Z]' '[a-z]')
       if [ $OS = "centos8" ]
       then
-        select CUDAV in 10-2 11-0 11-1 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
+        select CUDAV in 11-0 11-1 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
         echo $CUDAV >> /root/cudaversion.txt
       else
         select CUDAV in 10-0 10-1 10-2 11-0 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
@@ -233,14 +233,14 @@ case $OS in
     echo "" | tee -a /root/install_log.txt
     echo "$OS Package Install" | tee -a /root/install_log.txt
     ## Package 설치를 ipmi 여부로 Server와 PC를 나눠서 진행
-    rpm -qa | grep -i epel &> /dev/null
+    rpm -qa | grep -i ethtool &> /dev/null
     if [ $? != 0 ]
     then
       yum -y update >> /root/install_log.txt 2> /root/log_err.txt
       yum -y  install epel-release >> /root/install_log.txt 2> /root/log_err.txt
       yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig >> /root/install_log.txt 2> /root/log_err.txt
-      yum install -y tcsh ethtool tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ mailx snapd >> /root/install_log.txt 2> /root/log_err.txt
-      yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs >> /root/install_log.txt 2> /root/log_err.txt
+      yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ mailx snapd >> /root/install_log.txt 2> /root/log_err.txt
+      yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs ethtool >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       dmidecode | grep -i ipmi &> /dev/null
       if [ $? = 0 ]
@@ -283,7 +283,7 @@ case $OS in
     echo "" | tee -a /root/install_log.txt
     echo "$OS Package Install" | tee -a /root/install_log.txt
     ## Package 설치를 ipmi 여부로 Server와 PC를 나눠서 진행 - Python도 여기서 설치됨 -
-    rpm -qa | grep -i epel &> /dev/null
+    rpm -qa | grep -i ethtool &> /dev/null
     if [ $? != 0 ]
     then
       dnf -y update >> /root/install_log.txt 2> /root/log_err.txt
@@ -291,9 +291,9 @@ case $OS in
       dnf --refresh -y upgrade >> /root/install_log.txt 2> /root/log_err.txt
       systemctl disable kdump.service >> /root/install_log.txt 2> /root/log_err.txt
       dnf install -y epel-release >> /root/install_log.txt 2> /root/log_err.txt
-      dnf install -y vim pciutils ethtool openssh mlocate nfs-utils xauth firefox nautilus wget >> /root/install_log.txt 2> /root/log_err.txt
+      dnf install -y vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget >> /root/install_log.txt 2> /root/log_err.txt
       dnf install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ cmake smartmontools >> /root/install_log.txt 2> /root/log_err.txt
-      dnf install -y dstat perl perl-CPAN perl-core net-tools openssl-devel snapd mailx postfix >> /root/install_log.txt 2> /root/log_err.txt
+      dnf install -y dstat perl perl-CPAN perl-core net-tools openssl-devel snapd ethtool >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       dmidecode | grep -i ipmi &> /dev/null
       if [ $? = 0 ]
@@ -336,11 +336,11 @@ case $OS in
     dpkg -l | grep -i ethtool &> /dev/null
     if [ $? != 0 ]
     then
-      apt-get install -y vim nfs-common rdate xauth firefox gcc make locate htop tmux wget figlet >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get install -y net-tools ethtool xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python mlocate >> /root/install_log.txt 2> /root/log_err.txt
+      apt-get install -y vim nfs-common rdate xauth firefox gcc make htop tmux wget figlet >> /root/install_log.txt 2> /root/log_err.txt
+      apt-get install -y net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python mlocate >> /root/install_log.txt 2> /root/log_err.txt
       DEBIAN_FRONTEND=noninteractive apt-get install -y smartmontools >> /root/install_log.txt 2> /root/log_err.txt
       apt-get -y install ubuntu-desktop dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get -y install libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd postfix >> /root/install_log.txt 2> /root/log_err.txt
+      apt-get -y install libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       #불필요한 서비스 disable
       systemctl disable bluetooth.service
