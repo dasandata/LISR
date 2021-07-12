@@ -238,8 +238,8 @@ case $OS in
     then
       yum -y update >> /root/install_log.txt 2> /root/log_err.txt
       yum -y  install epel-release >> /root/install_log.txt 2> /root/log_err.txt
-      yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig >> /root/install_log.txt 2> /root/log_err.txt
-      yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ mailx snapd >> /root/install_log.txt 2> /root/log_err.txt
+      yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget >> /root/install_log.txt 2> /root/log_err.txt
+      yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ snapd >> /root/install_log.txt 2> /root/log_err.txt
       yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs ethtool >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       dmidecode | grep -i ipmi &> /dev/null
@@ -338,9 +338,9 @@ case $OS in
     then
       apt-get install -y vim nfs-common rdate xauth firefox gcc make htop tmux wget figlet >> /root/install_log.txt 2> /root/log_err.txt
       apt-get install -y net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python mlocate >> /root/install_log.txt 2> /root/log_err.txt
-      DEBIAN_FRONTEND=noninteractive apt-get install -y smartmontools >> /root/install_log.txt 2> /root/log_err.txt
       apt-get -y install ubuntu-desktop dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> /root/install_log.txt 2> /root/log_err.txt
       apt-get -y install libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool >> /root/install_log.txt 2> /root/log_err.txt
+      DEBIAN_FRONTEND=noninteractive apt-get install -y smartmontools >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       #불필요한 서비스 disable
       systemctl disable bluetooth.service
@@ -491,6 +491,7 @@ then
       echo "" | tee -a /root/install_log.txt
       echo "Python Install" | tee -a /root/install_log.txt
       dnf install -y python2 python2-devel python3 python3-devel >> /root/install_log.txt 2> /root/log_err.txt
+
       echo "" | tee -a /root/install_log.txt
       echo "Python Install complete" | tee -a /root/install_log.txt
     ;;
@@ -502,6 +503,7 @@ then
       curl -fsSL -o- https://bootstrap.pypa.io/pip/3.5/get-pip.py | python3.5 >> /root/install_log.txt 2> /root/log_err.txt
       pip   install --upgrade pip >> /root/install_log.txt 2> /root/log_err.txt
       pip3   install --upgrade pip >> /root/install_log.txt 2> /root/log_err.txt
+      perl -pi -e 's/python3/python/'   /usr/local/bin/pip
       echo "" | tee -a /root/install_log.txt
       echo "Python Install complete" | tee -a /root/install_log.txt
     ;;
@@ -511,6 +513,7 @@ then
       apt-get install -y  python-pip python3-pip python-tk python3-tk >> /root/install_log.txt 2> /root/log_err.txt
       pip install --upgrade pip >> /root/install_log.txt 2> /root/log_err.txt
       pip3 install --upgrade pip >> /root/install_log.txt 2> /root/log_err.txt
+      perl -pi -e 's/python3/python/'   /usr/local/bin/pip
       echo "" | tee -a /root/install_log.txt
       echo "Python Install complete" | tee -a /root/install_log.txt
     ;;
