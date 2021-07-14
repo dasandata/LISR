@@ -414,7 +414,7 @@ sleep 3
 echo "" | tee -a /root/install_log.txt
 
 ## MOTD 진행 (CentOS7,Ubuntu16.04 제외)
-cat /etc/profile | grep MOTD &> /dev/null
+cat /etc/profile | grep Motd &> /dev/null
 if [ $? != 0 ]
 then
   case $OS in
