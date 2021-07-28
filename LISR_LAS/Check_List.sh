@@ -175,8 +175,6 @@ sleep 1
 
 # H/W 사양 체크
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== H/W Check Start ====="  | tee -a /root/LAS_Install_Log.txt
-echo ""  | tee -a /root/LAS_Install_Log.txt
 cat /root/hwcheck.txt  >> /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
 echo "===== H/W Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
@@ -240,6 +238,7 @@ echo ""  | tee -a /root/LAS_Install_Log.txt
 echo "===== GPU Install Check ====="  | tee -a /root/LAS_Install_Log.txt
 nvidia-smi -L  >> /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
+sleep 2
 echo "===== CUDA version Check ====="  | tee -a /root/LAS_Install_Log.txt
 which nvcc  >> /root/LAS_Install_Log.txt
 nvcc -V  >> /root/LAS_Install_Log.txt
@@ -278,7 +277,7 @@ case $OSCHECK in
         rpm -qa | grep r-base  >> /root/LAS_Install_Log.txt
         echo ""  | tee -a /root/LAS_Install_Log.txt
         echo "===== JupyterHUB service Check ====="  | tee -a /root/LAS_Install_Log.txt
-        systemctl enable jupyterhub.service  >> /root/LAS_Install_Log.txt
+        systemctl status jupyterhub.service  >> /root/LAS_Install_Log.txt
     ;;
     ubuntu )
         echo "===== R,R-Server Check ====="  | tee -a /root/LAS_Install_Log.txt
@@ -286,7 +285,7 @@ case $OSCHECK in
         dpkg -l | grep r-base  >> /root/LAS_Install_Log.txt
         echo ""  | tee -a /root/LAS_Install_Log.txt
         echo "===== JupyterHUB service Check ====="  | tee -a /root/LAS_Install_Log.txt
-        systemctl enable jupyterhub.service  >> /root/LAS_Install_Log.txt
+        systemctl status jupyterhub.service  >> /root/LAS_Install_Log.txt
     ;;
     *)
     ;;
@@ -328,7 +327,7 @@ sleep 1
 echo ""  | tee -a /root/LAS_Install_Log.txt
 echo "===== MSM Install Check Start ====="  | tee -a /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
-ls /usr/local/MegaRAID\ Storage\ Manager/  >> /root/LAS_Install_Log.txt
+ls /usr/local/MegaRAID\ Storage\ Manager/  | grep start >> /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
 echo "===== MSM Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
 
