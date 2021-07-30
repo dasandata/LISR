@@ -233,14 +233,14 @@ case $OS in
     echo "" | tee -a /root/install_log.txt
     echo "$OS Package Install" | tee -a /root/install_log.txt
     ## Package 설치를 ipmi 여부로 Server와 PC를 나눠서 진행
-    rpm -qa | grep -i ethtool &> /dev/null
+    rpm -qa | grep -i htop &> /dev/null
     if [ $? != 0 ]
     then
       yum -y update >> /root/install_log.txt 2> /root/log_err.txt
       yum -y  install epel-release >> /root/install_log.txt 2> /root/log_err.txt
-      yum install -y vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget >> /root/install_log.txt 2> /root/log_err.txt
+      yum install -y ethtool pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget >> /root/install_log.txt 2> /root/log_err.txt
       yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ snapd >> /root/install_log.txt 2> /root/log_err.txt
-      yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs ethtool >> /root/install_log.txt 2> /root/log_err.txt
+      yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs vim >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       dmidecode | grep -i ipmi &> /dev/null
       if [ $? = 0 ]
@@ -283,7 +283,7 @@ case $OS in
     echo "" | tee -a /root/install_log.txt
     echo "$OS Package Install" | tee -a /root/install_log.txt
     ## Package 설치를 ipmi 여부로 Server와 PC를 나눠서 진행 - Python도 여기서 설치됨 -
-    rpm -qa | grep -i ethtool &> /dev/null
+    rpm -qa | grep -i htop &> /dev/null
     if [ $? != 0 ]
     then
       dnf -y update >> /root/install_log.txt 2> /root/log_err.txt
@@ -331,15 +331,15 @@ case $OS in
   ubuntu1604 | ubuntu1804 | ubuntu2004 )
     echo "" | tee -a /root/install_log.txt
     echo "$OS Package Install" | tee -a /root/install_log.txt
-    apt-get update >> /root/install_log.txt 2> /root/log_err.txt
     ## Package 설치를 ipmi 여부로 Server와 PC를 나눠서 진행
-    dpkg -l | grep -i ethtool &> /dev/null
+    dpkg -l | grep -i htop &> /dev/null
     if [ $? != 0 ]
     then
-      apt-get install -y vim nfs-common rdate xauth firefox gcc make htop tmux wget figlet >> /root/install_log.txt 2> /root/log_err.txt
+      apt-get update >> /root/install_log.txt 2> /root/log_err.txt
+      apt-get install -y vim nfs-common rdate xauth firefox gcc make tmux wget figlet >> /root/install_log.txt 2> /root/log_err.txt
       apt-get install -y net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python mlocate >> /root/install_log.txt 2> /root/log_err.txt
       apt-get -y install ubuntu-desktop dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get -y install libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool >> /root/install_log.txt 2> /root/log_err.txt
+      apt-get -y install libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool htop >> /root/install_log.txt 2> /root/log_err.txt
       DEBIAN_FRONTEND=noninteractive apt-get install -y smartmontools >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       #불필요한 서비스 disable
