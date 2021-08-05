@@ -1367,7 +1367,7 @@ then
   reboot
 else
   echo "" | tee -a /root/install_log.txt
-  echo "The Dell server-only alert mailing setup begins." | tee -a /root/install_log.txt
+  echo "The Dell server only OMSA setup begins." | tee -a /root/install_log.txt
 fi
 
 echo "" | tee -a /root/install_log.txt
@@ -1465,7 +1465,8 @@ sleep 3
 echo "" | tee -a /root/install_log.txt
 
 ## 스크립트 완료 정리 후 재부팅
-which racadm &> /dev/null
+updatedb
+locate racadm &> /dev/null
 if [ $? = 0 ]
 then
 # rc.local 기본 값으로 변경
