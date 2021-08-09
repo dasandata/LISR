@@ -129,7 +129,7 @@ sleep 1
 echo ""  | tee -a /root/LAS_Install_Log.txt
 echo "===== Python Pacakage Install Check ====="  | tee -a /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
-pip3 list >> /root/LAS_Install_Log.txt
+pip3 list | grep tensor >> /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
 echo "===== Python Pacakage Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
 
@@ -190,13 +190,13 @@ then
     case $OSCHECK in 
         centos )
             sed -i '/root/d' /etc/rc.d/rc.local
-            rm -f cudaversion.txt nvidia.txt
-            rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
+            rm -rf cudaversion.txt nvidia.txt log_err.txt install_log.txt 
+            rm -rf nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
             exit 5
         ;;
         ubuntu )
             sed -i '/root/d' /etc/rc.local
-            rm -f cudaversion.txt nvidia.txt
+            rm -rf cudaversion.txt nvidia.txt log_err.txt install_log.txt 
             exit 5
         ;;
         *)
@@ -304,13 +304,15 @@ then
     case $OSCHECK in 
         centos )
             sed -i '/root/d' /etc/rc.d/rc.local
-            rm -f cudaversion.txt nvidia.txt
-            rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
+            sleep 1
+            rm -rf cudaversion.txt nvidia.txt log_err.txt install_log.txt 
+            rm -rf nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
             exit 10
         ;;
         ubuntu )
             sed -i '/root/d' /etc/rc.local
-            rm -f cudaversion.txt nvidia.txt
+            sleep 1
+            rm -rf cudaversion.txt nvidia.txt log_err.txt install_log.txt 
             exit 10
         ;;
         *)
@@ -341,13 +343,15 @@ then
         case $OSCHECK in 
         centos )
             sed -i '/root/d' /etc/rc.d/rc.local
-            rm -f cudaversion.txt nvidia.txt
-            rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
+            sleep 1
+            rm -rf cudaversion.txt nvidia.txt log_err.txt install_log.txt 
+            rm -rf nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
             exit 15
         ;;
         ubuntu )
             sed -i '/root/d' /etc/rc.local
-            rm -f cudaversion.txt nvidia.txt
+            sleep 1
+            rm -rf cudaversion.txt nvidia.txt log_err.txt install_log.txt 
             exit 15
         ;;
         *)
@@ -375,14 +379,17 @@ echo "===== Check List Complete ====="
 case $OSCHECK in 
     centos )
         sed -i '/root/d' /etc/rc.d/rc.local
-        rm -f cudaversion.txt nvidia.txt
-        rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
+        sleep 1
+        rm -rf cudaversion.txt nvidia.txt log_err.txt install_log.txt 
+        rm -rf nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
     ;;
     ubuntu )
         sed -i '/root/d' /etc/rc.local
-        rm -f cudaversion.txt nvidia.txt
+        sleep 1
+        rm -rf cudaversion.txt nvidia.txt log_err.txt install_log.txt 
     ;;
     *)
     ;;
 esac
+
 exit 20
