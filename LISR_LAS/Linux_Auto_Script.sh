@@ -205,7 +205,7 @@ case $OSCHECK in
     echo "" | tee -a /root/install_log.txt
     echo "OS is $OS" | tee -a /root/install_log.txt
     ## Repository를 mirror.kakao.com으로 변경
-    REPO=$(awk 'NR == 8 {print$2}' /etc/apt/sources.list)
+    REPO=$(cat /etc/apt/sources.list | grep -v "#\|^$" | head -1 | awk '{ print$2 }')
     if [ $REPO = "http://mirror.kakao.com/ubuntu/" ]
     then
       echo "" | tee -a /root/install_log.txt
@@ -214,7 +214,7 @@ case $OSCHECK in
       echo "" | tee -a /root/install_log.txt
       echo "Repository Change" | tee -a /root/install_log.txt
       perl -pi -e 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-      perl -pi -e 's//security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+      perl -pi -e 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
     fi
   ;;
   *)
