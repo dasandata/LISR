@@ -336,10 +336,10 @@ case $OS in
     if [ $? != 0 ]
     then
       apt-get update >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get install -y vim nfs-common rdate xauth firefox gcc make tmux wget figlet >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get install -y net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python mlocate >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get -y install ubuntu-desktop dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get -y install libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool htop >> /root/install_log.txt 2> /root/log_err.txt
+      apt-get install -y vim nfs-common rdate xauth firefox gcc make tmux wget figlet \
+      net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python mlocate ubuntu-desktop \
+      dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal \
+      libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool htop >> /root/install_log.txt 2> /root/log_err.txt
       DEBIAN_FRONTEND=noninteractive apt-get install -y smartmontools >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       #불필요한 서비스 disable
@@ -998,6 +998,7 @@ then
     ubuntu2004 )
       echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
       apt-get -y install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
+      sleep 1
       cudav="${cudav/-/.}"
       systemctl enable nvidia-persistenced >> /root/install_log.txt 2> /root/log_err.txt
       echo " "  >> /etc/profile
