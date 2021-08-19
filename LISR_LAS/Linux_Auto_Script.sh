@@ -238,9 +238,9 @@ case $OS in
     then
       yum -y update >> /root/install_log.txt 2> /root/log_err.txt
       yum -y  install epel-release >> /root/install_log.txt 2> /root/log_err.txt
-      yum install -y ethtool pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget >> /root/install_log.txt 2> /root/log_err.txt
-      yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ snapd >> /root/install_log.txt 2> /root/log_err.txt
-      yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs vim >> /root/install_log.txt 2> /root/log_err.txt
+      yum install -y ethtool pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget bind-utils \
+      tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ snapd \
+      cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs vim >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       dmidecode | grep -i ipmi &> /dev/null
       if [ $? = 0 ]
@@ -916,7 +916,8 @@ echo "" | tee -a /root/install_log.txt
 
 # 14. CUDA 설치 및 PATH 설정
 ## 저장소에 CentOS8 , Ubuntu20 2가지는 CUDA 11.0 버전만 파일이 있어 나머지 버전 추후 추가 예정
-cat /etc/profile | grep cuda &> /dev/null
+updatedb
+locate nvcc
 if [ $? != 0 ]
 then
   CUDAV=$(cat /root/cudaversion.txt)
@@ -924,7 +925,9 @@ then
     centos7 )
       echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
       yum -y install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
+      sleep 1
       CUDAV="${CUDAV/-/.}"
+      sleep 1
       systemctl enable nvidia-persistenced >> /root/install_log.txt 2> /root/log_err.txt
       echo " "  >> /etc/profile
       echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
@@ -936,20 +939,15 @@ then
       source /etc/profile
       source /root/.bashrc
       ls /usr/local/ | grep cuda >> /root/install_log.txt 2> /root/log_err.txt
-      nvidia-smi -L >> /root/install_log.txt 2> /root/log_err.txt
-      nvidia-smi >> /root/install_log.txt 2> /root/log_err.txt
-      which nvcc >> /root/install_log.txt 2> /root/log_err.txt
-      nvcc -V >> /root/install_log.txt 2> /root/log_err.txt
-      cp -r  /usr/local/cuda-$CUDAV/samples/   ~/NVIDIA_CUDA-"$CUDAV"_Samples >> /root/install_log.txt 2> /root/log_err.txt
-      cd ~/NVIDIA_CUDA-"$CUDAV"_Samples >> /root/install_log.txt 2> /root/log_err.txt
-      time make -j$(grep process /proc/cpuinfo | wc -l) >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
     ;;
     centos8 )
       echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
       dnf -y install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
+      sleep 1
       CUDAV="${CUDAV/-/.}"
+      sleep 1
       systemctl enable nvidia-persistenced.service >> /root/install_log.txt 2> /root/log_err.txt
       systemctl start nvidia-persistenced.service >> /root/install_log.txt 2> /root/log_err.txt
       echo " "  >> /etc/profile
@@ -962,19 +960,15 @@ then
       source /etc/profile
       source /root/.bashrc
       ls /usr/local/ | grep cuda >> /root/install_log.txt 2> /root/log_err.txt
-      nvidia-smi -L >> /root/install_log.txt 2> /root/log_err.txt
-      nvidia-smi >> /root/install_log.txt 2> /root/log_err.txt
-      nvcc -V >> /root/install_log.txt 2> /root/log_err.txt
-      cp -r  /usr/local/cuda-$CUDAV/samples/   ~/NVIDIA_CUDA-"$CUDAV"_Samples >> /root/install_log.txt 2> /root/log_err.txt
-      cd ~/NVIDIA_CUDA-"$CUDAV"_Samples >> /root/install_log.txt 2> /root/log_err.txt
-      time make -j$(grep process /proc/cpuinfo | wc -l) >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
     ;;
     ubuntu1604 | ubuntu1804 )
       echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
       apt-get -y install cuda-$CUDAV  >> /root/install_log.txt 2> /root/log_err.txt
+      sleep 1
       CUDAV="${CUDAV/-/.}"
+      sleep 1
       systemctl enable nvidia-persistenced >> /root/install_log.txt 2> /root/log_err.txt
       echo " "  >> /etc/profile
       echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
@@ -986,18 +980,13 @@ then
       source /etc/profile
       source /root/.bashrc
       ls /usr/local/ | grep cuda >> /root/install_log.txt 2> /root/log_err.txt
-      nvidia-smi -L >> /root/install_log.txt 2> /root/log_err.txt
-      nvidia-smi >> /root/install_log.txt 2> /root/log_err.txt
-      nvcc -V >> /root/install_log.txt 2> /root/log_err.txt
-      cp -r  /usr/local/cuda-$CUDAV/samples/   ~/NVIDIA_CUDA-"$CUDAV"_Samples >> /root/install_log.txt 2> /root/log_err.txt
-      cd ~/NVIDIA_CUDA-"$CUDAV"_Samples >> /root/install_log.txt 2> /root/log_err.txt
-      time make -j$(grep process /proc/cpuinfo | wc -l) >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
     ;;
     ubuntu2004 )
       echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
       apt-get -y install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
+      sleep 1
       cudav="${cudav/-/.}"
       sleep 1
       systemctl enable nvidia-persistenced >> /root/install_log.txt 2> /root/log_err.txt
@@ -1011,12 +1000,6 @@ then
       source /etc/profile
       source /root/.bashrc
       ls /usr/local/ | grep cuda >> /root/install_log.txt 2> /root/log_err.txt
-      nvidia-smi -L >> /root/install_log.txt 2> /root/log_err.txt
-      nvidia-smi >> /root/install_log.txt 2> /root/log_err.txt
-      nvcc -V >> /root/install_log.txt 2> /root/log_err.txt
-      cp -r  /usr/local/cuda-$CUDAV/samples/   ~/NVIDIA_CUDA-"$CUDAV"_Samples >> /root/install_log.txt 2> /root/log_err.txt
-      cd ~/NVIDIA_CUDA-"$CUDAV"_Samples >> /root/install_log.txt 2> /root/log_err.txt
-      time make -j$(grep process /proc/cpuinfo | wc -l) >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
     ;;
@@ -1494,18 +1477,3 @@ else
   echo "Script Error Check PLZ" | tee -a /root/install_log.txt
   exit 111
 fi
-
-############################################################
-## 스크립트 완료 후 생성되는 파일 목록
-## rm -f cudaversion.txt nvidia.txt
-## rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm  cuda-repo-rhel8-10.2.89-1.x86_64.rpm
-## centos는 추가로 삭제 nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm
-## centos는 추가로 삭제 cuda-repo-rhel8-10.2.89-1.x86_64.rpm
-## install_log / 스크립트 실행 부분 표시하는 파일
-## log_err.txt / 출력 도중 에러 저장되는 파일
-## cudaversion.txt / 쿠다 버전 선택 변수 저장 파일
-## nvidia.txt / GPU 존재 여부 확인 변수 저장 파일
-## hwcheck.txt / 하드웨어 정보 파일
-## cuda-repo-rhel8-10.2.89-1.x86_64.rpm / centos에서 쿠다 저장소 설정시 다운받은 파일
-## nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm / centos에서 쿠다 저장소 설정시 다운받은 파일
-############################################################
