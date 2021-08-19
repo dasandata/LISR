@@ -339,7 +339,7 @@ case $OS in
       apt-get install -y vim nfs-common rdate xauth firefox gcc make tmux wget figlet \
       net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python mlocate ubuntu-desktop \
       dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal \
-      libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool htop >> /root/install_log.txt 2> /root/log_err.txt
+      libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool htop dnsutils >> /root/install_log.txt 2> /root/log_err.txt
       DEBIAN_FRONTEND=noninteractive apt-get install -y smartmontools >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       #불필요한 서비스 disable
