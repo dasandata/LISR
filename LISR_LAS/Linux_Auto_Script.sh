@@ -291,9 +291,9 @@ case $OS in
       dnf --refresh -y upgrade >> /root/install_log.txt 2> /root/log_err.txt
       systemctl disable kdump.service >> /root/install_log.txt 2> /root/log_err.txt
       dnf install -y epel-release >> /root/install_log.txt 2> /root/log_err.txt
-      dnf install -y vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget >> /root/install_log.txt 2> /root/log_err.txt
-      dnf install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ cmake smartmontools >> /root/install_log.txt 2> /root/log_err.txt
-      dnf install -y dstat perl perl-CPAN perl-core net-tools openssl-devel snapd ethtool >> /root/install_log.txt 2> /root/log_err.txt
+      dnf install -y vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget \
+      tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ cmake smartmontools \
+      dstat perl perl-CPAN perl-core net-tools openssl-devel snapd ethtool bind-utils >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       dmidecode | grep -i ipmi &> /dev/null
       if [ $? = 0 ]
