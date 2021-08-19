@@ -12,7 +12,7 @@ echo "http://www.dasandata.co.kr"  | tee -a /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
 
 # nouveau 끄기 및 grub 설정
-echo "===== Nouveau, GRUB Check ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### Nouveau, GRUB Check Start #####"  | tee -a /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
 echo "===== IPv6 disable,splash quiet remove check =====" | tee -a /root/LAS_Install_Log.txt
 cat /etc/default/grub | grep LINUX  >> /root/LAS_Install_Log.txt
@@ -21,7 +21,7 @@ cat /etc/modprobe.d/blacklist.conf | grep "blacklist nouveau"  >> /root/LAS_Inst
 echo "===== options nouveau modeset=0 check =====" | tee -a /root/LAS_Install_Log.txt
 cat /etc/modprobe.d/blacklist.conf | grep "options nouveau modeset=0"  >> /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== Nouveau, GRUB Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### Nouveau, GRUB Check Complete #####"  | tee -a /root/LAS_Install_Log.txt
 
 sleep 1
 
@@ -29,22 +29,22 @@ sleep 1
 case $OSCHECK in 
     centos )
         echo ""  | tee -a /root/LAS_Install_Log.txt
-        echo "===== SELINUX Check ====="  | tee -a /root/LAS_Install_Log.txt
+        echo "##### SELINUX Check #####"  | tee -a /root/LAS_Install_Log.txt
         echo ""  | tee -a /root/LAS_Install_Log.txt
         echo "===== selinux = disable ====="  | tee -a /root/LAS_Install_Log.txt
         getenforce  >> /root/LAS_Install_Log.txt
         cat /etc/selinux/config | grep "^SELINUX="  >> /root/LAS_Install_Log.txt
         echo ""  | tee -a /root/LAS_Install_Log.txt
-        echo "===== SELINUX Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
+        echo "##### SELINUX Check Complete #####"  | tee -a /root/LAS_Install_Log.txt
     ;;
     ubuntu )
         echo ""  | tee -a /root/LAS_Install_Log.txt
-        echo "===== Repository Check ====="  | tee -a /root/LAS_Install_Log.txt
+        echo "#####Repository Check #####"  | tee -a /root/LAS_Install_Log.txt
         echo ""  | tee -a /root/LAS_Install_Log.txt
         echo "===== mirror.kakao.com ====="  | tee -a /root/LAS_Install_Log.txt
         cat /etc/apt/sources.list | grep -v "#\|^$" | head -3  >> /root/LAS_Install_Log.txt
         echo ""  | tee -a /root/LAS_Install_Log.txt
-        echo "===== Repository Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
+        echo "#####Repository Check Complete #####"  | tee -a /root/LAS_Install_Log.txt
     ;;
     *)
     ;;
@@ -54,38 +54,45 @@ sleep 1
 
 # 기본 패키지 설치
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== Pacakage Install Check ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### Pacakage Install Check #####"  | tee -a /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
 case $OSCHECK in 
     centos )
         echo "===== Kernel Version Check ====="  | tee -a /root/LAS_Install_Log.txt
         uname -r  >> /root/LAS_Install_Log.txt
+        echo "" | tee -a /root/LAS_Install_Log.txt
         echo "===== epel,htop install ? ====="  | tee -a /root/LAS_Install_Log.txt
         rpm -qa | grep htop  >> /root/LAS_Install_Log.txt
+        echo "" | tee -a /root/LAS_Install_Log.txt
         echo "===== kernel-headers version Check ====="  | tee -a /root/LAS_Install_Log.txt
         rpm -qa | grep kernel-headers  >> /root/LAS_Install_Log.txt
+        echo "" | tee -a /root/LAS_Install_Log.txt
         echo "===== kernel-devel version Check ====="  | tee -a /root/LAS_Install_Log.txt
         rpm -qa | grep kernel-devel  >> /root/LAS_Install_Log.txt
+        echo "" | tee -a /root/LAS_Install_Log.txt
     ;;
     ubuntu )
         echo "===== Kernel Version Check ====="  | tee -a /root/LAS_Install_Log.txt
         uname -r  >> /root/LAS_Install_Log.txt
+        echo "" | tee -a /root/LAS_Install_Log.txt
         echo "===== epel,htop install ? ====="  | tee -a /root/LAS_Install_Log.txt
         dpkg -l | grep htop  >> /root/LAS_Install_Log.txt
+        echo "" | tee -a /root/LAS_Install_Log.txt
         echo "===== kernel-headers Version Check ====="  | tee -a /root/LAS_Install_Log.txt
         dpkg -l | grep -i linux-headers  >> /root/LAS_Install_Log.txt
+        echo "" | tee -a /root/LAS_Install_Log.txt
     ;;
     *)
     ;;
 esac
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== Pacakage Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### Pacakage Check Complete #####"  | tee -a /root/LAS_Install_Log.txt
 
 sleep 1
 
 # 프로필 설정
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== Profile Check ====="  | tee -a /root/LAS_Install_Log.txt
+echo "#####Profile Check #####"  | tee -a /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
 case $OSCHECK in 
     centos )
@@ -98,46 +105,50 @@ case $OSCHECK in
     ;;
 esac
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== Profile Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### Profile Check Complete #####"  | tee -a /root/LAS_Install_Log.txt
 
 sleep 1
 
 # 서버 시간 동기화
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== Time Check ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### Time Check #####"  | tee -a /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
 echo "===== Time ====="  | tee -a /root/LAS_Install_Log.txt
 date  >> /root/LAS_Install_Log.txt
 echo "===== H/W Time ====="  | tee -a /root/LAS_Install_Log.txt
 hwclock  >> /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== Time Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### Time Check Complete #####"  | tee -a /root/LAS_Install_Log.txt
 
 sleep 1
 
 # 파이썬 설치
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== Python Version Check ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### Python Version Check #####"  | tee -a /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
-python3 -V  >> /root/LAS_Install_Log.txt
+python -V  >> /root/LAS_Install_Log.txt
+sleep 1
+python3 -V >> /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== Python Version Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### Python Version Check Complete #####"  | tee -a /root/LAS_Install_Log.txt
 
 sleep 1
 
 # 파이썬 패키지 설치
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== Python Pacakage Install Check ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### Python Pacakage Install Check #####"  | tee -a /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
+pip  list | grep tensor >> /root/LAS_Install_Log.txt
+sleep 1
 pip3 list | grep tensor >> /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== Python Pacakage Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### Python Pacakage Check Complete #####"  | tee -a /root/LAS_Install_Log.txt
 
 sleep 1
 
 # 방화벽 설정
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== Firewall Check ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### Firewall Check #####"  | tee -a /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
 case $OSCHECK in 
     centos )
@@ -158,18 +169,18 @@ case $OSCHECK in
     ;;
 esac
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== Firewall Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### Firewall Check Complete #####"  | tee -a /root/LAS_Install_Log.txt
 
 sleep 1
 
 # 사용자 생성 테스트
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== User Add Check Start ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### User Add Check Start #####"  | tee -a /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
 cat /etc/passwd | grep dasan  >> /root/LAS_Install_Log.txt
 cat /etc/shadow | grep dasan  >> /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== User Add Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### User Add Check Complete #####"  | tee -a /root/LAS_Install_Log.txt
 
 sleep 1
 
@@ -177,26 +188,34 @@ sleep 1
 echo ""  | tee -a /root/LAS_Install_Log.txt
 cat /root/hwcheck.txt  >> /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== H/W Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### H/W Check Complete #####"  | tee -a /root/LAS_Install_Log.txt
 
 sleep 1
 
 # GPU 존재 여부에 따라 아래 체크리스트 실행
-nvidia-smi &> /dev/null
+updatedb
+locate nvcc &> /dev/null
 if [ $? != 0 ]
 then
     echo ""  | tee -a /root/LAS_Install_Log.txt
-    echo "===== Check List Complete ====="  | tee -a /root/LAS_Install_Log.txt
+    echo "##### Check List Complete #####"  | tee -a /root/LAS_Install_Log.txt
     case $OSCHECK in 
         centos )
+            sleep 1
             sed -i '/root/d' /etc/rc.d/rc.local
+            sleep 1
             rm -rf cudaversion.txt nvidia.txt log_err.txt install_log.txt 
+            sleep 1
             rm -rf nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
+            sleep 1
             exit 5
         ;;
         ubuntu )
+            sleep 1
             sed -i '/root/d' /etc/rc.local
+            sleep 1
             rm -rf cudaversion.txt nvidia.txt log_err.txt install_log.txt 
+            sleep 1
             exit 5
         ;;
         *)
@@ -204,7 +223,7 @@ then
     esac
 else
     echo ""  | tee -a /root/LAS_Install_Log.txt
-    echo "===== GPU Check List Start ====="  | tee -a /root/LAS_Install_Log.txt
+    echo "##### GPU Check List Start #####"  | tee -a /root/LAS_Install_Log.txt
 fi
 
 
@@ -212,38 +231,46 @@ sleep 1
 
 # CUDA,CUDNN Repo 설치
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== CUDA, CUDNN Repo Check Start ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### CUDA, CUDNN Repo Check Start #####"  | tee -a /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
 case $OSCHECK in 
     centos )
         rpm -qa | grep nvidia  >> /root/LAS_Install_Log.txt
+        sleep 1
         rpm -qa | grep cuda-repo  >> /root/LAS_Install_Log.txt
+        sleep 1
     ;;
     ubuntu )
         ls /etc/apt/sources.list.d/  >> /root/LAS_Install_Log.txt
+        sleep 1
     ;;
     *)
     ;;
 esac
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== CUDA, CUDNN Repo Complete ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### CUDA, CUDNN Repo Complete #####"  | tee -a /root/LAS_Install_Log.txt
 
 sleep 1
 
 # CUDA 설치 및 PATH 설정
 echo ""  | tee -a /root/LAS_Install_Log.txt
+echo "##### CUDA, CUDNN  Install Check Start #####"  | tee -a /root/LAS_Install_Log.txt
+echo ""  | tee -a /root/LAS_Install_Log.txt
 echo "===== Nvidia Driver Check ====="  | tee -a /root/LAS_Install_Log.txt
 nvidia-smi  >> /root/LAS_Install_Log.txt
+sleep 1
 echo ""  | tee -a /root/LAS_Install_Log.txt
 echo "===== GPU Install Check ====="  | tee -a /root/LAS_Install_Log.txt
 nvidia-smi -L  >> /root/LAS_Install_Log.txt
+sleep 1
+nvidia-smi  -a | grep "Serial Number" >> /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
-sleep 2
+sleep 1
 echo "===== CUDA version Check ====="  | tee -a /root/LAS_Install_Log.txt
 which nvcc  >> /root/LAS_Install_Log.txt
 nvcc -V  >> /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== CUDA Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
+echo "===== CUDA Version Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
 
 sleep 1
 
@@ -254,27 +281,31 @@ echo ""  | tee -a /root/LAS_Install_Log.txt
 case $OSCHECK in 
     centos )
         rpm -qa | grep libcudnn*  >> /root/LAS_Install_Log.txt
+        sleep 1
     ;;
     ubuntu )
         dpkg -l | grep libcudnn*  >> /root/LAS_Install_Log.txt
+        sleep 1
     ;;
     *)
     ;;
 esac
 echo ""  | tee -a /root/LAS_Install_Log.txt
 echo "===== CUDNN Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
-
+echo "##### CUDA, CUDNN Install Check Complete #####"  | tee -a /root/LAS_Install_Log.txt
 sleep 1
 
 # 딥러닝 패키지 설치(R,R Server, JupyterHub, Pycharm)
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== Deep Learning Install Check Start ====="  | tee -a /root/LAS_Install_Log.txt
+echo "#####Deep Learning Install Check Start #####"  | tee -a /root/LAS_Install_Log.txt
 echo ""  | tee -a /root/LAS_Install_Log.txt
 case $OSCHECK in 
     centos )
         echo "===== R,R-Server Check ====="  | tee -a /root/LAS_Install_Log.txt
         rpm -qa | grep rstudio  >> /root/LAS_Install_Log.txt
+        sleep 1
         rpm -qa | grep r-base  >> /root/LAS_Install_Log.txt
+        sleep 1
         echo ""  | tee -a /root/LAS_Install_Log.txt
         echo "===== JupyterHUB service Check ====="  | tee -a /root/LAS_Install_Log.txt
         systemctl status jupyterhub.service  >> /root/LAS_Install_Log.txt
@@ -282,7 +313,9 @@ case $OSCHECK in
     ubuntu )
         echo "===== R,R-Server Check ====="  | tee -a /root/LAS_Install_Log.txt
         dpkg -l | grep rstudio  >> /root/LAS_Install_Log.txt
+        sleep 1
         dpkg -l | grep r-base  >> /root/LAS_Install_Log.txt
+        sleep 1
         echo ""  | tee -a /root/LAS_Install_Log.txt
         echo "===== JupyterHUB service Check ====="  | tee -a /root/LAS_Install_Log.txt
         systemctl status jupyterhub.service  >> /root/LAS_Install_Log.txt
@@ -291,7 +324,7 @@ case $OSCHECK in
     ;;
 esac
 echo ""  | tee -a /root/LAS_Install_Log.txt
-echo "===== Deep Learning Check Complete ====="  | tee -a /root/LAS_Install_Log.txt
+echo "##### Deep Learning Check Complete #####"  | tee -a /root/LAS_Install_Log.txt
 
 sleep 1
 
@@ -300,19 +333,22 @@ dmidecode | grep -i ipmi &> /dev/null
 if [ $? != 0 ]
 then
     echo ""  | tee -a /root/LAS_Install_Log.txt
-    echo "===== Check List Complete ====="  | tee -a /root/LAS_Install_Log.txt
+    echo "##### Check List Complete ######"  | tee -a /root/LAS_Install_Log.txt
     case $OSCHECK in 
         centos )
             sed -i '/root/d' /etc/rc.d/rc.local
             sleep 1
             rm -rf cudaversion.txt nvidia.txt log_err.txt install_log.txt 
+            sleep 1
             rm -rf nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
+            sleep 1
             exit 10
         ;;
         ubuntu )
             sed -i '/root/d' /etc/rc.local
             sleep 1
             rm -rf cudaversion.txt nvidia.txt log_err.txt install_log.txt 
+            sleep 1
             exit 10
         ;;
         *)
@@ -345,13 +381,16 @@ then
             sed -i '/root/d' /etc/rc.d/rc.local
             sleep 1
             rm -rf cudaversion.txt nvidia.txt log_err.txt install_log.txt 
+            sleep 1
             rm -rf nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
+            sleep 1
             exit 15
         ;;
         ubuntu )
             sed -i '/root/d' /etc/rc.local
             sleep 1
             rm -rf cudaversion.txt nvidia.txt log_err.txt install_log.txt 
+            sleep 1
             exit 15
         ;;
         *)
@@ -381,15 +420,19 @@ case $OSCHECK in
         sed -i '/root/d' /etc/rc.d/rc.local
         sleep 1
         rm -rf cudaversion.txt nvidia.txt log_err.txt install_log.txt 
+        sleep 1
         rm -rf nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
+        sleep 1
+        exit 20
     ;;
     ubuntu )
         sed -i '/root/d' /etc/rc.local
         sleep 1
         rm -rf cudaversion.txt nvidia.txt log_err.txt install_log.txt 
+        sleep 1
+        exit 20
     ;;
     *)
     ;;
 esac
 
-exit 20
