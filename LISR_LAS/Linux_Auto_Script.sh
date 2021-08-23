@@ -964,7 +964,7 @@ then
     ;;
     ubuntu1604 | ubuntu1804 )
       echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
-      apt-get -y install cuda-$CUDAV  >> /root/install_log.txt 2> /root/log_err.txt
+      apt-get -y install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
       sleep 1
       CUDAV="${CUDAV/-/.}"
       sleep 1
@@ -984,9 +984,9 @@ then
     ;;
     ubuntu2004 )
       echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
-      apt-get -y install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
+      apt-get -y install cuda-$CUDAV  nvidia-cuda-toolkit >> /root/install_log.txt 2> /root/log_err.txt
       sleep 1
-      cudav="${cudav/-/.}"
+      CUDAV="${CUDAV/-/.}"
       sleep 1
       systemctl enable nvidia-persistenced >> /root/install_log.txt 2> /root/log_err.txt
       echo " "  >> /etc/profile
