@@ -193,8 +193,7 @@ echo "##### H/W Check Complete #####"  | tee -a /root/Auto_Install_Log.txt
 sleep 1
 
 # GPU 존재 여부에 따라 아래 체크리스트 실행
-updatedb
-locate nvcc &> /dev/null
+nvcc -V &> /dev/null
 if [ $? != 0 ]
 then
     echo ""  | tee -a /root/Auto_Install_Log.txt
@@ -269,6 +268,7 @@ sleep 1
 echo "===== CUDA version Check ====="  | tee -a /root/Auto_Install_Log.txt
 which nvcc  >> /root/Auto_Install_Log.txt
 nvcc -V  >> /root/Auto_Install_Log.txt
+sleep 1
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "===== CUDA Version Check Complete ====="  | tee -a /root/Auto_Install_Log.txt
 
