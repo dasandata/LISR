@@ -936,7 +936,9 @@ then
       echo "export CUDA_INC_DIR=/usr/local/cuda-$CUDAV/include " >> /etc/profile
       cat /etc/profile | tail -6 >> /root/install_log.txt 2> /root/log_err.txt
       source /etc/profile
+      sleep 1
       source /root/.bashrc
+      sleep 1
       ls /usr/local/ | grep cuda >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
@@ -957,7 +959,9 @@ then
       echo "export CUDA_INC_DIR=/usr/local/cuda-$CUDAV/include " >> /etc/profile
       cat /etc/profile | tail -6 >> /root/install_log.txt 2> /root/log_err.txt
       source /etc/profile
+      sleep 1
       source /root/.bashrc
+      sleep 1
       ls /usr/local/ | grep cuda >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
@@ -977,7 +981,9 @@ then
       echo "export CUDA_INC_DIR=/usr/local/cuda-$CUDAV/include " >> /etc/profile
       cat /etc/profile | tail -6 >> /root/install_log.txt 2> /root/log_err.txt
       source /etc/profile
+      sleep 1
       source /root/.bashrc
+      sleep 1
       ls /usr/local/ | grep cuda >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
@@ -997,7 +1003,9 @@ then
       echo "export CUDA_INC_DIR=/usr/local/cuda-$CUDAV/include " >> /etc/profile
       cat /etc/profile | tail -6 >> /root/install_log.txt 2> /root/log_err.txt
       source /etc/profile
+      sleep 1
       source /root/.bashrc
+      sleep 1
       ls /usr/local/ | grep cuda >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
