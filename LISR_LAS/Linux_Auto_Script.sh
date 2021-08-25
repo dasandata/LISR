@@ -916,10 +916,14 @@ echo "" | tee -a /root/install_log.txt
 
 # 14. CUDA 설치 및 PATH 설정
 ## 저장소에 CentOS8 , Ubuntu20 2가지는 CUDA 11.0 버전만 파일이 있어 나머지 버전 추후 추가 예정
-nvcc -V  >> /root/install_log.txt 2> /root/log_err.txt
+cat /etc/profile | grep "ADD Cuda" >> /root/install_log.txt 2> /root/log_err.txt
 if [ $? != 0 ]
 then
   CUDAV=$(cat /root/cudaversion.txt)
+  if [ CUDAV = "No-GPU" ]
+  then
+    echo "No-GPU not install cuda" >> /root/install_log.txt 2> /root/log_err.txt
+  else
   case $OS in
     centos7 )
       echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
@@ -1015,6 +1019,7 @@ then
       echo "CUDA install:$OS" | tee -a /root/install_log.txt
     ;;
   esac
+  fi
 else
   echo "" | tee -a /root/install_log.txt
   echo "The CUDA has already been installed." | tee -a /root/install_log.txt
