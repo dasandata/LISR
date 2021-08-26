@@ -18,7 +18,7 @@
       - ubuntu 16.04
       - ubuntu 18.04
       - ubuntu 20.04
-- [4. 자동 스크립트 Release Note ][Release Note](https://github.com/dasandata/LISR/blob/dc2e0fac2364f203528f6a69e8915a1b8a7aaa6e/LISR_LAS/Release%20Note/2107_Release_Note.md)
+- [4. 자동 스크립트 Release Note ][Release Note](https://github.com/dasandata/LISR/blob/81b5b3391e63753433f7522578954a9fba64b7ec/LISR_LAS/Release%20Note/LAS_Release_Note.md)
 
 
 [root@dasandata-script-test:~]#  yum install -y git  # Centos
