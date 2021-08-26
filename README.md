@@ -3,7 +3,7 @@
 
 ![Dasandata Logo](http://dasandata.co.kr/wp-content/uploads/2019/05/%EB%8B%A4%EC%82%B0%EB%A1%9C%EA%B3%A0_%EC%88%98%EC%A0%951-300x109.jpg)
 
-### 먼저 git 사용방법을 간략하게(?) 확인 하시기 바랍니다.    
+### 먼저 git 사용방법을 간략하게 확인 하시기 바랍니다.    
 #### - [1분 git 사용 방법 (리눅스 터미널에서)][how-to-git]  
 [how-to-git]:https://github.com/dasandata/LISR/blob/master/how-to-git.md
 
@@ -11,11 +11,14 @@
 ## 목차
 - [1. 리눅스 설치 표준안 - Centos 7.4 (2018.03)][Centos](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_7.md#%EB%8B%A4%EC%82%B0%EB%8D%B0%EC%9D%B4%ED%83%80-centos-74-%EC%84%A4%EC%B9%98-%ED%91%9C%EC%A4%80%EC%95%88-201803)  
 - [2. 리눅스 설치 표준안 - Ubuntu 18.04 / 16 / 14 (2018.06)][Ubuntu18](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#%EB%8B%A4%EC%82%B0%EB%8D%B0%EC%9D%B4%ED%83%80-ubuntu-1804--%EC%84%A4%EC%B9%98-%ED%91%9C%EC%A4%80%EC%95%88-201809)  
-- (예정...)3. 리눅스 자동설치 스크립트.
+- [ 3. 리눅스 자동설치 스크립트. ][Linux Auto Script](https://github.com/dasandata/LISR/blob/dc2e0fac2364f203528f6a69e8915a1b8a7aaa6e/LISR_LAS/Linux_Auto_Script.sh)
   - 운영체제 통합 스크립트
       - centos 7
-      - ubunutu 16.04
-      - ubunutu 18.04
+      - centos 8
+      - ubuntu 16.04
+      - ubuntu 18.04
+      - ubuntu 20.04
+- [4. 자동 스크립트 Release Note ][Release Note](https://github.com/dasandata/LISR/blob/dc2e0fac2364f203528f6a69e8915a1b8a7aaa6e/LISR_LAS/Release%20Note/2107_Release_Note.md)
 
 
 [root@dasandata-script-test:~]#  yum install -y git  # Centos
@@ -30,41 +33,22 @@
 
 [root@dasandata-script-test:~]#
 
-[root@dasandata-script-test:~]# bash /root/LISR/Dasandata_master_install.sh
+[root@dasandata-script-test:~]# bash /root/LISR/LISR_LAS/Linux_Auto_Script.sh
 
-      안녕하세요 다산데이타 리눅스 설치 파일을 실행 한 것을 환영 합니다
+      You have run Linux_Automatic_Script
+      Copyright by Dasandata.co.ltd
+      http://www.dasandata.co.kr
 
+      Linux_Automatic_Script Install Start
 
-      Hello, Welcome to Run Dasan Data Linux Installation File
+      CUDA Version Select
+      1) 10-0
+      2) 10-1
+      3) 10-2
+      4) 11-0
+      5) No-GPU
+      #? 
 
-
-      너의 하드웨어는 무엇 입니까? 하나를 선택하세요.
-      What is your hardware? Please select one
-      1) Server
-      2) Workstation_Desktop
-      3) Exit
-      1
-      Server.
-      어느 제조사의 시스템인가요? 하나를 선택하세요
-      Which manufacturer's system? Please select one
-      1) Dell
-      2) Supermicro_Etc
-      3) Exit
-      1
-      Dell.
-      사용되는 os 하나 를 선택하세요.
-      use os install ? Please select one
-      1) Centos7
-      2) Ubuntu16
-      3) Ubuntu18
-      4) Exit
-      1
-      Centos7.
-      관리자 의 용도는 CPU 인가요 GPU 인가요 ?
-      Administrator purpose CPU or GPU ?
-      1) CPU
-      2) GPU
-      3) Exit
 
 
 
