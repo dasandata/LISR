@@ -11,7 +11,7 @@
 ## 목차
 - [1. 리눅스 설치 표준안 - Centos 7.4 (2018.03)][Centos](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_7.md#%EB%8B%A4%EC%82%B0%EB%8D%B0%EC%9D%B4%ED%83%80-centos-74-%EC%84%A4%EC%B9%98-%ED%91%9C%EC%A4%80%EC%95%88-201803)  
 - [2. 리눅스 설치 표준안 - Ubuntu 18.04 / 16 / 14 (2018.06)][Ubuntu18](https://github.com/dasandata/LISR/blob/master/%2BUbuntu18/Standard_Install_Ubuntu18.md#%EB%8B%A4%EC%82%B0%EB%8D%B0%EC%9D%B4%ED%83%80-ubuntu-1804--%EC%84%A4%EC%B9%98-%ED%91%9C%EC%A4%80%EC%95%88-201809)  
-- [ 3. 리눅스 자동설치 스크립트. ][Linux Auto Script](https://github.com/dasandata/LISR/blob/dc2e0fac2364f203528f6a69e8915a1b8a7aaa6e/LISR_LAS/Linux_Auto_Script.sh)
+- [3. 리눅스 자동설치 스크립트. ][Linux Auto Script](https://github.com/dasandata/LISR/blob/dc2e0fac2364f203528f6a69e8915a1b8a7aaa6e/LISR_LAS/Linux_Auto_Script.sh)
   - 운영체제 통합 스크립트
       - centos 7
       - centos 8
