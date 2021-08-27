@@ -459,4 +459,3 @@ case $OSCHECK in
     *)
     ;;
 esac
-
