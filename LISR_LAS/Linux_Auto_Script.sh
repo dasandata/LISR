@@ -866,7 +866,7 @@ then
     centos7 )
       echo "" | tee -a /root/install_log.txt
       echo "CUDA,CUDNN REPO install Start" | tee -a /root/install_log.txt
-      wget http://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-10.0.130-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
+      wget https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-10.0.130-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
       wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
       yum -y install nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
       yum -y install cuda-repo-rhel7-10.0.130-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
@@ -879,7 +879,7 @@ then
     centos8 )
       echo "" | tee -a /root/install_log.txt
       echo "CUDA,CUDNN REPO install Start" | tee -a /root/install_log.txt
-      wget http://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
+      wget https://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
       wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel8/x86_64/nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
       dnf install -y nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
       dnf install -y cuda-repo-rhel8-10.2.89-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
@@ -893,9 +893,9 @@ then
       echo "" | tee -a /root/install_log.txt
       echo "CUDA,CUDNN REPO install Start" | tee -a /root/install_log.txt
       apt-get install -y sudo gnupg >> /root/install_log.txt 2> /root/log_err.txt
-      apt-key adv --fetch-keys "http://developer.download.nvidia.com/compute/cuda/repos/"$OS"/x86_64/7fa2af80.pub" >> /root/install_log.txt 2> /root/log_err.txt
-      sh -c 'echo "deb http://developer.download.nvidia.com/compute/cuda/repos/'$OS'/x86_64 /" > /etc/apt/sources.list.d/nvidia-cuda.list' >> /root/install_log.txt 2> /root/log_err.txt
-      sh -c 'echo "deb http://developer.download.nvidia.com/compute/machine-learning/repos/'$OS'/x86_64 /" > /etc/apt/sources.list.d/nvidia-machine-learning.list'  >> /root/install_log.txt 2> /root/log_err.txt
+      apt-key adv --fetch-keys "https://developer.download.nvidia.com/compute/cuda/repos/"$OS"/x86_64/7fa2af80.pub" >> /root/install_log.txt 2> /root/log_err.txt
+      sh -c 'echo "deb https://developer.download.nvidia.com/compute/cuda/repos/'$OS'/x86_64 /" > /etc/apt/sources.list.d/nvidia-cuda.list' >> /root/install_log.txt 2> /root/log_err.txt
+      sh -c 'echo "deb https://developer.download.nvidia.com/compute/machine-learning/repos/'$OS'/x86_64 /" > /etc/apt/sources.list.d/nvidia-machine-learning.list'  >> /root/install_log.txt 2> /root/log_err.txt
       apt-get update >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "CUDA,CUDNN REPO install complete" | tee -a /root/install_log.txt
