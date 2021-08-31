@@ -203,12 +203,12 @@ then
             sleep 1
             sed -i '/root/d' /etc/rc.d/rc.local
             sleep 1
-            rm -rf cudaversion.txt
-            rm -rf nvidia.txt
-            rm -rf log_err.txt
-            rm -rf install_log.txt 
+            rm -f cudaversion.txt
+            rm -f nvidia.txt
+            rm -f log_err.txt
+            rm -f install_log.txt 
             sleep 1
-            rm -rf nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
+            rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
             sleep 1
             exit 5
         ;;
@@ -216,10 +216,10 @@ then
             sleep 1
             sed -i '/root/d' /etc/rc.local
             sleep 1
-            rm -rf cudaversion.txt
-            rm -rf nvidia.txt
-            rm -rf log_err.txt
-            rm -rf install_log.txt 
+            rm -f cudaversion.txt
+            rm -f nvidia.txt
+            rm -f log_err.txt
+            rm -f install_log.txt 
             sleep 1
             exit 5
         ;;
@@ -344,22 +344,22 @@ then
         centos )
             sed -i '/root/d' /etc/rc.d/rc.local
             sleep 1
-            rm -rf cudaversion.txt
-            rm -rf nvidia.txt
-            rm -rf log_err.txt
-            rm -rf install_log.txt 
+            rm -f cudaversion.txt
+            rm -f nvidia.txt
+            rm -f log_err.txt
+            rm -f install_log.txt 
             sleep 1
-            rm -rf nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
+            rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
             sleep 1
             exit 10
         ;;
         ubuntu )
             sed -i '/root/d' /etc/rc.local
             sleep 1
-            rm -rf cudaversion.txt
-            rm -rf nvidia.txt
-            rm -rf log_err.txt
-            rm -rf install_log.txt  
+            rm -f cudaversion.txt
+            rm -f nvidia.txt
+            rm -f log_err.txt
+            rm -f install_log.txt  
             sleep 1
             exit 10
         ;;
@@ -392,22 +392,22 @@ then
         centos )
             sed -i '/root/d' /etc/rc.d/rc.local
             sleep 1
-            rm -rf cudaversion.txt
-            rm -rf nvidia.txt
-            rm -rf log_err.txt
-            rm -rf install_log.txt 
+            rm -f cudaversion.txt
+            rm -f nvidia.txt
+            rm -f log_err.txt
+            rm -f install_log.txt 
             sleep 1
-            rm -rf nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
+            rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
             sleep 1
             exit 15
         ;;
         ubuntu )
             sed -i '/root/d' /etc/rc.local
             sleep 1
-            rm -rf cudaversion.txt
-            rm -rf nvidia.txt
-            rm -rf log_err.txt
-            rm -rf install_log.txt 
+            rm -f cudaversion.txt
+            rm -f nvidia.txt
+            rm -f log_err.txt
+            rm -f install_log.txt 
             sleep 1
             exit 15
         ;;
@@ -437,22 +437,22 @@ case $OSCHECK in
     centos )
         sed -i '/root/d' /etc/rc.d/rc.local
         sleep 1
-        rm -rf cudaversion.txt
-        rm -rf nvidia.txt
-        rm -rf log_err.txt
-        rm -rf install_log.txt  
+        rm -f cudaversion.txt
+        rm -f nvidia.txt
+        rm -f log_err.txt
+        rm -f install_log.txt  
         sleep 1
-        rm -rf nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
+        rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
         sleep 1
         exit 20
     ;;
     ubuntu )
         sed -i '/root/d' /etc/rc.local
         sleep 1
-        rm -rf cudaversion.txt
-        rm -rf nvidia.txt
-        rm -rf log_err.txt
-        rm -rf install_log.txt 
+        rm -f cudaversion.txt
+        rm -f nvidia.txt
+        rm -f log_err.txt
+        rm -f install_log.txt 
         sleep 1
         exit 20
     ;;
