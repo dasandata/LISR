@@ -208,6 +208,8 @@ case $OSCHECK in
     echo "Repository Change" | tee -a /root/install_log.txt
     perl -pi -e 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
     perl -pi -e 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+    echo "" | tee -a /root/install_log.txt
+    cat /etc/apt/sources.list | grep -v "#\|^$" >> /root/install_log.txt
   ;;
   *)
     echo "" | tee -a /root/install_log.txt
@@ -257,21 +259,21 @@ case $OS in
       echo "The package has already been installed." | tee -a /root/install_log.txt
     fi
     #불필요한 서비스 disable
-    systemctl disable bluetooth.service
-    systemctl disable iscsi.service
-    systemctl disable ksm.service
-    systemctl disable ksmtuned.service
-    systemctl disable libstoragemgmt.service
-    systemctl disable libvirtd.service
-    systemctl disable NetworkManager.service
-    systemctl stop    NetworkManager.service
-    systemctl disable NetworkManager-dispatcher.service
-    systemctl disable NetworkManager-wait-online.service
-    systemctl disable spice-vdagentd.service
-    systemctl disable vmtoolsd.service
-    systemctl disable ModemManager.service
-    systemctl disable cups.service
-    systemctl disable cups-browsed.service
+    systemctl disable bluetooth.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable iscsi.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable ksm.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable ksmtuned.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable libstoragemgmt.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable libvirtd.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable NetworkManager.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl stop    NetworkManager.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable NetworkManager-dispatcher.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable NetworkManager-wait-online.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable spice-vdagentd.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable vmtoolsd.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable ModemManager.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable cups.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable cups-browsed.service >> /root/install_log.txt 2> /root/log_err.txt
   ;;
   centos8 )
     echo "" | tee -a /root/install_log.txt
@@ -308,19 +310,19 @@ case $OS in
       echo "The package has already been installed." | tee -a /root/install_log.txt
     fi
     # 불필요한 서비스 disable
-    systemctl disable bluetooth.service
-    systemctl disable iscsi.service
-    systemctl disable ksm.service
-    systemctl disable ksmtuned.service
-    systemctl disable libstoragemgmt.service
-    systemctl disable libvirtd.service
-    systemctl disable spice-vdagentd.service
-    systemctl disable vmtoolsd.service
-    systemctl disable ModemManager.service
-    systemctl disable cups.service
-    systemctl disable cups-browsed.service
-    systemctl disable cups.path
-    systemctl disable cups.socket
+    systemctl disable bluetooth.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable iscsi.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable ksm.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable ksmtuned.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable libstoragemgmt.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable libvirtd.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable spice-vdagentd.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable vmtoolsd.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable ModemManager.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable cups.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable cups-browsed.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable cups.path >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl disable cups.socket >> /root/install_log.txt 2> /root/log_err.txt
     sleep 1
   ;;
   ubuntu1604 | ubuntu1804 | ubuntu2004 )
@@ -332,25 +334,26 @@ case $OS in
     then
       apt-get update >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
-      apt-get install -y vim nfs-common rdate xauth firefox gcc make tmux wget figlet \
-      net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python mlocate ubuntu-desktop \
-      dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal \
-      libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool htop dnsutils >> /root/install_log.txt 2> /root/log_err.txt
+      apt-get install -y vim nfs-common rdate xauth firefox gcc make tmux wget figlet >> /root/install_log.txt 2> /root/log_err.txt
+      apt-get install -y net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python mlocate ubuntu-desktop >> /root/install_log.txt 2> /root/log_err.txt
+      sleep 2
+      apt-get install -y dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> /root/install_log.txt 2> /root/log_err.txt
+      apt-get install -y libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool htop dnsutils >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
       DEBIAN_FRONTEND=noninteractive apt-get install -y smartmontools >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
       #불필요한 서비스 disable
-      systemctl disable bluetooth.service
-      systemctl disable iscsi.service
-      systemctl disable ksm.service
-      systemctl disable ksmtuned.service
-      systemctl disable libstoragemgmt.service
-      systemctl disable libvirtd.service
-      systemctl disable spice-vdagentd.service
-      systemctl disable vmtoolsd.service
-      systemctl disable ModemManager.service
-      systemctl disable cups.service
-      systemctl disable cups-browsed.service
+      systemctl disable bluetooth.service >> /root/install_log.txt 2> /root/log_err.txt
+      systemctl disable iscsi.service >> /root/install_log.txt 2> /root/log_err.txt
+      systemctl disable ksm.service >> /root/install_log.txt 2> /root/log_err.txt
+      systemctl disable ksmtuned.service >> /root/install_log.txt 2> /root/log_err.txt
+      systemctl disable libstoragemgmt.service >> /root/install_log.txt 2> /root/log_err.txt
+      systemctl disable libvirtd.service >> /root/install_log.txt 2> /root/log_err.txt
+      systemctl disable spice-vdagentd.service >> /root/install_log.txt 2> /root/log_err.txt
+      systemctl disable vmtoolsd.service >> /root/install_log.txt 2> /root/log_err.txt
+      systemctl disable ModemManager.service >> /root/install_log.txt 2> /root/log_err.txt
+      systemctl disable cups.service >> /root/install_log.txt 2> /root/log_err.txt
+      systemctl disable cups-browsed.service >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       ## ipmi 여부로 PC, Server 판단
       dmidecode | grep -i ipmi &> /dev/null
