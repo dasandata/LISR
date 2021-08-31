@@ -204,18 +204,10 @@ case $OSCHECK in
     OS=$(lsb_release -isr |  tr -d "." | sed -e '{N;s/\n//}' | tr '[A-Z]' '[a-z]')
     echo "" | tee -a /root/install_log.txt
     echo "OS is $OS" | tee -a /root/install_log.txt
-    ## Repository를 mirror.kakao.com으로 변경
-    REPO=$(cat /etc/apt/sources.list | grep -v "#\|^$" | head -1 | awk '{ print$2 }')
-    if [ $REPO = "http://mirror.kakao.com/ubuntu/" ]
-    then
-      echo "" | tee -a /root/install_log.txt
-      echo "The Repository has been changed." | tee -a /root/install_log.txt
-    else
-      echo "" | tee -a /root/install_log.txt
-      echo "Repository Change" | tee -a /root/install_log.txt
-      perl -pi -e 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-      perl -pi -e 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
-    fi
+    echo "" | tee -a /root/install_log.txt
+    echo "Repository Change" | tee -a /root/install_log.txt
+    perl -pi -e 's/kr.archive.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
+    perl -pi -e 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
   ;;
   *)
     echo "" | tee -a /root/install_log.txt
@@ -237,11 +229,13 @@ case $OS in
     if [ $? != 0 ]
     then
       yum -y update >> /root/install_log.txt 2> /root/log_err.txt
+      sleep 2
       yum -y  install epel-release >> /root/install_log.txt 2> /root/log_err.txt
+      sleep 2
       yum install -y ethtool pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget bind-utils \
       tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ snapd \
       cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs vim >> /root/install_log.txt 2> /root/log_err.txt
-      sleep 3
+      sleep 2
       dmidecode | grep -i ipmi &> /dev/null
       if [ $? = 0 ]
       then
@@ -252,7 +246,7 @@ case $OS in
       fi
       yum -y groups install "Development Tools" >> /root/install_log.txt 2> /root/log_err.txt
       yum -y install  glibc-static glibc-devel libstdc++ libstdc++-devel >> /root/install_log.txt 2> /root/log_err.txt
-      sleep 3
+      sleep 2
       sed -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo >> /root/install_log.txt 2> /root/log_err.txt
       yum -y  install yum-plugin-priorities >> /root/install_log.txt 2> /root/log_err.txt
       yum -y  install htop ntfs-3g figlet >> /root/install_log.txt 2> /root/log_err.txt
@@ -287,7 +281,7 @@ case $OS in
     if [ $? != 0 ]
     then
       dnf -y update >> /root/install_log.txt 2> /root/log_err.txt
-      sleep 3
+      sleep 2
       dnf --refresh -y upgrade >> /root/install_log.txt 2> /root/log_err.txt
       systemctl disable kdump.service >> /root/install_log.txt 2> /root/log_err.txt
       dnf install -y epel-release >> /root/install_log.txt 2> /root/log_err.txt
@@ -327,6 +321,7 @@ case $OS in
     systemctl disable cups-browsed.service
     systemctl disable cups.path
     systemctl disable cups.socket
+    sleep 1
   ;;
   ubuntu1604 | ubuntu1804 | ubuntu2004 )
     echo "" | tee -a /root/install_log.txt
@@ -336,12 +331,14 @@ case $OS in
     if [ $? != 0 ]
     then
       apt-get update >> /root/install_log.txt 2> /root/log_err.txt
+      sleep 2
       apt-get install -y vim nfs-common rdate xauth firefox gcc make tmux wget figlet \
       net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python mlocate ubuntu-desktop \
       dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal \
       libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool htop dnsutils >> /root/install_log.txt 2> /root/log_err.txt
+      sleep 2
       DEBIAN_FRONTEND=noninteractive apt-get install -y smartmontools >> /root/install_log.txt 2> /root/log_err.txt
-      sleep 3
+      sleep 2
       #불필요한 서비스 disable
       systemctl disable bluetooth.service
       systemctl disable iscsi.service
