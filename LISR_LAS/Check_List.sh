@@ -416,7 +416,7 @@ then
     esac
 else
     echo ""  | tee -a /root/Auto_Install_Log.txt
-    echo "===== $VENDOR Server Check List Start ====="  | tee -a /root/Auto_Install_Log.txt
+    echo "##### $VENDOR Server Check List Start #####"  | tee -a /root/Auto_Install_Log.txt
 fi
 
 sleep 3
@@ -432,9 +432,9 @@ echo "===== OMSA Check Complete ====="  | tee -a /root/Auto_Install_Log.txt
 sleep 3
 
 echo ""
-echo "===== Check List Complete ====="
 case $OSCHECK in 
     centos )
+        echo "##### $VENDOR Server Check List Complete #####"  | tee -a /root/Auto_Install_Log.txt
         sed -i '/root/d' /etc/rc.d/rc.local
         sleep 3
         rm -f cudaversion.txt
@@ -447,6 +447,7 @@ case $OSCHECK in
         exit 20
     ;;
     ubuntu )
+        echo "##### $VENDOR Server Check List Complete #####"  | tee -a /root/Auto_Install_Log.txt
         sed -i '/root/d' /etc/rc.local
         sleep 3
         rm -f cudaversion.txt
