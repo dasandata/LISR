@@ -334,13 +334,13 @@ case $OS in
     then
       apt-get update >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
-      apt-get install -y vim nfs-common rdate xauth firefox gcc make tmux wget figlet >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get install -y net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python mlocate ubuntu-desktop >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install vim nfs-common rdate xauth firefox gcc make tmux wget figlet >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python mlocate ubuntu-desktop >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
-      apt-get install -y dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get install -y libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool htop dnsutils >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool htop dnsutils >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
-      DEBIAN_FRONTEND=noninteractive apt-get install -y smartmontools >> /root/install_log.txt 2> /root/log_err.txt
+      DEBIAN_FRONTEND=noninteractive yes | apt-get install smartmontools >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
       #불필요한 서비스 disable
       systemctl disable bluetooth.service >> /root/install_log.txt 2> /root/log_err.txt
@@ -359,7 +359,7 @@ case $OS in
       dmidecode | grep -i ipmi &> /dev/null
       if [ $? = 0 ]
       then
-        apt-get install -y ipmitool >> /root/install_log.txt 2> /root/log_err.txt
+        yes | apt-get install ipmitool >> /root/install_log.txt 2> /root/log_err.txt
       else
         echo "" | tee -a /root/install_log.txt
         echo "PC,Workstation do not install ipmitool" | tee -a /root/install_log.txt
@@ -498,7 +498,7 @@ then
     ubuntu1604 )
       echo "" | tee -a /root/install_log.txt
       echo "Python Install" | tee -a /root/install_log.txt
-      apt-get install -y python-dev python3-dev >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install python-dev python3-dev >> /root/install_log.txt 2> /root/log_err.txt
       curl -fsSL -o- https://bootstrap.pypa.io/pip/2.7/get-pip.py | python2.7 >> /root/install_log.txt 2> /root/log_err.txt
       curl -fsSL -o- https://bootstrap.pypa.io/pip/3.5/get-pip.py | python3.5 >> /root/install_log.txt 2> /root/log_err.txt
       pip   install --upgrade pip >> /root/install_log.txt 2> /root/log_err.txt
@@ -510,7 +510,7 @@ then
     ubuntu1804 )
       echo "" | tee -a /root/install_log.txt
       echo "Python Install" | tee -a /root/install_log.txt
-      apt-get install -y  python-pip python3-pip python-tk python3-tk >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install  python-pip python3-pip python-tk python3-tk >> /root/install_log.txt 2> /root/log_err.txt
       pip install --upgrade pip >> /root/install_log.txt 2> /root/log_err.txt
       pip3 install --upgrade pip >> /root/install_log.txt 2> /root/log_err.txt
       perl -pi -e 's/python3/python/'   /usr/local/bin/pip
@@ -520,7 +520,7 @@ then
     ubuntu2004 )
       echo "" | tee -a /root/install_log.txt
       echo "Python Install" | tee -a /root/install_log.txt
-      apt-get install -y python3-pip >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install python3-pip >> /root/install_log.txt 2> /root/log_err.txt
       add-apt-repository universe >> /root/install_log.txt 2> /root/log_err.txt
       apt update >> /root/install_log.txt 2> /root/log_err.txt
       apt list --upgradeable >> /root/install_log.txt 2> /root/log_err.txt
@@ -892,7 +892,7 @@ then
     ubuntu1604 | ubuntu1804 | ubuntu2004 )
       echo "" | tee -a /root/install_log.txt
       echo "CUDA,CUDNN REPO install Start" | tee -a /root/install_log.txt
-      apt-get install -y sudo gnupg >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install sudo gnupg >> /root/install_log.txt 2> /root/log_err.txt
       apt-key adv --fetch-keys "https://developer.download.nvidia.com/compute/cuda/repos/"$OS"/x86_64/7fa2af80.pub" >> /root/install_log.txt 2> /root/log_err.txt
       sh -c 'echo "deb https://developer.download.nvidia.com/compute/cuda/repos/'$OS'/x86_64 /" > /etc/apt/sources.list.d/nvidia-cuda.list' >> /root/install_log.txt 2> /root/log_err.txt
       sh -c 'echo "deb https://developer.download.nvidia.com/compute/machine-learning/repos/'$OS'/x86_64 /" > /etc/apt/sources.list.d/nvidia-machine-learning.list'  >> /root/install_log.txt 2> /root/log_err.txt
@@ -972,7 +972,7 @@ then
     ;;
     ubuntu1604 | ubuntu1804 )
       echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
-      apt-get -y install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
       sleep 1
       CUDAV="${CUDAV/-/.}"
       sleep 1
@@ -994,7 +994,7 @@ then
     ;;
     ubuntu2004 )
       echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
-      apt-get -y install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
       sleep 1
       CUDAV="${CUDAV/-/.}"
       sleep 1
@@ -1063,11 +1063,11 @@ then
       echo "libcudnn Install Start" | tee -a /root/install_log.txt
       if [ $CUDAV = "11.0" ]
       then
-        apt-get -y install libcudnn8* >> /root/install_log.txt 2> /root/log_err.txt
-        apt-get install -y libcublas-dev >> /root/install_log.txt 2> /root/log_err.txt
+        yes | apt-get install libcudnn8* >> /root/install_log.txt 2> /root/log_err.txt
+        yes | apt-get install libcublas-dev >> /root/install_log.txt 2> /root/log_err.txt
       else
-        apt-get -y install libcudnn7* >> /root/install_log.txt 2> /root/log_err.txt
-        apt-get install -y libcublas-dev >> /root/install_log.txt 2> /root/log_err.txt
+        yes | apt-get install libcudnn7* >> /root/install_log.txt 2> /root/log_err.txt
+        yes | apt-get install libcublas-dev >> /root/install_log.txt 2> /root/log_err.txt
       fi
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install complete" | tee -a /root/install_log.txt
@@ -1076,7 +1076,7 @@ then
       ## Ubuntu20.04 는 저장소에 libcudnn8만 존재함
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install Start" | tee -a /root/install_log.txt
-      apt-get -y install libcudnn8* >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install libcudnn8* >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install complete" | tee -a /root/install_log.txt
     ;;
@@ -1151,17 +1151,17 @@ then
     ubuntu1604 )
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package Install Start" | tee -a /root/install_log.txt
-      apt-get install -y dkms linux-generic-hwe-16.04 xserver-xorg-hwe-16.04 >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install dkms linux-generic-hwe-16.04 xserver-xorg-hwe-16.04 >> /root/install_log.txt 2> /root/log_err.txt
       ## R,R-studio Install
-      apt-get install -y  r-base gdebi-core >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install  r-base gdebi-core >> /root/install_log.txt 2> /root/log_err.txt
       wget https://download2.rstudio.org/server/trusty/amd64/rstudio-server-1.2.5019-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
       yes | gdebi rstudio-server-1.2.5019-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
       wget https://download1.rstudio.org/desktop/xenial/amd64/rstudio-1.2.5019-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
       dpkg -i rstudio-1.2.5019-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get install -y  rdesktop >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install  rdesktop >> /root/install_log.txt 2> /root/log_err.txt
       ## JupyterHub install
       curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -  >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get install -y  nodejs default-jre >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install  nodejs default-jre >> /root/install_log.txt 2> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2> /root/log_err.txt
       ## Pycharm install
       snap install pycharm-community --classic >> /root/install_log.txt 2> /root/log_err.txt
@@ -1172,17 +1172,17 @@ then
     ubuntu1804 )
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package Install Start" | tee -a /root/install_log.txt
-      apt-get install -y dkms linux-generic-hwe-18.04 xserver-xorg-hwe-18.04 >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install dkms linux-generic-hwe-18.04 xserver-xorg-hwe-18.04 >> /root/install_log.txt 2> /root/log_err.txt
       ## R,R-studio Install
-      apt-get install -y  r-base gdebi-core >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install  r-base gdebi-core >> /root/install_log.txt 2> /root/log_err.txt
       wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5019-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
       yes | gdebi rstudio-server-1.2.5019-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
       wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.2.5019-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
       dpkg -i rstudio-1.2.5019-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get install -y  rdesktop >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install  rdesktop >> /root/install_log.txt 2> /root/log_err.txt
       ## JupyterHub install
       curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -  >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get install -y  nodejs default-jre >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install  nodejs default-jre >> /root/install_log.txt 2> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2> /root/log_err.txt
       mkdir /etc/jupyterhub
       jupyterhub --generate-config -f /etc/jupyterhub/jupyterhub_config.py
@@ -1203,13 +1203,13 @@ then
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package Install Start" | tee -a /root/install_log.txt
       ## R,R-studio Install
-      apt-get install -y r-base >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get install -y gdebi-core >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install r-base >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install gdebi-core >> /root/install_log.txt 2> /root/log_err.txt
       wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.3.1073-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
       yes | gdebi rstudio-server-1.3.1073-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
       ## JupyterHub install
       curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-      apt-get install -y nodejs default-jre >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install nodejs default-jre >> /root/install_log.txt 2> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2> /root/log_err.txt
       ## Pycharm install
       snap install pycharm-community --classic >> /root/install_log.txt 2> /root/log_err.txt
@@ -1315,7 +1315,7 @@ then
       wget https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/17.05.00.02_Linux-64_MSM.gz >> /root/install_log.txt 2> /root/log_err.txt
       tar xvzf 17.05.00.02_Linux-64_MSM.gz >> /root/install_log.txt 2> /root/log_err.txt
       cd disk/
-      apt-get -y install alien >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install alien >> /root/install_log.txt 2> /root/log_err.txt
       alien --scripts *.rpm >> /root/install_log.txt 2> /root/log_err.txt
       dpkg --install lib-utils2_1.00-9_all.deb >> /root/install_log.txt 2> /root/log_err.txt
       dpkg --install megaraid-storage-manager_17.05.00-3_all.deb >> /root/install_log.txt 2> /root/log_err.txt
@@ -1401,8 +1401,8 @@ then
       echo 'deb http://linux.dell.com/repo/community/openmanage/911/xenial xenial main'  >  /etc/apt/sources.list.d/linux.dell.com.sources.list
       wget http://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc >> /root/install_log.txt 2> /root/log_err.txt
       apt-key add 0x1285491434D8786F.asc >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get -y update >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get -y install srvadmin-all >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get update >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install srvadmin-all >> /root/install_log.txt 2> /root/log_err.txt
       systemctl enable dataeng >> /root/install_log.txt 2> /root/log_err.txt
       systemctl enable dsm_om_connsvc >> /root/install_log.txt 2> /root/log_err.txt
       systemctl start dataeng >> /root/install_log.txt 2> /root/log_err.txt
@@ -1416,8 +1416,8 @@ then
       echo 'deb http://linux.dell.com/repo/community/openmanage/940/bionic bionic main'  > /etc/apt/sources.list.d/linux.dell.com.sources.list
       wget http://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc
       apt-key add 0x1285491434D8786F.asc >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get  -y update >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get  -y  install srvadmin-all >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get update >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install srvadmin-all >> /root/install_log.txt 2> /root/log_err.txt
       cd /usr/lib/x86_64-linux-gnu/ >> /root/install_log.txt 2> /root/log_err.txt
       ln -s /usr/lib/x86_64-linux-gnu/libssl.so.1.1 libssl.so >> /root/install_log.txt 2> /root/log_err.txt
       cd
@@ -1434,8 +1434,8 @@ then
       echo 'deb http://linux.dell.com/repo/community/openmanage/950/focal focal main'  > /etc/apt/sources.list.d/linux.dell.com.sources.list
       wget http://linux.dell.com/repo/pgp_pubkeys/0x1285491434D8786F.asc
       apt-key add 0x1285491434D8786F.asc >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get  -y update >> /root/install_log.txt 2> /root/log_err.txt
-      apt-get  -y  install srvadmin-all >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get update >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install srvadmin-all >> /root/install_log.txt 2> /root/log_err.txt
       cd /usr/lib/x86_64-linux-gnu/ >> /root/install_log.txt 2> /root/log_err.txt
       ln -s /usr/lib/x86_64-linux-gnu/libssl.so.1.1 libssl.so >> /root/install_log.txt 2> /root/log_err.txt
       cd
