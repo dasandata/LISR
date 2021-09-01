@@ -23,7 +23,7 @@ cat /etc/modprobe.d/blacklist.conf | grep "options nouveau modeset=0"  >> /root/
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### Nouveau, GRUB Check Complete #####"  | tee -a /root/Auto_Install_Log.txt
 
-sleep 1
+sleep 3
 
 # selinux 제거 및 저장소 변경 
 case $OSCHECK in 
@@ -50,7 +50,7 @@ case $OSCHECK in
     ;;
 esac
 
-sleep 1
+sleep 3
 
 # 기본 패키지 설치
 echo ""  | tee -a /root/Auto_Install_Log.txt
@@ -88,7 +88,7 @@ esac
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### Pacakage Check Complete #####"  | tee -a /root/Auto_Install_Log.txt
 
-sleep 1
+sleep 3
 
 # 프로필 설정
 echo ""  | tee -a /root/Auto_Install_Log.txt
@@ -107,7 +107,7 @@ esac
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### Profile Check Complete #####"  | tee -a /root/Auto_Install_Log.txt
 
-sleep 1
+sleep 3
 
 # 서버 시간 동기화
 echo ""  | tee -a /root/Auto_Install_Log.txt
@@ -120,31 +120,31 @@ hwclock  >> /root/Auto_Install_Log.txt
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### Time Check Complete #####"  | tee -a /root/Auto_Install_Log.txt
 
-sleep 1
+sleep 3
 
 # 파이썬 설치
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### Python Version Check #####"  | tee -a /root/Auto_Install_Log.txt
 echo ""  | tee -a /root/Auto_Install_Log.txt
 python -V  >> /root/Auto_Install_Log.txt
-sleep 1
+sleep 3
 python3 -V >> /root/Auto_Install_Log.txt
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### Python Version Check Complete #####"  | tee -a /root/Auto_Install_Log.txt
 
-sleep 1
+sleep 3
 
 # 파이썬 패키지 설치
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### Python Pacakage Install Check #####"  | tee -a /root/Auto_Install_Log.txt
 echo ""  | tee -a /root/Auto_Install_Log.txt
 pip  list | grep tensor >> /root/Auto_Install_Log.txt
-sleep 1
+sleep 3
 pip3 list | grep tensor >> /root/Auto_Install_Log.txt
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### Python Pacakage Check Complete #####"  | tee -a /root/Auto_Install_Log.txt
 
-sleep 1
+sleep 3
 
 # 방화벽 설정
 echo ""  | tee -a /root/Auto_Install_Log.txt
@@ -171,7 +171,7 @@ esac
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### Firewall Check Complete #####"  | tee -a /root/Auto_Install_Log.txt
 
-sleep 1
+sleep 3
 
 # 사용자 생성 테스트
 echo ""  | tee -a /root/Auto_Install_Log.txt
@@ -182,7 +182,7 @@ cat /etc/shadow | grep dasan  >> /root/Auto_Install_Log.txt
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### User Add Check Complete #####"  | tee -a /root/Auto_Install_Log.txt
 
-sleep 1
+sleep 3
 
 # H/W 사양 체크
 echo ""  | tee -a /root/Auto_Install_Log.txt
@@ -190,7 +190,7 @@ cat /root/hwcheck.txt  >> /root/Auto_Install_Log.txt
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### H/W Check Complete #####"  | tee -a /root/Auto_Install_Log.txt
 
-sleep 1
+sleep 3
 
 # GPU 존재 여부에 따라 아래 체크리스트 실행
 lspci | grep -i nvidia  &> /dev/null
@@ -200,27 +200,27 @@ then
     echo "##### Check List Complete #####"  | tee -a /root/Auto_Install_Log.txt
     case $OSCHECK in 
         centos )
-            sleep 1
+            sleep 3
             sed -i '/root/d' /etc/rc.d/rc.local
-            sleep 1
+            sleep 3
             rm -f cudaversion.txt
             rm -f nvidia.txt
             rm -f log_err.txt
             rm -f install_log.txt 
-            sleep 1
+            sleep 3
             rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
-            sleep 1
+            sleep 3
             exit 5
         ;;
         ubuntu )
-            sleep 1
+            sleep 3
             sed -i '/root/d' /etc/rc.local
-            sleep 1
+            sleep 3
             rm -f cudaversion.txt
             rm -f nvidia.txt
             rm -f log_err.txt
             rm -f install_log.txt 
-            sleep 1
+            sleep 3
             exit 5
         ;;
         *)
@@ -232,7 +232,7 @@ else
 fi
 
 
-sleep 1
+sleep 3
 
 # CUDA,CUDNN Repo 설치
 echo ""  | tee -a /root/Auto_Install_Log.txt
@@ -241,13 +241,13 @@ echo ""  | tee -a /root/Auto_Install_Log.txt
 case $OSCHECK in 
     centos )
         rpm -qa | grep nvidia  >> /root/Auto_Install_Log.txt
-        sleep 1
+        sleep 3
         rpm -qa | grep cuda-repo  >> /root/Auto_Install_Log.txt
-        sleep 1
+        sleep 3
     ;;
     ubuntu )
         ls /etc/apt/sources.list.d/  >> /root/Auto_Install_Log.txt
-        sleep 1
+        sleep 3
     ;;
     *)
     ;;
@@ -255,7 +255,7 @@ esac
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### CUDA, CUDNN Repo Complete #####"  | tee -a /root/Auto_Install_Log.txt
 
-sleep 1
+sleep 3
 
 # CUDA 설치 및 PATH 설정
 echo ""  | tee -a /root/Auto_Install_Log.txt
@@ -263,22 +263,22 @@ echo "##### CUDA, CUDNN  Install Check Start #####"  | tee -a /root/Auto_Install
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "===== Nvidia Driver Check ====="  | tee -a /root/Auto_Install_Log.txt
 nvidia-smi  >> /root/Auto_Install_Log.txt
-sleep 1
+sleep 3
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "===== GPU Install Check ====="  | tee -a /root/Auto_Install_Log.txt
 nvidia-smi -L  >> /root/Auto_Install_Log.txt
-sleep 1
+sleep 3
 nvidia-smi  -a | grep "Serial Number" >> /root/Auto_Install_Log.txt
 echo ""  | tee -a /root/Auto_Install_Log.txt
-sleep 1
+sleep 3
 echo "===== CUDA version Check ====="  | tee -a /root/Auto_Install_Log.txt
 which nvcc  >> /root/Auto_Install_Log.txt
 nvcc -V  >> /root/Auto_Install_Log.txt
-sleep 1
+sleep 3
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "===== CUDA Version Check Complete ====="  | tee -a /root/Auto_Install_Log.txt
 
-sleep 1
+sleep 3
 
 # CUDNN 설치 및 PATH 설정
 echo ""  | tee -a /root/Auto_Install_Log.txt
@@ -287,11 +287,11 @@ echo ""  | tee -a /root/Auto_Install_Log.txt
 case $OSCHECK in 
     centos )
         rpm -qa | grep libcudnn*  >> /root/Auto_Install_Log.txt
-        sleep 1
+        sleep 3
     ;;
     ubuntu )
         dpkg -l | grep libcudnn*  >> /root/Auto_Install_Log.txt
-        sleep 1
+        sleep 3
     ;;
     *)
     ;;
@@ -299,7 +299,7 @@ esac
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "===== CUDNN Check Complete ====="  | tee -a /root/Auto_Install_Log.txt
 echo "##### CUDA, CUDNN Install Check Complete #####"  | tee -a /root/Auto_Install_Log.txt
-sleep 1
+sleep 3
 
 # 딥러닝 패키지 설치(R,R Server, JupyterHub, Pycharm)
 echo ""  | tee -a /root/Auto_Install_Log.txt
@@ -309,9 +309,9 @@ case $OSCHECK in
     centos )
         echo "===== R,R-Server Check ====="  | tee -a /root/Auto_Install_Log.txt
         rpm -qa | grep rstudio  >> /root/Auto_Install_Log.txt
-        sleep 1
+        sleep 3
         rpm -qa | grep r-base  >> /root/Auto_Install_Log.txt
-        sleep 1
+        sleep 3
         echo ""  | tee -a /root/Auto_Install_Log.txt
         echo "===== JupyterHUB service Check ====="  | tee -a /root/Auto_Install_Log.txt
         systemctl status jupyterhub.service  >> /root/Auto_Install_Log.txt
@@ -319,9 +319,9 @@ case $OSCHECK in
     ubuntu )
         echo "===== R,R-Server Check ====="  | tee -a /root/Auto_Install_Log.txt
         dpkg -l | grep rstudio  >> /root/Auto_Install_Log.txt
-        sleep 1
+        sleep 3
         dpkg -l | grep r-base  >> /root/Auto_Install_Log.txt
-        sleep 1
+        sleep 3
         echo ""  | tee -a /root/Auto_Install_Log.txt
         echo "===== JupyterHUB service Check ====="  | tee -a /root/Auto_Install_Log.txt
         systemctl status jupyterhub.service  >> /root/Auto_Install_Log.txt
@@ -332,7 +332,7 @@ esac
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### Deep Learning Check Complete #####"  | tee -a /root/Auto_Install_Log.txt
 
-sleep 1
+sleep 3
 
 # PC, WorkStation은 여기까지 체크 진행
 dmidecode | grep -i ipmi &> /dev/null
@@ -343,24 +343,24 @@ then
     case $OSCHECK in 
         centos )
             sed -i '/root/d' /etc/rc.d/rc.local
-            sleep 1
+            sleep 3
             rm -f cudaversion.txt
             rm -f nvidia.txt
             rm -f log_err.txt
             rm -f install_log.txt 
-            sleep 1
+            sleep 3
             rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
-            sleep 1
+            sleep 3
             exit 10
         ;;
         ubuntu )
             sed -i '/root/d' /etc/rc.local
-            sleep 1
+            sleep 3
             rm -f cudaversion.txt
             rm -f nvidia.txt
             rm -f log_err.txt
             rm -f install_log.txt  
-            sleep 1
+            sleep 3
             exit 10
         ;;
         *)
@@ -371,7 +371,7 @@ else
     echo "===== Server Check List Start ====="  | tee -a /root/Auto_Install_Log.txt
 fi
 
-sleep 1
+sleep 3
 
 # MegaRaid Storage Manager 설치
 echo ""  | tee -a /root/Auto_Install_Log.txt
@@ -381,7 +381,7 @@ ls /usr/local/MegaRAID\ Storage\ Manager/  | grep start >> /root/Auto_Install_Lo
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "===== MSM Check Complete ====="  | tee -a /root/Auto_Install_Log.txt
 
-sleep 1
+sleep 3
 
 # Dell Server 체크 진행
 if [ $VENDOR != "Dell" ]
@@ -391,24 +391,24 @@ then
         case $OSCHECK in 
         centos )
             sed -i '/root/d' /etc/rc.d/rc.local
-            sleep 1
+            sleep 3
             rm -f cudaversion.txt
             rm -f nvidia.txt
             rm -f log_err.txt
             rm -f install_log.txt 
-            sleep 1
+            sleep 3
             rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
-            sleep 1
+            sleep 3
             exit 15
         ;;
         ubuntu )
             sed -i '/root/d' /etc/rc.local
-            sleep 1
+            sleep 3
             rm -f cudaversion.txt
             rm -f nvidia.txt
             rm -f log_err.txt
             rm -f install_log.txt 
-            sleep 1
+            sleep 3
             exit 15
         ;;
         *)
@@ -419,7 +419,7 @@ else
     echo "===== $VENDOR Server Check List Start ====="  | tee -a /root/Auto_Install_Log.txt
 fi
 
-sleep 1
+sleep 3
 
 # Dell OMSA 설치
 echo ""  | tee -a /root/Auto_Install_Log.txt
@@ -429,31 +429,31 @@ racadm get system.ServerInfo  >> /root/Auto_Install_Log.txt
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "===== OMSA Check Complete ====="  | tee -a /root/Auto_Install_Log.txt
 
-sleep 1
+sleep 3
 
 echo ""
 echo "===== Check List Complete ====="
 case $OSCHECK in 
     centos )
         sed -i '/root/d' /etc/rc.d/rc.local
-        sleep 1
+        sleep 3
         rm -f cudaversion.txt
         rm -f nvidia.txt
         rm -f log_err.txt
         rm -f install_log.txt  
-        sleep 1
+        sleep 3
         rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
-        sleep 1
+        sleep 3
         exit 20
     ;;
     ubuntu )
         sed -i '/root/d' /etc/rc.local
-        sleep 1
+        sleep 3
         rm -f cudaversion.txt
         rm -f nvidia.txt
         rm -f log_err.txt
         rm -f install_log.txt 
-        sleep 1
+        sleep 3
         exit 20
     ;;
     *)
