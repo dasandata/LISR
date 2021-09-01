@@ -234,20 +234,20 @@ case $OS in
       sleep 2
       yum -y  install epel-release >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
-      yum install -y ethtool pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget bind-utils \
+      yes | yum install ethtool pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget bind-utils \
       tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ snapd \
       cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs vim >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
       dmidecode | grep -i ipmi &> /dev/null
       if [ $? = 0 ]
       then
-        yum install -y ipmitool >> /root/install_log.txt 2> /root/log_err.txt
+        yes | yum install ipmitool >> /root/install_log.txt 2> /root/log_err.txt
       else
         echo "" | tee -a /root/install_log.txt
         echo "PC,Workstation do not install ipmitool" | tee -a /root/install_log.txt
       fi
       yum -y groups install "Development Tools" >> /root/install_log.txt 2> /root/log_err.txt
-      yum -y install  glibc-static glibc-devel libstdc++ libstdc++-devel >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install glibc-static glibc-devel libstdc++ libstdc++-devel >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
       sed -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo >> /root/install_log.txt 2> /root/log_err.txt
       yum -y  install yum-plugin-priorities >> /root/install_log.txt 2> /root/log_err.txt
@@ -282,27 +282,27 @@ case $OS in
     rpm -qa | grep -i htop &> /dev/null
     if [ $? != 0 ]
     then
-      dnf -y update >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf update >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
       dnf --refresh -y upgrade >> /root/install_log.txt 2> /root/log_err.txt
       systemctl disable kdump.service >> /root/install_log.txt 2> /root/log_err.txt
-      dnf install -y epel-release >> /root/install_log.txt 2> /root/log_err.txt
-      dnf install -y vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget \
+      yes | dnf install epel-release >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget \
       tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ cmake smartmontools \
       dstat perl perl-CPAN perl-core net-tools openssl-devel snapd ethtool bind-utils >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       dmidecode | grep -i ipmi &> /dev/null
       if [ $? = 0 ]
       then
-        dnf install -y ipmitool >> /root/install_log.txt 2> /root/log_err.txt
+        yes | dnf install ipmitool >> /root/install_log.txt 2> /root/log_err.txt
       else
         echo "" | tee -a /root/install_log.txt
         echo "PC,Workstation do not install ipmitool" | tee -a /root/install_log.txt
       fi
-      dnf -y groups install "Development Tools" >> /root/install_log.txt 2> /root/log_err.txt
-      dnf install -y glibc-devel libstdc++ libstdc++-devel >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf groups install "Development Tools" >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install glibc-devel libstdc++ libstdc++-devel >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
-      dnf install -y htop ntfs-3g figlet >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install htop ntfs-3g figlet >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "The package install complete" | tee -a /root/install_log.txt
     else
@@ -475,12 +475,12 @@ then
     centos7 )
       echo "" | tee -a /root/install_log.txt
       echo "Python Install" | tee -a /root/install_log.txt
-      yum install -y python-devel python-setuptools python-setuptools-devel >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install python-devel python-setuptools python-setuptools-devel >> /root/install_log.txt 2> /root/log_err.txt
       curl -O https://bootstrap.pypa.io/pip/2.7/get-pip.py >> /root/install_log.txt 2> /root/log_err.txt
       python get-pip.py >> /root/install_log.txt 2> /root/log_err.txt
-      yum -y install  python36  python36-devel python36-pip python36-setuptools >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install python36  python36-devel python36-pip python36-setuptools >> /root/install_log.txt 2> /root/log_err.txt
       easy_install-3.6   pip >> /root/install_log.txt 2> /root/log_err.txt
-      yum -y install   openblas* >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install openblas* >> /root/install_log.txt 2> /root/log_err.txt
       pip   install --upgrade pip >> /root/install_log.txt 2> /root/log_err.txt
       pip3   install --upgrade pip >> /root/install_log.txt 2> /root/log_err.txt
       perl -pi -e 's/python3/python/'   /usr/local/bin/pip
@@ -490,7 +490,7 @@ then
     centos8 )
       echo "" | tee -a /root/install_log.txt
       echo "Python Install" | tee -a /root/install_log.txt
-      dnf install -y python2 python2-devel python3 python3-devel >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install python2 python2-devel python3 python3-devel >> /root/install_log.txt 2> /root/log_err.txt
 
       echo "" | tee -a /root/install_log.txt
       echo "Python Install complete" | tee -a /root/install_log.txt
@@ -774,7 +774,7 @@ else
 fi
 
 echo "" | tee -a /root/install_log.txt
-sleep 3
+sleep 10
 echo "" | tee -a /root/install_log.txt
 
 ## CPU 버전 PC, Server 여기까지 (Dell 서버만 뒤에 메일 설정 진행)
@@ -849,6 +849,8 @@ else
   fi
 fi
 
+sleep 10
+
 ## 모든 서버는 MSM 설치가 필요하며 Dell의 경우 OMSA까지 추가로 필요하기 때문에 GPU 설치는 건너 뜁니다. 
 lspci | grep -i nvidia &> /dev/null
 if [ $? != 0 ]
@@ -868,11 +870,11 @@ then
       echo "CUDA,CUDNN REPO install Start" | tee -a /root/install_log.txt
       wget https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-10.0.130-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
       wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
-      yum -y install nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
-      yum -y install cuda-repo-rhel7-10.0.130-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install cuda-repo-rhel7-10.0.130-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
       yum --disablerepo="*" --enablerepo="cuda" list available >> /root/install_log.txt 2> /root/log_err.txt
-      yum -y install  libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-devel libXm* >> /root/install_log.txt 2> /root/log_err.txt
-      yum -y install openmotif* >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-devel libXm* >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install openmotif* >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "CUDA,CUDNN REPO install complete" | tee -a /root/install_log.txt
     ;;
@@ -881,10 +883,10 @@ then
       echo "CUDA,CUDNN REPO install Start" | tee -a /root/install_log.txt
       wget https://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
       wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel8/x86_64/nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
-      dnf install -y nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
-      dnf install -y cuda-repo-rhel8-10.2.89-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
-      dnf install -y libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-devel libXm* >> /root/install_log.txt 2> /root/log_err.txt
-      dnf install -y openmotif* >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install cuda-repo-rhel8-10.2.89-1.x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-devel libXm* >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install openmotif* >> /root/install_log.txt 2> /root/log_err.txt
       dnf --disablerepo="*" --enablerepo="cuda" list available >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "CUDA,CUDNN REPO install complete" | tee -a /root/install_log.txt
@@ -916,7 +918,7 @@ echo "" | tee -a /root/install_log.txt
 
 # 14. CUDA 설치 및 PATH 설정
 ## 저장소에 CentOS8 , Ubuntu20 2가지는 CUDA 11.0 버전만 파일이 있어 나머지 버전 추후 추가 예정
-cat /etc/profile | grep "ADD Cuda" >> /root/install_log.txt 2> /root/log_err.txt
+ls /usr/local/ | grep cuda >> /root/install_log.txt 2> /root/log_err.txt
 if [ $? != 0 ]
 then
   CUDAV=$(cat /root/cudaversion.txt)
@@ -924,101 +926,123 @@ then
   then
     echo "No-GPU not install cuda" >> /root/install_log.txt 2> /root/log_err.txt
   else
-  case $OS in
-    centos7 )
-      echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
-      yum -y install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
-      sleep 1
-      CUDAV="${CUDAV/-/.}"
-      sleep 1
-      systemctl enable nvidia-persistenced >> /root/install_log.txt 2> /root/log_err.txt
-      echo " "  >> /etc/profile
-      echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
-      echo "export PATH=/usr/local/cuda-$CUDAV/bin:/usr/local/cuda-$CUDAV/include:\$PATH " >> /etc/profile
-      echo "export LD_LIBRARY_PATH=/usr/local/cuda-$CUDAV/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
-      echo "export CUDA_HOME=/usr/local/cuda-$CUDAV " >> /etc/profile
-      echo "export CUDA_INC_DIR=/usr/local/cuda-$CUDAV/include " >> /etc/profile
-      cat /etc/profile | tail -6 >> /root/install_log.txt 2> /root/log_err.txt
-      source /etc/profile
-      sleep 1
-      source /root/.bashrc
-      sleep 1
-      ls /usr/local/ | grep cuda >> /root/install_log.txt 2> /root/log_err.txt
-      echo "" | tee -a /root/install_log.txt
-      echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
-    ;;
-    centos8 )
-      echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
-      dnf -y install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
-      sleep 1
-      CUDAV="${CUDAV/-/.}"
-      sleep 1
-      systemctl enable nvidia-persistenced.service >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl start nvidia-persistenced.service >> /root/install_log.txt 2> /root/log_err.txt
-      echo " "  >> /etc/profile
-      echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
-      echo "export PATH=/usr/local/cuda-$CUDAV/bin:/usr/local/cuda-$CUDAV/include:\$PATH " >> /etc/profile
-      echo "export LD_LIBRARY_PATH=/usr/local/cuda-$CUDAV/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
-      echo "export CUDA_HOME=/usr/local/cuda-$CUDAV " >> /etc/profile
-      echo "export CUDA_INC_DIR=/usr/local/cuda-$CUDAV/include " >> /etc/profile
-      cat /etc/profile | tail -6 >> /root/install_log.txt 2> /root/log_err.txt
-      source /etc/profile
-      sleep 1
-      source /root/.bashrc
-      sleep 1
-      ls /usr/local/ | grep cuda >> /root/install_log.txt 2> /root/log_err.txt
-      echo "" | tee -a /root/install_log.txt
-      echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
-    ;;
-    ubuntu1604 | ubuntu1804 )
-      echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
-      yes | apt-get install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
-      sleep 1
-      CUDAV="${CUDAV/-/.}"
-      sleep 1
-      systemctl enable nvidia-persistenced >> /root/install_log.txt 2> /root/log_err.txt
-      echo " "  >> /etc/profile
-      echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
-      echo "export PATH=/usr/local/cuda-$CUDAV/bin:/usr/local/cuda-$CUDAV/include:\$PATH " >> /etc/profile
-      echo "export LD_LIBRARY_PATH=/usr/local/cuda-$CUDAV/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
-      echo "export CUDA_HOME=/usr/local/cuda-$CUDAV " >> /etc/profile
-      echo "export CUDA_INC_DIR=/usr/local/cuda-$CUDAV/include " >> /etc/profile
-      cat /etc/profile | tail -6 >> /root/install_log.txt 2> /root/log_err.txt
-      source /etc/profile
-      sleep 1
-      source /root/.bashrc
-      sleep 1
-      ls /usr/local/ | grep cuda >> /root/install_log.txt 2> /root/log_err.txt
-      echo "" | tee -a /root/install_log.txt
-      echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
-    ;;
-    ubuntu2004 )
-      echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
-      yes | apt-get install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
-      sleep 1
-      CUDAV="${CUDAV/-/.}"
-      sleep 1
-      systemctl enable nvidia-persistenced >> /root/install_log.txt 2> /root/log_err.txt
-      echo " "  >> /etc/profile
-      echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
-      echo "export PATH=/usr/local/cuda-$CUDAV/bin:/usr/local/cuda-$CUDAV/include:\$PATH " >> /etc/profile
-      echo "export LD_LIBRARY_PATH=/usr/local/cuda-$CUDAV/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
-      echo "export CUDA_HOME=/usr/local/cuda-$CUDAV " >> /etc/profile
-      echo "export CUDA_INC_DIR=/usr/local/cuda-$CUDAV/include " >> /etc/profile
-      cat /etc/profile | tail -6 >> /root/install_log.txt 2> /root/log_err.txt
-      source /etc/profile
-      sleep 1
-      source /root/.bashrc
-      sleep 1
-      ls /usr/local/ | grep cuda >> /root/install_log.txt 2> /root/log_err.txt
-      echo "" | tee -a /root/install_log.txt
-      echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
-    ;;
-    *)
-      echo "" | tee -a /root/install_log.txt
-      echo "CUDA install:$OS" | tee -a /root/install_log.txt
-    ;;
-  esac
+    CUDAV="${CUDAV/-/.}"
+    case $OS in
+      centos7 )
+        echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
+        cat /etc/profile | grep "ADD Cuda" >> /root/install_log.txt 2> /root/log_err.txt
+        if [ $! != 0 ]
+        then
+          echo " "  >> /etc/profile
+          echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
+          echo "export PATH=/usr/local/cuda-$CUDAV/bin:/usr/local/cuda-$CUDAV/include:\$PATH " >> /etc/profile
+          echo "export LD_LIBRARY_PATH=/usr/local/cuda-$CUDAV/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
+          echo "export CUDA_HOME=/usr/local/cuda-$CUDAV " >> /etc/profile
+          echo "export CUDA_INC_DIR=/usr/local/cuda-$CUDAV/include " >> /etc/profile
+          cat /etc/profile | tail -6 >> /root/install_log.txt 2> /root/log_err.txt
+        else
+          echo "" | tee -a /root/install_log.txt
+        fi
+        CUDAV="${CUDAV/./-}"
+        sleep 1
+        yes | yum install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
+        sleep 1
+        systemctl enable nvidia-persistenced >> /root/install_log.txt 2> /root/log_err.txt
+        sleep 1
+        source /etc/profile
+        sleep 1
+        source /root/.bashrc
+        sleep 1
+        echo "" | tee -a /root/install_log.txt
+        echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
+      ;;
+      centos8 )
+        echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
+        cat /etc/profile | grep "ADD Cuda" >> /root/install_log.txt 2> /root/log_err.txt
+        if [ $! != 0 ]
+        then
+          echo " "  >> /etc/profile
+          echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
+          echo "export PATH=/usr/local/cuda-$CUDAV/bin:/usr/local/cuda-$CUDAV/include:\$PATH " >> /etc/profile
+          echo "export LD_LIBRARY_PATH=/usr/local/cuda-$CUDAV/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
+          echo "export CUDA_HOME=/usr/local/cuda-$CUDAV " >> /etc/profile
+          echo "export CUDA_INC_DIR=/usr/local/cuda-$CUDAV/include " >> /etc/profile
+          cat /etc/profile | tail -6 >> /root/install_log.txt 2> /root/log_err.txt
+        else
+          echo "" | tee -a /root/install_log.txt
+        fi
+        CUDAV="${CUDAV/./-}"
+        sleep 1
+        yes | dnf install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
+        sleep 1
+        systemctl enable nvidia-persistenced.service >> /root/install_log.txt 2> /root/log_err.txt
+        systemctl start nvidia-persistenced.service >> /root/install_log.txt 2> /root/log_err.txt
+        source /etc/profile
+        sleep 1
+        source /root/.bashrc
+        sleep 1
+        echo "" | tee -a /root/install_log.txt
+        echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
+      ;;
+      ubuntu1604 | ubuntu1804 )
+        echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
+        cat /etc/profile | grep "ADD Cuda" >> /root/install_log.txt 2> /root/log_err.txt
+        if [ $! != 0 ]
+        then
+          echo " "  >> /etc/profile
+          echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
+          echo "export PATH=/usr/local/cuda-$CUDAV/bin:/usr/local/cuda-$CUDAV/include:\$PATH " >> /etc/profile
+          echo "export LD_LIBRARY_PATH=/usr/local/cuda-$CUDAV/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
+          echo "export CUDA_HOME=/usr/local/cuda-$CUDAV " >> /etc/profile
+          echo "export CUDA_INC_DIR=/usr/local/cuda-$CUDAV/include " >> /etc/profile
+          cat /etc/profile | tail -6 >> /root/install_log.txt 2> /root/log_err.txt
+        else
+          echo "" | tee -a /root/install_log.txt
+        fi
+        CUDAV="${CUDAV/./-}"
+        sleep 1
+        yes | apt-get install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
+        sleep 1
+        systemctl enable nvidia-persistenced >> /root/install_log.txt 2> /root/log_err.txt
+        source /etc/profile
+        sleep 1
+        source /root/.bashrc
+        sleep 1
+        echo "" | tee -a /root/install_log.txt
+        echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
+      ;;
+      ubuntu2004 )
+        echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
+        cat /etc/profile | grep "ADD Cuda" >> /root/install_log.txt 2> /root/log_err.txt
+        if [ $! != 0 ]
+        then
+          echo " "  >> /etc/profile
+          echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
+          echo "export PATH=/usr/local/cuda-$CUDAV/bin:/usr/local/cuda-$CUDAV/include:\$PATH " >> /etc/profile
+          echo "export LD_LIBRARY_PATH=/usr/local/cuda-$CUDAV/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
+          echo "export CUDA_HOME=/usr/local/cuda-$CUDAV " >> /etc/profile
+          echo "export CUDA_INC_DIR=/usr/local/cuda-$CUDAV/include " >> /etc/profile
+          cat /etc/profile | tail -6 >> /root/install_log.txt 2> /root/log_err.txt
+        else
+          echo "" | tee -a /root/install_log.txt
+        fi
+        CUDAV="${CUDAV/./-}"
+        sleep 1
+        yes | apt-get install cuda-$CUDAV >> /root/install_log.txt 2> /root/log_err.txt
+        sleep 1
+        systemctl enable nvidia-persistenced >> /root/install_log.txt 2> /root/log_err.txt
+        source /etc/profile
+        sleep 1
+        source /root/.bashrc
+        sleep 1
+        echo "" | tee -a /root/install_log.txt
+        echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
+      ;;
+      *)
+        echo "" | tee -a /root/install_log.txt
+        echo "CUDA install:$OS" | tee -a /root/install_log.txt
+      ;;
+    esac
   fi
 else
   echo "" | tee -a /root/install_log.txt
@@ -1040,11 +1064,11 @@ then
       echo "libcudnn Install Start" | tee -a /root/install_log.txt
       if [ $CUDAV = "11.0" ]
       then
-        yum -y install libcudnn8* >> /root/install_log.txt 2> /root/log_err.txt
-        yum -y upgrade >> /root/install_log.txt 2> /root/log_err.txt
+        yes | yum install libcudnn8* >> /root/install_log.txt 2> /root/log_err.txt
+        yes | yum upgrade >> /root/install_log.txt 2> /root/log_err.txt
       else
-        yum -y install libcudnn7* >> /root/install_log.txt 2> /root/log_err.txt
-        yum -y upgrade >> /root/install_log.txt 2> /root/log_err.txt
+        yes | yum install libcudnn7* >> /root/install_log.txt 2> /root/log_err.txt
+        yes | yum upgrade >> /root/install_log.txt 2> /root/log_err.txt
       fi
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install complete" | tee -a /root/install_log.txt
@@ -1053,8 +1077,8 @@ then
       ## CentOS8 은 저장소에 libcudnn8만 존재함
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install Start" | tee -a /root/install_log.txt
-      dnf -y install libcudnn8*   >> /root/install_log.txt 2> /root/log_err.txt
-      dnf -y install libnccl* >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install libcudnn8*   >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install libnccl* >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install complete" | tee -a /root/install_log.txt
     ;;
@@ -1108,10 +1132,10 @@ then
       rpm -ivh rstudio-1.2.5033-x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
       wget https://download2.rstudio.org/server/centos6/x86_64/rstudio-server-rhel-1.2.5033-x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
       rpm -ivh rstudio-server-rhel-1.2.5033-x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
-      yum install -y R >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install R >> /root/install_log.txt 2> /root/log_err.txt
       ## JupyterHub install
       curl --silent --location https://rpm.nodesource.com/setup_14.x | sudo bash - >> /root/install_log.txt 2> /root/log_err.txt
-      yum install -y nodejs >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install nodejs >> /root/install_log.txt 2> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2> /root/log_err.txt
       mkdir /etc/jupyterhub
       jupyterhub --generate-config >> /root/install_log.txt 2> /root/log_err.txt
@@ -1130,14 +1154,14 @@ then
       echo "Deep Learnig Package Install Start" | tee -a /root/install_log.txt
       ## R,R-studio Install
       wget https://download2.rstudio.org/server/centos8/x86_64/rstudio-server-rhel-1.3.959-x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
-      dnf install -y rstudio-server-rhel-1.3.959-x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
-      dnf install -y java-devel  libgfortran.so.5 libopenblas.so.0 libquadmath.so.0 libtcl8.6.so libtk8.6.so >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install rstudio-server-rhel-1.3.959-x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install java-devel  libgfortran.so.5 libopenblas.so.0 libquadmath.so.0 libtcl8.6.so libtk8.6.so >> /root/install_log.txt 2> /root/log_err.txt
       # libRmath-devel R-rpm-macros  libRmath 패키지 존재하지 않아 설치 불가
       dnf config-manager --set-enabled powertools >> /root/install_log.txt 2> /root/log_err.txt
-      dnf install -y R >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install R >> /root/install_log.txt 2> /root/log_err.txt
       systemctl restart rstudio-server.service >> /root/install_log.txt 2> /root/log_err.txt
       ## JupyterHub Install
-      dnf install -y nodejs >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install nodejs >> /root/install_log.txt 2> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package install complete" | tee -a /root/install_log.txt
@@ -1387,7 +1411,7 @@ then
       bash ./dellomsainstall.sh >> /root/install_log.txt 2> /root/log_err.txt
       rm -f ./dellomsainstall.sh >> /root/install_log.txt 2> /root/log_err.txt
       yum -y erase  tog-pegasus-libs >> /root/install_log.txt 2> /root/log_err.txt
-      yum -y install --enablerepo=dell-system-update_dependent -y  srvadmin-all openssl-devel >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install --enablerepo=dell-system-update_dependent -y  srvadmin-all openssl-devel >> /root/install_log.txt 2> /root/log_err.txt
       systemctl enable dataeng >> /root/install_log.txt 2> /root/log_err.txt
       systemctl enable dsm_om_connsvc >> /root/install_log.txt 2> /root/log_err.txt
       systemctl start dataeng >> /root/install_log.txt 2> /root/log_err.txt
