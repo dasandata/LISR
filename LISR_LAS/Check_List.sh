@@ -193,7 +193,7 @@ echo "##### H/W Check Complete #####"  | tee -a /root/Auto_Install_Log.txt
 sleep 1
 
 # GPU 존재 여부에 따라 아래 체크리스트 실행
-nvcc -V &> /dev/null
+lspci | grep -i nvidia  &> /dev/null
 if [ $? != 0 ]
 then
     echo ""  | tee -a /root/Auto_Install_Log.txt
