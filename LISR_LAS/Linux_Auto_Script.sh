@@ -230,13 +230,13 @@ case $OS in
     rpm -qa | grep -i htop &> /dev/null
     if [ $? != 0 ]
     then
-      yum -y update >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum update >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
-      yum -y  install epel-release >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install epel-release >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
-      yes | yum install ethtool pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget bind-utils \
-      tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ snapd \
-      cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs vim >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install ethtool pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget bind-utils >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ snapd >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs vim >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
       dmidecode | grep -i ipmi &> /dev/null
       if [ $? = 0 ]
@@ -246,12 +246,12 @@ case $OS in
         echo "" | tee -a /root/install_log.txt
         echo "PC,Workstation do not install ipmitool" | tee -a /root/install_log.txt
       fi
-      yum -y groups install "Development Tools" >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum groups install "Development Tools" >> /root/install_log.txt 2> /root/log_err.txt
       yes | yum install glibc-static glibc-devel libstdc++ libstdc++-devel >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
       sed -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo >> /root/install_log.txt 2> /root/log_err.txt
-      yum -y  install yum-plugin-priorities >> /root/install_log.txt 2> /root/log_err.txt
-      yum -y  install htop ntfs-3g figlet >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install yum-plugin-priorities >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install htop ntfs-3g figlet >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "The package install complete" | tee -a /root/install_log.txt
     else
@@ -287,9 +287,9 @@ case $OS in
       dnf --refresh -y upgrade >> /root/install_log.txt 2> /root/log_err.txt
       systemctl disable kdump.service >> /root/install_log.txt 2> /root/log_err.txt
       yes | dnf install epel-release >> /root/install_log.txt 2> /root/log_err.txt
-      yes | dnf install vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget \
-      tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ cmake smartmontools \
-      dstat perl perl-CPAN perl-core net-tools openssl-devel snapd ethtool bind-utils >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ cmake smartmontools >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install dstat perl perl-CPAN perl-core net-tools openssl-devel snapd ethtool bind-utils >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       dmidecode | grep -i ipmi &> /dev/null
       if [ $? = 0 ]
