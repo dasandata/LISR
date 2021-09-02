@@ -1328,7 +1328,8 @@ then
     centos7 | centos8 )
       echo "" | tee -a /root/install_log.txt
       echo "MSM install start" | tee -a /root/install_log.txt
-      mkdir /tmp/raid_manager && cd /tmp/raid_manager
+      mkdir /tmp/raid_manager
+      cd /tmp/raid_manager
       wget https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/17.05.00.02_Linux-64_MSM.gz >> /root/install_log.txt 2> /root/log_err.txt
       tar xvzf 17.05.00.02_Linux-64_MSM.gz >> /root/install_log.txt 2> /root/log_err.txt
       cd /tmp/raid_manager/disk/ && ./install.csh -a >> /root/install_log.txt 2> /root/log_err.txt
@@ -1339,7 +1340,8 @@ then
     ubuntu1604 | ubuntu1804 | ubuntu2004 )
       echo "" | tee -a /root/install_log.txt
       echo "MSM install start" | tee -a /root/install_log.txt
-      mkdir /tmp/raid_manager && cd /tmp/raid_manager
+      mkdir /tmp/raid_manager
+      cd /tmp/raid_manager
       wget https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/17.05.00.02_Linux-64_MSM.gz >> /root/install_log.txt 2> /root/log_err.txt
       tar xvzf 17.05.00.02_Linux-64_MSM.gz >> /root/install_log.txt 2> /root/log_err.txt
       cd disk/
