@@ -203,10 +203,10 @@ then
             sleep 3
             sed -i '/root/d' /etc/rc.d/rc.local
             sleep 3
-            rm -f cudaversion.txt
-            rm -f nvidia.txt
-            rm -f log_err.txt
-            rm -f install_log.txt 
+            rm -f /root/cudaversion.txt
+            rm -f /root/nvidia.txt
+            rm -f /root/log_err.txt
+            rm -f /root/install_log.txt 
             sleep 3
             rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
             sleep 3
@@ -216,10 +216,10 @@ then
             sleep 3
             sed -i '/root/d' /etc/rc.local
             sleep 3
-            rm -f cudaversion.txt
-            rm -f nvidia.txt
-            rm -f log_err.txt
-            rm -f install_log.txt 
+            rm -f /root/cudaversion.txt
+            rm -f /root/nvidia.txt
+            rm -f /root/log_err.txt
+            rm -f /root/install_log.txt 
             sleep 3
             exit 5
         ;;
@@ -344,10 +344,10 @@ then
         centos )
             sed -i '/root/d' /etc/rc.d/rc.local
             sleep 3
-            rm -f cudaversion.txt
-            rm -f nvidia.txt
-            rm -f log_err.txt
-            rm -f install_log.txt 
+            rm -f /root/cudaversion.txt
+            rm -f /root/nvidia.txt
+            rm -f /root/log_err.txt
+            rm -f /root/install_log.txt 
             sleep 3
             rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
             sleep 3
@@ -356,10 +356,10 @@ then
         ubuntu )
             sed -i '/root/d' /etc/rc.local
             sleep 3
-            rm -f cudaversion.txt
-            rm -f nvidia.txt
-            rm -f log_err.txt
-            rm -f install_log.txt  
+            rm -f /root/cudaversion.txt
+            rm -f /root/nvidia.txt
+            rm -f /root/log_err.txt
+            rm -f /root/install_log.txt  
             sleep 3
             exit 10
         ;;
@@ -392,10 +392,10 @@ then
         centos )
             sed -i '/root/d' /etc/rc.d/rc.local
             sleep 3
-            rm -f cudaversion.txt
-            rm -f nvidia.txt
-            rm -f log_err.txt
-            rm -f install_log.txt 
+            rm -f /root/cudaversion.txt
+            rm -f /root/nvidia.txt
+            rm -f /root/log_err.txt
+            rm -f /root/install_log.txt 
             sleep 3
             rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
             sleep 3
@@ -404,10 +404,10 @@ then
         ubuntu )
             sed -i '/root/d' /etc/rc.local
             sleep 3
-            rm -f cudaversion.txt
-            rm -f nvidia.txt
-            rm -f log_err.txt
-            rm -f install_log.txt 
+            rm -f /root/cudaversion.txt
+            rm -f /root/nvidia.txt
+            rm -f /root/log_err.txt
+            rm -f /root/install_log.txt 
             sleep 3
             exit 15
         ;;
@@ -437,10 +437,10 @@ case $OSCHECK in
         echo "##### $VENDOR Server Check List Complete #####"  | tee -a /root/Auto_Install_Log.txt
         sed -i '/root/d' /etc/rc.d/rc.local
         sleep 3
-        rm -f cudaversion.txt
-        rm -f nvidia.txt
-        rm -f log_err.txt
-        rm -f install_log.txt  
+        rm -f /root/cudaversion.txt
+        rm -f /root/nvidia.txt
+        rm -f /root/log_err.txt
+        rm -f /root/install_log.txt  
         sleep 3
         rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
         sleep 3
@@ -450,10 +450,10 @@ case $OSCHECK in
         echo "##### $VENDOR Server Check List Complete #####"  | tee -a /root/Auto_Install_Log.txt
         sed -i '/root/d' /etc/rc.local
         sleep 3
-        rm -f cudaversion.txt
-        rm -f nvidia.txt
-        rm -f log_err.txt
-        rm -f install_log.txt 
+        rm -f /root/cudaversion.txt
+        rm -f /root/nvidia.txt
+        rm -f /root/log_err.txt
+        rm -f /root/install_log.txt 
         sleep 3
         exit 20
     ;;
