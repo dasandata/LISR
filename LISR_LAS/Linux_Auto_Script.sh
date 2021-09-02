@@ -1282,18 +1282,22 @@ then
   # rc.local 기본 값으로 변경
   echo "" | tee -a /root/install_log.txt
   echo "LAS install complete" | tee -a /root/install_log.txt
-  case $OS in
-    centos7 | centos8 )
+  case $OSCHECK in
+    centos )
+      OS=$(cat /etc/redhat-release | awk '{print$1,$4}' | cut -d "." -f 1 | tr -d " " | tr '[A-Z]' '[a-z]')
       sed -i '12a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.d/rc.local
       systemctl set-default graphical.target >> /root/install_log.txt 2> /root/log_err.txt
     ;;
-    ubuntu1604 )
-      sed -i '13a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
-      systemctl set-default graphical.target >> /root/install_log.txt 2> /root/log_err.txt
-    ;;
-    ubuntu1804 | ubuntu2004 )
-      sed -i '1a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
-      systemctl set-default graphical.target >> /root/install_log.txt 2> /root/log_err.txt
+    ubuntu )
+      OS=$(lsb_release -isr |  tr -d "." | sed -e '{N;s/\n//}' | tr '[A-Z]' '[a-z]')
+      if [ $OS = "ubuntu1604" ]
+      then
+        sed -i '13a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
+        systemctl set-default graphical.target >> /root/install_log.txt 2> /root/log_err.txt
+      else
+        sed -i '1a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
+        systemctl set-default graphical.target >> /root/install_log.txt 2> /root/log_err.txt
+      fi
     ;;
     *)
     ;;
