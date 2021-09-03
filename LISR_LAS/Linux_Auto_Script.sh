@@ -929,7 +929,7 @@ then
       centos7 )
         echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
         cat /etc/profile | grep "ADD Cuda" >> /root/install_log.txt 2> /root/log_err.txt
-        if [ $! != 0 ]
+        if [ $? != 0 ]
         then
           echo " "  >> /etc/profile
           echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
@@ -957,7 +957,7 @@ then
       centos8 )
         echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
         cat /etc/profile | grep "ADD Cuda" >> /root/install_log.txt 2> /root/log_err.txt
-        if [ $! != 0 ]
+        if [ $? != 0 ]
         then
           echo " "  >> /etc/profile
           echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
@@ -985,7 +985,7 @@ then
       ubuntu1604 | ubuntu1804 )
         echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
         cat /etc/profile | grep "ADD Cuda" >> /root/install_log.txt 2> /root/log_err.txt
-        if [ $! != 0 ]
+        if [ $? != 0 ]
         then
           echo " "  >> /etc/profile
           echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
@@ -1012,7 +1012,7 @@ then
       ubuntu2004 )
         echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
         cat /etc/profile | grep "ADD Cuda" >> /root/install_log.txt 2> /root/log_err.txt
-        if [ $! != 0 ]
+        if [ $? != 0 ]
         then
           echo " "  >> /etc/profile
           echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
