@@ -288,7 +288,7 @@ case $OS in
       systemctl disable kdump.service >> /root/install_log.txt 2> /root/log_err.txt
       yes | dnf install epel-release >> /root/install_log.txt 2> /root/log_err.txt
       yes | dnf install vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget >> /root/install_log.txt 2> /root/log_err.txt
-      yes | dnf install tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ cmake smartmontools >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ cmake  >> /root/install_log.txt 2> /root/log_err.txt
       yes | dnf install dstat perl perl-CPAN perl-core net-tools openssl-devel snapd ethtool bind-utils >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       dmidecode | grep -i ipmi &> /dev/null
@@ -339,8 +339,6 @@ case $OS in
       sleep 2
       yes | apt-get install dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> /root/install_log.txt 2> /root/log_err.txt
       yes | apt-get install libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool htop dnsutils >> /root/install_log.txt 2> /root/log_err.txt
-      sleep 2
-      DEBIAN_FRONTEND=noninteractive yes | apt-get install smartmontools >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
       #불필요한 서비스 disable
       systemctl disable bluetooth.service >> /root/install_log.txt 2> /root/log_err.txt
