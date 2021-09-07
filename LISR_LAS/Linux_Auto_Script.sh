@@ -236,7 +236,7 @@ case $OS in
       sleep 2
       yes | yum install ethtool pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget bind-utils >> /root/install_log.txt 2> /root/log_err.txt
       yes | yum install tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ snapd >> /root/install_log.txt 2> /root/log_err.txt
-      yes | yum install cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs vim smartmontools >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs vim  >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
       dmidecode | grep -i ipmi &> /dev/null
       if [ $? = 0 ]
@@ -289,7 +289,7 @@ case $OS in
       yes | dnf install epel-release >> /root/install_log.txt 2> /root/log_err.txt
       yes | dnf install vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget >> /root/install_log.txt 2> /root/log_err.txt
       yes | dnf install tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ cmake  >> /root/install_log.txt 2> /root/log_err.txt
-      yes | dnf install dstat perl perl-CPAN perl-core net-tools openssl-devel snapd ethtool bind-utils smartmontools >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install dstat perl perl-CPAN perl-core net-tools openssl-devel snapd ethtool bind-utils  >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
       dmidecode | grep -i ipmi &> /dev/null
       if [ $? = 0 ]
@@ -335,10 +335,10 @@ case $OS in
       apt-get update >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
       yes | apt-get install vim nfs-common rdate xauth firefox gcc make tmux wget figlet >> /root/install_log.txt 2> /root/log_err.txt
-      yes | apt-get install net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python mlocate ubuntu-desktop >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python mlocate >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
-      yes | apt-get install dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> /root/install_log.txt 2> /root/log_err.txt
-      yes | apt-get install libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool htop dnsutils smartmontools >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install ubuntu-desktop dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool htop dnsutils  >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
       #불필요한 서비스 disable
       systemctl disable bluetooth.service >> /root/install_log.txt 2> /root/log_err.txt
