@@ -99,11 +99,6 @@ then
       ## centos는 이미 rc.local이 존재하여 실행될 파일값만 넣어준다.
       chmod +x /etc/rc.d/rc.local
       sed -i '12a bash /root/LISR/LISR_LAS/Linux_Auto_Script.sh' /etc/rc.d/rc.local
-      echo "" >> /usr/lib/systemd/system/rc-local.service
-      echo "[install]" >> /usr/lib/systemd/system/rc-local.service
-      echo "WantedBy=multi-user.target" >> /usr/lib/systemd/system/rc-local.service
-      systemctl enable rc-local.service  >> /root/install_log.txt 2> /root/log_err.txt
-      systemctl start rc-local.service   >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "rc.local setting complete" | tee -a /root/install_log.txt
     ;;
