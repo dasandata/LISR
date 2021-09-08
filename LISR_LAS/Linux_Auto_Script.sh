@@ -783,7 +783,7 @@ then
       then
         echo "" | tee -a /root/install_log.txt
         echo "End of CPU version LAS" | tee -a /root/install_log.txt
-        sed -i '/root/d' /etc/rc.d/rc.local
+        sed -i '12a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.d/rc.local
         systemctl set-default graphical.target >> /root/install_log.txt 2> /root/log_err.txt
         reboot
       else
@@ -1288,7 +1288,7 @@ then
   echo "LAS install complete" | tee -a /root/install_log.txt
   case $OSCHECK in
     centos )
-      sed -i '/root/d' /etc/rc.d/rc.local
+      sed -i '12a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.d/rc.local
       systemctl set-default graphical.target >> /root/install_log.txt 2> /root/log_err.txt
     ;;
     ubuntu )
@@ -1379,7 +1379,7 @@ then
   echo "LAS install complete" | tee -a /root/install_log.txt
     case $OS in
       centos7 | centos8 )
-        sed -i '/root/d' /etc/rc.d/rc.local
+        sed -i '12a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.d/rc.local
         systemctl set-default  multi-user.target
       ;;
       ubuntu1604 )
@@ -1503,7 +1503,7 @@ then
   echo "LAS install complete" | tee -a /root/install_log.txt
     case $OS in
     centos7 | centos8 )
-      sed -i '/root/d' /etc/rc.d/rc.local
+      sed -i '12a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.d/rc.local
       systemctl set-default  multi-user.target | tee -a /root/install_log.txt
     ;;
     ubuntu1604 )
