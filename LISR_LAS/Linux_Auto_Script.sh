@@ -740,33 +740,33 @@ sleep 3
 echo "" | tee -a /root/install_log.txt
 
 # 12. H/W 사양 체크
-cat /root/hwcheck.txt &> /dev/null
+cat /root/HWcheck.txt &> /dev/null
 if [ $? != 0 ]
 then
   echo "===== H/W Check Start =====" | tee -a /root/install_log.txt
-  touch /root/hwcheck.txt
-  echo "=====  H/W Check Start =====" >> /root/hwcheck.txt
-  echo "=====  System =====" >> /root/hwcheck.txt
-  dmidecode --type system | grep -v "^$\|#\|SMBIOS\|Handle\|Not" >> /root/hwcheck.txt
-  echo "===== CPU =====" >> /root/hwcheck.txt
-  lscpu | grep -v "Flags\|NUMA" >> /root/hwcheck.txt
-  echo "===== Memory Devices =====" >> /root/hwcheck.txt
-  dmidecode --type 16 | grep -v "dmidecode\|SMBIOS\|Handle" >> /root/hwcheck.txt
-  dmidecode --type memory | grep "Number Of Devices\|Size\|Locator\|Clock\|DDR\|Rank" | grep -v "No\|Unknown" >> /root/hwcheck.txt
-  cat /proc/meminfo | grep MemTotal >> /root/hwcheck.txt
-  free -h >> /root/hwcheck.txt
-  echo "===== PCIe =====" >> /root/hwcheck.txt
-  lspci | grep -i vga >> /root/hwcheck.txt
-  lspci | grep -i nvidia >> /root/hwcheck.txt
-  dmidecode | grep NIC >> /root/hwcheck.txt
-  lspci | grep -i communication >> /root/hwcheck.txt
-  dmesg | grep NIC >> /root/hwcheck.txt
-  echo "===== Power Supply =====" >> /root/hwcheck.txt
-  dmidecode --type 39  | grep "System\|Name:\|Capacity" >> /root/hwcheck.txt
-  echo "===== Disk & Partition =====" >> /root/hwcheck.txt
-  blkid >> /root/hwcheck.txt
-  echo "===== OS release & kernel =====" >> /root/hwcheck.txt
-  uname -a >> /root/hwcheck.txt
+  touch /root/HWcheck.txt
+  echo "=====  H/W Check Start =====" >> /root/HWcheck.txt
+  echo "=====  System =====" >> /root/HWcheck.txt
+  dmidecode --type system | grep -v "^$\|#\|SMBIOS\|Handle\|Not" >> /root/HWcheck.txt
+  echo "===== CPU =====" >> /root/HWcheck.txt
+  lscpu | grep -v "Flags\|NUMA" >> /root/HWcheck.txt
+  echo "===== Memory Devices =====" >> /root/HWcheck.txt
+  dmidecode --type 16 | grep -v "dmidecode\|SMBIOS\|Handle" >> /root/HWcheck.txt
+  dmidecode --type memory | grep "Number Of Devices\|Size\|Locator\|Clock\|DDR\|Rank" | grep -v "No\|Unknown" >> /root/HWcheck.txt
+  cat /proc/meminfo | grep MemTotal >> /root/HWcheck.txt
+  free -h >> /root/HWcheck.txt
+  echo "===== PCIe =====" >> /root/HWcheck.txt
+  lspci | grep -i vga >> /root/HWcheck.txt
+  lspci | grep -i nvidia >> /root/HWcheck.txt
+  dmidecode | grep NIC >> /root/HWcheck.txt
+  lspci | grep -i communication >> /root/HWcheck.txt
+  dmesg | grep NIC >> /root/HWcheck.txt
+  echo "===== Power Supply =====" >> /root/HWcheck.txt
+  dmidecode --type 39  | grep "System\|Name:\|Capacity" >> /root/HWcheck.txt
+  echo "===== Disk & Partition =====" >> /root/HWcheck.txt
+  blkid >> /root/HWcheck.txt
+  echo "===== OS release & kernel =====" >> /root/HWcheck.txt
+  uname -a >> /root/HWcheck.txt
   echo "" | tee -a /root/install_log.txt
   echo "=====  H/W Check Complete ===== " | tee -a /root/install_log.txt
 else
@@ -850,7 +850,7 @@ else
   fi
 fi
 
-sleep 10
+sleep 3
 
 ## 모든 서버는 MSM 설치가 필요하며 Dell의 경우 OMSA까지 추가로 필요하기 때문에 GPU 설치는 건너 뜁니다. 
 lspci | grep -i nvidia &> /dev/null
@@ -1285,7 +1285,6 @@ then
   echo "LAS install complete" | tee -a /root/install_log.txt
   case $OSCHECK in
     centos )
-      OS=$(cat /etc/redhat-release | awk '{print$1,$4}' | cut -d "." -f 1 | tr -d " " | tr '[A-Z]' '[a-z]')
       sed -i '12a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.d/rc.local
       systemctl set-default graphical.target >> /root/install_log.txt 2> /root/log_err.txt
     ;;
