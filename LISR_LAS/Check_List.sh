@@ -10,7 +10,6 @@ echo "You have run Check List Script"  | tee -a /root/Auto_Install_Log.txt
 echo "Copyright by Dasandata.co.ltd"  | tee -a /root/Auto_Install_Log.txt
 echo "http://www.dasandata.co.kr"  | tee -a /root/Auto_Install_Log.txt
 echo ""  | tee -a /root/Auto_Install_Log.txt
-sleep 30
 # nouveau 끄기 및 grub 설정
 echo "##### Nouveau, GRUB Check Start #####"  | tee -a /root/Auto_Install_Log.txt
 echo ""  | tee -a /root/Auto_Install_Log.txt
