@@ -568,8 +568,6 @@ then
       pip3 install torch torchvision >> /root/install_log.txt 2> /root/log_err.txt
       pip3 install --upgrade optimuspyspark >> /root/install_log.txt 2> /root/log_err.txt
       pip3 uninstall --yes tensorflow >> /root/install_log.txt 2> /root/log_err.txt
-      pip3 install --upgrade jupyterhub >> /root/install_log.txt 2> /root/log_err.txt
-      pip3 install --upgrade notebook >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "Python Package Install complete" | tee -a /root/install_log.txt
     ;;
@@ -582,7 +580,6 @@ then
       pip2 install --upgrade setuptools >> /root/install_log.txt 2> /root/log_err.txt
       pip3 install --upgrade numpy scipy nose matplotlib pandas keras tensorflow-gpu >> /root/install_log.txt 2> /root/log_err.txt
       pip3 install --upgrade python-dateutil >> /root/install_log.txt 2> /root/log_err.txt
-      pip3 install --upgrade jupyterhub notebook flask >> /root/install_log.txt 2> /root/log_err.txt
       perl -pi -e 's/python3.6/python2.7/'   /usr/local/bin/pip 
       cp /usr/local/lib/python3.6/site-packages/six.py /usr/lib/python3.6/site-packages/ >> /root/install_log.txt 2> /root/log_err.txt
       # systemctl daemon이 다시 켜지지 않는 원인으로 아래 명령어 실행
@@ -607,8 +604,6 @@ then
       fi
       pip3 install --upgrade optimuspyspark  >> /root/install_log.txt 2> /root/log_err.txt
       pip3 install --upgrade testresources >> /root/install_log.txt 2> /root/log_err.txt
-      pip3 install --upgrade jupyterhub >> /root/install_log.txt 2> /root/log_err.txt
-      pip3 install --upgrade notebook >> /root/install_log.txt 2> /root/log_err.txt
       pip install torch torchvision >> /root/install_log.txt 2> /root/log_err.txt
       pip3 install torch torchvision >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
@@ -623,7 +618,6 @@ then
       pip3 install numpy==1.16.0 h5py==2.10.0 cryptography==3.3.2 >> /root/install_log.txt 2> /root/log_err.txt
       pip install --upgrade torch torchvision  >> /root/install_log.txt 2> /root/log_err.txt
       pip3 install --upgrade torch torchvision >> /root/install_log.txt 2> /root/log_err.txt
-      pip3 install --upgrade jupyterhub notebook >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "Python Package Install complete" | tee -a /root/install_log.txt
     ;;
@@ -1135,6 +1129,7 @@ then
       rpm -ivh rstudio-server-rhel-1.2.5033-x86_64.rpm >> /root/install_log.txt 2> /root/log_err.txt
       yum -y install R >> /root/install_log.txt 2> /root/log_err.txt
       ## JupyterHub install
+      pip3 install --upgrade jupyterhub notebook >> /root/install_log.txt 2> /root/log_err.txt
       curl --silent --location https://rpm.nodesource.com/setup_14.x | sudo bash - >> /root/install_log.txt 2> /root/log_err.txt
       yum -y install nodejs >> /root/install_log.txt 2> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2> /root/log_err.txt
@@ -1162,6 +1157,7 @@ then
       dnf -y install R >> /root/install_log.txt 2> /root/log_err.txt
       systemctl restart rstudio-server.service >> /root/install_log.txt 2> /root/log_err.txt
       ## JupyterHub Install
+      pip3 install --upgrade jupyterhub notebook >> /root/install_log.txt 2> /root/log_err.txt
       dnf -y install nodejs >> /root/install_log.txt 2> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
@@ -1185,6 +1181,7 @@ then
       dpkg -i rstudio-1.2.5019-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
       yes | apt-get install  rdesktop >> /root/install_log.txt 2> /root/log_err.txt
       ## JupyterHub install
+      pip3 install --upgrade jupyterhub notebook flask >> /root/install_log.txt 2> /root/log_err.txt
       curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -  >> /root/install_log.txt 2> /root/log_err.txt
       yes | apt-get install  nodejs default-jre >> /root/install_log.txt 2> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2> /root/log_err.txt
@@ -1206,6 +1203,7 @@ then
       dpkg -i rstudio-1.2.5019-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
       yes | apt-get install  rdesktop >> /root/install_log.txt 2> /root/log_err.txt
       ## JupyterHub install
+      pip3 install --upgrade jupyterhub notebook >> /root/install_log.txt 2> /root/log_err.txt
       curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -  >> /root/install_log.txt 2> /root/log_err.txt
       yes | apt-get install  nodejs default-jre >> /root/install_log.txt 2> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2> /root/log_err.txt
