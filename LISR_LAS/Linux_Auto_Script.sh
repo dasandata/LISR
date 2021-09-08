@@ -905,7 +905,7 @@ then
     ;;
     *)
       echo "" | tee -a /root/install_log.txt
-      echo "CUDA,CUDNN repo install:$OS" | tee -a /root/install_log.txt
+      echo "CUDA,CUDNN repo not install:$OS" | tee -a /root/install_log.txt
     ;;
   esac
 else
@@ -1041,7 +1041,7 @@ then
       ;;
       *)
         echo "" | tee -a /root/install_log.txt
-        echo "CUDA install:$OS" | tee -a /root/install_log.txt
+        echo "CUDA not install:$OS" | tee -a /root/install_log.txt
       ;;
     esac
   fi
@@ -1243,7 +1243,7 @@ then
     ;;
     *)
       echo "" | tee -a /root/install_log.txt
-      echo "Deep Learnig package install:$OS"   | tee -a /root/install_log.txt
+      echo "Deep Learnig package not install:$OS"   | tee -a /root/install_log.txt
     ;;
   esac
   sleep 3
@@ -1253,23 +1253,30 @@ else
 fi
 
 ## jupyterhub 마무리 설정
-if [  $OS != "Skip this server as it has no GPU." ]
+lspci | grep -i nvidia &> /dev/null
+if [ $? = 0 ]
 then
-  echo "" | tee -a /root/install_log.txt
-  echo "JupyterHub Setting Files Copy" | tee -a /root/install_log.txt
-  ## jupyter hub service 설정 파일 복사
-  mv /root/LISR/LISR_LAS/jupyterhub.service /lib/systemd/system/
-  mv /root/LISR/LISR_LAS/jupyterhub /etc/init.d/
-  chmod 777 /lib/systemd/system/jupyterhub.service >> /root/install_log.txt 2> /root/log_err.txt
-  chmod 755 /etc/init.d/jupyterhub >> /root/install_log.txt 2> /root/log_err.txt
-  systemctl daemon-reload >> /root/install_log.txt 2> /root/log_err.txt
-  systemctl enable jupyterhub.service >> /root/install_log.txt 2> /root/log_err.txt
-  systemctl restart jupyterhub.service >> /root/install_log.txt 2> /root/log_err.txt
-  R CMD BATCH /root/LISR/LISR_LAS/r_jupyterhub.R >> /root/install_log.txt 2> /root/log_err.txt
-  echo "" | tee -a /root/install_log.txt
-  echo "JupyterHub Setting Files Copy Complete" | tee -a /root/install_log.txt
+  ls /lib/systemd/system/ | grep jupyter &> /dev/null
+  if [ $? != 0 ]
+  then
+    echo "" | tee -a /root/install_log.txt
+    echo "JupyterHub Setting Files Copy" | tee -a /root/install_log.txt
+    ## jupyter hub service 설정 파일 복사
+    mv /root/LISR/LISR_LAS/jupyterhub.service /lib/systemd/system/
+    mv /root/LISR/LISR_LAS/jupyterhub /etc/init.d/
+    chmod 777 /lib/systemd/system/jupyterhub.service >> /root/install_log.txt 2> /root/log_err.txt
+    chmod 755 /etc/init.d/jupyterhub >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl daemon-reload >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl enable jupyterhub.service >> /root/install_log.txt 2> /root/log_err.txt
+    systemctl restart jupyterhub.service >> /root/install_log.txt 2> /root/log_err.txt
+    R CMD BATCH /root/LISR/LISR_LAS/r_jupyterhub.R >> /root/install_log.txt 2> /root/log_err.txt
+    echo "" | tee -a /root/install_log.txt
+    echo "JupyterHub Setting Files Copy Complete" | tee -a /root/install_log.txt
+  else
+    echo "JupyterHub Settings is already" | tee -a /root/install_log.txt
+  fi
 else
-  echo ""
+  echo "No-GPU No-Jupyter" | tee -a /root/install_log.txt
 fi
 
 echo "" | tee -a /root/install_log.txt
