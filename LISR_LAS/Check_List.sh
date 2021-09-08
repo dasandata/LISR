@@ -186,7 +186,7 @@ sleep 3
 
 # H/W 사양 체크
 echo ""  | tee -a /root/Auto_Install_Log.txt
-cat /root/hwcheck.txt  >> /root/Auto_Install_Log.txt
+cat /root/HWcheck.txt  >> /root/Auto_Install_Log.txt
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### H/W Check Complete #####"  | tee -a /root/Auto_Install_Log.txt
 
