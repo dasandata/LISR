@@ -99,6 +99,8 @@ then
       ## centos는 이미 rc.local이 존재하여 실행될 파일값만 넣어준다.
       chmod +x /etc/rc.d/rc.local
       sed -i '12a bash /root/LISR/LISR_LAS/Linux_Auto_Script.sh' /etc/rc.d/rc.local
+      systemctl enable rc-local.service  >> /root/install_log.txt 2> /root/log_err.txt
+      systemctl start rc-local.service   >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "rc.local setting complete" | tee -a /root/install_log.txt
     ;;
@@ -236,7 +238,7 @@ case $OS in
       sleep 2
       yes | yum install ethtool pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget bind-utils >> /root/install_log.txt 2> /root/log_err.txt
       yes | yum install tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ snapd >> /root/install_log.txt 2> /root/log_err.txt
-      yes | yum install cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs vim  >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs vim >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
       dmidecode | grep -i ipmi &> /dev/null
       if [ $? = 0 ]
@@ -251,7 +253,7 @@ case $OS in
       sleep 2
       sed -i -e "s/\]$/\]\npriority=5/g" /etc/yum.repos.d/epel.repo >> /root/install_log.txt 2> /root/log_err.txt
       yes | yum install yum-plugin-priorities >> /root/install_log.txt 2> /root/log_err.txt
-      yes | yum install htop ntfs-3g figlet >> /root/install_log.txt 2> /root/log_err.txt
+      yes | yum install htop ntfs-3g figlet smartmontools >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "The package install complete" | tee -a /root/install_log.txt
     else
@@ -302,7 +304,7 @@ case $OS in
       yes | dnf groups install "Development Tools" >> /root/install_log.txt 2> /root/log_err.txt
       yes | dnf install glibc-devel libstdc++ libstdc++-devel >> /root/install_log.txt 2> /root/log_err.txt
       sleep 3
-      yes | dnf install htop ntfs-3g figlet >> /root/install_log.txt 2> /root/log_err.txt
+      yes | dnf install htop ntfs-3g figlet smartmontools >> /root/install_log.txt 2> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "The package install complete" | tee -a /root/install_log.txt
     else
@@ -338,8 +340,9 @@ case $OS in
       yes | apt-get install net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python mlocate >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
       yes | apt-get install ubuntu-desktop dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> /root/install_log.txt 2> /root/log_err.txt
-      yes | apt-get install libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool htop dnsutils  >> /root/install_log.txt 2> /root/log_err.txt
+      yes | apt-get install libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool htop dnsutils >> /root/install_log.txt 2> /root/log_err.txt
       sleep 2
+      DEBIAN_FRONTEND=noninteractive apt-get install -y smartmontools >> /root/install_log.txt 2> /root/log_err.txt
       #불필요한 서비스 disable
       systemctl disable bluetooth.service >> /root/install_log.txt 2> /root/log_err.txt
       systemctl disable iscsi.service >> /root/install_log.txt 2> /root/log_err.txt
