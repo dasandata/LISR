@@ -5,7 +5,7 @@
 # LAS 가 정상적으로 작동하였는지 체크
 OSCHECK=$(cat /etc/os-release | head -1 | cut -d "=" -f 2 | tr -d "\"" | awk '{print$1}' | tr '[A-Z]' '[a-z]')
 VENDOR=$(dmidecode | grep -i manufacturer | awk '{print$2}' | head -1)
-
+systemctl start rc-local.service   >> /root/install_log.txt 2> /root/log_err.txt
 echo "You have run Check List Script"  | tee -a /root/Auto_Install_Log.txt
 echo "Copyright by Dasandata.co.ltd"  | tee -a /root/Auto_Install_Log.txt
 echo "http://www.dasandata.co.kr"  | tee -a /root/Auto_Install_Log.txt
@@ -199,7 +199,6 @@ then
     echo "##### Check List Complete #####"  | tee -a /root/Auto_Install_Log.txt
     case $OSCHECK in 
         centos )
-            sleep 3
             sed -i '/root/d' /etc/rc.d/rc.local
             sleep 3
             rm -f /root/cudaversion.txt
@@ -209,7 +208,7 @@ then
             sleep 3
             rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
             sleep 3
-            exit 5
+            reboot
         ;;
         ubuntu )
             sleep 3
@@ -220,7 +219,7 @@ then
             rm -f /root/log_err.txt
             rm -f /root/install_log.txt 
             sleep 3
-            exit 5
+            reboot
         ;;
         *)
         ;;
@@ -350,7 +349,7 @@ then
             sleep 3
             rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
             sleep 3
-            exit 10
+            reboot
         ;;
         ubuntu )
             sed -i '/root/d' /etc/rc.local
@@ -360,7 +359,7 @@ then
             rm -f /root/log_err.txt
             rm -f /root/install_log.txt  
             sleep 3
-            exit 10
+            reboot
         ;;
         *)
         ;;
@@ -398,7 +397,7 @@ then
             sleep 3
             rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
             sleep 3
-            exit 15
+            reboot
         ;;
         ubuntu )
             sed -i '/root/d' /etc/rc.local
@@ -408,7 +407,7 @@ then
             rm -f /root/log_err.txt
             rm -f /root/install_log.txt 
             sleep 3
-            exit 15
+            reboot
         ;;
         *)
         ;;
@@ -443,7 +442,7 @@ case $OSCHECK in
         sleep 3
         rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
         sleep 3
-        exit 20
+        reboot
     ;;
     ubuntu )
         echo "##### $VENDOR Server Check List Complete #####"  | tee -a /root/Auto_Install_Log.txt
@@ -454,7 +453,7 @@ case $OSCHECK in
         rm -f /root/log_err.txt
         rm -f /root/install_log.txt 
         sleep 3
-        exit 20
+        reboot
     ;;
     *)
     ;;
