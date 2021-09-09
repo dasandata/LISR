@@ -232,6 +232,7 @@ then
             sleep 5
             rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
             sleep 5
+            systemctl restart rc-local.service
             exit 0
         ;;
         ubuntu )
@@ -368,6 +369,7 @@ case $OSCHECK in
         sleep 5
         rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
         sleep 5
+        systemctl restart rc-local.service
         exit 0
     ;;
     ubuntu )
