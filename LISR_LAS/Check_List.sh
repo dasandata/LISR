@@ -2,10 +2,10 @@
 # Copyright by Dasandata.co.ltd
 # http://www.dasandata.co.kr
 
-# LAS 가 정상적으로 작동하였는지 체크
 OSCHECK=$(cat /etc/os-release | head -1 | cut -d "=" -f 2 | tr -d "\"" | awk '{print$1}' | tr '[A-Z]' '[a-z]')
 VENDOR=$(dmidecode | grep -i manufacturer | awk '{print$2}' | head -1)
 
+echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "You have run Check List Script"  | tee -a /root/Auto_Install_Log.txt
 echo "Copyright by Dasandata.co.ltd"  | tee -a /root/Auto_Install_Log.txt
 echo "https://www.dasandata.co.kr"  | tee -a /root/Auto_Install_Log.txt
