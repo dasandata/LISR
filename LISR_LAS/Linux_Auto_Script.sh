@@ -1228,6 +1228,7 @@ then
       wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.3.1073-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
       yes | gdebi rstudio-server-1.3.1073-amd64.deb >> /root/install_log.txt 2> /root/log_err.txt
       ## JupyterHub install
+      pip3 install --upgrade jupyterhub notebook >> /root/install_log.txt 2> /root/log_err.txt
       curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
       yes | apt-get install nodejs default-jre >> /root/install_log.txt 2> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2> /root/log_err.txt
