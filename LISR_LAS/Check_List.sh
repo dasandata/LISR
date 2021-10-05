@@ -124,7 +124,7 @@ echo "##### Time Check Complete #####"  | tee -a /root/Auto_Install_Log.txt
 
 sleep 5
 
-# 파이썬 설치
+# 파이썬 확인
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### 6. Python Version Check #####"  | tee -a /root/Auto_Install_Log.txt
 echo ""  | tee -a /root/Auto_Install_Log.txt
@@ -138,7 +138,7 @@ echo "##### Python Version Check Complete #####"  | tee -a /root/Auto_Install_Lo
 
 sleep 5
 
-# 파이썬 패키지 설치
+# 파이썬 패키지 확인
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### 7. Python Pacakage Install Check #####"  | tee -a /root/Auto_Install_Log.txt
 echo ""  | tee -a /root/Auto_Install_Log.txt
