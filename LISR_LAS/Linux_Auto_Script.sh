@@ -1121,8 +1121,10 @@ then
       echo "Deep Learnig Package Install Start" | tee -a /root/install_log.txt
       ## R,R-sutdio install
       wget https://download1.rstudio.org/desktop/centos7/x86_64/rstudio-1.2.5033-x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
+      yum -y install libxkbcommon-x11 >> /root/install_log.txt 2>> /root/log_err.txt
       rpm -ivh rstudio-1.2.5033-x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
       wget https://download2.rstudio.org/server/centos6/x86_64/rstudio-server-rhel-1.2.5033-x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
+      yum -y install psmisc >> /root/install_log.txt 2>> /root/log_err.txt
       rpm -ivh rstudio-server-rhel-1.2.5033-x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
       yum -y install R >> /root/install_log.txt 2>> /root/log_err.txt
       ## JupyterHub install
