@@ -1129,8 +1129,10 @@ then
       yum -y install R >> /root/install_log.txt 2>> /root/log_err.txt
       ## JupyterHub install
       pip3 install --upgrade jupyterhub notebook >> /root/install_log.txt 2>> /root/log_err.txt
-      curl --silent --location https://rpm.nodesource.com/setup_14.x | sudo bash - >> /root/install_log.txt 2>> /root/log_err.txt
-      yum -y install nodejs >> /root/install_log.txt 2>> /root/log_err.txt
+      wget https://rpm.nodesource.com/pub_16.x/el/7/x86_64/nodejs-16.10.0-1nodesource.x86_64.rpm
+      wget https://rpm.nodesource.com/pub_16.x/el/7/x86_64/nodejs-devel-16.10.0-1nodesource.x86_64.rpm
+      rpm -ivh nodejs-16.10.0-1nodesource.x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
+      rpm -ivh nodejs-devel-16.10.0-1nodesource.x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2>> /root/log_err.txt
       mkdir /etc/jupyterhub
       jupyterhub --generate-config >> /root/install_log.txt 2>> /root/log_err.txt
