@@ -913,11 +913,6 @@ echo "" | tee -a /root/install_log.txt
 ls /usr/local/ | grep cuda >> /root/install_log.txt 2>> /root/log_err.txt
 if [ $? != 0 ]
 then
-  CUDAV=$(cat /root/cudaversion.txt)
-  if [ CUDAV = "No-GPU" ]
-  then
-    echo "No-GPU not install cuda" >> /root/install_log.txt 2>> /root/log_err.txt
-  else
     CUDAV="${CUDAV/-/.}"
     case $OS in
       centos7 )
@@ -1035,7 +1030,6 @@ then
         echo "CUDA not install:$OS" | tee -a /root/install_log.txt
       ;;
     esac
-  fi
 else
   echo "" | tee -a /root/install_log.txt
   echo "The CUDA has already been installed." | tee -a /root/install_log.txt
@@ -1050,11 +1044,6 @@ updatedb
 locate libcudnn  &> /dev/null
 if [ $? != 0 ]
 then
-  CUDAV=$(cat /root/cudaversion.txt)
-  if [ CUDAV = "No-GPU" ]
-    then
-      echo "No-GPU not install CUDNN" >> /root/install_log.txt 2>> /root/log_err.txt
-    else
       case $OS in
         centos7 )
           echo "" | tee -a /root/install_log.txt
@@ -1106,7 +1095,6 @@ then
         echo "CUDNN, PATH Setting:$OS" | tee -a /root/install_log.txt
         ;;
       esac
-    fi
 else
   echo "" | tee -a /root/install_log.txt
   echo "The CUDNN has already been installed." | tee -a /root/install_log.txt
@@ -1121,11 +1109,6 @@ updatedb
 locate rstudio  &> /dev/null
 if [ $? != 0 ]
 then
-  CUDAV=$(cat /root/cudaversion.txt)
-  if [ CUDAV = "No-GPU" ]
-  then
-    echo "No-GPU not install Deep Learnig" >> /root/install_log.txt 2>> /root/log_err.txt
-  else
     case $OS in
       centos7 )
         echo "" | tee -a /root/install_log.txt
@@ -1257,7 +1240,6 @@ then
         echo "Deep Learnig package not install:$OS"   | tee -a /root/install_log.txt
       ;;
     esac
-  fi
   sleep 3
 else
   echo "" | tee -a /root/install_log.txt
@@ -1268,11 +1250,6 @@ fi
 lspci | grep -i nvidia &> /dev/null
 if [ $? = 0 ]
 then
-  CUDAV=$(cat /root/cudaversion.txt)
-  if [ CUDAV = "No-GPU" ]
-  then
-    echo "No-GPU not install JupyterHub" >> /root/install_log.txt 2>> /root/log_err.txt
-  else
     ls /lib/systemd/system/ | grep jupyter &> /dev/null
     if [ $? != 0 ]
     then
@@ -1292,7 +1269,6 @@ then
     else
       echo "JupyterHub Settings is already" | tee -a /root/install_log.txt
     fi
-  fi
 else
   echo "No-GPU No-Jupyter" | tee -a /root/install_log.txt
 fi
