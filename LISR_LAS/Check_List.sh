@@ -244,6 +244,7 @@ then
             rm -f /root/log_err.txt
             rm -f /root/install_log.txt 
             sleep 5
+            systemctl restart rc-local.service
             exit 0
         ;;
         *)
@@ -381,6 +382,7 @@ case $OSCHECK in
         rm -f /root/log_err.txt
         rm -f /root/install_log.txt 
         sleep 5
+        systemctl restart rc-local.service
         exit 0
     ;;
     *)
