@@ -225,11 +225,6 @@ then
         centos )
             sed -i '/root/d' /etc/rc.d/rc.local
             sleep 5
-            rm -f /root/cudaversion.txt
-            rm -f /root/nvidia.txt
-            rm -f /root/log_err.txt
-            rm -f /root/install_log.txt 
-            sleep 5
             rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
             sleep 5
             systemctl restart rc-local.service
@@ -237,12 +232,7 @@ then
         ;;
         ubuntu )
             sleep 5
-            sed -i '/root/d' /etc/rc.local
-            sleep 5
-            rm -f /root/cudaversion.txt
-            rm -f /root/nvidia.txt
-            rm -f /root/log_err.txt
-            rm -f /root/install_log.txt 
+            sed -i '/root/d' /etc/rc.local 
             sleep 5
             systemctl restart rc-local.service
             exit 0
@@ -363,11 +353,6 @@ case $OSCHECK in
         echo "##### GPU Check List Complete #####"  | tee -a /root/Auto_Install_Log.txt
         sed -i '/root/d' /etc/rc.d/rc.local
         sleep 5
-        rm -f /root/cudaversion.txt
-        rm -f /root/nvidia.txt
-        rm -f /root/log_err.txt
-        rm -f /root/install_log.txt  
-        sleep 5
         rm -f nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm cuda-repo-rhel8-10.2.89-1.x86_64.rpm
         sleep 5
         systemctl restart rc-local.service
@@ -376,11 +361,6 @@ case $OSCHECK in
     ubuntu )
         echo "##### GPU Check List Complete #####"  | tee -a /root/Auto_Install_Log.txt
         sed -i '/root/d' /etc/rc.local
-        sleep 5
-        rm -f /root/cudaversion.txt
-        rm -f /root/nvidia.txt
-        rm -f /root/log_err.txt
-        rm -f /root/install_log.txt 
         sleep 5
         systemctl restart rc-local.service
         exit 0
