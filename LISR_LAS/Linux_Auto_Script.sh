@@ -591,18 +591,13 @@ then
       pip3 install  numpy   scipy  nose  matplotlib  pandas  keras >> /root/install_log.txt 2>> /root/log_err.txt
       pip2 install  --upgrade tensorflow-gpu==1.13.1 >> /root/install_log.txt 2>> /root/log_err.txt
       pip3 install  --upgrade tensorflow-gpu==1.13.1 >> /root/install_log.txt 2>> /root/log_err.txt
-      if [ $OS = "ubuntu1604" ]
-      then
-        pip2 install  --upgrade setuptools >> /root/install_log.txt 2>> /root/log_err.txt
-        pip3 install  --upgrade setuptools >> /root/install_log.txt 2>> /root/log_err.txt
-      else
-        echo "" | tee -a /root/install_log.txt
-        pip3 install --upgrade cryptography==3.3.2 >> /root/install_log.txt 2>> /root/log_err.txt
-      fi
+      pip2 install  --upgrade setuptools >> /root/install_log.txt 2>> /root/log_err.txt
+      pip3 install  --upgrade setuptools >> /root/install_log.txt 2>> /root/log_err.txt
       pip3 install --upgrade optimuspyspark  >> /root/install_log.txt 2>> /root/log_err.txt
       pip3 install --upgrade testresources >> /root/install_log.txt 2>> /root/log_err.txt
       pip2 install torch torchvision >> /root/install_log.txt 2>> /root/log_err.txt
       pip3 install torch torchvision >> /root/install_log.txt 2>> /root/log_err.txt
+      sed -i 's/python.5/python2.7/g' /usr/local/bin/pip 
       echo "" | tee -a /root/install_log.txt
       echo "Python Package Install complete" | tee -a /root/install_log.txt
     ;;
@@ -613,14 +608,7 @@ then
       pip3 install  numpy   scipy  nose  matplotlib  pandas  keras >> /root/install_log.txt 2>> /root/log_err.txt
       pip install  --upgrade tensorflow-gpu==1.13.1 >> /root/install_log.txt 2>> /root/log_err.txt
       pip3 install  --upgrade tensorflow-gpu==1.13.1 >> /root/install_log.txt 2>> /root/log_err.txt
-      if [ $OS = "ubuntu1604" ]
-      then
-        pip install  --upgrade setuptools >> /root/install_log.txt 2>> /root/log_err.txt
-        pip3 install  --upgrade setuptools >> /root/install_log.txt 2>> /root/log_err.txt
-      else
-        echo "" | tee -a /root/install_log.txt
-        pip3 install --upgrade cryptography==3.3.2 >> /root/install_log.txt 2>> /root/log_err.txt
-      fi
+      pip3 install --upgrade cryptography==3.3.2 >> /root/install_log.txt 2>> /root/log_err.txt
       pip3 install --upgrade optimuspyspark  >> /root/install_log.txt 2>> /root/log_err.txt
       pip3 install --upgrade testresources >> /root/install_log.txt 2>> /root/log_err.txt
       pip install torch torchvision >> /root/install_log.txt 2>> /root/log_err.txt
