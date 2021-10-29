@@ -95,7 +95,7 @@ setenforce 0
 getenforce
 
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
-grep 'SELINUX=' /etc/selinux/config 
+grep 'SELINUX=' /etc/selinux/config
 ```
 
 ##### # grub 수정.
@@ -161,7 +161,8 @@ Disabled
 yum -y install \
 vim pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget ifconfig \
 tcsh tree lshw tmux git kernel-headers kernel-devel ipmitool gcc make gcc-c++ \
-cmake python-devel dstat perl perl-CPAN perl-core net-tools openssl-devel smartmontools \
+cmake python-devel dstat perl perl-CPAN perl-core net-tools openssl-devel \
+bash-completion bash-completion-extras perl-Term-ReadLine-Gnu smartmontools \
   >>  dasan_log_install_centos_default_util.txt 2>&1
 
 tail dasan_log_install_centos_default_util.txt # 설치 결과 확인.
