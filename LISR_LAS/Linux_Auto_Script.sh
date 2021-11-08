@@ -496,7 +496,7 @@ then
     ubuntu1604 )
       echo "" | tee -a /root/install_log.txt
       echo "Python Install" | tee -a /root/install_log.txt
-      apt-get -y install python-dev python3-dev >> /root/install_log.txt 2>> /root/log_err.txt
+      apt-get -y install python-dev python3-dev libssl-dev build-essential libffi-dev >> /root/install_log.txt 2>> /root/log_err.txt
       curl -fsSL -o- https://bootstrap.pypa.io/pip/2.7/get-pip.py | python2.7 >> /root/install_log.txt 2>> /root/log_err.txt
       curl -fsSL -o- https://bootstrap.pypa.io/pip/3.5/get-pip.py | python3.5 >> /root/install_log.txt 2>> /root/log_err.txt
       pip   install --upgrade pip >> /root/install_log.txt 2>> /root/log_err.txt
