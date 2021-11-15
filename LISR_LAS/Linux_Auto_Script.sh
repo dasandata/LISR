@@ -1434,7 +1434,7 @@ then
       bash ./dellomsainstall.sh >> /root/install_log.txt 2>> /root/log_err.txt
       rm -f ./dellomsainstall.sh >> /root/install_log.txt 2>> /root/log_err.txt
       yum -y erase  tog-pegasus-libs >> /root/install_log.txt 2>> /root/log_err.txt
-      yum -y install --enablerepo=dell-system-update_dependent -y  srvadmin-all openssl-devel >> /root/install_log.txt 2>> /root/log_err.txt
+      yum -y install --enablerepo=dell-system-update_dependent -y srvadmin-all openssl-devel >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl enable dataeng >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl enable dsm_om_connsvc >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl start dataeng >> /root/install_log.txt 2>> /root/log_err.txt
