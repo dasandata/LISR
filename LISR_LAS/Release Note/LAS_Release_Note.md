@@ -1,5 +1,18 @@
 # Linux Automatic Sript(LAS) Release Note
 
+## 2111 LAS Release Note
+
+## 수정된 사항
+```
+Ubuntu, CentOS rc.local 서비스 재시작 기능 추가
+Ubuntu 16에서 R, R-Server 버전 업그레이드로 인해 설치시 필요한 패키지 추가
+(libssl-dev build-essential libffi-dev)
+CentOS 7 에서 JupyterHub 설치시 필요한 Nodejs 버전 업그레이드로 인한 Nodejs 버전 업
+Nodejs14 -> 16 으로 버전 업
+설치 가능한 CUDA 버전 추가
+Jupyterhub GPU 없는 버전에서 설치 안되게 변경
+```
+
 ## 2108 LAS Release Note
 
 ## 수정된 사항
