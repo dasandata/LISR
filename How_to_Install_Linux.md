@@ -10,45 +10,45 @@
 
 [1. 변수 선언](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-1-%EB%B3%80%EC%88%98-%EC%84%A0%EC%96%B8-)
 
-[2. rc.local 생성 및 변경](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md##%EB%AA%A9%EC%B0%A8) 
+[2. rc.local 생성 및 변경](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-2-rclocal-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EB%B3%80%EA%B2%BD) 
 
-[3. nouveau 끄기 및 grub 설정]()
+[3. nouveau 끄기 및 grub 설정](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-3-nouveau-%EB%81%84%EA%B8%B0-%EB%B0%8F-grub-%EC%84%A4%EC%A0%95)
 
-[4. selinux 제거 및 저장소 변경]()
+[4. selinux 제거 및 저장소 변경](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-4-selinux-%EC%A0%9C%EA%B1%B0-%EB%B0%8F-%EC%A0%80%EC%9E%A5%EC%86%8C-%EB%B3%80%EA%B2%BD)
 
-[5. 기본 패키지 설치]()
+[5. 기본 패키지 설치](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-5-%EA%B8%B0%EB%B3%B8-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%84%A4%EC%B9%98)
 
-[6. 프로필 설정]()
+[6. 프로필 설정](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-6-%ED%94%84%EB%A1%9C%ED%95%84-%EC%84%A4%EC%A0%95)
 
-[7. 서버 시간 동기화]()
+[7. 서버 시간 동기화](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-7-%EC%84%9C%EB%B2%84-%EC%8B%9C%EA%B0%84-%EB%8F%99%EA%B8%B0%ED%99%94)
 
-[8. 파이썬 설치]()
+[8. 파이썬 설치](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-8-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EC%84%A4%EC%B9%98)
 
-[9. 파이썬 패키지 설치]()
+[9. 파이썬 패키지 설치](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-9-%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%84%A4%EC%B9%98)
 
-[10. 방화벽 설정]()
+[10. 방화벽 설정](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-10-%EB%B0%A9%ED%99%94%EB%B2%BD-%EC%84%A4%EC%A0%95)
 
-[11. 사용자 생성 테스트]()
+[11. 사용자 생성 테스트](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-11-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%83%9D%EC%84%B1-%ED%85%8C%EC%8A%A4%ED%8A%B8)
 
-[12. H/W 사양 체크]()
+[12. H/W 사양 체크](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-12-hw-%EC%82%AC%EC%96%91-%EC%B2%B4%ED%81%AC)
 
 ### ===== GPU 버전 설치 진행 순서 ===== 
 
-[13. CUDA,CUDNN Repo 설치]()
+[13. CUDA,CUDNN Repo 설치](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-13-cudacudnn-repo-%EC%84%A4%EC%B9%98)
 
-[14. CUDA 설치 및 PATH 설정]()
+[14. CUDA 설치 및 PATH 설정](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-14-cuda-%EC%84%A4%EC%B9%98-%EB%B0%8F-path-%EC%84%A4%EC%A0%95)
 
-[15. CUDNN 설치 및 PATH 설정]()
+[15. CUDNN 설치 및 PATH 설정](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-15-cudnn-%EC%84%A4%EC%B9%98-%EB%B0%8F-path-%EC%84%A4%EC%A0%95)
 
-[16. 딥러닝 패키지 설치(R,R Server, JupyterHub, Pycharm)]()
+[16. 딥러닝 패키지 설치(R,R Server, JupyterHub, Pycharm)](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-16-%EB%94%A5%EB%9F%AC%EB%8B%9D-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%84%A4%EC%B9%98rr-server-jupyterhub-pycharm)
 
 ### ===== 서버 전용 설치 진행 순서 ===== 
 
-[17. 서버 전용 MSM 설치]()
+[17. 서버 전용 MSM 설치](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-17-%EC%84%9C%EB%B2%84-%EC%A0%84%EC%9A%A9-msm-%EC%84%A4%EC%B9%98)
 
 ### ===== Dell 서버 전용 설치 순서 =====
 
-[18. Dell 전용 OMSA설치]()
+[18. Dell 전용 OMSA설치](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-18-dell-%EC%A0%84%EC%9A%A9-omsa%EC%84%A4%EC%B9%98)
 
 ***
 ## # 범례(변수).
