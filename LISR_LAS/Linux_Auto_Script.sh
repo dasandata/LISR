@@ -1338,7 +1338,7 @@ else
 fi
 
 # 17. 서버 전용 MSM 설치
-ls -l /tmp/ | grep -i raid &> /dev/null
+ls -al /usr/local/ | grep Mega &> /dev/null
 if [ $? = 0 ]
 then
   case $OS in
