@@ -8,7 +8,7 @@
 
 ### ===== 기본 버전 설치 진행 순서 =====
 
-[1. 변수 선언](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-1-%EB%B3%80%EC%88%98-%EC%84%A0%EC%96%B8-)
+[1. 변수 선언]([1.-변수-선언])
 
 [2. rc.local 생성 및 변경](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-2-rclocal-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EB%B3%80%EA%B2%BD) 
 
@@ -90,7 +90,7 @@ ssh <사용자 계정>@<IP 주소>
 
 ***
 
-### # [1. 변수 선언 ](#목차)
+### # [1. 변수 선언](#목차)
 ### ## 직접 입력시에는 사용하지 않습니다.
 ```
 ## 설치하려는 서버의 종류를 확인 후 변수로 선언합니다.
