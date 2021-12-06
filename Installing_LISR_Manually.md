@@ -8,11 +8,11 @@
 
 ### ===== 기본 버전 설치 진행 순서 =====
 
-[1. 변수 선언](#-1.-변수-선언)
+[1. 변수 선언](#-변수-선언)
 
-[2. rc.local 생성 및 변경](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-2-rclocal-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EB%B3%80%EA%B2%BD) 
+[2. rc.local 생성 및 변경](https://github.com/dasandata/LISR/blob/master/Installing_LISR_Manually.md#-2-rclocal-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EB%B3%80%EA%B2%BD) 
 
-[3. nouveau 끄기 및 grub 설정](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-3-nouveau-%EB%81%84%EA%B8%B0-%EB%B0%8F-grub-%EC%84%A4%EC%A0%95)
+[3. nouveau 끄기 및 grub 설정](https://github.com/dasandata/LISR/blob/master/Installing_LISR_Manually.md#-2-rclocal-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EB%B3%80%EA%B2%BD)
 
 [4. selinux 제거 및 저장소 변경](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-4-selinux-%EC%A0%9C%EA%B1%B0-%EB%B0%8F-%EC%A0%80%EC%9E%A5%EC%86%8C-%EB%B3%80%EA%B2%BD)
 
