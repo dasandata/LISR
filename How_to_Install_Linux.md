@@ -8,9 +8,9 @@
 
 ### ===== 기본 버전 설치 진행 순서 =====
 
-[1. 변수 선언 ]()
+[1. 변수 선언 ](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md##%EB%AA%A9%EC%B0%A8)
 
-[2. rc.local 생성 및 변경]() 
+[2. rc.local 생성 및 변경](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md##%EB%AA%A9%EC%B0%A8) 
 
 [3. nouveau 끄기 및 grub 설정]()
 
