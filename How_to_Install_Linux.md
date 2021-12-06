@@ -8,7 +8,7 @@
 
 ### ===== 기본 버전 설치 진행 순서 =====
 
-[1. 변수 선언 ](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md##%EB%AA%A9%EC%B0%A8)
+[1. 변수 선언 ](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-1-%EB%B3%80%EC%88%98-%EC%84%A0%EC%96%B8-)
 
 [2. rc.local 생성 및 변경](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md##%EB%AA%A9%EC%B0%A8) 
 
