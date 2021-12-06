@@ -8,7 +8,7 @@
 
 ### ===== 기본 버전 설치 진행 순서 =====
 
-[1. 변수 선언](#-[1.-변수-선언])
+[1. 변수 선언](#-1.-변수-선언)
 
 [2. rc.local 생성 및 변경](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-2-rclocal-%EC%83%9D%EC%84%B1-%EB%B0%8F-%EB%B3%80%EA%B2%BD) 
 
