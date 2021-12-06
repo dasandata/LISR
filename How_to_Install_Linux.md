@@ -4,11 +4,11 @@
 이 문서는 CentOS 7.9 , Ubuntu 20.04를 기준으로 작성되었습니다.
 ***
 
-## ##목차
+## #목차
 
 ### ===== 기본 버전 설치 진행 순서 =====
 
-[1. 변수 선언 ](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-1-%EB%B3%80%EC%88%98-%EC%84%A0%EC%96%B8-)
+[1. 변수 선언](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md#-1-%EB%B3%80%EC%88%98-%EC%84%A0%EC%96%B8-)
 
 [2. rc.local 생성 및 변경](https://github.com/dasandata/LISR/blob/master/How_to_Install_Linux.md##%EB%AA%A9%EC%B0%A8) 
 
@@ -90,7 +90,7 @@ ssh <사용자 계정>@<IP 주소>
 
 ***
 
-### # [1. 변수 선언 ](##목차)
+### # [1. 변수 선언 ](#목차)
 ### ## 직접 입력시에는 사용하지 않습니다.
 ```
 ## 설치하려는 서버의 종류를 확인 후 변수로 선언합니다.
@@ -106,7 +106,7 @@ OSCHECK=$(cat /etc/os-release | head -1 | cut -d "=" -f 2 | tr -d "\"" | awk '{p
 select CUDAV in 10-0 10-1 10-2 11-0 11-1 No-GPU; do echo "Select CUDA Version : 11.0" ; break; done
 ```
 
-### # [2. rc.local 생성 및 변경](##목차) 
+### # [2. rc.local 생성 및 변경](#목차) 
 ### ## 직접 입력시에는 사용하지 않습니다.
 ```
 ===== CentOS 7.9 =====
@@ -120,7 +120,7 @@ systemctl status rc-local.service
 sed -i '1a bash /root/LISR/LISR_LAS/Linux_Auto_Script.sh' /etc/rc.local
 ```
 
-### # [3. nouveau 끄기 및 grub 설정](##목차)
+### # [3. nouveau 끄기 및 grub 설정](#목차)
 ### ## 부팅시 화면에 부팅 기록 출력, IPv6 비활성화, nouveau 비활성화를 위해 진행 합니다.
 ```
 ===== CentOS 7.9 =====
@@ -143,7 +143,7 @@ perl -pi -e  's/^GRUB_HIDDEN_TIMEOUT=/#GRUB_HIDDEN_TIMEOUT=/'  /etc/default/grub
 update-initramfs -u && update-grub2
 ```
 
-### # [4. selinux 제거 및 저장소 변경](##목차)
+### # [4. selinux 제거 및 저장소 변경](#목차)
 ### ## CentOS는 설정이 복잡한 SELINUX를 disable 합니다.
 ### ## Ubuntu는 기존 저장소 속도 최적화를 위해 변경 합니다.
 ```
@@ -157,7 +157,7 @@ perl -pi -e 's/security.ubuntu.com/mirror.kakao.com/g' /etc/apt/sources.list
 cat /etc/apt/sources.list | grep -v "#\|^$"
 ```
 
-### # [5. 기본 패키지 설치](##목차)
+### # [5. 기본 패키지 설치](#목차)
 ### ## 서버 기본 설정에 필요한 패키지를 설치 합니다.
 ### ## 필요없는 서비스를 disable 합니다 (장비에 따라 존재하지 않는 서비스도 있습니다.)
 ```
@@ -222,7 +222,7 @@ systemctl disable NetworkManager.service
 systemctl stop    NetworkManager.service
 ```
 
-### # [6. 프로필 설정](##목차)
+### # [6. 프로필 설정](#목차)
 ### ## 사용자 편의를 위한 설정을 진행 합니다.
 ### ## alias, prompt-color, History Size, History date
 ```
@@ -246,7 +246,7 @@ echo $HISTSIZE
 
 ```
 
-### # [7. 서버 시간 동기화](##목차)
+### # [7. 서버 시간 동기화](#목차)
 ### ## 서버 및 HW 시간을 동기화 합니다.
 ```
 ===== CentOS , Ubuntu =====
@@ -257,7 +257,7 @@ hwclock
 
 ```
 
-### # [8. 파이썬 설치](##목차)
+### # [8. 파이썬 설치](#목차)
 ```
 ===== CentOS 7.9 =====
 yum -y install python-devel python-setuptools python-setuptools-devel
@@ -281,7 +281,7 @@ pip3 install --upgrade pip
 perl -pi -e 's/python3/python/'   /usr/local/bin/pip
 ```
 
-### # [9. 파이썬 패키지 설치](##목차)
+### # [9. 파이썬 패키지 설치](#목차)
 ```
 ===== CentOS 7.9 =====
 pip install numpy  scipy  nose  matplotlib  pandas  keras
@@ -309,7 +309,7 @@ pip install --upgrade torch torchvision
 pip3 install --upgrade torch torchvision
 ```
 
-### # [10. 방화벽 설정](##목차)
+### # [10. 방화벽 설정](#목차)
 ```
 ===== CentOS 7.9 =====
 firewall-cmd --get-zones
@@ -353,7 +353,7 @@ echo "AddressFamily inet" >> /etc/ssh/sshd_config
 systemctl restart sshd
 ```
 
-### # [11. 사용자 생성 테스트](##목차)
+### # [11. 사용자 생성 테스트](#목차)
 ```
 ===== CentOS 7.9 =====
 useradd dasan
@@ -364,7 +364,7 @@ adduser --disabled-login --gecos "" dasan
 usermod -G sudo dasan
 ```
 
-### # [12. H/W 사양 체크](##목차)
+### # [12. H/W 사양 체크](#목차)
 ```
 ===== CentOS , Ubuntu =====
 dmidecode --type system | grep -v "^$\|#\|SMBIOS\|Handle\|Not"
@@ -397,7 +397,7 @@ reboot
 ### ===== GPU 버전 설치 진행 순서 ===== 
 ### ### 아래 13 ~ 16 항목의 경우 Nvidia-GPU가 존재할 경우 진행 합니다.
 
-### # [13. CUDA,CUDNN Repo 설치](##목차)
+### # [13. CUDA,CUDNN Repo 설치](#목차)
 ```
 ===== CentOS 7.9 =====
 wget https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-10.0.130-1.x86_64.rpm
@@ -420,7 +420,7 @@ sh -c 'echo "deb https://developer.download.nvidia.com/compute/machine-learning/
 apt-get update
 ```
 
-### # [14. CUDA 설치 및 PATH 설정](##목차)
+### # [14. CUDA 설치 및 PATH 설정](#목차)
 ```
 ===== CentOS 7.9 =====
 echo " "  >> /etc/profile
@@ -449,7 +449,7 @@ source /etc/profile
 source /root/.bashrc
 ```
 
-### # [15. CUDNN 설치 및 PATH 설정](##목차)
+### # [15. CUDNN 설치 및 PATH 설정](#목차)
 ```
 ===== CentOS 7.9 =====
 yum -y install libcudnn8*
@@ -459,7 +459,7 @@ yum -y upgrade
 apt-get -y install libcudnn8*
 ```
 
-### # [16. 딥러닝 패키지 설치(R,R Server, JupyterHub, Pycharm](##목차)
+### # [16. 딥러닝 패키지 설치(R,R Server, JupyterHub, Pycharm](#목차)
 ### ## JupyterHub는 마지막 설정이 동일하여 마지막에 같이 서술하였습니다.
 ### ## 마지막 설정에 사용되는 파일은 Git에 LISR/LISR_LAS/ 밑에 존재합니다.
 ```
@@ -521,7 +521,7 @@ R CMD BATCH /root/LISR/LISR_LAS/r_jupyterhub.R
 
 ### ===== 서버 전용 설치 진행 순서 ===== 
 
-### # [17. 서버 전용 MSM 설치](##목차)
+### # [17. 서버 전용 MSM 설치](#목차)
 ### ## RAID DISK 관리 Tool인 Mega RAID Manager 를 설치 합니다. (RAID Card가 있을경우 사용 합니다.)
 ```
 ===== CentOS 7.9 =====
@@ -551,7 +551,7 @@ systemctl enable vivaldiframeworkd.service
 
 ### ===== Dell 서버 전용 설치 순서 =====
 
-### # [18. Dell 전용 OMSA설치](##목차)
+### # [18. Dell 전용 OMSA설치](#목차)
 ### ## Dell 서버의 경우 원격 제어를 위한 OMSA (OpenManage Server Administrator) 를 설치 합니다.
 ```
 ===== CentOS 7.9 =====
