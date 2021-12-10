@@ -342,6 +342,7 @@ pip3 install --upgrade torch torchvision
 
 ### # [10. 방화벽 설정](#목차)
 ```bash
+# 기존 방화벽 Zone 변경 후 패키지 및 ssh 포트 변경 작업 진행
 ===== CentOS 7.9 =====
 firewall-cmd --get-zones
 firewall-cmd --list-all
@@ -349,6 +350,7 @@ firewall-cmd --get-default-zone
 firewall-cmd --change-interface=${NIC} --zone=external --permanent
 firewall-cmd --set-default-zone=external
 firewall-cmd --reload
+# ssh 변경될 포트 추가
 firewall-cmd --add-port=7777/tcp --zone=external --permanent
 
 ## R Server Port
@@ -359,11 +361,13 @@ firewall-cmd --add-port=8000/tcp --zone=external --permanent
 firewall-cmd --remove-service=ssh --zone=external --permanent
 firewall-cmd --reload
 
+# ssh 기존 22 포트에서 7777로 변경
 sed -i  "s/#Port 22/Port 7777/g" /etc/ssh/sshd_config
 sed -i  "s/#PermitRootLogin yes/PermitRootLogin no/g" /etc/ssh/sshd_config
 echo "AddressFamily inet" >> /etc/ssh/sshd_config
 systemctl restart sshd
 ```
+
 ```bash
 ===== Ubuntu 20.04 =====
 systemctl start ufw
@@ -387,6 +391,7 @@ systemctl restart sshd
 
 ### # [11. 사용자 생성 테스트](#목차)
 ```bash
+#다산 계정 생성 테스트 진행
 ===== CentOS 7.9 =====
 useradd dasan
 usermod -aG wheel dasan
@@ -398,6 +403,7 @@ usermod -G sudo dasan
 
 ### # [12. H/W 사양 체크](#목차)
 ```bash
+# 기본적인 시스템 사양 체크를 진행합니다.
 ===== CentOS , Ubuntu =====
 dmidecode --type system | grep -v "^$\|#\|SMBIOS\|Handle\|Not"
 lscpu | grep -v "Flags\|NUMA"
@@ -431,6 +437,7 @@ reboot
 
 ### # [13. CUDA,CUDNN Repo 설치](#목차)
 ```bash
+# Nvidia 저장소 생성 (Cuda,cudnn 설치를 위해)
 ===== CentOS 7.9 =====
 wget https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-10.0.130-1.x86_64.rpm
 wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel7/x86_64/nvidia-machine-learning-repo-rhel7-1.0.0-1.x86_64.rpm
@@ -442,6 +449,7 @@ yum -y install libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-
 yum -y install openmotif*
 ```
 ```bash
+# Nvidia 저장소 생성 (Cuda,cudnn 설치를 위해)
 ===== Ubuntu 20.04 =====
 apt-get -y install sudo gnupg
 apt-key adv --fetch-keys "https://developer.download.nvidia.com/compute/cuda/repos/"$OS"/x86_64/7fa2af80.pub"
@@ -452,6 +460,7 @@ apt-get update
 
 ### # [14. CUDA 설치 및 PATH 설정](#목차)
 ```bash
+# cuda 설치 및 설치된 cuda를 사용하기 위해 경로 설정값을 profile에 입력
 ===== CentOS 7.9 =====
 echo " "  >> /etc/profile
 echo "### ADD Cuda 11.0 PATH"  >> /etc/profile
@@ -467,6 +476,7 @@ source /root/.bashrc
 ```
 ```bash
 ===== Ubuntu 20.04 =====
+# cuda 설치 및 설치된 cuda를 사용하기 위해 경로 설정값을 profile에 입력
 echo " "  >> /etc/profile
 echo "### ADD Cuda 11.0 PATH"  >> /etc/profile
 echo "export PATH=/usr/local/cuda-11.0/bin:/usr/local/cuda-11.0/include:\$PATH " >> /etc/profile
@@ -483,11 +493,14 @@ source /root/.bashrc
 ### # [15. CUDNN 설치 및 PATH 설정](#목차)
 ```bash
 ===== CentOS 7.9 =====
+# cudnn 설치 진행
 yum -y install libcudnn8*
 yum -y upgrade
 ```
-```
+
+```bash
 ===== Ubuntu 20.04 =====
+# cudnn 설치 진행
 apt-get -y install libcudnn8*
 ```
 
@@ -495,6 +508,8 @@ apt-get -y install libcudnn8*
 ### ## JupyterHub는 마지막 설정이 동일하여 마지막에 같이 서술하였습니다.
 ### ## 마지막 설정에 사용되는 파일은 Git에 LISR/LISR_LAS/ 밑에 존재합니다.
 ```bash
+# 딥러닝 패키지 (R, R-Server, JupyterHub) 를 설치 합니다.
+# JupyterHub에 작업 중 사용되는 파일들은 LISR에 존재하므로 git을 통해 Pull 하고 사용해야 합니다.
 ===== CentOS 7.9 =====
 ## R,R-sutdio install
 wget https://download1.rstudio.org/desktop/centos7/x86_64/rstudio-1.2.5033-x86_64.rpm
@@ -525,6 +540,9 @@ rm -rf cuda-repo-rhel7-10.0.130-1.x86_64.rpm rstudio-1.2.5033-x86_64.rpm rstudio
 ```
 ```bash
 ===== Ubuntu 20.04 =====
+# 딥러닝 패키지 (R, R-Server, JupyterHub) 를 설치 합니다.
+# JupyterHub에 작업 중 사용되는 파일들은 LISR에 존재하므로 git을 통해 Pull 하고 사용해야 합니다.
+
 ## R,R-studio Install
 apt-get -y install r-base
 apt-get -y install gdebi-core
@@ -539,7 +557,10 @@ npm install -g configurable-http-proxy
 
 ## Pycharm install
 snap install pycharm-community --classic
+```
 
+```bash
+## CentOS , Ubuntu 동일하게 JupyterHub 마무리 작업을 진행 합니다.
 ===== JupyterHub 마무리 설정 =====
 mv /root/LISR/LISR_LAS/jupyterhub.service /lib/systemd/system/
 mv /root/LISR/LISR_LAS/jupyterhub /etc/init.d/
