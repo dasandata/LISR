@@ -1508,7 +1508,10 @@ sleep 3
 echo "" | tee -a /root/install_log.txt
 
 ## 스크립트 완료 정리 후 재부팅
-ls /opt/dell/srvadmin/sbin/ | grep -i racadm &> /dev/null
+updatedb
+source .bashrc
+source /etc/profile
+bash /opt/dell/srvadmin/sbin/racadm getniccfg &> /dev/null
 if [ $? = 0 ]
 then
 # rc.local 기본 값으로 변경
