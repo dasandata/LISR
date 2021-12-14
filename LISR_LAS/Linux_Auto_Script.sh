@@ -930,7 +930,7 @@ then
     centos7 )
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install Start" | tee -a /root/install_log.txt
-      if [ $CUDAV = "11.1" ]
+      if [ $CUDAV = "11.1" ] || [ $CUDAV = "11.0" ]
       then
         yum -y install libcudnn8* >> /root/install_log.txt 2>> /root/log_err.txt
         yum -y upgrade >> /root/install_log.txt 2>> /root/log_err.txt
@@ -944,7 +944,7 @@ then
     ubuntu1604 | ubuntu1804 )
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install Start" | tee -a /root/install_log.txt
-      if [ $CUDAV = "11.1" ]
+      if [ $CUDAV = "11.1" ] || [ $CUDAV = "11.0" ]
       then
         apt-get -y install libcudnn8* >> /root/install_log.txt 2>> /root/log_err.txt
         apt-get -y install libcublas-dev >> /root/install_log.txt 2>> /root/log_err.txt
