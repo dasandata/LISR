@@ -49,7 +49,7 @@ then
   echo "CUDA Version Select" | tee -a /root/install_log.txt
   case $OSCHECK in 
     centos )
-      select CUDAV in 10-0 10-1 10-2 11-0 11-1 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
+      select CUDAV in 10-0 10-1 10-2 11-0 11-1 11-2 11-3 11-4 11-5 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
       echo $CUDAV >> /root/cudaversion.txt
       echo "" | tee -a /root/install_log.txt
       echo "Cuda Version Select complete" | tee -a /root/install_log.txt
@@ -61,7 +61,7 @@ then
         select CUDAV in 11-0 11-1 11-2 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
         echo $CUDAV >> /root/cudaversion.txt
       else
-        select CUDAV in 10-0 10-1 10-2 11-0 11-1 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
+        select CUDAV in 10-0 10-1 10-2 11-0 11-1 11-2 11-3 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
         echo $CUDAV >> /root/cudaversion.txt
       fi
       echo "" | tee -a /root/install_log.txt
@@ -930,13 +930,13 @@ then
     centos7 )
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install Start" | tee -a /root/install_log.txt
-      if [ $CUDAV = "11.1" ] || [ $CUDAV = "11.0" ]
+      if [ $CUDAV = "11.0" ] || [ $CUDAV = "11.1" ] || [ $CUDAV = "11.2" ] || [ $CUDAV = "11.3" ] || [ $CUDAV = "11.4" ] || [ $CUDAV = "11.5" ]
       then
         yum -y install libcudnn8* >> /root/install_log.txt 2>> /root/log_err.txt
-        yum -y upgrade >> /root/install_log.txt 2>> /root/log_err.txt
+        yum -y update >> /root/install_log.txt 2>> /root/log_err.txt
       else
         yum -y install libcudnn7* >> /root/install_log.txt 2>> /root/log_err.txt
-        yum -y upgrade >> /root/install_log.txt 2>> /root/log_err.txt
+        yum -y update >> /root/install_log.txt 2>> /root/log_err.txt
       fi
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install complete" | tee -a /root/install_log.txt
@@ -944,7 +944,7 @@ then
     ubuntu1604 | ubuntu1804 )
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install Start" | tee -a /root/install_log.txt
-      if [ $CUDAV = "11.1" ] || [ $CUDAV = "11.0" ]
+      if [ $CUDAV = "11.0" ] || [ $CUDAV = "11.1" ] || [ $CUDAV = "11.2" ] || [ $CUDAV = "11.3" ]
       then
         apt-get -y install libcudnn8* >> /root/install_log.txt 2>> /root/log_err.txt
         apt-get -y install libcublas-dev >> /root/install_log.txt 2>> /root/log_err.txt
