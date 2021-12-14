@@ -234,7 +234,7 @@ case $OS in
       yum install -y epel-release >> /root/install_log.txt 2>> /root/log_err.txt
       sleep 2
       yum install -y ethtool pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget bind-utils >> /root/install_log.txt 2>> /root/log_err.txt
-      yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ snapd xorg-x11-drv-evdev >> /root/install_log.txt 2>> /root/log_err.txt
+      yum install -y tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ snapd >> /root/install_log.txt 2>> /root/log_err.txt
       yum install -y cmake python-devel ntfs-3g dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs vim >> /root/install_log.txt 2>> /root/log_err.txt
       sleep 2
       dmidecode | grep -i ipmi &> /dev/null
@@ -245,6 +245,7 @@ case $OS in
         echo "" | tee -a /root/install_log.txt
         echo "PC,Workstation do not install ipmitool" | tee -a /root/install_log.txt
       fi
+      yum -y groupinstall "GNOME Desktop" "Graphical Adminstration Tools"
       yum -y groups install "Development Tools" >> /root/install_log.txt 2>> /root/log_err.txt
       yum install -y glibc-static glibc-devel libstdc++ libstdc++-devel >> /root/install_log.txt 2>> /root/log_err.txt
       sleep 2
