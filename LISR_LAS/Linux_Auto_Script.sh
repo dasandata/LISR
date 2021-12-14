@@ -49,15 +49,8 @@ then
   echo "CUDA Version Select" | tee -a /root/install_log.txt
   case $OSCHECK in 
     centos )
-      OS=$(cat /etc/redhat-release | awk '{print$1,$4}' | cut -d "." -f 1 | tr -d " " | tr '[A-Z]' '[a-z]')
-      if [ $OS = "centos8" ]
-      then
-        select CUDAV in 11-1 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
-        echo $CUDAV >> /root/cudaversion.txt
-      else
-        select CUDAV in 10-0 10-1 10-2 11-0 11-1 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
-        echo $CUDAV >> /root/cudaversion.txt
-      fi
+      select CUDAV in 10-0 10-1 10-2 11-0 11-1 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
+      echo $CUDAV >> /root/cudaversion.txt
       echo "" | tee -a /root/install_log.txt
       echo "Cuda Version Select complete" | tee -a /root/install_log.txt
     ;;
@@ -275,56 +268,6 @@ case $OS in
     systemctl disable cups.service >> /root/install_log.txt 2>> /root/log_err.txt
     systemctl disable cups-browsed.service >> /root/install_log.txt 2>> /root/log_err.txt
   ;;
-  centos8 )
-    echo "" | tee -a /root/install_log.txt
-    echo "$OS Package Install" | tee -a /root/install_log.txt
-    ## Package 설치를 ipmi 여부로 Server와 PC를 나눠서 진행 - Python도 여기서 설치됨 -
-    rpm -qa | grep -i htop &> /dev/null
-    if [ $? != 0 ]
-    then
-      dnf -y update >> /root/install_log.txt 2>> /root/log_err.txt
-      sleep 2
-      dnf --refresh -y upgrade >> /root/install_log.txt 2>> /root/log_err.txt
-      systemctl disable kdump.service >> /root/install_log.txt 2>> /root/log_err.txt
-      dnf -y install epel-release >> /root/install_log.txt 2>> /root/log_err.txt
-      dnf -y install vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget >> /root/install_log.txt 2>> /root/log_err.txt
-      dnf -y install tcsh tree lshw tmux git kernel-headers kernel-devel gcc make gcc-c++ cmake  >> /root/install_log.txt 2>> /root/log_err.txt
-      dnf -y install dstat perl perl-CPAN perl-core net-tools openssl-devel snapd ethtool bind-utils  >> /root/install_log.txt 2>> /root/log_err.txt
-      sleep 3
-      dmidecode | grep -i ipmi &> /dev/null
-      if [ $? = 0 ]
-      then
-        dnf -y install ipmitool >> /root/install_log.txt 2>> /root/log_err.txt
-      else
-        echo "" | tee -a /root/install_log.txt
-        echo "PC,Workstation do not install ipmitool" | tee -a /root/install_log.txt
-      fi
-      dnf -y groups install "Development Tools" >> /root/install_log.txt 2>> /root/log_err.txt
-      dnf -y install glibc-devel libstdc++ libstdc++-devel >> /root/install_log.txt 2>> /root/log_err.txt
-      sleep 3
-      dnf -y install htop ntfs-3g figlet smartmontools >> /root/install_log.txt 2>> /root/log_err.txt
-      echo "" | tee -a /root/install_log.txt
-      echo "The package install complete" | tee -a /root/install_log.txt
-    else
-      echo "" | tee -a /root/install_log.txt
-      echo "The package has already been installed." | tee -a /root/install_log.txt
-    fi
-    # 불필요한 서비스 disable
-    systemctl disable bluetooth.service >> /root/install_log.txt 2>> /root/log_err.txt
-    systemctl disable iscsi.service >> /root/install_log.txt 2>> /root/log_err.txt
-    systemctl disable ksm.service >> /root/install_log.txt 2>> /root/log_err.txt
-    systemctl disable ksmtuned.service >> /root/install_log.txt 2>> /root/log_err.txt
-    systemctl disable libstoragemgmt.service >> /root/install_log.txt 2>> /root/log_err.txt
-    systemctl disable libvirtd.service >> /root/install_log.txt 2>> /root/log_err.txt
-    systemctl disable spice-vdagentd.service >> /root/install_log.txt 2>> /root/log_err.txt
-    systemctl disable vmtoolsd.service >> /root/install_log.txt 2>> /root/log_err.txt
-    systemctl disable ModemManager.service >> /root/install_log.txt 2>> /root/log_err.txt
-    systemctl disable cups.service >> /root/install_log.txt 2>> /root/log_err.txt
-    systemctl disable cups-browsed.service >> /root/install_log.txt 2>> /root/log_err.txt
-    systemctl disable cups.path >> /root/install_log.txt 2>> /root/log_err.txt
-    systemctl disable cups.socket >> /root/install_log.txt 2>> /root/log_err.txt
-    sleep 1
-  ;;
   ubuntu1604 | ubuntu1804 | ubuntu2004 )
     echo "" | tee -a /root/install_log.txt
     echo "$OS Package Install" | tee -a /root/install_log.txt
@@ -417,7 +360,7 @@ cat /etc/profile | grep Motd &> /dev/null
 if [ $? != 0 ]
 then
   case $OS in
-    ubuntu1804 | ubuntu2004 | centos8 )
+    ubuntu1804 | ubuntu2004 )
       echo "" | tee -a /root/install_log.txt
       echo "MOTD Settings Start" | tee -a /root/install_log.txt
       mv /root/LISR/motd/ /opt/
@@ -441,26 +384,13 @@ sleep 3
 echo "" | tee -a /root/install_log.txt
 
 # 7. 서버 시간 동기화
-if [ $OS = "centos8" ]
-then
-  echo "Start time setting " | tee -a /root/install_log.txt
-  chronyc sources -v >> /root/install_log.txt 2>> /root/log_err.txt
-  perl -pi -e 's/pool 2.centos.pool.ntp.org iburst/server time.bora.net iburst/g' /etc/chrony.conf >> /root/install_log.txt 2>> /root/log_err.txt
-  service chronyd restart >> /root/install_log.txt 2>> /root/log_err.txt
-  timedatectl set-ntp true >> /root/install_log.txt 2>> /root/log_err.txt
-  timedatectl >> /root/install_log.txt 2>> /root/log_err.txt
-  chronyc sources -v >> /root/install_log.txt 2>> /root/log_err.txt
-  echo "" | tee -a /root/install_log.txt
-  echo "Time setting completed" | tee -a /root/install_log.txt
-else
-  echo "Start time setting" | tee -a /root/install_log.txt
-  rdate  -s  time.bora.net >> /root/install_log.txt 2>> /root/log_err.txt
-  hwclock --systohc >> /root/install_log.txt 2>> /root/log_err.txt
-  date >> /root/install_log.txt 2>> /root/log_err.txt
-  hwclock >> /root/install_log.txt 2>> /root/log_err.txt
-  echo "" | tee -a /root/install_log.txt
-  echo "Time setting completed" | tee -a /root/install_log.txt
-fi
+echo "Start time setting" | tee -a /root/install_log.txt
+rdate  -s  time.bora.net >> /root/install_log.txt 2>> /root/log_err.txt
+hwclock --systohc >> /root/install_log.txt 2>> /root/log_err.txt
+date >> /root/install_log.txt 2>> /root/log_err.txt
+hwclock >> /root/install_log.txt 2>> /root/log_err.txt
+echo "" | tee -a /root/install_log.txt
+echo "Time setting completed" | tee -a /root/install_log.txt
 
 echo "" | tee -a /root/install_log.txt
 sleep 3
@@ -483,14 +413,6 @@ then
       pip   install --upgrade pip >> /root/install_log.txt 2>> /root/log_err.txt
       pip3   install --upgrade pip >> /root/install_log.txt 2>> /root/log_err.txt
       perl -pi -e 's/python3/python/'   /usr/local/bin/pip
-      echo "" | tee -a /root/install_log.txt
-      echo "Python Install complete" | tee -a /root/install_log.txt
-    ;;
-    centos8 )
-      echo "" | tee -a /root/install_log.txt
-      echo "Python Install" | tee -a /root/install_log.txt
-      dnf -y install python2 python2-devel python3 python3-devel >> /root/install_log.txt 2>> /root/log_err.txt
-
       echo "" | tee -a /root/install_log.txt
       echo "Python Install complete" | tee -a /root/install_log.txt
     ;;
@@ -569,22 +491,6 @@ then
       echo "" | tee -a /root/install_log.txt
       echo "Python Package Install complete" | tee -a /root/install_log.txt
     ;;
-    centos8 )
-      echo "" | tee -a /root/install_log.txt
-      echo "Python Package Install" | tee -a /root/install_log.txt
-      pip2 install --upgrade pip >> /root/install_log.txt 2>> /root/log_err.txt
-      pip3 install --upgrade pip >> /root/install_log.txt 2>> /root/log_err.txt
-      pip2 install --upgrade numpy scipy nose matplotlib pandas keras tensorflow-gpu >> /root/install_log.txt 2>> /root/log_err.txt
-      pip2 install --upgrade setuptools >> /root/install_log.txt 2>> /root/log_err.txt
-      pip3 install --upgrade numpy scipy nose matplotlib pandas keras tensorflow-gpu >> /root/install_log.txt 2>> /root/log_err.txt
-      pip3 install --upgrade python-dateutil >> /root/install_log.txt 2>> /root/log_err.txt
-      perl -pi -e 's/python3.6/python2.7/'   /usr/local/bin/pip 
-      cp /usr/local/lib/python3.6/site-packages/six.py /usr/lib/python3.6/site-packages/ >> /root/install_log.txt 2>> /root/log_err.txt
-      # systemctl daemon이 다시 켜지지 않는 원인으로 아래 명령어 실행
-      kill -TERM 1
-      echo "" | tee -a /root/install_log.txt
-      echo "Python Package Install complete" | tee -a /root/install_log.txt
-    ;;
     ubuntu1604 )
       echo "" | tee -a /root/install_log.txt
       echo "Python Package Install" | tee -a /root/install_log.txt
@@ -643,7 +549,7 @@ echo "" | tee -a /root/install_log.txt
 
 # 10. 방화벽 설정
 case $OS in
-  centos7 | centos8 )
+  centos7 )
     firewall-cmd --list-all | grep 7777 &> /dev/null
     if [ $? != 0 ]
     then
@@ -717,7 +623,7 @@ ls /home/ | grep -i dasan &> /dev/null
 if [ $? != 0 ]
 then
   case $OS in
-    centos7 | centos8 )
+    centos7 )
       echo "" | tee -a /root/install_log.txt
       echo "User Add Start" | tee -a /root/install_log.txt
       useradd dasan >> /root/install_log.txt 2>> /root/log_err.txt
@@ -787,7 +693,7 @@ then
   echo "" | tee -a /root/install_log.txt
   echo "Complete basic setup" | tee -a /root/install_log.txt
   case $OS in
-    centos7 | centos8 )
+    centos7 )
       dmidecode | grep -i ipmi &> /dev/null
       if [ $? != 0 ]
       then
@@ -881,19 +787,6 @@ then
       echo "" | tee -a /root/install_log.txt
       echo "CUDA,CUDNN REPO install complete" | tee -a /root/install_log.txt
     ;;
-    centos8 )
-      echo "" | tee -a /root/install_log.txt
-      echo "CUDA,CUDNN REPO install Start" | tee -a /root/install_log.txt
-      wget https://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-repo-rhel8-10.2.89-1.x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
-      wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel8/x86_64/nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
-      dnf -y install nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
-      dnf -y install cuda-repo-rhel8-10.2.89-1.x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
-      dnf -y install libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-devel libXm* >> /root/install_log.txt 2>> /root/log_err.txt
-      dnf -y install openmotif* >> /root/install_log.txt 2>> /root/log_err.txt
-      dnf --disablerepo="*" --enablerepo="cuda" list available >> /root/install_log.txt 2>> /root/log_err.txt
-      echo "" | tee -a /root/install_log.txt
-      echo "CUDA,CUDNN REPO install complete" | tee -a /root/install_log.txt
-    ;;
     ubuntu1604 | ubuntu1804 | ubuntu2004 )
       echo "" | tee -a /root/install_log.txt
       echo "CUDA,CUDNN REPO install Start" | tee -a /root/install_log.txt
@@ -952,34 +845,6 @@ then
         sleep 1
         systemctl enable nvidia-persistenced >> /root/install_log.txt 2>> /root/log_err.txt
         sleep 1
-        source /etc/profile
-        sleep 1
-        source /root/.bashrc
-        sleep 1
-        echo "" | tee -a /root/install_log.txt
-        echo "CUDA $CUDAV install Start complete" | tee -a /root/install_log.txt
-      ;;
-      centos8 )
-        echo "CUDA $CUDAV install Start" | tee -a /root/install_log.txt
-        cat /etc/profile | grep "ADD Cuda" >> /root/install_log.txt 2>> /root/log_err.txt
-        if [ $? != 0 ]
-        then
-          echo " "  >> /etc/profile
-          echo "### ADD Cuda $CUDAV PATH"  >> /etc/profile
-          echo "export PATH=/usr/local/cuda-$CUDAV/bin:/usr/local/cuda-$CUDAV/include:\$PATH " >> /etc/profile
-          echo "export LD_LIBRARY_PATH=/usr/local/cuda-$CUDAV/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
-          echo "export CUDA_HOME=/usr/local/cuda-$CUDAV " >> /etc/profile
-          echo "export CUDA_INC_DIR=/usr/local/cuda-$CUDAV/include " >> /etc/profile
-          cat /etc/profile | tail -6 >> /root/install_log.txt 2>> /root/log_err.txt
-        else
-          echo "" | tee -a /root/install_log.txt
-        fi
-        CUDAV="${CUDAV/./-}"
-        sleep 1
-        dnf -y install cuda-$CUDAV >> /root/install_log.txt 2>> /root/log_err.txt
-        sleep 1
-        systemctl enable nvidia-persistenced.service >> /root/install_log.txt 2>> /root/log_err.txt
-        systemctl start nvidia-persistenced.service >> /root/install_log.txt 2>> /root/log_err.txt
         source /etc/profile
         sleep 1
         source /root/.bashrc
@@ -1076,15 +941,6 @@ then
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install complete" | tee -a /root/install_log.txt
     ;;
-    centos8 )
-      ## CentOS8 은 저장소에 libcudnn8만 존재함
-      echo "" | tee -a /root/install_log.txt
-      echo "libcudnn Install Start" | tee -a /root/install_log.txt
-      dnf -y install libcudnn8*   >> /root/install_log.txt 2>> /root/log_err.txt
-      dnf -y install libnccl* >> /root/install_log.txt 2>> /root/log_err.txt
-      echo "" | tee -a /root/install_log.txt
-      echo "libcudnn Install complete" | tee -a /root/install_log.txt
-    ;;
     ubuntu1604 | ubuntu1804 )
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install Start" | tee -a /root/install_log.txt
@@ -1156,30 +1012,6 @@ then
       rm -rf cuda-repo-rhel7-10.0.130-1.x86_64.rpm rstudio-1.2.5033-x86_64.rpm rstudio-server-rhel-1.2.5033-x86_64.rpm r_jupyterhub.Rout
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package install complete"  | tee -a /root/install_log.txt
-    ;;
-    centos8 )
-      echo "" | tee -a /root/install_log.txt
-      echo "Deep Learnig Package Install Start" | tee -a /root/install_log.txt
-      ## R,R-studio Install
-      wget https://download2.rstudio.org/server/centos8/x86_64/rstudio-server-rhel-1.3.959-x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
-      dnf -y install rstudio-server-rhel-1.3.959-x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
-      dnf -y install java-devel  libgfortran.so.5 libopenblas.so.0 libquadmath.so.0 libtcl8.6.so libtk8.6.so >> /root/install_log.txt 2>> /root/log_err.txt
-      # libRmath-devel R-rpm-macros  libRmath 패키지 존재하지 않아 설치 불가
-      dnf config-manager --set-enabled powertools >> /root/install_log.txt 2>> /root/log_err.txt
-      dnf -y install R >> /root/install_log.txt 2>> /root/log_err.txt
-      systemctl restart rstudio-server.service >> /root/install_log.txt 2>> /root/log_err.txt
-      ## JupyterHub Install
-      pip3 install --upgrade jupyterhub notebook >> /root/install_log.txt 2>> /root/log_err.txt
-      dnf -y install nodejs >> /root/install_log.txt 2>> /root/log_err.txt
-      npm install -g configurable-http-proxy >> /root/install_log.txt 2>> /root/log_err.txt
-      echo "" | tee -a /root/install_log.txt
-      echo "Deep Learnig Package install complete" | tee -a /root/install_log.txt
-      ## Pycharm install
-      systemctl enable --now snapd.socket >> /root/install_log.txt 2>> /root/log_err.txt
-      ln -s /var/lib/snapd/snap /snap
-      systemctl restart snapd.socket >> /root/install_log.txt 2>> /root/log_err.txt
-      sleep 3
-      snap install pycharm-community --classic >> /root/install_log.txt 2>> /root/log_err.txt
     ;;
     ubuntu1604 )
       echo "" | tee -a /root/install_log.txt
@@ -1343,7 +1175,7 @@ ls -al /usr/local/ | grep Mega &> /dev/null
 if [ $? != 0 ]
 then
   case $OS in
-    centos7 | centos8 )
+    centos7 )
       echo "" | tee -a /root/install_log.txt
       echo "MSM install start" | tee -a /root/install_log.txt
       mkdir /tmp/raid_manager
@@ -1399,7 +1231,7 @@ then
   echo "" | tee -a /root/install_log.txt
   echo "LAS install complete" | tee -a /root/install_log.txt
     case $OS in
-      centos7 | centos8 )
+      centos7 )
         sed -i '12a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.d/rc.local
         sleep 2
         systemctl set-default  multi-user.target
@@ -1437,7 +1269,7 @@ then
   firewall-cmd --add-port=1311/tcp --zone=external --permanent >> /root/install_log.txt 2>> /root/log_err.txt
   firewall-cmd --reload >> /root/install_log.txt 2>> /root/log_err.txt
   case $OS in
-    centos7 | centos8 )
+    centos7 )
       perl -p -i -e '$.==20 and print "exclude = libsmbios smbios-utils-bin\n"' /etc/yum.repos.d/CentOS-Base.repo
       wget http://linux.dell.com/repo/hardware/dsu/bootstrap.cgi -O  ./dellomsainstall.sh >> /root/install_log.txt 2>> /root/log_err.txt
       sed -i -e "s/enabled=1/enabled=0/g" ./dellomsainstall.sh 
@@ -1533,7 +1365,7 @@ then
   echo "" | tee -a /root/install_log.txt
   echo "LAS install complete" | tee -a /root/install_log.txt
     case $OS in
-    centos7 | centos8 )
+    centos7 )
       sed -i '12a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.d/rc.local
       systemctl set-default  multi-user.target | tee -a /root/install_log.txt
     ;;
