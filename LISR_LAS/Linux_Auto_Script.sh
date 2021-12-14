@@ -1348,9 +1348,13 @@ then
       mkdir /tmp/raid_manager
       cd /tmp/raid_manager
       wget https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/17.05.00.02_Linux-64_MSM.gz >> /root/install_log.txt 2>> /root/log_err.txt
-      tar xvzf 17.05.00.02_Linux-64_MSM.gz >> /root/install_log.txt 2>> /root/log_err.txt
-      cd /tmp/raid_manager/disk/ && ./install.csh -a >> /root/install_log.txt 2>> /root/log_err.txt
-      /usr/local/MegaRAID\ Storage\ Manager/startupui.sh  & >> /root/install_log.txt 2>> /root/log_err.txt
+      tar zxf 17.05.00.02_Linux-64_MSM.gz >> /root/install_log.txt 2>> /root/log_err.txt
+      cd /tmp/raid_manager/disk/
+      ./install.csh -a >> /root/install_log.txt 2>> /root/log_err.txt
+      systemctl daemon-reload >> /root/install_log.txt 2>> /root/log_err.txt
+      systemctl enable vivaldiframeworkd.service
+      systemctl start vivaldiframeworkd.service
+      cd /root/
       echo "" | tee -a /root/install_log.txt
       echo "MSM install complete" | tee -a /root/install_log.txt
     ;;
@@ -1360,15 +1364,17 @@ then
       mkdir /tmp/raid_manager
       cd /tmp/raid_manager
       wget https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/17.05.00.02_Linux-64_MSM.gz >> /root/install_log.txt 2>> /root/log_err.txt
-      tar xvzf 17.05.00.02_Linux-64_MSM.gz >> /root/install_log.txt 2>> /root/log_err.txt
-      cd disk/
+      tar zxf 17.05.00.02_Linux-64_MSM.gz >> /root/install_log.txt 2>> /root/log_err.txt
+      cd /tmp/raid_manager/disk/
       apt-get -y install alien >> /root/install_log.txt 2>> /root/log_err.txt
       alien --scripts *.rpm >> /root/install_log.txt 2>> /root/log_err.txt
+      sleep 120
       dpkg --install lib-utils2_1.00-9_all.deb >> /root/install_log.txt 2>> /root/log_err.txt
       dpkg --install megaraid-storage-manager_17.05.00-3_all.deb >> /root/install_log.txt 2>> /root/log_err.txt
+      systemctl daemon-reload >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl start vivaldiframeworkd.service >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl enable vivaldiframeworkd.service >> /root/install_log.txt 2>> /root/log_err.txt
-      /usr/local/MegaRAID\ Storage\ Manager/startupui.sh  & >> /root/install_log.txt 2>> /root/log_err.txt
+      cd /root/
       echo "" | tee -a /root/install_log.txt
       echo "MSM install complete" | tee -a /root/install_log.txt
     ;;
@@ -1394,14 +1400,17 @@ then
     case $OS in
       centos7 | centos8 )
         sed -i '12a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.d/rc.local
+        sleep 2
         systemctl set-default  multi-user.target
       ;;
       ubuntu1604 )
         sed -i '13a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
+        sleep 2
         systemctl set-default  multi-user.target
       ;;
       ubuntu1804 | ubuntu2004 )
         sed -i '1a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
+        sleep 2
         systemctl set-default  multi-user.target
       ;;
       *)
@@ -1432,9 +1441,11 @@ then
       wget http://linux.dell.com/repo/hardware/dsu/bootstrap.cgi -O  ./dellomsainstall.sh >> /root/install_log.txt 2>> /root/log_err.txt
       sed -i -e "s/enabled=1/enabled=0/g" ./dellomsainstall.sh 
       bash ./dellomsainstall.sh >> /root/install_log.txt 2>> /root/log_err.txt
+      sleep 3
       rm -f ./dellomsainstall.sh >> /root/install_log.txt 2>> /root/log_err.txt
       yum -y erase  tog-pegasus-libs >> /root/install_log.txt 2>> /root/log_err.txt
       yum -y install --enablerepo=dell-system-update_dependent -y srvadmin-all openssl-devel >> /root/install_log.txt 2>> /root/log_err.txt
+      systemctl daemon-reload >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl enable dataeng >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl enable dsm_om_connsvc >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl start dataeng >> /root/install_log.txt 2>> /root/log_err.txt
@@ -1450,6 +1461,7 @@ then
       apt-key add 0x1285491434D8786F.asc >> /root/install_log.txt 2>> /root/log_err.txt
       apt-get -y update >> /root/install_log.txt 2>> /root/log_err.txt
       apt-get -y install srvadmin-all >> /root/install_log.txt 2>> /root/log_err.txt
+      systemctl daemon-reload >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl enable dataeng >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl enable dsm_om_connsvc >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl start dataeng >> /root/install_log.txt 2>> /root/log_err.txt
@@ -1467,7 +1479,8 @@ then
       apt-get -y install srvadmin-all >> /root/install_log.txt 2>> /root/log_err.txt
       cd /usr/lib/x86_64-linux-gnu/ >> /root/install_log.txt 2>> /root/log_err.txt
       ln -s /usr/lib/x86_64-linux-gnu/libssl.so.1.1 libssl.so >> /root/install_log.txt 2>> /root/log_err.txt
-      cd
+      cd /root/
+      systemctl daemon-reload >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl enable dataeng >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl enable dsm_om_connsvc >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl start dataeng >> /root/install_log.txt 2>> /root/log_err.txt
@@ -1485,7 +1498,8 @@ then
       apt-get -y install srvadmin-all >> /root/install_log.txt 2>> /root/log_err.txt
       cd /usr/lib/x86_64-linux-gnu/ >> /root/install_log.txt 2>> /root/log_err.txt
       ln -s /usr/lib/x86_64-linux-gnu/libssl.so.1.1 libssl.so >> /root/install_log.txt 2>> /root/log_err.txt
-      cd
+      cd /root/
+      systemctl daemon-reload >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl enable dsm_sa_datamgrd.service >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl enable dsm_om_connsvc >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl start dsm_sa_datamgrd.service >> /root/install_log.txt 2>> /root/log_err.txt
