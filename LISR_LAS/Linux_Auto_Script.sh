@@ -58,7 +58,7 @@ then
       OS=$(lsb_release -isr |  tr -d "." | sed -e '{N;s/\n//}' | tr '[A-Z]' '[a-z]')
       if [ $OS = "ubuntu2004" ]
       then
-        select CUDAV in 11-0 11-1 11-2 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
+        select CUDAV in 11-0 11-1 11-2 11-3 11-4 11-5 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
         echo $CUDAV >> /root/cudaversion.txt
       else
         select CUDAV in 10-0 10-1 10-2 11-0 11-1 11-2 11-3 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
