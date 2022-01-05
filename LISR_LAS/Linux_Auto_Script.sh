@@ -959,6 +959,7 @@ then
       ## Ubuntu20.04 는 저장소에 libcudnn8만 존재함
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install Start" | tee -a /root/install_log.txt
+      apt-get -y install nvidia-cuda-toolkit >> /root/install_log.txt 2>> /root/log_err.txt
       apt-get -y install libcudnn8* >> /root/install_log.txt 2>> /root/log_err.txt
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install complete" | tee -a /root/install_log.txt
