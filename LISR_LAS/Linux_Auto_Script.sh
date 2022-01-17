@@ -791,7 +791,7 @@ then
       echo "" | tee -a /root/install_log.txt
       echo "CUDA,CUDNN REPO install Start" | tee -a /root/install_log.txt
       apt-get -y install sudo gnupg >> /root/install_log.txt 2>> /root/log_err.txt
-      apt-key adv --fetch-keys "https://developer.download.nvidia.com/compute/cuda/repos/"$OS"/x86_64/7fa2af80.pub" >> /root/install_log.txt 2>> /root/log_err.txt
+      apt-key adv --fetch-keys "https://developer.download.nvidia.com/compute/cuda/repos/'$OS'/x86_64/7fa2af80.pub" >> /root/install_log.txt 2>> /root/log_err.txt
       sh -c 'echo "deb https://developer.download.nvidia.com/compute/cuda/repos/'$OS'/x86_64 /" > /etc/apt/sources.list.d/nvidia-cuda.list' >> /root/install_log.txt 2>> /root/log_err.txt
       sh -c 'echo "deb https://developer.download.nvidia.com/compute/machine-learning/repos/'$OS'/x86_64 /" > /etc/apt/sources.list.d/nvidia-machine-learning.list'  >> /root/install_log.txt 2>> /root/log_err.txt
       apt-get update >> /root/install_log.txt 2>> /root/log_err.txt
@@ -930,7 +930,7 @@ then
     centos7 )
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install Start" | tee -a /root/install_log.txt
-      if [ $CUDAV = "11.0" ] || [ $CUDAV = "11.1" ] || [ $CUDAV = "11.2" ] || [ $CUDAV = "11.3" ] || [ $CUDAV = "11.4" ] || [ $CUDAV = "11.5" ]
+      if [ $CUDAV = "11-0" ] || [ $CUDAV = "11-1" ] || [ $CUDAV = "11-2" ] || [ $CUDAV = "11-3" ] || [ $CUDAV = "11-4" ] || [ $CUDAV = "11-5" ]
       then
         yum -y install libcudnn8* >> /root/install_log.txt 2>> /root/log_err.txt
         yum -y update >> /root/install_log.txt 2>> /root/log_err.txt
@@ -944,7 +944,7 @@ then
     ubuntu1604 | ubuntu1804 )
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install Start" | tee -a /root/install_log.txt
-      if [ $CUDAV = "11.0" ] || [ $CUDAV = "11.1" ] || [ $CUDAV = "11.2" ] || [ $CUDAV = "11.3" ]
+      if [ $CUDAV = "11-0" ] || [ $CUDAV = "11-1" ] || [ $CUDAV = "11-2" ] || [ $CUDAV = "11-3" ]
       then
         apt-get -y install libcudnn8* >> /root/install_log.txt 2>> /root/log_err.txt
         apt-get -y install libcublas-dev >> /root/install_log.txt 2>> /root/log_err.txt
