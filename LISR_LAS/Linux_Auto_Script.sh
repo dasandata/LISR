@@ -1203,7 +1203,7 @@ then
       cd /tmp/raid_manager/disk/
       apt-get -y install alien >> /root/install_log.txt 2>> /root/log_err.txt
       alien --scripts *.rpm >> /root/install_log.txt 2>> /root/log_err.txt
-      sleep 120
+      sleep 30
       dpkg --install lib-utils2_1.00-9_all.deb >> /root/install_log.txt 2>> /root/log_err.txt
       dpkg --install megaraid-storage-manager_17.05.00-3_all.deb >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl daemon-reload >> /root/install_log.txt 2>> /root/log_err.txt
