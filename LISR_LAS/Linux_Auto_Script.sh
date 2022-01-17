@@ -1079,7 +1079,7 @@ then
       ## JupyterHub install
       pip3 install --upgrade jupyterhub notebook >> /root/install_log.txt 2>> /root/log_err.txt
       curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
-      apt-get -y install nodejs default-jre >> /root/install_log.txt 2>> /root/log_err.txt
+      apt-get -y install npm nodejs default-jre >> /root/install_log.txt 2>> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2>> /root/log_err.txt
       ## Pycharm install
       snap install pycharm-community --classic >> /root/install_log.txt 2>> /root/log_err.txt
