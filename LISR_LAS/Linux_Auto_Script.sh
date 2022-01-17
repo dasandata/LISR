@@ -1358,9 +1358,9 @@ echo "" | tee -a /root/install_log.txt
 
 ## 스크립트 완료 정리 후 재부팅
 updatedb
-source .bashrc
+source /root/.bashrc
 source /etc/profile
-bash /opt/dell/srvadmin/sbin/racadm getniccfg &> /dev/null
+/opt/dell/srvadmin/sbin/racadm getniccfg &> /dev/null
 if [ $? = 0 ]
 then
 # rc.local 기본 값으로 변경
