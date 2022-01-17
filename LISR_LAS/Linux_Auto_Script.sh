@@ -278,7 +278,7 @@ case $OS in
       apt-get update >> /root/install_log.txt 2>> /root/log_err.txt
       sleep 2
       apt-get -y install vim nfs-common rdate xauth firefox gcc make tmux wget figlet >> /root/install_log.txt 2>> /root/log_err.txt
-      apt-get -y install net-tools xfsprogs ntfs-3g aptitude lvm2 dstat curl npm python mlocate >> /root/install_log.txt 2>> /root/log_err.txt
+      apt-get -y install net-tools xfsprogs ntfs-3g aptitude dstat curl npm python mlocate >> /root/install_log.txt 2>> /root/log_err.txt
       sleep 2
       apt-get -y install ubuntu-desktop dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> /root/install_log.txt 2>> /root/log_err.txt
       apt-get -y install libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool htop dnsutils >> /root/install_log.txt 2>> /root/log_err.txt
