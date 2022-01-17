@@ -281,7 +281,7 @@ case $OS in
       apt-get -y install net-tools xfsprogs ntfs-3g aptitude dstat curl npm python mlocate >> /root/install_log.txt 2>> /root/log_err.txt
       sleep 2
       apt-get -y install ubuntu-desktop dconf-editor gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal >> /root/install_log.txt 2>> /root/log_err.txt
-      apt-get -y install libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd ethtool htop dnsutils >> /root/install_log.txt 2>> /root/log_err.txt
+      apt-get -y install libzmq3-dev libcurl4-openssl-dev libxml2-dev snapd lvm2 ethtool htop dnsutils >> /root/install_log.txt 2>> /root/log_err.txt
       sleep 2
       DEBIAN_FRONTEND=noninteractive apt-get install -y smartmontools >> /root/install_log.txt 2>> /root/log_err.txt
       #불필요한 서비스 disable
@@ -1001,6 +1001,7 @@ then
       wget https://rpm.nodesource.com/pub_16.x/el/7/x86_64/nodejs-devel-16.10.0-1nodesource.x86_64.rpm
       rpm -ivh nodejs-16.10.0-1nodesource.x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
       rpm -ivh nodejs-devel-16.10.0-1nodesource.x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
+      yum -y install npm >> /root/install_log.txt 2>> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2>> /root/log_err.txt
       mkdir /etc/jupyterhub
       jupyterhub --generate-config >> /root/install_log.txt 2>> /root/log_err.txt
@@ -1028,7 +1029,7 @@ then
       ## JupyterHub install
       pip3 install --upgrade jupyterhub notebook flask >> /root/install_log.txt 2>> /root/log_err.txt
       curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -  >> /root/install_log.txt 2>> /root/log_err.txt
-      apt-get -y install  nodejs default-jre >> /root/install_log.txt 2>> /root/log_err.txt
+      apt-get -y install npm nodejs default-jre >> /root/install_log.txt 2>> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2>> /root/log_err.txt
       ## Pycharm install
       snap install pycharm-community --classic >> /root/install_log.txt 2>> /root/log_err.txt
@@ -1050,7 +1051,7 @@ then
       ## JupyterHub install
       pip3 install --upgrade jupyterhub notebook >> /root/install_log.txt 2>> /root/log_err.txt
       curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -  >> /root/install_log.txt 2>> /root/log_err.txt
-      apt-get -y install  nodejs default-jre >> /root/install_log.txt 2>> /root/log_err.txt
+      apt-get -y install npm nodejs default-jre >> /root/install_log.txt 2>> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2>> /root/log_err.txt
       mkdir /etc/jupyterhub
       jupyterhub --generate-config -f /etc/jupyterhub/jupyterhub_config.py
