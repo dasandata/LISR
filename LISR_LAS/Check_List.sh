@@ -23,8 +23,8 @@ echo "===== options nouveau modeset=0 check =====" | tee -a /root/Auto_Install_L
 cat /etc/modprobe.d/blacklist.conf | grep "options nouveau modeset=0"  >> /root/Auto_Install_Log.txt
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### Nouveau, GRUB Check Complete #####"  | tee -a /root/Auto_Install_Log.txt
-echo ""
-echo ""
+echo "" | tee -a /root/Auto_Install_Log.txt
+echo "" | tee -a /root/Auto_Install_Log.txt
 sleep 5
 
 # selinux 제거 및 저장소 변경 
@@ -201,7 +201,7 @@ sleep 5
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### 11. MSM Install Check Start #####"  | tee -a /root/Auto_Install_Log.txt
 echo ""  | tee -a /root/Auto_Install_Log.txt
-ls /usr/local/MegaRAID\ Storage\ Manager/  | grep start >> /root/Auto_Install_Log.txt
+ls /usr/local/MegaRAID\ Storage\ Manager/  | grep startupui >> /root/Auto_Install_Log.txt
 echo ""  | tee -a /root/Auto_Install_Log.txt
 echo "##### MSM Check Complete #####"  | tee -a /root/Auto_Install_Log.txt
 
