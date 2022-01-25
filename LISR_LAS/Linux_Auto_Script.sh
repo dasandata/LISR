@@ -2,32 +2,6 @@
 # Copyright by Dasandata.co.ltd
 # http://www.dasandata.co.kr
 
-# 기본 버전 설치 진행 순서
-# 1. 변수 선언
-# 2. rc.local 생성 및 변경
-# 3. nouveau 끄기 및 grub 설정
-# 4. selinux 제거 및 저장소 변경
-# 5. 기본 패키지 설치
-# 6. 프로필 설정
-# 7. 서버 시간 동기화
-# 8. 파이썬 설치
-# 9. 파이썬 패키지 설치
-# 10. 방화벽 설정
-# 11. 사용자 생성 테스트
-# 12. H/W 사양 체크
-
-# GPU 버전 설치 진행 순서 
-# 13. CUDA,CUDNN Repo 설치
-# 14. CUDA 설치 및 PATH 설정
-# 15. CUDNN 설치 및 PATH 설정
-# 16. 딥러닝 패키지 설치(R,R Server, JupyterHub, Pycharm)
-
-# 서버 전용 설치 진행 순서 
-# 17. 서버 전용 MSM 설치
-
-# Dell 서버 전용 설치 순서
-# 18. Dell 전용 OMSA설치
-
 # 1. 변수 선언
 ## Dell or Supermicro 확인
 VENDOR=$(dmidecode | grep -i manufacturer | awk '{print$2}' | head -1)
@@ -759,8 +733,7 @@ else
 fi
 
 sleep 3
-
-## 모든 서버는 MSM 설치가 필요하며 Dell의 경우 OMSA까지 추가로 필요하기 때문에 GPU 설치는 건너 뜁니다. 
+ 
 cat /root/cudaversion.txt | grep No &> /dev/null
 if [ $? = 0 ]
 then
@@ -955,7 +928,6 @@ then
       echo "libcudnn Install complete" | tee -a /root/install_log.txt
     ;;
     ubuntu2004 )
-      ## Ubuntu20.04 는 저장소에 libcudnn8만 존재함
       echo "" | tee -a /root/install_log.txt
       echo "libcudnn Install Start" | tee -a /root/install_log.txt
       apt-get -y install nvidia-cuda-toolkit >> /root/install_log.txt 2>> /root/log_err.txt
@@ -1104,7 +1076,7 @@ then
   then
     echo "" | tee -a /root/install_log.txt
     echo "JupyterHub Setting Files Copy" | tee -a /root/install_log.txt
-    ## jupyter hub service 설정 파일 복사
+    ## jupyterhub service 설정 파일 복사
     mv /root/LISR/LISR_LAS/jupyterhub.service /lib/systemd/system/
     mv /root/LISR/LISR_LAS/jupyterhub /etc/init.d/
     chmod 777 /lib/systemd/system/jupyterhub.service >> /root/install_log.txt 2>> /root/log_err.txt
