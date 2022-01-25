@@ -23,8 +23,12 @@ then
   echo "CUDA Version Select" | tee -a /root/install_log.txt
   case $OSCHECK in 
     centos )
-      select CUDAV in 10-0 10-1 10-2 11-0 11-1 11-2 11-3 11-4 11-5 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
-      echo $CUDAV >> /root/cudaversion.txt
+      until [ $CUDAV != ' ' ]
+      do
+        PS3='Please Select one : '
+        select CUDAV in 10-0 10-1 10-2 11-0 11-1 11-2 11-3 11-4 11-5 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
+      done 
+      echo $CUDAV > /root/cudaversion.txt
       echo "" | tee -a /root/install_log.txt
       echo "Cuda Version Select complete" | tee -a /root/install_log.txt
     ;;
@@ -32,14 +36,26 @@ then
       OS=$(lsb_release -isr |  tr -d "." | sed -e '{N;s/\n//}' | tr '[A-Z]' '[a-z]')
       if [ $OS = "ubuntu2004" ]
       then
-        select CUDAV in 11-0 11-1 11-2 11-3 11-4 11-5 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
-        echo $CUDAV >> /root/cudaversion.txt
+        until [ $CUDAV != ' ' ]
+        do
+          PS3='Please Select one : '
+          select CUDAV in 11-0 11-1 11-2 11-3 11-4 11-5 No-GPU ; do echo "Select CUDA Version : $CUDAV" ; break; done
+        done
+        echo $CUDAV > /root/cudaversion.txt
+        echo "" | tee -a /root/install_log.txt
+        echo "Cuda Version Select complete" | tee -a /root/install_log.txt
       else
-        select CUDAV in 10-0 10-1 10-2 11-0 11-1 11-2 11-3 No-GPU; do echo "Select CUDA Version : $CUDAV" ; break; done
-        echo $CUDAV >> /root/cudaversion.txt
+        until [ $CUDAV != ' ' ]
+        do
+          PS3='Please Select one : '
+          select CUDAV in 10-0 10-1 10-2 11-0 11-1 11-2 11-3 No-GPU ; do echo "Select CUDA Version : $CUDAV" ; break; done
+        done
+        echo $CUDAV > /root/cudaversion.txt
+        echo "" | tee -a /root/install_log.txt
+        echo "Cuda Version Select complete" | tee -a /root/install_log.txt
       fi
-      echo "" | tee -a /root/install_log.txt
-      echo "Cuda Version Select complete" | tee -a /root/install_log.txt
+        echo "" | tee -a /root/install_log.txt
+        echo "Cuda Version Select complete" | tee -a /root/install_log.txt
     ;;
     *)
     ;;
