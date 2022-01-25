@@ -761,8 +761,8 @@ fi
 sleep 3
 
 ## 모든 서버는 MSM 설치가 필요하며 Dell의 경우 OMSA까지 추가로 필요하기 때문에 GPU 설치는 건너 뜁니다. 
-lspci | grep -i nvidia &> /dev/null
-if [ $? != 0 ]
+cat /root/cudaversion.txt | grep No &> /dev/null
+if [ $? = 0 ]
 then
   OS="Skip this server as it has no GPU."
 else
@@ -770,7 +770,7 @@ else
 fi
 
 # 13. CUDA,CUDNN Repo 설치
-cat /etc/profile | grep cuda &> /dev/null
+ls /usr/local/ | grep cuda &> /dev/null
 if [ $? != 0 ]
 then
   case $OS in
@@ -813,12 +813,11 @@ sleep 3
 echo "" | tee -a /root/install_log.txt
 
 # 14. CUDA 설치 및 PATH 설정
-## 저장소에 CentOS8 , Ubuntu20 2가지는 CUDA 11.0 버전만 파일이 있어 나머지 버전 추후 추가 예정
 ls /usr/local/ | grep cuda >> /root/install_log.txt 2>> /root/log_err.txt
 if [ $? != 0 ]
 then
   CUDAV=$(cat /root/cudaversion.txt)
-  if [ CUDAV = "No-GPU" ]
+  if [ $CUDAV = "No-GPU" ]
   then
     echo "No-GPU not install cuda" >> /root/install_log.txt 2>> /root/log_err.txt
   else
@@ -1087,7 +1086,7 @@ then
     ;;
     *)
       echo "" | tee -a /root/install_log.txt
-      echo "Deep Learnig package not install:$OS"   | tee -a /root/install_log.txt
+      echo "$OS"   | tee -a /root/install_log.txt
     ;;
   esac
   sleep 3
@@ -1097,8 +1096,8 @@ else
 fi
 
 ## jupyterhub 마무리 설정
-lspci | grep -i nvidia &> /dev/null
-if [ $? = 0 ]
+cat /root/cudaversion.txt | grep No &> /dev/null
+if [ $? != 0 ]
 then
   ls /lib/systemd/system/ | grep jupyter &> /dev/null
   if [ $? != 0 ]
@@ -1120,7 +1119,7 @@ then
     echo "JupyterHub Settings is already" | tee -a /root/install_log.txt
   fi
 else
-  echo "No-GPU No-Jupyter" | tee -a /root/install_log.txt
+  echo "$OS" | tee -a /root/install_log.txt
 fi
 
 echo "" | tee -a /root/install_log.txt
@@ -1172,7 +1171,7 @@ else
 fi
 
 # 17. 서버 전용 MSM 설치
-ls -al /usr/local/ | grep Mega &> /dev/null
+ls /usr/local/ | grep Mega &> /dev/null
 if [ $? != 0 ]
 then
   case $OS in
@@ -1356,33 +1355,22 @@ sleep 3
 echo "" | tee -a /root/install_log.txt
 
 ## 스크립트 완료 정리 후 재부팅
-updatedb
-source /root/.bashrc
-source /etc/profile
-/opt/dell/srvadmin/sbin/racadm getniccfg &> /dev/null
-if [ $? = 0 ]
-then
-# rc.local 기본 값으로 변경
-  echo "" | tee -a /root/install_log.txt
-  echo "LAS install complete" | tee -a /root/install_log.txt
-    case $OS in
-    centos7 )
-      sed -i '12a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.d/rc.local
-      systemctl set-default  multi-user.target | tee -a /root/install_log.txt
-    ;;
-    ubuntu1604 )
-      sed -i '13a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
-      systemctl set-default  multi-user.target | tee -a /root/install_log.txt
-    ;;
-    ubuntu1804 | ubuntu2004 )
-      sed -i '1a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
-      systemctl set-default  multi-user.target | tee -a /root/install_log.txt
-    ;;
-    *)
-    ;;
-  esac
+echo "" | tee -a /root/install_log.txt
+echo "LAS install complete" | tee -a /root/install_log.txt
+case $OS in
+  centos7 )
+    sed -i '12a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.d/rc.local
+    systemctl set-default  multi-user.target | tee -a /root/install_log.txt
+  ;;
+  ubuntu1604 )
+    sed -i '13a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
+    systemctl set-default  multi-user.target | tee -a /root/install_log.txt
+  ;;
+  ubuntu1804 | ubuntu2004 )
+    sed -i '1a bash /root/LISR/LISR_LAS/Check_List.sh' /etc/rc.local
+    systemctl set-default  multi-user.target | tee -a /root/install_log.txt
+  ;;
+  *)
+  ;;
+esac
   reboot
-else
-  echo "Script Error Check PLZ" | tee -a /root/install_log.txt
-  exit 111
-fi
