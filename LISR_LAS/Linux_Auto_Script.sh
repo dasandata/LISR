@@ -291,6 +291,10 @@ case $OS in
       if [ $? = 0 ]
       then
         apt-get -y install ipmitool >> /root/install_log.txt 2>> /root/log_err.txt
+        systemctl disable NetworkManager.service >> /root/install_log.txt 2>> /root/log_err.txt
+        systemctl stop    NetworkManager.service >> /root/install_log.txt 2>> /root/log_err.txt
+        systemctl disable NetworkManager-dispatcher.service >> /root/install_log.txt 2>> /root/log_err.txt
+        systemctl disable NetworkManager-wait-online.service >> /root/install_log.txt 2>> /root/log_err.txt
       else
         echo "" | tee -a /root/install_log.txt
         echo "PC,Workstation do not install ipmitool" | tee -a /root/install_log.txt
