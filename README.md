@@ -1,5 +1,6 @@
 # 안녕하세요 다산데이타 입니다.  
 다산데이타 에서 출고되는 서버 & 워크스테이션에 설치되는 리눅스 표준설치 메뉴얼 과 스크립트 입니다.  
+** 아래 GIt 자동 스크립트는 인터넷이 작동 되는 상태에서 진행 되어야 합니다.
 
 ![Dasandata Logo](http://dasandata.co.kr/wp-content/uploads/2019/05/%EB%8B%A4%EC%82%B0%EB%A1%9C%EA%B3%A0_%EC%88%98%EC%A0%951-300x109.jpg)
 
@@ -14,7 +15,6 @@
 - [3. 리눅스 자동설치 스크립트. ][Linux Auto Script](https://github.com/dasandata/LISR/blob/dc2e0fac2364f203528f6a69e8915a1b8a7aaa6e/LISR_LAS/Linux_Auto_Script.sh)
   - 운영체제 통합 스크립트
       - centos 7
-      - centos 8
       - ubuntu 16.04
       - ubuntu 18.04
       - ubuntu 20.04
