@@ -1047,8 +1047,6 @@ then
       sed -i '824a c.Authenticator.admin_users = {"sonic"}' /etc/jupyterhub/jupyterhub_config.py
       ## pycharm install
       snap install pycharm-community --classic >> /root/install_log.txt 2>> /root/log_err.txt
-      sed -i "5s/networkd/NetworkManager/" /etc/netplan/01-netcfg.yaml
-      systemctl enable network-manager.service >> /root/install_log.txt 2>> /root/log_err.txt
       rm -rf 7fa2af80.pub cuda-repo-ubuntu1804_10.0.130-1_amd64.deb rstudio-1.2.5019-amd64.deb rstudio-server-1.2.5019-amd64.deb
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package install complete" | tee -a /root/install_log.txt
@@ -1063,7 +1061,7 @@ then
       yes | gdebi rstudio-server-1.3.1073-amd64.deb >> /root/install_log.txt 2>> /root/log_err.txt
       ## JupyterHub install
       pip3 install --upgrade jupyterhub notebook >> /root/install_log.txt 2>> /root/log_err.txt
-      curl -fsSL https://deb.nodesource.com/setup_16.x | bash - 2>> /root/log_err.txt
+      curl -fsSL https://deb.nodesource.com/setup_16.x | bash - >> /root/install_log.txt 2>> /root/log_err.txt
       apt-get -y install nodejs default-jre >> /root/install_log.txt 2>> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2>> /root/log_err.txt
       ## Pycharm install
