@@ -1262,7 +1262,7 @@ then
       perl -p -i -e '$.==20 and print "exclude = libsmbios smbios-utils-bin\n"' /etc/yum.repos.d/CentOS-Base.repo
       wget http://linux.dell.com/repo/hardware/dsu/bootstrap.cgi -O  ./dellomsainstall.sh >> /root/install_log.txt 2>> /root/log_err.txt
       sed -i -e "s/enabled=1/enabled=0/g" ./dellomsainstall.sh 
-      bash ./dellomsainstall.sh >> /root/install_log.txt 2>> /root/log_err.txt
+      yes | bash ./dellomsainstall.sh >> /root/install_log.txt 2>> /root/log_err.txt
       sleep 3
       rm -f ./dellomsainstall.sh >> /root/install_log.txt 2>> /root/log_err.txt
       yum -y erase  tog-pegasus-libs >> /root/install_log.txt 2>> /root/log_err.txt
