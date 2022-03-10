@@ -42,8 +42,6 @@ then
           select CUDAV in 11-0 11-1 11-2 11-3 11-4 11-5 No-GPU ; do echo "Select CUDA Version : $CUDAV" ; break; done
         done
         echo $CUDAV > /root/cudaversion.txt
-        echo "" | tee -a /root/install_log.txt
-        echo "Cuda Version Select complete" | tee -a /root/install_log.txt
       else
         until [ $CUDAV != ' ' ]
         do
@@ -51,7 +49,6 @@ then
           select CUDAV in 10-0 10-1 10-2 11-0 11-1 11-2 11-3 No-GPU ; do echo "Select CUDA Version : $CUDAV" ; break; done
         done
         echo $CUDAV > /root/cudaversion.txt
-        echo "" | tee -a /root/install_log.txt
       fi
         echo "" | tee -a /root/install_log.txt
         echo "Cuda Version Select complete" | tee -a /root/install_log.txt
@@ -342,34 +339,6 @@ if [ $? != 0 ]
   else
     echo "" | tee -a /root/install_log.txt
     echo "Profile settings are already set up." | tee -a /root/install_log.txt
-fi
-
-echo "" | tee -a /root/install_log.txt
-sleep 3
-echo "" | tee -a /root/install_log.txt
-
-## MOTD 진행 (CentOS7,Ubuntu16.04 제외)
-cat /etc/profile | grep Motd &> /dev/null
-if [ $? != 0 ]
-then
-  case $OS in
-    ubuntu1804 | ubuntu2004 )
-      echo "" | tee -a /root/install_log.txt
-      echo "MOTD Settings Start" | tee -a /root/install_log.txt
-      mv /root/LISR/motd/ /opt/
-      chmod -R 777 /opt/motd/
-      echo "#Motd add" >> /etc/profile
-      echo "bash /opt/motd/motd.sh" >> /etc/profile
-      echo "" | tee -a /root/install_log.txt
-      echo "MOTD setting complete" | tee -a /root/install_log.txt
-    ;;
-    *)
-      echo "" | tee -a /root/install_log.txt
-      echo "MOTD is already (Ubuntu16, CentOS7 is Exclude.)" | tee -a /root/install_log.txt
-    ;;
-  esac
-else
-  echo "" | tee -a /root/install_log.txt
 fi
 
 echo "" | tee -a /root/install_log.txt
@@ -978,80 +947,51 @@ then
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package Install Start" | tee -a /root/install_log.txt
       ## R,R-sutdio install
-      wget https://download1.rstudio.org/desktop/centos7/x86_64/rstudio-1.2.5033-x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
-      yum -y install libxkbcommon-x11 >> /root/install_log.txt 2>> /root/log_err.txt
-      rpm -ivh rstudio-1.2.5033-x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
-      wget https://download2.rstudio.org/server/centos6/x86_64/rstudio-server-rhel-1.2.5033-x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
-      yum -y install psmisc >> /root/install_log.txt 2>> /root/log_err.txt
-      rpm -ivh rstudio-server-rhel-1.2.5033-x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
       yum -y install R >> /root/install_log.txt 2>> /root/log_err.txt
+      wget https://download2.rstudio.org/server/centos7/x86_64/rstudio-server-rhel-2022.02.0-443-x86_64.rpm  >> /root/install_log.txt 2>> /root/log_err.txt
+      yum -y install rstudio-server-rhel-2022.02.0-443-x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
       ## JupyterHub install
-      pip3 install --upgrade jupyterhub notebook >> /root/install_log.txt 2>> /root/log_err.txt
-      wget https://rpm.nodesource.com/pub_16.x/el/7/x86_64/nodejs-16.10.0-1nodesource.x86_64.rpm
-      wget https://rpm.nodesource.com/pub_16.x/el/7/x86_64/nodejs-devel-16.10.0-1nodesource.x86_64.rpm
-      rpm -ivh nodejs-16.10.0-1nodesource.x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
-      rpm -ivh nodejs-devel-16.10.0-1nodesource.x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
+      pip3 install --upgrade jupyterhub jupyterlab notebook >> /root/install_log.txt 2>> /root/log_err.txt
+      wget https://rpm.nodesource.com/pub_16.x/el/7/x86_64/nodejs-16.10.0-1nodesource.x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
+      wget https://rpm.nodesource.com/pub_16.x/el/7/x86_64/nodejs-devel-16.10.0-1nodesource.x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
+      rpm -ivh nodejs-16.10.0-1nodesource.x86_64.rpm nodejs-devel-16.10.0-1nodesource.x86_64.rpm >> /root/install_log.txt 2>> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2>> /root/log_err.txt
-      mkdir /etc/jupyterhub
-      jupyterhub --generate-config >> /root/install_log.txt 2>> /root/log_err.txt
-      mv jupyterhub_config.py /etc/jupyterhub/
-      sed -i '356a c.JupyterHub.port = 8000' /etc/jupyterhub/jupyterhub_config.py
-      sed -i '358a c.LocalAuthenticator.create_system_users = True' /etc/jupyterhub/jupyterhub_config.py
-      sed -i '359a c.Authenticator.add_user_cmd = ['adduser', '--force-badname', '-q', '--gecos', '""', '--disabled-password']' /etc/jupyterhub/jupyterhub_config.py
-      sed -i '384a c.JupyterHub.proxy_class = 'jupyterhub.proxy.ConfigurableHTTPProxy'' /etc/jupyterhub/jupyterhub_config.py
-      sed -i '824a c.Authenticator.admin_users = {"sonic"}' /etc/jupyterhub/jupyterhub_config.py
-      rm -rf cuda-repo-rhel7-10.0.130-1.x86_64.rpm rstudio-1.2.5033-x86_64.rpm rstudio-server-rhel-1.2.5033-x86_64.rpm r_jupyterhub.Rout
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package install complete"  | tee -a /root/install_log.txt
     ;;
     ubuntu1604 )
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package Install Start" | tee -a /root/install_log.txt
-      apt-get -y install dkms linux-generic-hwe-16.04 xserver-xorg-hwe-16.04 >> /root/install_log.txt 2>> /root/log_err.txt
       ## R,R-studio Install
-      apt-get -y install  r-base gdebi-core >> /root/install_log.txt 2>> /root/log_err.txt
-      wget https://download2.rstudio.org/server/trusty/amd64/rstudio-server-1.2.5019-amd64.deb >> /root/install_log.txt 2>> /root/log_err.txt
-      yes | gdebi rstudio-server-1.2.5019-amd64.deb >> /root/install_log.txt 2>> /root/log_err.txt
-      wget https://download1.rstudio.org/desktop/xenial/amd64/rstudio-1.2.5019-amd64.deb >> /root/install_log.txt 2>> /root/log_err.txt
-      dpkg -i rstudio-1.2.5019-amd64.deb >> /root/install_log.txt 2>> /root/log_err.txt
-      apt-get -y install  rdesktop >> /root/install_log.txt 2>> /root/log_err.txt
+      apt-get -y install r-base >> /root/install_log.txt 2>> /root/log_err.txt
+      apt-get -y install gdebi-core >> /root/install_log.txt 2>> /root/log_err.txt
+      wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-2022.02.0-443-amd64.deb >> /root/install_log.txt 2>> /root/log_err.txt
+      yes | gdebi rstudio-server-2022.02.0-443-amd64.deb >> /root/install_log.txt 2>> /root/log_err.txt
       ## JupyterHub install
-      pip3 install --upgrade jupyterhub notebook flask >> /root/install_log.txt 2>> /root/log_err.txt
+      pip3 install --upgrade jupyterhub jupyterlab notebook flask >> /root/install_log.txt 2>> /root/log_err.txt
       curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -  >> /root/install_log.txt 2>> /root/log_err.txt
       apt-get -y install nodejs default-jre >> /root/install_log.txt 2>> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2>> /root/log_err.txt
       ## Pycharm install
       snap install pycharm-community --classic >> /root/install_log.txt 2>> /root/log_err.txt
-      rm -rf 7fa2af80.pub cuda-repo-ubuntu1604_10.0.130-1_amd64.deb rstudio-1.2.5019-amd64.deb rstudio-server-1.2.5019-amd64.deb
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package install complete" | tee -a /root/install_log.txt
     ;;
     ubuntu1804 )
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package Install Start" | tee -a /root/install_log.txt
-      apt-get -y install dkms linux-generic-hwe-18.04 xserver-xorg-hwe-18.04 >> /root/install_log.txt 2>> /root/log_err.txt
       ## R,R-studio Install
-      apt-get -y install  r-base gdebi-core >> /root/install_log.txt 2>> /root/log_err.txt
-      wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5019-amd64.deb >> /root/install_log.txt 2>> /root/log_err.txt
-      yes | gdebi rstudio-server-1.2.5019-amd64.deb >> /root/install_log.txt 2>> /root/log_err.txt
-      wget https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.2.5019-amd64.deb >> /root/install_log.txt 2>> /root/log_err.txt
-      dpkg -i rstudio-1.2.5019-amd64.deb >> /root/install_log.txt 2>> /root/log_err.txt
-      apt-get -y install  rdesktop >> /root/install_log.txt 2>> /root/log_err.txt
+      apt-get -y install r-base >> /root/install_log.txt 2>> /root/log_err.txt
+      apt-get -y install gdebi-core >> /root/install_log.txt 2>> /root/log_err.txt
+      wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-2022.02.0-443-amd64.deb >> /root/install_log.txt 2>> /root/log_err.txt
+      yes | gdebi rstudio-server-2022.02.0-443-amd64.deb >> /root/install_log.txt 2>> /root/log_err.txt
       ## JupyterHub install
-      pip3 install --upgrade jupyterhub notebook >> /root/install_log.txt 2>> /root/log_err.txt
+      pip3 install --upgrade jupyterhub jupyterlab notebook >> /root/install_log.txt 2>> /root/log_err.txt
       curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -  >> /root/install_log.txt 2>> /root/log_err.txt
       apt-get -y install nodejs default-jre >> /root/install_log.txt 2>> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2>> /root/log_err.txt
-      mkdir /etc/jupyterhub
-      jupyterhub --generate-config -f /etc/jupyterhub/jupyterhub_config.py
-      sed -i '356a c.JupyterHub.port = 8000' /etc/jupyterhub/jupyterhub_config.py
-      sed -i '358a c.LocalAuthenticator.create_system_users = True' /etc/jupyterhub/jupyterhub_config.py
-      sed -i '359a c.Authenticator.add_user_cmd = ['adduser', '--force-badname', '-q', '--gecos', '""', '--disabled-password']' /etc/jupyterhub/jupyterhub_config.py
-      sed -i '384a c.JupyterHub.proxy_class = 'jupyterhub.proxy.ConfigurableHTTPProxy'' /etc/jupyterhub/jupyterhub_config.py
-      sed -i '824a c.Authenticator.admin_users = {"sonic"}' /etc/jupyterhub/jupyterhub_config.py
       ## pycharm install
       snap install pycharm-community --classic >> /root/install_log.txt 2>> /root/log_err.txt
-      rm -rf 7fa2af80.pub cuda-repo-ubuntu1804_10.0.130-1_amd64.deb rstudio-1.2.5019-amd64.deb rstudio-server-1.2.5019-amd64.deb
       echo "" | tee -a /root/install_log.txt
       echo "Deep Learnig Package install complete" | tee -a /root/install_log.txt
     ;;
@@ -1061,10 +1001,10 @@ then
       ## R,R-studio Install
       apt-get -y install r-base >> /root/install_log.txt 2>> /root/log_err.txt
       apt-get -y install gdebi-core >> /root/install_log.txt 2>> /root/log_err.txt
-      wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.3.1073-amd64.deb >> /root/install_log.txt 2>> /root/log_err.txt
-      yes | gdebi rstudio-server-1.3.1073-amd64.deb >> /root/install_log.txt 2>> /root/log_err.txt
+      wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-2022.02.0-443-amd64.deb >> /root/install_log.txt 2>> /root/log_err.txt
+      yes | gdebi rstudio-server-2022.02.0-443-amd64.deb >> /root/install_log.txt 2>> /root/log_err.txt
       ## JupyterHub install
-      pip3 install --upgrade jupyterhub notebook >> /root/install_log.txt 2>> /root/log_err.txt
+      pip3 install --upgrade jupyterhub jupyterlab notebook >> /root/install_log.txt 2>> /root/log_err.txt
       curl -fsSL https://deb.nodesource.com/setup_16.x | bash - >> /root/install_log.txt 2>> /root/log_err.txt
       apt-get -y install nodejs default-jre >> /root/install_log.txt 2>> /root/log_err.txt
       npm install -g configurable-http-proxy >> /root/install_log.txt 2>> /root/log_err.txt
@@ -1093,6 +1033,15 @@ then
   then
     echo "" | tee -a /root/install_log.txt
     echo "JupyterHub Setting Files Copy" | tee -a /root/install_log.txt
+    ## jupyterhub 설정값 변경
+    mkdir /etc/jupyterhub
+    jupyterhub --generate-config -f /etc/jupyterhub/jupyterhub_config.py >> /root/install_log.txt 2>> /root/log_err.txt
+    sed -i '356a c.JupyterHub.port = 8000' /etc/jupyterhub/jupyterhub_config.py
+    sed -i '358a c.LocalAuthenticator.create_system_users = True' /etc/jupyterhub/jupyterhub_config.py
+    sed -i '359a c.Authenticator.add_user_cmd = ['adduser', '--force-badname', '-q', '--gecos', '""', '--disabled-password']' /etc/jupyterhub/jupyterhub_config.py
+    sed -i '384a c.JupyterHub.proxy_class = 'jupyterhub.proxy.ConfigurableHTTPProxy'' /etc/jupyterhub/jupyterhub_config.py
+    sed -i '824a c.Authenticator.admin_users = {"sonic"}' /etc/jupyterhub/jupyterhub_config.py
+    sed -i '929a c.Spawner.default_url = '/lab'' /etc/jupyterhub/jupyterhub_config.py
     ## jupyterhub service 설정 파일 복사
     mv /root/LISR/LISR_LAS/jupyterhub.service /lib/systemd/system/
     mv /root/LISR/LISR_LAS/jupyterhub /etc/init.d/
@@ -1190,7 +1139,6 @@ then
       cd /tmp/raid_manager/disk/
       apt-get -y install alien >> /root/install_log.txt 2>> /root/log_err.txt
       alien --scripts *.rpm >> /root/install_log.txt 2>> /root/log_err.txt
-      sleep 30
       dpkg --install lib-utils2_1.00-9_all.deb >> /root/install_log.txt 2>> /root/log_err.txt
       dpkg --install megaraid-storage-manager_17.05.00-3_all.deb >> /root/install_log.txt 2>> /root/log_err.txt
       systemctl daemon-reload >> /root/install_log.txt 2>> /root/log_err.txt
