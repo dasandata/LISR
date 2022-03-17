@@ -23,13 +23,13 @@
 [13. Disk 속도 측정](Standard_Install_CentOS_8.md#-13-disk-%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95)
 
 
-[===== 장애 모니터링 =====](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_7.md#--%EC%9E%A5%EC%95%A0-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-)  
-[20. SMTP for Email Alert (mailutils or mailx)](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_7.md#-20-smtp-for-email-alert-mailutils-or-mailx)  
-[21. SMTP for Email Alert (postfix for Dell RAID Manager)](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_7.md#-21-smtp-for-email-alert-postfix-for-dell-raid-manager)  
-[22. Dell OpenManage Server Administrator Install (OMSA)](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_7.md#-22-dell-openmanage-server-administrator-install-omsa)  
-[23. Dell OMSA - E-Mail Alert](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_7.md#-23-dell-omsa---e-mail-alert)  
-[24. Dell RAID Controller Management (MSM) + Alert by Email](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_7.md#-24-dell-raid-controller-management-msm--alert-by-email)  
-[25. 온도(temperature) 모니터 링. (ipmitool)](https://github.com/dasandata/LISR/blob/master/%2BCentOS7/Standard_Install_CentOS_7.md#-25-%EC%98%A8%EB%8F%84temperature-%EB%AA%A8%EB%8B%88%ED%84%B0-%EB%A7%81-ipmitool)  
+[===== 장애 모니터링 =====](Standard_Install_CentOS_8.md#--%EC%9E%A5%EC%95%A0-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-)  
+[20. SMTP for Email Alert (mailutils or mailx)](Standard_Install_CentOS_8.md#-20-smtp-for-email-alert-mailutils-or-mailx)  
+[21. SMTP for Email Alert (postfix for Dell RAID Manager)](Standard_Install_CentOS_8.md#-21-smtp-for-email-alert-postfix-for-dell-raid-manager)  
+[22. Dell OpenManage Server Administrator Install (OMSA)](Standard_Install_CentOS_8.md#-22-dell-openmanage-server-administrator-install-omsa)  
+[23. Dell OMSA - E-Mail Alert](Standard_Install_CentOS_8.md#-23-dell-omsa---e-mail-alert)  
+[24. Dell RAID Controller Management (MSM) + Alert by Email](Standard_Install_CentOS_8.md#-24-dell-raid-controller-management-msm--alert-by-email)  
+[25. 온도(temperature) 모니터 링. (ipmitool)](Standard_Install_CentOS_8.md#-25-%EC%98%A8%EB%8F%84temperature-%EB%AA%A8%EB%8B%88%ED%84%B0-%EB%A7%81-ipmitool)  
 
 ***
 
