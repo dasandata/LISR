@@ -23,6 +23,6 @@ https://github.com/dasandata/LAS
 
 end.
 
-[centos7]: /CentOS7/Standard_Install_CentOS_7.md  
-[ubuntu16]: /Ubuntu16/Standard_Install_Ubuntu.md  
+[centos7]: CentOS7/Standard_Install_CentOS_7.md  
+[ubuntu16]: Ubuntu16/Standard_Install_Ubuntu.md  
 [markdown]: makrdown.md
