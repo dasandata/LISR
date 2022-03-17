@@ -12,7 +12,7 @@ https://github.com/dasandata/LAS
 
 ## 목차
 
-1. [CentOS7](centos7)
+1. [CentOS7][centos7]
 
 
 
