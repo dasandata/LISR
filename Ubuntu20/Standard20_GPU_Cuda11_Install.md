@@ -8,13 +8,13 @@
 ![Dasandata Logo](http://dasandata.co.kr/wp-content/uploads/2019/05/%EB%8B%A4%EC%82%B0%EB%A1%9C%EA%B3%A0_%EC%88%98%EC%A0%951-300x109.jpg)
 
 ## #목차
-[1. Cuda 설치 사전 작업](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard20_GPU_Cuda11_Install.md#-1-cuda-%EC%84%A4%EC%B9%98-%EC%82%AC%EC%A0%84-%EC%9E%91%EC%97%85)  
-[2. Deep Learning Package Install (tensorflow, pytorch)                         ](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard20_GPU_Cuda11_Install.md#-2-deep-learning-package-install-tensorflow-pytorch)   
-[3. GPU Burning Test](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard20_GPU_Cuda11_Install.md#-3-gpu-burning-test)   
-[4. R-Server, R install](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard20_GPU_Cuda11_Install.md#-4-r-server-r-install)   
-[5. Jupyterhub install](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard20_GPU_Cuda11_Install.md#-5-jupyterhub-install)   
-[6. pycharm install ](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard20_GPU_Cuda11_Install.md#-6-pycharm-install)   
-[7. history 저장 / 차후 설치기록 참고용 ](https://github.com/dasandata/LISR/blob/master/%2BUbuntu20/Standard20_GPU_Cuda11_Install.md#-7-history-%EC%A0%80%EC%9E%A5--%EC%B0%A8%ED%9B%84-%EC%84%A4%EC%B9%98%EA%B8%B0%EB%A1%9D-%EC%B0%B8%EA%B3%A0%EC%9A%A9)
+[1. Cuda 설치 사전 작업](Standard20_GPU_Cuda11_Install.md#-1-cuda-%EC%84%A4%EC%B9%98-%EC%82%AC%EC%A0%84-%EC%9E%91%EC%97%85)  
+[2. Deep Learning Package Install (tensorflow, pytorch)                         ](Standard20_GPU_Cuda11_Install.md#-2-deep-learning-package-install-tensorflow-pytorch)   
+[3. GPU Burning Test](Standard20_GPU_Cuda11_Install.md#-3-gpu-burning-test)   
+[4. R-Server, R install](Standard20_GPU_Cuda11_Install.md#-4-r-server-r-install)   
+[5. Jupyterhub install](Standard20_GPU_Cuda11_Install.md#-5-jupyterhub-install)   
+[6. pycharm install ](Standard20_GPU_Cuda11_Install.md#-6-pycharm-install)   
+[7. history 저장 / 차후 설치기록 참고용 ](Standard20_GPU_Cuda11_Install.md#-7-history-%EC%A0%80%EC%9E%A5--%EC%B0%A8%ED%9B%84-%EC%84%A4%EC%B9%98%EA%B8%B0%EB%A1%9D-%EC%B0%B8%EA%B3%A0%EC%9A%A9)
 
 
 ***
