@@ -1,0 +1,8 @@
+[Unit]
+Description=Jupyterhub
+
+[Service]
+User=root
+ExecStart=/usr/bin/python3 /usr/local/bin/jupyterhub
+[Install]
+WantedBy=multi-user.target
