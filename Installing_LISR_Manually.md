@@ -511,49 +511,36 @@ apt-get -y install libcudnn8*
 # 딥러닝 패키지 (R, R-Server, JupyterHub) 를 설치 합니다.
 # JupyterHub에 작업 중 사용되는 파일들은 LISR에 존재하므로 git을 통해 Pull 하고 사용해야 합니다.
 ===== CentOS 7.9 =====
+
 ## R,R-sutdio install
-wget https://download1.rstudio.org/desktop/centos7/x86_64/rstudio-1.2.5033-x86_64.rpm
-yum -y install libxkbcommon-x11
-rpm -ivh rstudio-1.2.5033-x86_64.rpm
-wget https://download2.rstudio.org/server/centos6/x86_64/rstudio-server-rhel-1.2.5033-x86_64.rpm
-yum -y install psmisc
-rpm -ivh rstudio-server-rhel-1.2.5033-x86_64.rpm
-yum -y install R
+yum -y install R 
+wget https://download2.rstudio.org/server/centos7/x86_64/rstudio-server-rhel-2022.02.0-443-x86_64.rpm  
+yum -y install rstudio-server-rhel-2022.02.0-443-x86_64.rpm 
 
 ## JupyterHub install
-pip3 install --upgrade jupyterhub notebook
-wget https://rpm.nodesource.com/pub_16.x/el/7/x86_64/nodejs-16.10.0-1nodesource.x86_64.rpm
-wget https://rpm.nodesource.com/pub_16.x/el/7/x86_64/nodejs-devel-16.10.0-1nodesource.x86_64.rpm
-rpm -ivh nodejs-16.10.0-1nodesource.x86_64.rpm
-rpm -ivh nodejs-devel-16.10.0-1nodesource.x86_64.rpm
-npm install -g configurable-http-proxy
-mkdir /etc/jupyterhub
-jupyterhub --generate-config
-mv jupyterhub_config.py /etc/jupyterhub/
+pip3 install --upgrade jupyterhub jupyterlab notebook 
+wget https://rpm.nodesource.com/pub_16.x/el/7/x86_64/nodejs-16.10.0-1nodesource.x86_64.rpm 
+wget https://rpm.nodesource.com/pub_16.x/el/7/x86_64/nodejs-devel-16.10.0-1nodesource.x86_64.rpm 
+rpm -ivh nodejs-16.10.0-1nodesource.x86_64.rpm nodejs-devel-16.10.0-1nodesource.x86_64.rpm 
+npm install -g configurable-http-proxy 
 
-sed -i '356a c.JupyterHub.port = 8000' /etc/jupyterhub/jupyterhub_config.py
-sed -i '358a c.LocalAuthenticator.create_system_users = True' /etc/jupyterhub/jupyterhub_config.py
-sed -i '359a c.Authenticator.add_user_cmd = ['adduser', '--force-badname', '-q', '--gecos', '""', '--disabled-password']' /etc/jupyterhub/jupyterhub_config.py
-sed -i '384a c.JupyterHub.proxy_class = 'jupyterhub.proxy.ConfigurableHTTPProxy'' /etc/jupyterhub/jupyterhub_config.py
-sed -i '824a c.Authenticator.admin_users = {"sonic"}' /etc/jupyterhub/jupyterhub_config.py
-rm -rf cuda-repo-rhel7-10.0.130-1.x86_64.rpm rstudio-1.2.5033-x86_64.rpm rstudio-server-rhel-1.2.5033-x86_64.rpm r_jupyterhub.Rout
 ```
 ```bash
 ===== Ubuntu 20.04 =====
 # 딥러닝 패키지 (R, R-Server, JupyterHub) 를 설치 합니다.
 # JupyterHub에 작업 중 사용되는 파일들은 LISR에 존재하므로 git을 통해 Pull 하고 사용해야 합니다.
-
+      
 ## R,R-studio Install
 apt-get -y install r-base
 apt-get -y install gdebi-core
-wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.3.1073-amd64.deb
-yes | gdebi rstudio-server-1.3.1073-amd64.deb
+wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-2022.02.0-443-amd64.deb
+yes | gdebi rstudio-server-2022.02.0-443-amd64.deb
 
 ## JupyterHub install
-pip3 install --upgrade jupyterhub notebook
+pip3 install --upgrade jupyterhub jupyterlab notebook
 curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
-apt-get -y install nodejs default-jre
-npm install -g configurable-http-proxy
+apt-get -y install nodejs default-jre 
+npm install -g configurable-http-proxy 
 
 ## Pycharm install
 snap install pycharm-community --classic
@@ -561,15 +548,26 @@ snap install pycharm-community --classic
 
 ```bash
 ## CentOS , Ubuntu 동일하게 JupyterHub 마무리 작업을 진행 합니다.
-===== JupyterHub 마무리 설정 =====
+
+## jupyterhub 설정값 변경
+mkdir /etc/jupyterhub
+jupyterhub --generate-config -f /etc/jupyterhub/jupyterhub_config.py 
+sed -i '356a c.JupyterHub.port = 8000' /etc/jupyterhub/jupyterhub_config.py
+sed -i '358a c.LocalAuthenticator.create_system_users = True' /etc/jupyterhub/jupyterhub_config.py
+sed -i '359a c.Authenticator.add_user_cmd = ['adduser', '--force-badname', '-q', '--gecos', '""', '--disabled-password']' /etc/jupyterhub/jupyterhub_config.py
+sed -i '384a c.JupyterHub.proxy_class = 'jupyterhub.proxy.ConfigurableHTTPProxy'' /etc/jupyterhub/jupyterhub_config.py
+sed -i '824a c.Authenticator.admin_users = {"sonic"}' /etc/jupyterhub/jupyterhub_config.py
+sed -i '929a c.Spawner.default_url = '/lab'' /etc/jupyterhub/jupyterhub_config.py
+
+## jupyterhub service 설정 파일 복사
 mv /root/LISR/LISR_LAS/jupyterhub.service /lib/systemd/system/
 mv /root/LISR/LISR_LAS/jupyterhub /etc/init.d/
-chmod 777 /lib/systemd/system/jupyterhub.service
-chmod 755 /etc/init.d/jupyterhub
-systemctl daemon-reload
-systemctl enable jupyterhub.service
-systemctl restart jupyterhub.service
-R CMD BATCH /root/LISR/LISR_LAS/r_jupyterhub.R
+chmod 777 /lib/systemd/system/jupyterhub.service 
+chmod 755 /etc/init.d/jupyterhub 
+systemctl daemon-reload 
+systemctl enable jupyterhub.service 
+systemctl restart jupyterhub.service 
+R CMD BATCH /root/LISR/LISR_LAS/r_jupyterhub.R 
 ```
 
 ### ===== 서버 전용 설치 진행 순서 ===== 
