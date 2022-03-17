@@ -511,7 +511,6 @@ apt-get -y install libcudnn8*
 # 딥러닝 패키지 (R, R-Server, JupyterHub) 를 설치 합니다.
 # JupyterHub에 작업 중 사용되는 파일들은 LISR에 존재하므로 git을 통해 Pull 하고 사용해야 합니다.
 ===== CentOS 7.9 =====
-
 ## R,R-sutdio install
 yum -y install R 
 wget https://download2.rstudio.org/server/centos7/x86_64/rstudio-server-rhel-2022.02.0-443-x86_64.rpm  
@@ -523,33 +522,28 @@ wget https://rpm.nodesource.com/pub_16.x/el/7/x86_64/nodejs-16.10.0-1nodesource.
 wget https://rpm.nodesource.com/pub_16.x/el/7/x86_64/nodejs-devel-16.10.0-1nodesource.x86_64.rpm 
 rpm -ivh nodejs-16.10.0-1nodesource.x86_64.rpm nodejs-devel-16.10.0-1nodesource.x86_64.rpm 
 npm install -g configurable-http-proxy 
-
 ```
 ```bash
 ===== Ubuntu 20.04 =====
 # 딥러닝 패키지 (R, R-Server, JupyterHub) 를 설치 합니다.
 # JupyterHub에 작업 중 사용되는 파일들은 LISR에 존재하므로 git을 통해 Pull 하고 사용해야 합니다.
-      
+
 ## R,R-studio Install
-apt-get -y install r-base
-apt-get -y install gdebi-core
-wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-2022.02.0-443-amd64.deb
-yes | gdebi rstudio-server-2022.02.0-443-amd64.deb
+apt-get -y install r-base 
+apt-get -y install gdebi-core 
+wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-2022.02.0-443-amd64.deb 
+yes | gdebi rstudio-server-2022.02.0-443-amd64.deb 
 
 ## JupyterHub install
-pip3 install --upgrade jupyterhub jupyterlab notebook
-curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+pip3 install --upgrade jupyterhub jupyterlab notebook 
+curl -fsSL https://deb.nodesource.com/setup_16.x | bash - 
 apt-get -y install nodejs default-jre 
 npm install -g configurable-http-proxy 
-
-## Pycharm install
-snap install pycharm-community --classic
 ```
 
 ```bash
 ## CentOS , Ubuntu 동일하게 JupyterHub 마무리 작업을 진행 합니다.
-
-## jupyterhub 설정값 변경
+===== JupyterHub 마무리 설정 =====
 mkdir /etc/jupyterhub
 jupyterhub --generate-config -f /etc/jupyterhub/jupyterhub_config.py 
 sed -i '356a c.JupyterHub.port = 8000' /etc/jupyterhub/jupyterhub_config.py
