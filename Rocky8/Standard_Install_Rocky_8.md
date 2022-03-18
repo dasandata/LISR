@@ -25,7 +25,7 @@
 [21. Dell OpenManage Server Administrator Install (OMSA)](Standard_Install_Rocky_8.md#-21-dell-openmanage-server-administrator-install-omsa)  
 [22. Dell OMSA - E-Mail Alert](Standard_Install_Rocky_8.md#-22-dell-omsa---e-mail-alert)  
 [23. Dell RAID Controller Management (MSM) + Alert by Email](Standard_Install_Rocky_8.md#-23-dell-raid-controller-management-msm--alert-by-email)  
-[24. 온도(temperature) 모니터 링. (ipmitool)](Standard_Install_Rocky_8.md#-25-온도temperature-모니터-링-ipmitool)  
+[24. 온도(temperature) 모니터 링. (ipmitool)](Standard_Install_Rocky_8.md#-24-온도temperature-모니터-링-ipmitool)  
 
 ***
 
