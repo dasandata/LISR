@@ -8,28 +8,24 @@
 ![Dasandata Logo](http://dasandata.co.kr/wp-content/uploads/2019/05/%EB%8B%A4%EC%82%B0%EB%A1%9C%EA%B3%A0_%EC%88%98%EC%A0%951-300x109.jpg)
 
 ## #목차
-[1. 기본 유틸 설치 / 시간 동기화](Standard_Install_Rocky_8.md#-1-%EA%B8%B0%EB%B3%B8-%EC%9C%A0%ED%8B%B8-%EC%84%A4%EC%B9%98--%EC%8B%9C%EA%B0%84-%EB%8F%99%EA%B8%B0%ED%99%94)  
-[2. profile 설정 - Console Color , alias](Standard_Install_Rocky_8.md#-2-profile-%EC%84%A4%EC%A0%95---console-color--alias)  
-[3. 하드웨어 사양 / 기본 환경 확인 (os 버젼 등)](Standard_Install_Rocky_8.md#-3-%ED%95%98%EB%93%9C%EC%9B%A8%EC%96%B4-%EC%82%AC%EC%96%91--%EA%B8%B0%EB%B3%B8-%ED%99%98%EA%B2%BD-%ED%99%95%EC%9D%B8-os-%EB%B2%84%EC%A0%BC-%EB%93%B1)  
-[4. ip 및 hostname 정보 / 인터넷 연결 확인](Standard_Install_Rocky_8.md#-4-ip-%EB%B0%8F-hostname-%EC%A0%95%EB%B3%B4--%EC%9D%B8%ED%84%B0%EB%84%B7-%EC%97%B0%EA%B2%B0-%ED%99%95%EC%9D%B8)   
-[5. Desktop (X window) Install, not default](Standard_Install_Rocky_8.md#-5-desktop-x-window-install-not-default)  
-[6. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading](Standard_Install_Rocky_8.md#-6-ssh-%EB%B0%8F-%EB%B0%A9%ED%99%94%EB%B2%BD-firewall%EC%84%A4%EC%A0%95--%EB%B3%B4%EC%95%88%EA%B0%95%ED%99%94--x11-forwading)  
-[7. 새로운 사용자 추가 / sudo 권한 부여](Standard_Install_Rocky_8.md#-7-%EC%83%88%EB%A1%9C%EC%9A%B4-%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%B6%94%EA%B0%80--sudo-%EA%B6%8C%ED%95%9C-%EB%B6%80%EC%97%AC)  
-[8. 스토리지, 파티션 마운트 / lvm, UUID, LABEL](Standard_Install_Rocky_8.md#-8-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-%ED%8C%8C%ED%8B%B0%EC%85%98-%EB%A7%88%EC%9A%B4%ED%8A%B8--lvm-or-parted-uuid-label)  
-[9. Banner // login wellcome message ](Standard_Install_Rocky_8.md#-9-banner--login-wellcome-message-)  
-[10. VNC Server 설정](Standard_Install_Rocky_8.md#-10-vnc-server-%EC%84%A4%EC%A0%95)  
-[11. TeamViewer 설치](Standard_Install_Rocky_8.md#-11-teamviewer-%EC%84%A4%EC%B9%98)  
-[12. 부팅 되는 기본 커널 버젼 변경방법](Standard_Install_Rocky_8.md#-12-%EB%B6%80%ED%8C%85-%EB%90%98%EB%8A%94-%EA%B8%B0%EB%B3%B8-%EC%BB%A4%EB%84%90-%EB%B2%84%EC%A0%BC-%EB%B3%80%EA%B2%BD%EB%B0%A9%EB%B2%95)  
-[13. Disk 속도 측정](Standard_Install_Rocky_8.md#-13-disk-%EC%86%8D%EB%8F%84-%EC%B8%A1%EC%A0%95)
+[1. 기본 유틸 설치 / 시간 동기화](Standard_Install_Rocky_8.md#-1-기본-유틸-설치--시간-동기화)  
+[2. profile 설정 - Console Color , alias](Standard_Install_Rocky_8.md#-2-profile-설정---console-color--alias)  
+[3. ip 및 hostname 정보 / 인터넷 연결 확인](Standard_Install_Rocky_8.md#-3-ip-및-네트워크-구성-정보-확인)   
+[4. Desktop (X window) Install, not default](Standard_Install_Rocky_8.md#-4-desktop-x-window-install-not-default)  
+[5. ssh 및 방화벽 (Firewall)설정 / 보안강화 / X11 Forwading](Standard_Install_Rocky_8.md#-5-ssh-및-방화벽-firewall설정--보안강화--x11-forwading)  
+[6. 새로운 사용자 추가 / sudo 권한 부여](Standard_Install_Rocky_8.md#-6-새로운-사용자-추가--sudo-권한-부여)  
+[7. 스토리지, 파티션 마운트 / lvm, UUID, LABEL](Standard_Install_Rocky_8.md#-7-스토리지-파티션-마운트--lvm-or-parted-uuid-label)  
+[8. Banner // login wellcome message ](Standard_Install_Rocky_8.md#-8-banner--login-wellcome-message-)  
+[9. 부팅 되는 기본 커널 버젼 변경방법](Standard_Install_Rocky_8.md#-9-부팅-되는-기본-커널-버젼-변경방법)  
+[10. Disk 속도 측정](Standard_Install_Rocky_8.md#-10-disk-속도-측정)
 
 
-[===== 장애 모니터링 =====](Standard_Install_Rocky_8.md#--%EC%9E%A5%EC%95%A0-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81-)  
-[20. SMTP for Email Alert (mailutils or mailx)](Standard_Install_Rocky_8.md#-20-smtp-for-email-alert-mailutils-or-mailx)  
-[21. SMTP for Email Alert (postfix for Dell RAID Manager)](Standard_Install_Rocky_8.md#-21-smtp-for-email-alert-postfix-for-dell-raid-manager)  
-[22. Dell OpenManage Server Administrator Install (OMSA)](Standard_Install_Rocky_8.md#-22-dell-openmanage-server-administrator-install-omsa)  
-[23. Dell OMSA - E-Mail Alert](Standard_Install_Rocky_8.md#-23-dell-omsa---e-mail-alert)  
-[24. Dell RAID Controller Management (MSM) + Alert by Email](Standard_Install_Rocky_8.md#-24-dell-raid-controller-management-msm--alert-by-email)  
-[25. 온도(temperature) 모니터 링. (ipmitool)](Standard_Install_Rocky_8.md#-25-%EC%98%A8%EB%8F%84temperature-%EB%AA%A8%EB%8B%88%ED%84%B0-%EB%A7%81-ipmitool)  
+[===== 장애 모니터링 =====](Standard_Install_Rocky_8.md#--장애-모니터링-)  
+[20. SMTP for Email Alert (mailx and postfix)](Standard_Install_Rocky_8.md#-20-smtp-for-email-alert-mailx-and-postfix)  
+[21. Dell OpenManage Server Administrator Install (OMSA)](Standard_Install_Rocky_8.md#-21-dell-openmanage-server-administrator-install-omsa)  
+[22. Dell OMSA - E-Mail Alert](Standard_Install_Rocky_8.md#-22-dell-omsa---e-mail-alert)  
+[23. Dell RAID Controller Management (MSM) + Alert by Email](Standard_Install_Rocky_8.md#-23-dell-raid-controller-management-msm--alert-by-email)  
+[24. 온도(temperature) 모니터 링. (ipmitool)](Standard_Install_Rocky_8.md#-25-온도temperature-모니터-링-ipmitool)  
 
 ***
 
@@ -574,7 +570,7 @@ time ; dd if=/dev/zero bs=1G count=1 of=write_test ; rm write_test
 
 ## # [===== 장애 모니터링 =====](#목차)
 
-### # [20. SMTP for Email Alert (mailutils or mailx)](#목차)
+### # [20. SMTP for Email Alert (mailx and postfix)](#목차)
 
 #### # 이메일 경고에 사용될 메일관리자 이메일 주소 및 로그 타이틀 정보를 생성 파일 작성.
 
@@ -683,7 +679,7 @@ bash  /root/LISR/common/dasan_omconfig_set.sh
 \# 테스트 - 파워케이블 빼기  or  케이스 오픈 후 이메일이 도착 되는지 확인.  
 
 ***
-### # [24. Dell RAID Controller Management (MSM) + Alert by Email](#목차)
+### # [23. Dell RAID Controller Management (MSM) + Alert by Email](#목차)
 \# RAID 컨트롤러 관리 프로그램을 통해 서버의 전원을 끄지 않고 디스크 장애를 처리하거나  
 \# RAID 구성을 변경할 수 있습니다. Megaraid Storage Manager 의 약자로 통상 MSM 이라고 합니다.  
 \# LSI 사에서 최초 제작한 컨트롤러 였으나 현재는 Boradcom 제품 입니다.  
@@ -716,7 +712,7 @@ tar xvzf 17.05.00.02_Linux-64_MSM.gz
 
 ```
 ***
-### # [25. 온도(temperature) 모니터 링. (ipmitool)](#목차)
+### # [24. 온도(temperature) 모니터 링. (ipmitool)](#목차)
 \# 서버에 내장된 관리기능 (ipmi) 를 이용하여 온도를 모니터링 하고 이메일로 받아봅니다.
 
 #### # 파일 복사.
