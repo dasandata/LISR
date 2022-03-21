@@ -255,11 +255,6 @@ tail dasan_log_install_gnome-desktop.txt
 \# 콘솔에서 실행하여 윈도우가 잘 뜨는지 확인  
 \# [user@hostname:~]# startx  
 \#  
-\# 기본 부팅모드 (그래픽 모드 vs 텍스트 모드) 변경 방법 입니다. (런레벨 / runlevel)  
-\# - CentOS 6.x 계열  
-\# http://egloos.zum.com/conniezzang/v/3313282  
-\# - CentOS 7.x 계열  
-\# https://www.server-world.info/en/note?os=CentOS_7&p=runlevel  
 
 #### # 불필요한 Daemon Disable 예.
 
@@ -651,12 +646,14 @@ firewall-cmd   --add-port=1311/tcp  --permanent
 firewall-cmd   --reload
 
 # 시스템이 시작될 때 관련 서비스가 실행 되도록 설정 (systemctl enable)
-systemctl enable   dataeng dsm_om_connsvc
-systemctl start    dataeng dsm_om_connsvc
+systemctl enable    dsm_om_connsvc
+systemctl start     dsm_om_connsvc
 
 # 명령어 테스트
 /opt/dell/srvadmin/sbin/racadm getsysinfo | grep "System Model\|Service Tag"
 /opt/dell/srvadmin/sbin/omreport system alertlog | head
+
+source  /etc/profile.d/srvadmin-path.sh
 ```
 
 ***
@@ -669,6 +666,8 @@ cat   /usr/local/sbin/dasan_export_global_variable.sh
 
 #### # 경고 메일 내용 생성파일 복사. (dasan_alert_omsa.sh)
 ```bash
+git clone http://github.com/dasandata/LISR
+
 cp /root/LISR/common/usr-local-sbin/dasan_alert_omsa.sh /usr/local/sbin/
 chmod 744 /usr/local/sbin/dasan_alert_omsa.sh
 
@@ -710,6 +709,7 @@ wget https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controll
 tar xvzf 17.05.00.02_Linux-64_MSM.gz
 
 # 설치 시작
+cd disk/
 ./install.csh -a
 
 # 기본적으로 변경해야 할 값.
