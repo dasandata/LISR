@@ -127,6 +127,8 @@ sed -i 's/pool 2.pool.ntp.org iburst/pool kr.pool.ntp.org iburst/' /etc/chrony.c
 systemctl enable chronyd
 systemctl start  chronyd
 
+sleep 10
+
 chronyc sources
 
 timedatectl
@@ -151,34 +153,16 @@ rpm -qa | grep htop # htop 이 설치 되어있는지 확인.
 
 yum -y  install htop ntfs-3g >> dasan_log_install_htop,ntfs3g.txt  2>&1
 tail -5  dasan_log_install_htop,ntfs3g.txt
-```
 
-#### # kernel / kernel-header / kernel-devel 버젼 일치 확인
-```bash
-uname -r # 현재 실행중인 커널 버젼 확인
-
-# 실행중인 커널과 동일한 버젼의 커널 패키지 (headers,devel) 가 설치 되어 있는지 확인.
-rpm -qa | grep $(uname -r) | grep 'headers\|devel'
-```
-*output example>*
-```
-[root@hostname ~]# # kernel / kernel-header / kernel-devel 버젼 일치 확인
-[root@hostname ~]# uname -r # 현재 실행중인 커널 버젼 확인
-4.18.0-348.20.1.el8_5.x86_64
-[root@hostname ~]#
-[root@hostname ~]# # 실행중인 커널과 동일한 버젼의 커널 패키지 (headers,devel) 가 설치 되어 있는지 확인.
-[root@hostname ~]# rpm -qa | grep $(uname -r) | grep 'headers\|devel'
-kernel-headers-4.18.0-348.20.1.el8_5.x86_64
-kernel-devel-4.18.0-348.20.1.el8_5.x86_64
-[root@hostname ~]#
+rpm -qa | grep htop # htop 이 설치 되었는지 확인.
 ```
 
 
 ### # [2. profile 설정 - Console Color , alias](#목차)
 \# 사용 편의를 위한 alias를 설정, History Size 및 format 변경.  
 \# Console 의 가독성을 높이기 위하여 Prompt 색상변경.  
-\# Console Color Codes : http://bitmote.com/public/ansi_4bit_color_table.png  
-![Console Color Codes](http://bitmote.com/public/ansi_4bit_color_table.png)  
+\# [Console Color Codes](https://cdn.vox-cdn.com/thumbor/dzT-GU0W-BypwB8T-a3wvLxGkDE=/0x0:660x440/920x613/filters:focal(278x168:382x272):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/56019981/newcmdline.0.jpg)
+![Console Color Codes](https://cdn.vox-cdn.com/thumbor/dzT-GU0W-BypwB8T-a3wvLxGkDE=/0x0:660x440/920x613/filters:focal(278x168:382x272):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/56019981/newcmdline.0.jpg)  
 
 #### # 기본 alias.
 ```bash
@@ -557,14 +541,39 @@ lsblk
 df -hT | grep -v tmpfs
 
 cd /tmp
-time ; dd if=/dev/zero bs=1G count=1 of=write_test ; rm write_test
+time ; dd if=/dev/zero bs=1G count=1 of=write_test ; rm -f write_test
 
 cd /home
-time ; dd if=/dev/zero bs=1G count=1 of=write_test ; rm write_test
+time ; dd if=/dev/zero bs=1G count=1 of=write_test ; rm -f write_test
 
 cd /data
-time ; dd if=/dev/zero bs=1G count=1 of=write_test ; rm write_test
+time ; dd if=/dev/zero bs=1G count=1 of=write_test ; rm -f write_test
 ```
+
+### # [11. Nvidia Driver, CUDA Install](#목차)
+\# Reboot 후 진행 합니다.
+```bash
+reboot
+
+```
+
+#### # kernel / kernel-header / kernel-devel 버젼 일치 확인
+```bash
+uname -r # 현재 실행중인 커널 버젼 확인
+
+# 실행중인 커널과 동일한 버젼의 커널 패키지 (headers,devel) 가 설치 되어 있는지 확인.
+rpm -qa | grep $(uname -r) | grep 'headers\|devel'
+```
+
+
+
+
+
+
+
+
+
+
 
 ***
 
