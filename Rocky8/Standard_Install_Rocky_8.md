@@ -558,7 +558,7 @@ rpm -qa | grep $(uname -r) | grep 'headers\|devel'
 
 
 
-#### # [12. Python package install](#목차)
+### # [12. Python package install](#목차)
 
 \# 파이썬 및 패키지 설치
 ```bash
@@ -577,7 +577,7 @@ python3 -m pip install --upgrade tensorflow-gpu==1.13.1 >> dasan_log_install_pyt
 python3 -m pip install torch torchvision >> dasan_log_install_python.txt 2>&1
 ```
 
-#### # [13. R, rstudio install](#목차)
+### # [13. R, rstudio install](#목차)
 
 \# R 설치를 위한 PowerTools Repo 활성화
 ```bash
@@ -606,7 +606,7 @@ firewall-cmd --add-port=8787/tcp  --permanent
 firewall-cmd --reload
 ```
 
-#### # [14. Jupyterhub,lab,notebook install](#목차)
+### # [14. Jupyterhub,lab,notebook install](#목차)
 
 \# JupyterHub, lab, notebook 설치
 ```bash
