@@ -97,7 +97,7 @@ yum -y install \
 vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget tcsh tree \
 lshw tmux git kernel-headers kernel-devel ipmitool gcc make gcc-c++ cmake \
 dstat perl perl-CPAN perl-core net-tools openssl-devel bash-completion \
-smartmontools ethtool bind-utils git-lfs \
+smartmontools ethtool bind-utils git-lfs yum-utils \
   >>  dasan_log_install_centos_default_util.txt 2>&1
 
 tail dasan_log_install_centos_default_util.txt # 설치 결과 확인.
