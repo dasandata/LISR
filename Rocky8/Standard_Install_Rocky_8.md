@@ -18,6 +18,8 @@
 [8. Banner // login wellcome message ](Standard_Install_Rocky_8.md#-8-banner--login-wellcome-message-)  
 [9. 부팅 되는 기본 커널 버젼 변경방법](Standard_Install_Rocky_8.md#-9-부팅-되는-기본-커널-버젼-변경방법)  
 [10. Disk 속도 측정](Standard_Install_Rocky_8.md#-10-disk-속도-측정)  
+
+[===== GPU 관련 패키지 설치 =====](Standard_Install_Rocky_8.md#--GPU-관련-패키지-설치-)  
 [11. Nvidia Driver, CUDA Install](Standard_Install_Rocky_8.md#-11-Nvidia-Driver-CUDA-Install)  
 [12. Python package install](Standard_Install_Rocky_8.md#-12-Python-package-install)  
 [13. R, rstudio install](Standard_Install_Rocky_8.md#-13-R-rstudio-install)  
@@ -544,6 +546,7 @@ cd /data
 time ; dd if=/dev/zero bs=1G count=1 of=write_test ; rm -f write_test
 ```
 
+## # [===== GPU 관련 패키지 설치 =====](#목차)
 ### # [11. Nvidia Driver, CUDA Install](#목차)
 \# Reboot 후 진행 합니다.
 ```bash
