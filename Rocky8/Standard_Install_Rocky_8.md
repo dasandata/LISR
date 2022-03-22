@@ -18,6 +18,10 @@
 [8. Banner // login wellcome message ](Standard_Install_Rocky_8.md#-8-banner--login-wellcome-message-)  
 [9. 부팅 되는 기본 커널 버젼 변경방법](Standard_Install_Rocky_8.md#-9-부팅-되는-기본-커널-버젼-변경방법)  
 [10. Disk 속도 측정](Standard_Install_Rocky_8.md#-10-disk-속도-측정)
+[11. Nvidia Driver, CUDA Install](Standard_Install_Rocky_8.md#-11-Nvidia-Driver,-CUDA-Install)
+[12. Python package install](Standard_Install_Rocky_8.md#-10-disk-속도-측정)
+[13. R, rstudio install](Standard_Install_Rocky_8.md#-10-disk-속도-측정)
+[14. Jupyterhub,lab,notebook install](Standard_Install_Rocky_8.md#-10-disk-속도-측정)
 
 
 [===== 장애 모니터링 =====](Standard_Install_Rocky_8.md#--장애-모니터링-)  
