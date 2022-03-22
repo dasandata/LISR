@@ -42,17 +42,11 @@
 
 ### # 터미널을 통해 리눅스가 새로 설치된 장비에 로그인 합니다.
 
-#### # Windows 에서 리눅스 접속 (putty) / X11 Forwading / 파일 송수신 (winscp)
-\#  
-\# putty (SSH Terminal - X11 Forwarding Enable)  
-\# https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html  
-\#  
-\# Xming (X11 Forward - Windows Application)  
-\# https://sourceforge.net/projects/xming/  
-\#  
-\# 파일 전송 winscp  
-\# https://winscp.net/eng/download.php  
-\#  
+#### # Windows 에서 리눅스 접속 - MobaXterm
+ 
+\# https://mobaxterm.mobatek.net/
+
+
 #### # 리눅스 터미널 에서.
 ```bash
 ssh <사용자 계정>@<IP 주소>
@@ -64,6 +58,7 @@ ssh <사용자 계정>@<IP 주소>
 # 또는
 # su -
 ```
+
 ### # sudo -i 와 su - 의 차이점
 \# 1. sudo -i 는 sudo 권한이 있는 사용자가, 사용자의 암호를 사용해서 root 권한으로 명령을 실행 하는 것 입니다.  
 \# root 의 패스워드를 몰라도 root 권한의 명령을 수행할 수 있습니다.  
@@ -76,8 +71,6 @@ ssh <사용자 계정>@<IP 주소>
 
 ### # [1. 기본 유틸 설치 / 시간 동기화](#목차)
 
-#### # 우선 kernel 을 업데이트 와 grub 를 수정하고, 재부팅 한 후 진행 합니다.
-
 ##### # kernel Update (yum update)
 ```bash
 yum -y update  >>  dasan_log_yum_update.txt 2>&1
@@ -87,15 +80,16 @@ tail dasan_log_yum_update.txt
 
 ##### # 설정이 까다로운 SELINUX 를 disable 합니다.
 ```bash
-setenforce 0
+getenforce
+setenforce 0  # permissive mode로 전환.
 getenforce
 
+# 재부팅시 disable 되도록 설정.
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 grep 'SELINUX=' /etc/selinux/config
 ```
 
 #### # 서버 기본 설정에 필요한 유틸리티들 설치
-
 ```bash
 # 기본 유틸 설치.
 # 화면에 로그가 뿌려지지 않도록 하기 위해 파이프라인(>>) 처리를 합니다.
@@ -117,6 +111,7 @@ tail dasan_log_install_centos_developtoosl.txt
 
 yum grouplist
 ```
+
 #### # 인터넷 시간에 맞추어 서버의 시간 조정
 ```bash
 # 서버 시간 동기화.
@@ -139,10 +134,12 @@ hwclock
 ```
 
 #### # Centos EPEL(Extra Packages for Enterprise Linux) 저장소(Repository) 설치.
-
 ```bash
 yum repolist # 현재 repolist 확인.
 
+yum -y   install  epel-release   >>   dasan_log_install_epel.txt 2>&1
+
+# epel 자체를 update 하기 위해 한번 더 설치.
 yum -y   install  epel-release   >>   dasan_log_install_epel.txt 2>&1
 tail -5  dasan_log_install_epel.txt  
 
@@ -157,12 +154,8 @@ tail -5  dasan_log_install_htop,ntfs3g.txt
 rpm -qa | grep htop # htop 이 설치 되었는지 확인.
 ```
 
-
 ### # [2. profile 설정 - Console Color , alias](#목차)
 \# 사용 편의를 위한 alias를 설정, History Size 및 format 변경.  
-\# Console 의 가독성을 높이기 위하여 Prompt 색상변경.  
-\# [Console Color Codes](https://cdn.vox-cdn.com/thumbor/dzT-GU0W-BypwB8T-a3wvLxGkDE=/0x0:660x440/920x613/filters:focal(278x168:382x272):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/56019981/newcmdline.0.jpg)
-![Console Color Codes](https://cdn.vox-cdn.com/thumbor/dzT-GU0W-BypwB8T-a3wvLxGkDE=/0x0:660x440/920x613/filters:focal(278x168:382x272):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/56019981/newcmdline.0.jpg)  
 
 #### # 기본 alias.
 ```bash
@@ -189,6 +182,10 @@ export HISTTIMEFORMAT="20%y/%m/%d %T "
 EOF
 ```
 
+\# Console 의 가독성을 높이기 위하여 Prompt 색상변경.  
+\# [Console Color Codes](https://cdn.vox-cdn.com/thumbor/dzT-GU0W-BypwB8T-a3wvLxGkDE=/0x0:660x440/920x613/filters:focal(278x168:382x272):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/56019981/newcmdline.0.jpg)
+![Console Color Codes](https://cdn.vox-cdn.com/thumbor/dzT-GU0W-BypwB8T-a3wvLxGkDE=/0x0:660x440/920x613/filters:focal(278x168:382x272):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/56019981/newcmdline.0.jpg)  
+
 #### # root 와 user 의 프롬프트 색상을 다르게 설정.
 ```bash
 echo "export PS1='\[\e[1;46;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /root/.bashrc
@@ -197,7 +194,6 @@ tail -1 /root/.bashrc
 echo "export PS1='\[\e[1;47;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /home/sonic/.bashrc
 tail -1 /home/sonic/.bashrc
 ```
-
 
 #### # 적용확인.
 ```bash
@@ -208,12 +204,11 @@ echo $HISTSIZE
 source  .bashrc
 ```
 
-
 ### # [3. ip 및 네트워크 구성 정보 확인](#목차)
 ```bash
 ip a
 
-EXT_NIC=ens192
+EXT_NIC=ens192  # 시스템 구성에 맞게 변경 필요!
 
 echo ${EXT_NIC}
 ```
@@ -235,13 +230,13 @@ ping -c 4 google.com
 
 ### # [4. Desktop (X window) Install, not default](#목차)
 \# Desktop 환경을 설치 하지만, 기본 부팅은 텍스트 모드로 설정해 놓습니다.  
-\# 필요한 경우에만 xwindow 를 실행하여 사용 합니다. (서버의 리소스 절약)  
+\# 필요한 경우에만 Xwindow 를 실행하여 사용 합니다. (서버의 리소스 절약)  
 \# Desktop 을 설치하면 불필요한 데몬이 함께 깔립니다. 설치 후 정리가 필요 합니다.  
 
 #### # 기본 부팅 모드 확인.
 \# multi-user.target -> 텍스트환경  
-\# graphical.target -> GUI 환경  
-\# 기본 모드 변경시 -> systemctl set-default multi-user.target  
+\# graphical.target  -> GUI 환경  
+\# 기본 모드 변경시   -> systemctl set-default multi-user.target  
 ```bash
 systemctl get-default
 ```
@@ -252,7 +247,8 @@ yum -y  groups install "Server with GUI"  >> dasan_log_install_gnome-desktop.txt
 
 tail dasan_log_install_gnome-desktop.txt
 ```
-\# 콘솔에서 실행하여 윈도우가 잘 뜨는지 확인  
+
+\# 콘솔(!!) 에서 실행하여 윈도우가 잘 뜨는지 확인  
 \# [user@hostname:~]# startx  
 \#  
 
@@ -282,19 +278,6 @@ systemctl disable cups-browsed.service
 \# ssh port 를 7777로 변경하고, ssh를 통한 Root Login을 거부 한 후  
 \# 변경된 포트에 맞게 방화벽을 설정 합니다.  
 
-#### # 방화벽 (Firewall) 설정.
-```bash
-firewall-cmd --get-zones         # 설정가능 한 zone 목록 확인.
-
-firewall-cmd --list-all          # 현재 설정 확인.
-firewall-cmd --get-default-zone  # 현재 설정 확인.
-
-firewall-cmd --add-port=7777/tcp  --permanent  # 7777 포트 개방
-firewall-cmd --remove-service=ssh  --permanent  # 22 포트 폐쇄
-firewall-cmd --reload   # 변경사항 적용
-firewall-cmd --list-all  # 변경된 설정내용 확인.
-```
-
 #### # sshd 설정.
 ```bash
 grep 'Root\|Port' /etc/ssh/sshd_config  # 변경 전 설정 확인.
@@ -309,13 +292,26 @@ grep 'Root\|Port' /etc/ssh/sshd_config  # 변경 후 설정 확인.
 systemctl restart sshd  # ssh 데몬 재시작.
 ```
 
+#### # 방화벽 (Firewall) 설정.
+```bash
+firewall-cmd --get-zones         # 설정가능 한 zone 목록 확인.
+
+firewall-cmd --list-all          # 현재 설정 확인.
+firewall-cmd --get-default-zone  # 현재 설정 확인.
+
+firewall-cmd --add-port=7777/tcp  --permanent  # 7777 포트 개방
+firewall-cmd --remove-service=ssh  --permanent  # 22 포트 폐쇄
+firewall-cmd --reload   # 변경사항 적용
+firewall-cmd --list-all  # 변경된 설정내용 확인.
+```
+
 \# 로그아웃 한 뒤 설정이 잘 적용 되었는지 검증 합니다.
 ```bash
 logout
 logout
 
-ssh user@192.168.0.?          # 포트가 막혔으므로 접속이 거부되어야 함.
-ssh -p7777  user@192.168.0.?  # 접속 가능
+ssh         user@192.168.0.?      # 포트가 막혔으므로 접속이 거부되어야 함.
+ssh -p7777  user@192.168.0.?      # 접속 가능
 logout
 
 ssh -p7777  root@192.168.0.?      # root 접근을 막았으므로 접속이 거부되어야 함.
@@ -374,33 +370,36 @@ pwd
 ### # [7. 스토리지, 파티션 마운트 / lvm or Parted, UUID, LABEL](#목차)  
 \# /home 디렉토리를 용량이 큰 디스크 or 스토리지 로 변경  
 \# 또는 용량이 큰 디스크를 /data 로 마운트 합니다.  
-\# lvm 으로 구성하는 방법 (7A) 과 parted 로 구성하는 방법 (7B) 으로 나누어져 있습니다.  
+\# lvm (Logical Volume Manager) 으로 구성하는 방법 (7A) 과 
+\# parted 로 구성하는 방법 (7B) 으로 나누어져 있습니다.  
 
-#### # 현재 디스크 설정 확인.
+#### # 현재 디스크 구성 확인.
 ```bash
 fdisk -l  |  grep 'Disk /dev' # 디스크 목록 확인 1.
 
 lsblk # 디스크 목록 확인 2.
 
-pvs # lvm 구성 확인 (물리디스크 리스트)
-vgs # lvm 구성 확인 (볼륨그룹 리스트)
-lvs # lvm 구성 확인 (논리볼륨 리스트)
+# lvm 구성 확인
+pvs # Physical Volume Show
+vgs # Volume   Group  Show
+lvs # Logical  Volume Show
+
 ```
 
 #### # 7A-1. /dev/sdb 를 lvm 으로 구성
 \# (home으로 마운트 하기 위해 vg 및 lv 이름을 home 으로 지정.)
-
 ```bash
-pvcreate /dev/sdb
+pvcreate  /dev/sdb
 
-vgcreate vg_home /dev/sdb
+vgcreate  vg_home  /dev/sdb
 
-lvcreate -l 100%FREE -n  lv_home   vg_home
+lvcreate -l 100%FREE  -n lv_home   vg_home
 
-lsblk
 pvs
 vgs
 lvs
+
+lsblk
 ```
 
 #### # 7A-2. lvm 으로 생성된 볼륨을 포맷 한 후 기존 home 내용 복제
@@ -420,8 +419,6 @@ cd
 ***
 
 #### # 7B-1. /dev/sdb 를 parted 으로 구성
-\# (home으로 마운트 하기 위해 vg 및 lv 이름을 home 으로 지정.)
-
 ```bash
 parted -s /dev/sdb  "mklabel gpt"
 parted -s /dev/sdb  "mkpart  primary  0% 100%"
@@ -433,7 +430,7 @@ sleep 10
 ```bash
 mkfs.xfs -f -L HOME  /dev/sdb1
 
-mount /dev/sdb1  /mnt
+mount   /dev/sdb1   /mnt
 
 
 cd /home/
@@ -449,6 +446,7 @@ cd
 #### # 생성된 볼륨을 home 으로 마운트 (fstab 에 마운트 내용 추가)
 ```bash
 echo  "LABEL="HOME"      /home     xfs      defaults  0  0 "  >>  /etc/fstab
+
 cat /etc/fstab | grep -v ^#
 ```
 
@@ -477,8 +475,7 @@ ls -l /home
 \# http://tigerbum.tistory.com/31  
 \#  
 
-
-### # [8. Banner // login wellcome message ](#목차)
+### # [8. Banner / login wellcome message ](#목차)
 \# /etc/ssh/sshd_config 파일의 Banner 옵션을 조정하면  
 \# 서버에 ssh 접속시 원하는 텍스트 이미지 를 표시할 수 있습니다.  
 \# 텍스트 이미지 는 아래 사이트에서 쉽게 만들 수 있습니다.  
@@ -489,9 +486,9 @@ vi /etc/ssh/banner.sample
 
 cat /etc/ssh/banner.sample
 
-grep Banner /etc/ssh/sshd_config
+grep  Banner /etc/ssh/sshd_config
 echo "Banner /etc/ssh/banner.sample" >> /etc/ssh/sshd_config
-grep Banner /etc/ssh/sshd_config
+grep  Banner /etc/ssh/sshd_config
 
 systemctl restart sshd
 ```
@@ -500,9 +497,8 @@ systemctl restart sshd
 
 ***
 ### # [9. 부팅 되는 기본 커널 버젼 변경방법](#목차)
-\# 업데이트를 통해 커널이 많이 설치 되었을 경우   
-\# 이 방법으로 기본 부팅 커널 버젼을 변경할 수 있습니다.  
-
+\# 업데이트를 통해 여러개의 커널이 설치 되었을 경우   
+\# 아래 방법으로 기본 부팅 커널 버젼을 변경할 수 있습니다.  
 ```bash
 grubby --default-kernel
 
@@ -516,10 +512,9 @@ grubby --default-kernel
 ***
 
 ### # [10. Disk 속도 측정](#목차)
-\# 읽기 전용 hdparm  
-\# 쓰기 전용 dd  
+\# 읽기 전용 hdparm, 쓰기 전용 dd  
 
-\# hdparm 읽기 테스트
+#### # hdparm 읽기 테스트
 ```bash
 lsblk
 
@@ -530,7 +525,7 @@ hdparm -tT /dev/sda3
 hdparm -tT /dev/sdb1
 ```
 
-\# dd 쓰기 테스트
+#### # dd 쓰기 테스트
 ```bash
 lsblk
 df -hT | grep -v tmpfs
@@ -563,16 +558,18 @@ rpm -qa | grep $(uname -r) | grep 'headers\|devel'
 
 
 
+#### # 추가 예정...
 
+```bash
 
+#
 
-
-
+```
 
 
 ***
 
-## # [===== 장애 모니터링 =====](#목차)
+## # [===== Dell 서버 장애 모니터링 =====](#목차)
 
 ### # [20. SMTP for Email Alert (mailx and postfix)](#목차)
 
@@ -687,19 +684,20 @@ bash  /root/LISR/common/dasan_omconfig_set.sh
 \# 테스트 - 파워케이블 빼기  or  케이스 오픈 후 이메일이 도착 되는지 확인.  
 
 ***
+
 ### # [23. Dell RAID Controller Management (MSM) + Alert by Email](#목차)
-\# RAID 컨트롤러 관리 프로그램을 통해 서버의 전원을 끄지 않고 디스크 장애를 처리하거나  
+\# RAID 컨트롤러 관리 프로그램을 통해서 서버의 전원을 끄지 않고 디스크 장애를 처리하거나  
 \# RAID 구성을 변경할 수 있습니다. Megaraid Storage Manager 의 약자로 통상 MSM 이라고 합니다.  
 \# LSI 사에서 최초 제작한 컨트롤러 였으나 현재는 Boradcom 제품 입니다.  
 \# ** LSI MegaRAID  
-\# LSI -> Avago Technologies 에 인수  (2013년 12월 16일)  
+\# LSI -> Avago Technologies 에 인수   (2013년 12월 16일)  
 \# Avago Technologies 와 Broadcom 합병 (2015년 5월 28일)  
 \# https://en.wikipedia.org/wiki/Broadcom_Limited  
 
 ```bash
 # 다운로드
 mkdir /tmp/raid_manager
-cd /tmp/raid_manager
+cd    /tmp/raid_manager
 wget https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/17.05.00.02_Linux-64_MSM.gz
 
 # 혹시 위 링크로 다운로드 되지 않으면 아래 웹페이지에서 직접 다운로드 합니다..
@@ -712,9 +710,9 @@ tar xvzf 17.05.00.02_Linux-64_MSM.gz
 cd disk/
 ./install.csh -a
 
-# 기본적으로 변경해야 할 값.
-### 228 Temperature sensor    =>> Disable
-### 236 Drive is not certified   ==>> Disable
+# 변경이 필요할 수 있는 값.
+### 228 Temperature sensor      ==>> Disable
+### 236 Drive is not certified  ==>> Disable
 
 # MSM 실행 (X11 Forwading 구성 필요)
 /usr/local/MegaRAID\ Storage\ Manager/startupui.sh  &
