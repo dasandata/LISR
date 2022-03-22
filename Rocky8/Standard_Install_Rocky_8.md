@@ -21,7 +21,7 @@
 [11. Nvidia Driver, CUDA Install](Standard_Install_Rocky_8.md#-11-Nvidia-Driver-CUDA-Install)  
 [12. Python package install](Standard_Install_Rocky_8.md#-12-Python-package-install)  
 [13. R, rstudio install](Standard_Install_Rocky_8.md#-13-R-rstudio-install)  
-[14. Jupyterhub,lab,notebook install](Standard_Install_Rocky_8.md#-14-Jupyterhub-lab-notebook-install)  
+[14. Jupyter 패키지 install](Standard_Install_Rocky_8.md#-14-Jupyter-패키지-install)  
 
 
 [===== 장애 모니터링 =====](Standard_Install_Rocky_8.md#--장애-모니터링-)  
@@ -610,7 +610,7 @@ firewall-cmd --add-port=8787/tcp  --permanent
 firewall-cmd --reload
 ```
 
-### # [14. Jupyterhub,lab,notebook install](#목차)
+### # [14. Jupyter 패키지 install](#목차)
 
 \# JupyterHub, lab, notebook 설치
 ```bash
