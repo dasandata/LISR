@@ -551,7 +551,6 @@ time ; dd if=/dev/zero bs=1G count=1 of=write_test ; rm -f write_test
 \# Reboot 후 진행 합니다.
 ```bash
 reboot
-
 ```
 
 #### # kernel / kernel-header / kernel-devel 버젼 일치 확인
@@ -562,55 +561,139 @@ uname -r # 현재 실행중인 커널 버젼 확인
 rpm -qa | grep $(uname -r) | grep 'headers\|devel'
 ```
 
+\# nvidia Repo add
+```bash
+# cuda, ML 저장소 추가
+dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/cuda-rhel8.repo
+wget https://developer.download.nvidia.com/compute/machine-learning/repos/rhel8/x86_64/nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm
+yum install nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm
 
+# nvidia repo 추가 확인
+yum repolist | grep -E "nvidia|cuda" | awk '{print$1}'
+```
 
+\# nvidia X윈도 관련 라이브러리 설치
+```bash
+yum -y install libXi-devel mesa-libGLU-devel libXmu-devel libX11-devel freeglut-devel libXm* openmotif* >> dasan_log_install_lib_nvidia.txt 2>&1
+
+#설치 확인
+tail dasan_log_install_lib_nvidia.txt 2>&1
+```
+
+\# CUDA CUDNN 설치
+```bash
+# 원하는 버전에 맞게 설치
+yum -y install cuda-11-5 >> dasan_log_install_cuda.txt 2>&1
+yum -y install libcudnn8* libnccl* >> dasan_log_install_cudnn.txt 2>&1
+
+# 설치 확인
+tail dasan_log_install_cuda.txt 2>&1
+tail dasan_log_install_cudnn.txt 2>&1
+```
+
+\# CUDA PATH 설정
+```bash
+# profile에 PATH 설정 작업 진행
+echo "### ADD Cuda 11.5 PATH"  >> /etc/profile
+echo "export PATH=/usr/local/cuda-11.5/bin:/usr/local/cuda-11.5/include:\$PATH " >> /etc/profile
+echo "export LD_LIBRARY_PATH=/usr/local/cuda-11.5/lib64:/usr/local/cuda/extras/CUPTI/:\$LD_LIBRARY_PATH " >> /etc/profile
+echo "export CUDA_HOME=/usr/local/cuda-11.5 " >> /etc/profile
+echo "export CUDA_INC_DIR=/usr/local/cuda-11.5/include " >> /etc/profile
+
+# 변경된 PATH 적용
+source /etc/profile
+source /root/.bashrc
+
+# PATH 확인
+echo $PATH
+echo $LD_LIBRARY_PATH
+```
+
+\# 마지막 설정 후 상태 확인
+```bash
+# nvidia 지속성 모드 On
+nvidia-smi -pm 1
+systemctl enable nvidia-persistenced
+systemctl status nvidia-persistenced
+
+# nvidia-driver, cuda 버전 확인
+nvidia-smi
+nvidia-smi -L
+nvcc -V
+```
 
 ### # [12. Python package install](#목차)
 
 \# 파이썬 및 패키지 설치
 ```bash
 yum -y install python36-devel >> dasan_log_install_python.txt 2>&1
+
+tail dasan_log_install_python.txt 2>&1
 ``` 
 
 \# pip 업그레이드
 ```bash
-python3 -m pip install --upgrade pip >> dasan_log_install_python.txt 2>&1
+# 버전 확인
+python3 -m pip -V
+
+# 업그레이드 진행
+python3 -m pip install --upgrade pip
+
+# 버전 확인
+python3 -m pip -V
 ```
 
 \# pip 패키지 설치
 ```bash
-python3 -m pip install numpy scipy nose matplotlib pandas keras >> dasan_log_install_python.txt 2>&1
-python3 -m pip install --upgrade tensorflow-gpu==1.13.1 >> dasan_log_install_python.txt 2>&1
-python3 -m pip install torch torchvision >> dasan_log_install_python.txt 2>&1
+python3 -m pip install numpy scipy nose matplotlib pandas keras >> dasan_log_install_pip.txt 2>&1
+python3 -m pip install --upgrade tensorflow-gpu==1.13.1 >> dasan_log_install_pip.txt 2>&1
+python3 -m pip install torch torchvision >> dasan_log_install_pip.txt 2>&1
+
+# 패키지 설치 확인
+tail dasan_log_install_pip.txt 2>&1
+python3 -m pip list | grep -E "numpy|scipy|nose|matplotlib|pandas|Keras|tensor|torch"
 ```
 
 ### # [13. R, rstudio install](#목차)
 
 \# R 설치를 위한 PowerTools Repo 활성화
 ```bash
-dnf config-manager --set-enabled PowerTools >> dasan_log_install_rstudio.txt 2>&1
+dnf config-manager --set-enabled powertools
 ```
 
 \# R 설치
 ```bash
-yum -y install R >> dasan_log_install_rstudio.txt 2>&1
+yum -y install R >> dasan_log_install_R.txt 2>&1
+
+tail dasan_log_install_R.txt 2>&1
+
+# R 버전 확인
+R --version
 ```
 
 \# R에서 사용하는 라이브러리 도구 설치
 ```bash
-yum install libcurl-devel libxml2-devel >> dasan_log_install_rstudio.txt 2>&1
+yum install libcurl-devel libxml2-devel >> dasan_log_install_r_lib.txt 2>&1
+
+tail dasan_log_install_r_lib.txt 2>&1
 ```
 
 \# rstuodio 설치
 ```bash
 wget https://download2.rstudio.org/server/rhel8/x86_64/rstudio-server-rhel-2022.02.0-443-x86_64.rpm >> dasan_log_install_rstudio.txt 2>&1
 yum -y install rstudio-server-rhel-2022.02.0-443-x86_64.rpm >> dasan_log_install_rstudio.txt 2>&1
+
+# rstudio 서비스 실행 확인
+systemctl status rstudio-server.service
 ```
 
 \# 방화벽에 R-studio 포트 개방
 ```bash
 firewall-cmd --add-port=8787/tcp  --permanent
 firewall-cmd --reload
+
+# 웹에서 로그인 및 작동 확인
+https://127.0.0.1:8787
 ```
 
 ### # [14. Jupyter 패키지 install](#목차)
@@ -618,18 +701,24 @@ firewall-cmd --reload
 \# JupyterHub, lab, notebook 설치
 ```bash
 python3 -m pip install jupyterhub jupyterlab notebook >> dasan_log_install_jupyter.txt 2>&1
+
+tail dasan_log_install_jupyter.txt 2>&1
 ```
 
 \# nodejs 16버전 설치
 ```bash
-curl -sL https://rpm.nodesource.com/setup_16.x | sudo -E bash - >> dasan_log_install_jupyter.txt 2>&1
+curl -sL https://rpm.nodesource.com/setup_16.x | sudo -E bash - >> dasan_log_install_nodejs.txt 2>&1
 sed -i '/failover/d'  /etc/yum.repos.d/nodesource-el8.repo
-yum -y install nodejs >> dasan_log_install_jupyter.txt 2>&1
+yum -y install nodejs >> dasan_log_install_nodejs.txt 2>&1
+
+tail dasan_log_install_nodejs.txt 2>&1
 ```
 
 \# http-proxy 설정
 ```bash
-npm install -g configurable-http-proxy >> dasan_log_install_jupyter.txt 2>&1
+npm install -g configurable-http-proxy >> dasan_log_install_npm.txt 2>&1
+
+tail dasan_log_install_npm.txt 2>&1
 ```
 
 \# jupyterhub 설정파일 생성 및 추가 설정 변경
@@ -661,6 +750,13 @@ R CMD BATCH /root/LAS/r_jupyterhub.R
 ```bash
 firewall-cmd --add-port=8000/tcp  --permanent
 firewall-cmd --reload
+
+# 서비스 작동 확인
+systemctl status jupyterhub.service
+
+# 웹에서 작동 확인
+https://127.0.0.1:8000
+
 ```
 
 ***
