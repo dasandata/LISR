@@ -558,14 +558,103 @@ rpm -qa | grep $(uname -r) | grep 'headers\|devel'
 
 
 
-#### # 추가 예정...
+#### # [12. Python package install](#목차)
 
+\# 파이썬 및 패키지 설치
 ```bash
+yum -y install python36-devel >> dasan_log_install_python.txt 2>&1
+``` 
 
-#
-
+\# pip 업그레이드
+```bash
+python3 -m pip install --upgrade pip >> dasan_log_install_python.txt 2>&1
 ```
 
+\# pip 패키지 설치
+```bash
+python3 -m pip install numpy scipy nose matplotlib pandas keras >> dasan_log_install_python.txt 2>&1
+python3 -m pip install --upgrade tensorflow-gpu==1.13.1 >> dasan_log_install_python.txt 2>&1
+python3 -m pip install torch torchvision >> dasan_log_install_python.txt 2>&1
+```
+
+#### # [13. R, rstudio install](#목차)
+
+\# R 설치를 위한 PowerTools Repo 활성화
+```bash
+dnf config-manager --set-enabled PowerTools >> dasan_log_install_rstudio.txt 2>&1
+```
+
+\# R 설치
+```bash
+yum -y install R >> dasan_log_install_rstudio.txt 2>&1
+```
+
+\# R에서 사용하는 라이브러리 도구 설치
+```bash
+yum install libcurl-devel libxml2-devel >> dasan_log_install_rstudio.txt 2>&1
+```
+
+\# rstuodio 설치
+```bash
+wget https://download2.rstudio.org/server/rhel8/x86_64/rstudio-server-rhel-2022.02.0-443-x86_64.rpm >> dasan_log_install_rstudio.txt 2>&1
+yum -y install rstudio-server-rhel-2022.02.0-443-x86_64.rpm >> dasan_log_install_rstudio.txt 2>&1
+```
+
+\# 방화벽에 R-studio 포트 개방
+```bash
+firewall-cmd --add-port=8787/tcp  --permanent
+firewall-cmd --reload
+```
+
+#### # [14. Jupyterhub,lab,notebook install](#목차)
+
+\# JupyterHub, lab, notebook 설치
+```bash
+python3 -m pip install jupyterhub jupyterlab notebook >> dasan_log_install_jupyter.txt 2>&1
+```
+
+\# nodejs 16버전 설치
+```bash
+curl -sL https://rpm.nodesource.com/setup_16.x | sudo -E bash - >> dasan_log_install_jupyter.txt 2>&1
+sed -i '/failover/d'  /etc/yum.repos.d/nodesource-el8.repo
+yum -y install nodejs >> dasan_log_install_jupyter.txt 2>&1
+```
+
+\# http-proxy 설정
+```bash
+npm install -g configurable-http-proxy >> dasan_log_install_jupyter.txt 2>&1
+```
+
+\# jupyterhub 설정파일 생성 및 추가 설정 변경
+```bash
+mkdir /etc/jupyterhub
+jupyterhub --generate-config -f /etc/jupyterhub/jupyterhub_config.py >> dasan_log_install_jupyter.txt 2>&1
+sed -i '356a c.JupyterHub.port = 8000' /etc/jupyterhub/jupyterhub_config.py
+sed -i '358a c.LocalAuthenticator.create_system_users = True' /etc/jupyterhub/jupyterhub_config.py
+sed -i '359a c.Authenticator.add_user_cmd = ['adduser', '--force-badname', '-q', '--gecos', '""', '--disabled-password']' /etc/jupyterhub/jupyterhub_config.py
+sed -i '384a c.JupyterHub.proxy_class = 'jupyterhub.proxy.ConfigurableHTTPProxy'' /etc/jupyterhub/jupyterhub_config.py
+sed -i '824a c.Authenticator.admin_users = {"sonic"}' /etc/jupyterhub/jupyterhub_config.py
+sed -i '929a c.Spawner.default_url = '/lab'' /etc/jupyterhub/jupyterhub_config.py
+```
+
+\# jupyterhub service 등록
+```bash
+git clone https://github.com/dasandata/LAS >> dasan_log_install_jupyter.txt 2>&1
+mv /root/LAS/jupyterhub.service /lib/systemd/system/
+mv /root/LAS/jupyterhub /etc/init.d/
+chmod 777 /lib/systemd/system/jupyterhub.service 
+chmod 755 /etc/init.d/jupyterhub 
+systemctl daemon-reload 
+systemctl enable jupyterhub.service 
+systemctl restart jupyterhub.service 
+R CMD BATCH /root/LAS/r_jupyterhub.R 
+```
+
+\# jupyterhub 포트 개방
+```bash
+firewall-cmd --add-port=8000/tcp  --permanent
+firewall-cmd --reload
+```
 
 ***
 
