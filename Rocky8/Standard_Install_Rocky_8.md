@@ -327,7 +327,7 @@ logout
 
 ssh -p7777  root@192.168.0.?      # root 접근을 막았으므로 접속이 거부되어야 함.
 
-ssh -XYC -p 7777 user@192.168.0.? # X11 Forwading 이 가능하도록 -XCY 옵션을 추가.
+ssh -XYC -p7777 user@192.168.0.?  # X11 Forwading 이 가능하도록 -XCY 옵션을 추가.
 
 firefox &
 nautilus &
@@ -411,6 +411,7 @@ vgs
 lvs
 
 lsblk
+blkid
 ```
 
 #### # 7A-2. lvm 으로 생성된 볼륨을 포맷 한 후 기존 home 내용 복제
@@ -421,6 +422,7 @@ mount  /dev/mapper/vg_home-lv_home   /mnt
 
 cd /home/
 find .  | cpio -dump  /mnt
+# 또는, " rsync  -avh  /home/  /mnt/ "  ## 주의 '*' 를 붙이면 숨김파일이 복사되지 않습니다. 
 
 ls -l /mnt/
 umount /mnt
@@ -446,6 +448,7 @@ mount   /dev/sdb1   /mnt
 
 cd /home/
 find .  | cpio -dump  /mnt
+# 또는, " rsync  -avh  /home/  /mnt/ "  ## 주의 '*' 를 붙이면 숨김파일이 복사되지 않습니다. 
 
 ls -l /mnt/
 umount /mnt
@@ -481,9 +484,9 @@ ls -l /home
 \#  
 \# mount는 UUID 또는 LABEL 로 하는 것 을 권장 합니다.  
 \# /etc/fstab 수정.  
-\# 아래 링크 참조  
-\# http://greenfishblog.tistory.com/170  
-\# http://tigerbum.tistory.com/31  
+\#    
+\# ext 는 e2label  [device]  [label]     
+\# xfs 는 xfs_admin  -L [label]  [device]  
 \#  
 
 ### # [8. Banner / login wellcome message ](#목차)
