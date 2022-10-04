@@ -133,7 +133,9 @@ systemctl start  chronyd
 
 sleep 10
 
+chronyc tracking
 chronyc sources
+chronyc sourcestats
 
 timedatectl
 
@@ -175,7 +177,7 @@ alias ll='ls -lh'
 EOF
 ```
 
-#### # 히스토리 사이즈 변경 (1000개 -> 10,000개)
+#### # 히스토리 사이즈 변경 (1,000개 -> 10,000개)
 ```bash
 echo $HISTSIZE
 grep HISTSIZE= /etc/profile
@@ -195,7 +197,7 @@ EOF
 \# [Console Color Codes](https://cdn.vox-cdn.com/thumbor/dzT-GU0W-BypwB8T-a3wvLxGkDE=/0x0:660x440/920x613/filters:focal(278x168:382x272):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/56019981/newcmdline.0.jpg)
 ![Console Color Codes](https://cdn.vox-cdn.com/thumbor/dzT-GU0W-BypwB8T-a3wvLxGkDE=/0x0:660x440/920x613/filters:focal(278x168:382x272):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/56019981/newcmdline.0.jpg)  
 
-#### # root 와 user 의 프롬프트 색상을 다르게 설정.
+#### # root 와 일반 user 의 프롬프트 색상을 다르게 설정.
 ```bash
 echo "export PS1='\[\e[1;46;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /root/.bashrc
 tail -1 /root/.bashrc
@@ -308,7 +310,7 @@ firewall-cmd --get-zones         # 설정가능 한 zone 목록 확인.
 firewall-cmd --list-all          # 현재 설정 확인.
 firewall-cmd --get-default-zone  # 현재 설정 확인.
 
-firewall-cmd --add-port=7777/tcp  --permanent  # 7777 포트 개방
+firewall-cmd --add-port=7777/tcp   --permanent  # 7777 포트 개방
 firewall-cmd --remove-service=ssh  --permanent  # 22 포트 폐쇄
 firewall-cmd --reload   # 변경사항 적용
 firewall-cmd --list-all  # 변경된 설정내용 확인.
