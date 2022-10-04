@@ -79,9 +79,11 @@ ssh <사용자 계정>@<IP 주소>
 
 ##### # kernel Update (yum update)
 ```bash
+# 시스템에 설치된 모든 패키지 업데이트 
+# 화면에 로그가 뿌려지지 않도록 하기 위해 파이프라인(>>) 처리를 합니다. 
 yum -y update  >>  dasan_log_yum_update.txt 2>&1
 
-tail dasan_log_yum_update.txt
+tail dasan_log_yum_update.txt # 설치 결과 확인.
 ```
 
 ##### # 설정이 까다로운 SELINUX 를 disable 합니다.
@@ -91,22 +93,23 @@ setenforce 0  # permissive mode로 전환.
 getenforce
 
 # 재부팅시 disable 되도록 설정.
+grep   'SELINUX=' /etc/selinux/config
+
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
-grep 'SELINUX=' /etc/selinux/config
+grep   'SELINUX=' /etc/selinux/config
 ```
 
 #### # 서버 기본 설정에 필요한 유틸리티들 설치
 ```bash
 # 기본 유틸 설치.
-# 화면에 로그가 뿌려지지 않도록 하기 위해 파이프라인(>>) 처리를 합니다.
 yum -y install \
-vim pciutils openssh mlocate nfs-utils xauth firefox nautilus wget tcsh tree \
-lshw tmux git kernel-headers kernel-devel ipmitool gcc make gcc-c++ cmake \
-dstat perl perl-CPAN perl-core net-tools openssl-devel bash-completion \
-smartmontools ethtool bind-utils git-lfs yum-utils \
+ethtool pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget bind-utils \
+tcsh tree lshw tmux kernel-headers kernel-devel gcc make gcc-c++ snapd yum-utils \
+cmake dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs vim  \
+git bash-completion smartmontools ipmitool \
   >>  dasan_log_install_centos_default_util.txt 2>&1
 
-tail dasan_log_install_centos_default_util.txt # 설치 결과 확인.
+tail dasan_log_install_centos_default_util.txt 
 
 # Development Tools 설치
 yum grouplist
