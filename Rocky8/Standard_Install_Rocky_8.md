@@ -103,8 +103,8 @@ grep   'SELINUX=' /etc/selinux/config
 ```bash
 # 기본 유틸 설치.
 yum -y install \
-ethtool pciutils openssh mlocate nfs-utils rdate xauth firefox nautilus wget bind-utils \
-tcsh tree lshw tmux kernel-headers kernel-devel gcc make gcc-c++ snapd yum-utils \
+ethtool pciutils openssh mlocate nfs-utils xauth firefox nautilus wget bind-utils \
+tcsh tree lshw tmux kernel-headers kernel-devel gcc make gcc-c++ yum-utils \
 cmake dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs vim  \
 git bash-completion smartmontools ipmitool \
   >>  dasan_log_install_centos_default_util.txt 2>&1
@@ -159,7 +159,7 @@ yum repolist  # 설치된 repolist 확인.
 # epel 이 활성화 되어야 설치 되는 htop 을 설치하여 검증
 rpm -qa | grep htop # htop 이 설치 되어있는지 확인.
 
-yum -y  install htop ntfs-3g >> dasan_log_install_htop,ntfs3g.txt  2>&1
+yum -y  install htop ntfs-3g snapd figlet >> dasan_log_install_htop,ntfs3g.txt  2>&1
 tail -5  dasan_log_install_htop,ntfs3g.txt
 
 rpm -qa | grep htop # htop 이 설치 되었는지 확인.
