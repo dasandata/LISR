@@ -106,7 +106,7 @@ yum -y install \
 ethtool pciutils openssh mlocate nfs-utils xauth firefox nautilus wget bind-utils \
 tcsh tree lshw tmux kernel-headers kernel-devel gcc make gcc-c++ yum-utils \
 cmake dstat perl perl-CPAN perl-core net-tools openssl-devel git-lfs vim  \
-git bash-completion smartmontools ipmitool \
+git bash-completion smartmontools ipmitool tar \
   >>  dasan_log_install_default_util.txt 2>&1
 
 tail dasan_log_install_default_util.txt 
