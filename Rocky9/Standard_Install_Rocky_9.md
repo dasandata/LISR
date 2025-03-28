@@ -943,6 +943,7 @@ wget  https://docs.broadcom.com/docs-and-downloads/008.012.007.000_MR7.32_LSA_Li
 unzip 008.012.007.000_MR7.32_LSA_Linux.zip
 cd    webgui_rel
 unzip LSA_Linux.zip
+chmod 775 ./*.*sh
 ll
 
 cd    gcc_8.3.x
@@ -954,6 +955,20 @@ cd    gcc_8.3.x
 y
 
 netstat -tnlp | grep 2463
+
+# 방화벽 활성화 상태인 경우 아래 명령을 추가로 실행합니다.
+firewall-cmd --zone=public --add-service=http
+firewall-cmd --zone=public --add-port=2463/tcp --permanent
+firewall-cmd --reload
+
+# 서비스 상태 확인
+/etc/init.d/LsiSASH status
+# 서비스 시작
+/etc/init.d/LsiSASH start
+# 서비스 중지
+/etc/init.d/LsiSASH stop
+# 서비스 재시작
+/etc/init.d/LsiSASH restart
 
 # open to  http://localhost:2463
 ```
