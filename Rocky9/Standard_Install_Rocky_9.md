@@ -835,7 +835,7 @@ echo "Test of SMTP... OK." | mail -s $TITLE_TAIL $ADMIN_LOG_EMAIL
 wget http://linux.dell.com/repo/hardware/dsu/bootstrap.cgi -O  ./dellomsainstall.sh
 sed -i -e "s/enabled=1/enabled=0/g" ./dellomsainstall.sh
 bash ./dellomsainstall.sh
-
+yes # Do you want to import Dell GPG keys (y/n)?
 rm -f ./dellomsainstall.sh
 
 # 설치 시작
