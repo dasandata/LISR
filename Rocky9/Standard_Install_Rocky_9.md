@@ -31,6 +31,7 @@
 [21. Dell OpenManage Server Administrator Install (OMSA)](Standard_Install_Rocky_9.md#-21-dell-openmanage-server-administrator-install-omsa)  
 [22. Dell OMSA - E-Mail Alert](Standard_Install_Rocky_9.md#-22-dell-omsa---e-mail-alert)  
 [23. Dell RAID Controller Management (MSM) + Alert by Email](Standard_Install_Rocky_9.md#-23-dell-raid-controller-management-msm--alert-by-email)  
+[24. Dell RAID Controller Management (LSA) + Alert by Email](Standard_Install_Rocky_9.md#-24-dell-raid-controller-management-lsa--alert-by-email)  
 [25. 온도(temperature) 모니터 링. (ipmitool)](Standard_Install_Rocky_9.md#-25-온도temperature-모니터-링-ipmitool)  
 
 ***
@@ -926,6 +927,22 @@ cd disk/
 
 ```
 ***
+
+### # [24. Dell RAID Controller Management (LSA) + Alert by Email](#목차)
+\# RAID 컨트롤러 관리 프로그램을 통해서 서버의 전원을 끄지 않고 디스크 장애를 처리하거나  
+\# RAID 구성을 변경할 수 있습니다. MSM의 후속 버젼입니다.
+
+```bash
+# 다운로드
+
+mkdir /root/LSA
+cd    /root/LSA
+wget  https://docs.broadcom.com/docs-and-downloads/008.012.007.000_MR7.32_LSA_Linux.zip
+
+
+```
+
+
 ### # [25. 온도(temperature) 모니터 링. (ipmitool)](#목차)
 \# 서버에 내장된 관리기능 (ipmi) 를 이용하여 온도를 모니터링 하고 이메일로 받아봅니다.
 
