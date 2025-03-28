@@ -5,7 +5,7 @@
 
 감사합니다.  
 
-![Dasandata Logo](http://dasandata.co.kr/wp-content/uploads/2019/05/%EB%8B%A4%EC%82%B0%EB%A1%9C%EA%B3%A0_%EC%88%98%EC%A0%951-300x109.jpg)
+![Dasandata Logo](https://github.com/dasandata/LISR/blob/master/dasanlogo.jpg?raw=true)
 
 ## #목차
 [1. 기본 유틸 설치 / 시간 동기화](Standard_Install_Rocky_9.md#-1-기본-유틸-설치--시간-동기화)  
