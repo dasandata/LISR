@@ -945,7 +945,7 @@ unzip LSA_Linux.zip
 ll
 
 cd    gcc_8.3.x
-./install -s
+./install.sh -s
 
 netstat -tnlp | grep 2463
 
