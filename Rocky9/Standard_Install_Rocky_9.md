@@ -939,7 +939,17 @@ mkdir /root/LSA
 cd    /root/LSA
 wget  https://docs.broadcom.com/docs-and-downloads/008.012.007.000_MR7.32_LSA_Linux.zip
 
+unzip 008.012.007.000_MR7.32_LSA_Linux.zip
+cd    webgui_rel
+unzip LSA_Linux.zip
+ll
 
+cd    gcc_8.3.x
+./install -s
+
+netstat -tnlp | grep 2463
+
+# open to  http://localhost:2463
 ```
 
 
