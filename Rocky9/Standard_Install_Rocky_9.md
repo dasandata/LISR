@@ -31,7 +31,7 @@
 [21. Dell OpenManage Server Administrator Install (OMSA)](Standard_Install_Rocky_9.md#-21-dell-openmanage-server-administrator-install-omsa)  
 [22. Dell OMSA - E-Mail Alert](Standard_Install_Rocky_9.md#-22-dell-omsa---e-mail-alert)  
 [23. Dell RAID Controller Management (MSM) + Alert by Email](Standard_Install_Rocky_9.md#-23-dell-raid-controller-management-msm--alert-by-email)  
-[24. 온도(temperature) 모니터 링. (ipmitool)](Standard_Install_Rocky_9.md#-24-온도temperature-모니터-링-ipmitool)  
+[25. 온도(temperature) 모니터 링. (ipmitool)](Standard_Install_Rocky_9.md#-25-온도temperature-모니터-링-ipmitool)  
 
 ***
 
@@ -926,7 +926,7 @@ cd disk/
 
 ```
 ***
-### # [24. 온도(temperature) 모니터 링. (ipmitool)](#목차)
+### # [25. 온도(temperature) 모니터 링. (ipmitool)](#목차)
 \# 서버에 내장된 관리기능 (ipmi) 를 이용하여 온도를 모니터링 하고 이메일로 받아봅니다.
 
 #### # 파일 복사.
