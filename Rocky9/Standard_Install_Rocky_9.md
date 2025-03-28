@@ -3,7 +3,7 @@
 별도의 요청사항이 없는 경우 기본적으로 아래 절차에 따라 설치한 후 출고 하고 있습니다.  
 보완이 필요한 점이나 새로운 아이디어를 제보해 주시면 적극 반영하겠습니다 :)  
 
-감사합니다.  
+감사합니다. 
 
 ![Dasandata Logo](https://github.com/dasandata/LISR/blob/master/dasanlogo.jpg?raw=true)
 
@@ -203,8 +203,8 @@ EOF
 echo "export PS1='\[\e[1;46;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /root/.bashrc
 tail -1 /root/.bashrc
 
-echo "export PS1='\[\e[1;47;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /home/kds/.bashrc
-tail -1 /home/kds/.bashrc
+echo "export PS1='\[\e[1;47;30m\][\u@\h:\W]\\$\[\e[m\] '" >> /home/temp_id/.bashrc
+tail -1 /home/temp_id/.bashrc
 ```
 
 #### # 적용확인.
