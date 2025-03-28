@@ -948,6 +948,11 @@ ll
 cd    gcc_8.3.x
 ./install.sh -s
 
+# Installing the above package(s) from your installation source is highly recommended
+# However proceeding further installs SLP package bundled with LSA from openslp.org.
+# Continue (Y/N)?
+y
+
 netstat -tnlp | grep 2463
 
 # open to  http://localhost:2463
