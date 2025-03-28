@@ -684,9 +684,9 @@ tail dasan_log_install_r_lib.txt 2>&1
 
 \# rstuodio 설치
 ```bash
-wget https://download2.rstudio.org/server/rhel9/x86_64/rstudio-server-rhel-2023.03.0-386-x86_64.rpm
+wget https://download2.rstudio.org/server/rhel9/x86_64/rstudio-server-rhel-2024.12.1-563-x86_64.rpm
  >> dasan_log_install_rstudio.txt 2>&1
-yum -y install rstudio-server-rhel-2023.03.0-386-x86_64.rpm >> dasan_log_install_rstudio.txt 2>&1
+yum -y install rstudio-server-rhel-2024.12.1-563-x86_64.rpm >> dasan_log_install_rstudio.txt 2>&1
 
 # rstudio 서비스 실행 확인
 systemctl status rstudio-server.service
