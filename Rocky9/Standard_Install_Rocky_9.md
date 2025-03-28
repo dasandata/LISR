@@ -943,7 +943,6 @@ wget  https://docs.broadcom.com/docs-and-downloads/008.012.007.000_MR7.32_LSA_Li
 unzip 008.012.007.000_MR7.32_LSA_Linux.zip
 cd    webgui_rel
 unzip LSA_Linux.zip
-chmod 775 ./*.*sh
 ll
 
 cd    gcc_8.3.x
