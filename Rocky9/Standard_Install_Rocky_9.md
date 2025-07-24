@@ -731,14 +731,7 @@ mkdir /etc/jupyterhub
 jupyterhub --generate-config -f /etc/jupyterhub/jupyterhub_config.py >> dasan_log_install_jupyter.txt 2>&1
 
 cat << EOF >> /etc/jupyterhub/jupyterhub_config.py
-c.JupyterHub.hub_connect_ip = '0.0.0.0'
-c.JupyterHub.port = 8000
-c.JupyterHub.spawner_class = 'sudospawner.SudoSpawner'
-c.SudoSpawner.sudospawner_path = '/usr/local/bin/sudospawner'
-c.Spawner.default_url = '/lab'
-c.JupyterHub.extra_log_file = '/var/log/jupyterhub/jupyterhub.log'
-c.Application.log_format = '[%(asctime)s,%(msecs).03d] [%(levelname)s] [%(name)s] %(message)s'
-c.Application.log_level = 0
+c.Authenticator.allow_all = True
 EOF
 
 mkdir /var/log/jupyterhub/

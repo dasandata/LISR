@@ -732,13 +732,15 @@ tail dasan_log_install_npm.txt 2>&1
 \# jupyterhub 설정파일 생성 및 추가 설정 변경
 ```bash
 mkdir /etc/jupyterhub
+
 jupyterhub --generate-config -f /etc/jupyterhub/jupyterhub_config.py >> dasan_log_install_jupyter.txt 2>&1
-sed -i '356a c.JupyterHub.port = 8000' /etc/jupyterhub/jupyterhub_config.py
-sed -i '358a c.LocalAuthenticator.create_system_users = True' /etc/jupyterhub/jupyterhub_config.py
-sed -i '359a c.Authenticator.add_user_cmd = ['adduser', '--force-badname', '-q', '--gecos', '""', '--disabled-password']' /etc/jupyterhub/jupyterhub_config.py
-sed -i '384a c.JupyterHub.proxy_class = 'jupyterhub.proxy.ConfigurableHTTPProxy'' /etc/jupyterhub/jupyterhub_config.py
-sed -i '824a c.Authenticator.admin_users = {"sonic"}' /etc/jupyterhub/jupyterhub_config.py
-sed -i '929a c.Spawner.default_url = '/lab'' /etc/jupyterhub/jupyterhub_config.py
+
+cat << EOF >> /etc/jupyterhub/jupyterhub_config.py
+c.Authenticator.allow_all = True
+EOF
+
+mkdir /var/log/jupyterhub/
+touch /var/log/jupyterhub/jupyterhub.log
 ```
 
 \# jupyterhub service 등록
